@@ -1,0 +1,455 @@
+Jun 03, 2024  9:21:17 AM (Read by them after 2 seconds)
+Me
+Are you going to be here today? They have a lunch planned with the rest of the CL interns and managers at noon
+
+Jun 03, 2024  9:51:57 AM (Read by them after 1 second)
+Me
+Nvm, Felix told us you’re sick
+
+Jun 03, 2024  9:52:04 AM
+Me
+Hope you feel better!
+
+Jun 03, 2024 11:03:23 AM (Read by you after 1 hour, 56 minutes, 9 seconds)
+Jesse Johnson
+Thank you! 
+I’ll definitely be good enough for tomorrow. 
+Hope anything they have you do isn’t too bad !
+
+Jun 03, 2024  1:02:45 PM (Read by them after 1 second)
+Me
+They haven’t given me anything other than the LMS training to get admin access. I’m supposed to get an email sometime today about actually requesting admin access but that has yet to arrive in my inbox
+
+Jun 03, 2024  1:17:11 PM (Read by you after 48 minutes, 35 seconds)
+Jesse Johnson
+Sounds about right 😂
+
+Jun 19, 2024  3:41:59 PM (Read by them after 1 second)
+Me
+I finished the joining and marital status abt 30 min ago! Just have to finish adding the missing fields and then ordering them tmrw morning. I’ll do the documentation tonight
+
+Jun 19, 2024  3:42:44 PM (Read by you after 2 minutes, 15 seconds)
+Jesse Johnson
+That’s awesome! 
+Glad it worked out , it’s definitely not easy .. 
+
+Jun 21, 2024  4:28:03 PM (Read by them after 1 second)
+Me
+I GOT IT
+
+Jun 21, 2024  4:28:57 PM (Read by them after 2 seconds)
+Me
+Jun 21, 2024  4:28:57 PM It had nothing to do with the actual table. It was an issue with the Capacity of the Worker type
+Edited 30 seconds later: It had nothing to do with the actual steps (other than the repartitioning). It was an issue with the Capacity of the Worker type
+
+
+Jun 21, 2024  4:29:46 PM
+Me
+Jun 21, 2024  4:29:46 PM I put increased it from GPU 1X to GPU 2X
+Edited 7 seconds later: I increased it from GPU 1X to GPU 2X
+
+
+Jun 21, 2024  4:30:28 PM (Read by them after 3 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/4f/4fde83b9161263498cdb82357d6efbfccd2b0bc0
+
+Jun 21, 2024  4:30:40 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/1b/1b442415537af8a5733f83275da00d063b604538
+
+Jun 21, 2024  4:31:07 PM (Read by you after 2 seconds)
+Jesse Johnson
+Are you for real ????
+
+Jun 21, 2024  4:31:14 PM
+Jesse Johnson
+& it worked perfectly !? 
+
+Jun 21, 2024  4:31:55 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/84/840c02d3b443d6b2203253d48ba2c3be26b4924b
+
+Jun 21, 2024  4:32:46 PM (Read by them after 1 second)
+Me
+I’ll test out the other version with the bigger query on Monday, but I’d bet that was the outputting issue
+
+Jun 21, 2024  4:33:08 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3a/3a869f473b94cafcfbe2e392b17f958cb873251e
+
+Jun 21, 2024  4:33:25 PM
+Me
+I’m gonna make a StackOverflow account just to thank this person
+
+Jun 21, 2024  4:36:15 PM (Read by you after 3 minutes, 48 seconds)
+Jesse Johnson
+Ikr lol , that’s amazing though that it worked 🤩
+
+Jun 21, 2024  4:40:56 PM
+Me
+The only thing I worry about is that it might slightly increase the cost of the job
+
+Jun 21, 2024  4:41:22 PM
+Me
+Either way, I’m leaving
+
+Jun 21, 2024  4:44:58 PM (Read by you after 2 minutes, 51 seconds)
+Jesse Johnson
+Good point, but I’m sure they’re not worried about that part unless it’s like thousands of $$
+Glad it worked out 😁
+
+Jun 25, 2024  8:56:00 AM (Read by you after 19 seconds)
+Jesse Johnson
+Omg I just realized I left my card at home, think u could let me in? 😭
+
+Jun 25, 2024  8:56:51 AM
+Me
+I’m not in the building yet 😬
+
+Jun 25, 2024  8:56:56 AM (Read by you after 1 second)
+Jesse Johnson
+Np 😂
+
+Jun 25, 2024  9:00:07 AM (Read by them after 2 seconds)
+Me
+By that, I mean, I’m stuck in congestion at malfunction junction
+
+Jun 25, 2024  9:00:53 AM (Read by you after 9 hours, 2 minutes, 21 seconds)
+Jesse Johnson
+Nooooo hahaha 
+Traffic is so lame , Dw ab me tho Sai helped me out 🤩
+
+Jun 25, 2024  9:05:36 AM (Read by you after 8 hours, 57 minutes, 38 seconds)
+Jesse Johnson
+We’re on the 9th floor by the break room if I want any CFA 
+
+Jun 28, 2024  6:57:41 AM (Read by them after 1 second)
+Me
+I’m not going to be in today. Have fun with Databrew!
+
+Jun 28, 2024  6:58:23 AM (Read by you after 3 days, 1 hour, 13 minutes, 1 second)
+Jesse Johnson
+Np , thx for figuring it out for us!
+Hope all is well 
+
+Jul 01, 2024  8:05:52 AM (Read by you after 5 minutes, 32 seconds)
+Jesse Johnson
+GM Kyliee , 
+I won’t be in today but I’ll def be there tmr
+
+Jul 01, 2024  8:11:52 AM
+Me
+ S
+
+Jul 01, 2024  9:24:14 AM
+Me
+Sorry
+
+Jul 01, 2024  9:24:34 AM
+Me
+No prob, neither Denise nor Felix are here anyway so your chill
+
+Jul 01, 2024  9:59:10 AM (Read by them after 5 seconds)
+Me
+I’m gonna use CMC for DataBrew testing since it has more data btw
+
+Jul 01, 2024 10:05:36 AM (Read by you after 29 seconds)
+Jesse Johnson
+Ikr lol, 
+And that sounds good 😁
+
+Jul 09, 2024  6:57:48 AM
+Me
+I’m prob going to be in around 10
+
+Jul 09, 2024  6:58:04 AM
+Me
+My dog got out
+
+Jul 09, 2024  6:59:52 AM (Read by you after 23 minutes, 19 seconds)
+Jesse Johnson
+Omg Dw about work, 
+Hope everything is ok
+
+Jul 09, 2024  7:23:31 AM (Read by them after 2 seconds)
+Me
+Dog has been captured
+
+Jul 09, 2024  8:03:22 AM (Read by you after 2 days, 2 hours, 33 minutes, 16 seconds)
+Jesse Johnson
+Let’s goooo 🐶 
+
+Jul 11, 2024 10:37:49 AM (Read by them after 1 second)
+Me
+Hey, would you pretend I also went to the speaker session this morning?
+
+Jul 11, 2024 10:38:09 AM (Read by you after 1 second)
+Jesse Johnson
+Dw ab it, I didn’t go either 😂
+
+Jul 11, 2024 10:38:41 AM (Read by them after 1 second)
+Me
+Yay! We can lie together!
+
+Jul 11, 2024 10:39:05 AM (Read by you after 5 minutes, 42 seconds)
+Jesse Johnson
+Yippeee !! 
+
+Jul 11, 2024 10:49:57 AM (Read by them after 1 second)
+Me
+I’m gonna stop and grab Starbucks so I’ll prob be there at 11:45
+
+Jul 11, 2024 10:57:16 AM (Read by you after 26 seconds)
+Jesse Johnson
+Sure, 
+I was like triple checking both my CoL & CMC stuff yesterday and found a few issues w the Errors that the Errors Checking step was producing. So I made some changes to the SQL for that step and they’re working great now, but I wanted to wait until you were here to touch ChoiceSpine but it’s a really fast fix
+
+Jul 11, 2024 11:57:40 AM
+Me
+Could you grab my keys from my purse and bring it to 6P in the parking garage?
+
+Jul 11, 2024 11:57:56 AM
+Me
+I forgot them
+
+Jul 11, 2024 11:59:29 AM (Read by them after 2 seconds)
+Me
+Nvm it turned off
+
+Jul 11, 2024  5:19:35 PM
+Me
+Made some mock up error codes for the date handling that we can test in the morning
+
+Jul 11, 2024  5:20:09 PM (Read by you after 5 minutes, 13 seconds)
+Jesse Johnson
+Niceee sounds good 
+
+Jul 12, 2024  8:52:15 AM (Read by them after 2 seconds)
+Me
+We’ve got a meeting with Felix at 9
+
+Jul 12, 2024  8:52:39 AM (Read by you after 1 second)
+Jesse Johnson
+Yeah what ab it
+
+Jul 12, 2024  8:53:05 AM (Read by them after 1 second)
+Me
+Are you going to make it?
+
+Jul 12, 2024  8:54:17 AM (Read by you after 7 days, 6 hours, 5 minutes, 34 seconds)
+Jesse Johnson
+Lmao I’m otw 
+
+Jul 19, 2024  3:00:35 PM (Read by them after 1 second)
+Me
+Ik you’re out today, but is Life and Dependent Life the same thing but listed separately for Dependents?
+
+Jul 19, 2024  3:01:15 PM (Read by you after 10 seconds)
+Jesse Johnson
+Np , should be the same thing😎
+
+Jul 19, 2024  3:06:52 PM (Read by them after 1 second)
+Me
+So, the actual products that also cover children are:
+- Dental
+- Vision
+- Life
+- Vol Life
+- Vol AD&D
+- Hospital Indemnity
+- Critical Illness
+- Accident
+
+Jul 19, 2024  3:06:56 PM
+Me
+Right?
+
+Jul 19, 2024  3:12:23 PM (Read by you after 17 seconds)
+Jesse Johnson
+That def sounds right , can’t think of any others 
+
+Jul 19, 2024  3:12:42 PM
+Jesse Johnson
+Maybe STD/LTD? Idk if they’re for children tho 
+
+Jul 19, 2024  3:13:07 PM (Read by them after 1 second)
+Me
+No, they’re not. We checked those
+
+Jul 19, 2024  3:13:56 PM (Read by them after 2 seconds)
+Me
+OST got back to Sai about the age limits but I noticed they didn’t give us the limits on all of the products so I’m trying to figure out what actually covers children
+
+Jul 19, 2024  3:16:46 PM (Read by them after 1 second)
+Me
+Last thing, “Division” on the SF output is not a product, correct?
+
+Jul 19, 2024  3:17:23 PM (Read by them after 1 second)
+Me
+Dumb question prob but Sai couldn’t tell me so 🤷‍♀️
+
+Jul 19, 2024  3:21:06 PM (Read by you after 2 days, 18 hours, 22 minutes, 49 seconds)
+Jesse Johnson
+Gotcha 
+But nah Division isn’t an actual product 
+
+Jul 22, 2024  9:44:01 AM (Read by them after 2 seconds)
+Me
+Are you okay?
+
+Jul 22, 2024  9:44:24 AM (Read by them after 1 second)
+Me
+Also, we’ve got a meeting at 3 today with Denise for Glue stuff
+
+Jul 22, 2024 10:17:43 AM (Read by you after 31 minutes, 12 seconds)
+Jesse Johnson
+Hey! I scheduled last week to take off today because I was planning on seeing my brother but I’ve been too sick to go anywhere since Thursday. 
+Unless Denise tells me to come in then I should be back tmr, I just texted her
+
+Jul 22, 2024 10:49:10 AM
+Me
+👍
+
+Jul 22, 2024 10:49:18 AM
+Me
+I hope you feel better!
+
+Jul 22, 2024 10:50:01 AM
+Me
+And we’ve moved the meeting to tmrw afternoon bc we’re still dealing with the issues from the CrowdStrike issue on Friday
+
+Jul 22, 2024 10:50:26 AM
+Me
+So more oh so fun SQL transformations for me 😭
+
+Jul 22, 2024 10:51:02 AM (Read by you after 18 seconds)
+Jesse Johnson
+Ty 😭
+Has that CrowdStrike stuff affected you guys a lot? 
+And Ik Ik, I’d much rather be there helping out 😭
+
+Jul 22, 2024 10:52:33 AM
+Me
+Not much for in person people, they sorted that out by doing the manual fix on Friday morning before I even got in at 11:45. I was able to do everything perfectly fine on Friday.
+
+Jul 22, 2024 10:52:45 AM
+Me
+It’s the people who work remote that had problems
+
+Jul 22, 2024 10:53:16 AM (Read by them after 1 second)
+Me
+Remote Desktop wasn’t working at all
+
+Jul 22, 2024 10:55:02 AM
+Me
+But like, all the mobile ordering apps were down on Friday so that wasn’t fantastic
+
+Jul 22, 2024 10:55:47 AM (Read by them after 1 second)
+Me
+Not as bad as basically all airlines canceling flights globally tho so I’m not gonna complain too much
+
+Jul 22, 2024 10:56:25 AM (Read by you after 1 day, 20 hours, 43 minutes, 33 seconds)
+Jesse Johnson
+Gotcha, that’s all really crazy. Can’t imagine messing up that bad at work 😂
+
+Jul 24, 2024  7:33:34 AM (Read by you after 6 minutes, 24 seconds)
+Jesse Johnson
+GM Kylie! 
+Idk if Denise has told you but I’ve had Covid for the past few days. I might have more too, so I’m going to go to the doctor again today to see what’s up. I just wanted to let you know so you weren’t surprised or anything, I’ve just felt bad about leaving you and Sai to do everything since last Thursday! Hope it’s all good and no problem for u guys
+
+Jul 26, 2024 10:59:37 AM (Read by them after 2 seconds)
+Me
+You’re fine. I missed Wednesday and Yesterday bc of epilepsy so I understand
+
+Jul 26, 2024 10:59:49 AM
+Me
+Hope you’re feeling better!
+
+Jul 26, 2024 12:05:52 PM (Read by you after 3 days, 1 hour, 27 minutes, 35 seconds)
+Jesse Johnson
+Ty! I’ll be back on Monday 😎
+
+Jul 29, 2024  1:33:33 PM (Read by them after 2 seconds)
+Me
+https://www.youtube.com/watch?v=3K9pd6h9JT0
+04-Figurative Language Rap Song-Pr2A-English
+04-Figurative Language Rap Song-Pr2A-English
+
+Jul 29, 2024  3:20:18 PM (Read by you after 17 hours, 27 minutes, 29 seconds)
+Jesse Johnson
+http://hallschophousecolumbia.com/columbia-halls-chophouse-columbia-food-menus
+Food Menus
+The Hall family opened the doors of Halls Chophouse Charleston in 2009, but their pursuit of exceptional hospitality started long before....
+
+Aug 01, 2024  5:52:08 PM (Read by them after 2 seconds)
+Me
+I added all of the special case transforms to the cmc job
+
+Aug 01, 2024  5:52:13 PM
+Me
+Like a lunatic
+
+Aug 01, 2024  6:05:54 PM (Read by you after 14 hours, 17 minutes, 56 seconds)
+Jesse Johnson
+Hahaha , thank you ! 😄
+
+Aug 02, 2024  8:24:48 AM (Read by them after 1 second)
+Me
+I sent you the update for E033 (I think that’s the number) in Teams yesterday after the suggestion from Denise
+
+Aug 02, 2024  8:25:11 AM (Read by you after 1 second)
+Jesse Johnson
+Ty! 😎
+
+Aug 02, 2024 12:19:33 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ac/ac3a204342d5d8db8dbae536d30afa1be11c2245
+
+Aug 02, 2024 12:20:50 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/fb/fb0fcaddd3c8382f48f547e5f160b14e355e8666
+Original common app essay
+
+Aug 02, 2024  4:56:21 PM (Read by you after 32 days, 1 hour, 19 minutes, 2 seconds)
+Jesse Johnson
+Ok I back 
+
+Oct 08, 2024 11:59:19 AM (Read by them after 2 seconds)
+Me
+I just want to thank you for doing your work this summer. I wrote a diatribe of an email last night to my professor about how one of our group members is doing nothing. Simply, you and Sai gave me coding group work standard expectations and the 20 year old who used ChatGPT as a search engine isn’t up to scratch
+
+Oct 08, 2024 12:02:04 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/74/740a668381ea0bf655857d2d7c0c7ef0df5ce36c
+
+Oct 08, 2024 12:09:43 PM (Read by you after 4 minutes, 8 seconds)
+Jesse Johnson
+Lmaooo I can’t blame you, there are some people in college who just don’t care about others or even themselves 🤷🏽‍♂️ 
+But thank you too! Definitely wouldn’t have been possible without the both of us. I actually ended up declining my offer to stay at the last minute because I couldn’t see myself reporting to Felix practically doing data engineering everyday 😂
+
+Oct 08, 2024 12:21:39 PM
+Me
+I do not blame you whatsoever. Working under him was not enjoyable
+
+Oct 08, 2024 12:50:17 PM (Read by you after 2 minutes, 24 seconds)
+Jesse Johnson
+Lol ikr, glad we made it out alive😂 Hope all is well with you though 🙏🏼 
+
+Oct 08, 2024 12:56:25 PM
+Me
+I’m in pain from an unautomated $100k Python script Jupyter notebook to do Twitter analytics
+
+Oct 08, 2024 12:56:40 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/1a/1a478088c6895c56a3e49b9340df985af7b26a06
+
+Oct 08, 2024 12:56:50 PM (Read by them after 1 second)
+Me
+He’s gonna automate it tho
+
+Oct 08, 2024 12:57:16 PM (Read by them after 1 second)
+Me
+https://news.clemson.edu/media-forensics-hub-requests-proposals-for-seed-grant-funding-2/
+Media Forensics Hub requests proposals for seed grant funding
+The Watt Family Innovation Center’s Media Forensics Hub is soliciting funding proposals from Clemson University faculty interested in better understanding digital disinformation, deception, and manipulation.
+

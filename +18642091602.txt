@@ -1,0 +1,230 @@
+Dec 15, 2022  6:18:58 PM (Read by you after 37 seconds)
+Jeremy
+Medic#4325
+
+Jan 06, 2023 12:06:46 PM
+Me
+Hey, can you please help me with a Java loop issue? Ive been trying to figure it out for the last two hours and I need to get this done by 6 pm otherwise I fail this class.
+
+Jan 06, 2023 12:22:44 PM (Read by you after 32 minutes, 30 seconds)
+Jeremy
+I am working right now. Should be done around 4 pm.
+
+Jan 06, 2023 12:55:21 PM
+Me
+Adam and I figured it out
+
+Jan 06, 2023 12:55:54 PM
+Me
+The issue was putting the scanner creation inside the while loop
+
+Jan 14, 2023  8:12:35 PM (Read by you after 2 minutes, 35 seconds)
+Jeremy
+Watching how to train your dragon 2 now.
+
+Jan 14, 2023  8:15:19 PM
+Me
+Thx for letting me know
+
+Jan 14, 2023  8:15:31 PM
+Me
+I'll probably join after we get back from dinner
+
+Jan 22, 2023 10:07:41 PM
+Me
+How do u connect to a school of computing machine?
+
+Jan 22, 2023 10:08:07 PM
+Jeremy
+Do you have putty installed?
+
+Jan 22, 2023 10:09:10 PM
+Jeremy
+https://computing.clemson.edu/help/remoteaccess.html
+Clemson University School of Computing - Computer Help Desk
+School of Computing computer lab general information
+
+Jan 22, 2023 10:11:01 PM (Read by you after 4 seconds)
+Jeremy
+Let me know if you still need help.
+
+Jan 22, 2023 10:11:24 PM
+Me
+Probably will but I'm typing in the host name so maybe it'll work
+
+Jan 22, 2023 10:15:22 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/c8/c89d463db9b649fe76d5cfe557c56ffe0c2c2ed0
+
+Jan 22, 2023 10:15:28 PM
+Me
+Stuck there
+
+Jan 22, 2023 10:15:31 PM
+Me
+It won't let me type
+
+Jan 22, 2023 10:16:14 PM (Read by you after 1 minute, 5 seconds)
+Jeremy
+You are typing. It just does not move the cursor. Restart, enter your password then hit enter
+
+Jan 22, 2023 10:16:34 PM (Read by you after 45 seconds)
+Jeremy
+By restart I just mean open a new window.
+
+Jan 22, 2023 10:19:10 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/11/111b88735b9a0bb92266c878ba93be3dae34cc7d
+
+Jan 22, 2023 10:19:24 PM
+Me
+And what exactly do I do from there?
+
+Jan 22, 2023 10:25:18 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/0a/0a8e3aad892959613ec29cc7fbe52bf4dcace53a
+
+Jan 26, 2023  7:26:56 PM
+Me
+If I log into a computing machine diff from the one where my code is, can I still access it?
+
+Jan 26, 2023  7:27:09 PM
+Me
+Bc I'm off campus and can't access newton
+
+Jan 26, 2023  7:29:07 PM (Read by you after 14 seconds)
+Jeremy
+Connect to access.computing.clemson.edu
+
+Jan 26, 2023  7:29:25 PM
+Jeremy
+Then once logged in, type ssh newton
+
+Jan 26, 2023  7:29:25 PM
+Me
+Already did
+
+Jan 26, 2023  7:29:47 PM
+Me
+I also can't access it via the website
+
+Jan 26, 2023  7:30:59 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/48/482aab870e673817ce567582b6dd0826b684f1f2
+
+Jan 26, 2023  7:31:05 PM
+Jeremy
+Are you trying to download your files?
+
+Jan 26, 2023  7:31:13 PM
+Me
+No
+
+Jan 26, 2023  7:32:13 PM
+Jeremy
+Can you send screenshots?
+
+Jan 26, 2023  7:32:20 PM
+Me
+See above
+
+Jan 26, 2023  7:32:53 PM
+Me
+I can access the other machines and go through the directory but I can't access the files I know I saved multiple times
+
+Jan 26, 2023  7:32:54 PM
+Jeremy
+Sorry did not see the first text,  all files are synced.
+
+Jan 26, 2023  7:33:08 PM
+Jeremy
+Any machine you log into has all your files
+
+Jan 26, 2023  7:33:44 PM (Read by you after 13 seconds)
+Jeremy
+If you are using a website to ftp then just connect to access.computing.clemson.edu and grab the files from there.
+
+Jan 26, 2023  7:33:59 PM
+Jeremy
+You cannot run code on the access server but it has all of your files on it.
+
+Jan 26, 2023  7:34:29 PM
+Me
+I'm not I just wanted to see if it existed by using the desktop website
+
+Jan 26, 2023  7:37:43 PM
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/de/de3b5aa045866517dd4e46e4431f3140f312da66
+
+Jan 26, 2023  7:38:00 PM
+Me
+Literally won't even let me access the desktop
+
+Jan 26, 2023  7:38:39 PM
+Me
+Nvm
+
+Jan 26, 2023  7:38:51 PM
+Me
+It was layered within another folder
+
+Jan 26, 2023  7:38:53 PM
+Me
+I'm a dolt
+
+Jan 26, 2023  8:22:51 PM
+Me
+How do I download a folder to my computer from the machine?
+
+Jan 27, 2023  8:46:54 AM (Read by you after 32 minutes, 57 seconds)
+Jeremy
+Will you be in the vicinity of Brackett Hall anytime today?
+
+Jan 27, 2023  9:19:57 AM
+Me
+I'm on Beech Mountain
+
+Jan 27, 2023  9:20:14 AM
+Me
+But I got it
+
+Jan 27, 2023  9:20:25 AM
+Me
+There's just an autograder disparity
+
+Mar 02, 2023  7:42:03 PM (Read by you after 2 hours, 47 minutes, 25 seconds)
+Jeremy
+Watching Harry Potter and the Half Blood Prince in the lever lounge in 15 minutes.
+
+Mar 02, 2023 10:50:04 PM
+Me
+Are y'all still down there?
+
+Mar 02, 2023 10:50:08 PM
+Me
+I just woke up
+
+Apr 05, 2023  4:55:21 PM
+Me
+I just got offered a position with the Clemson Media Forensics Hub. Do you know anything about it?
+
+Apr 05, 2023  4:57:45 PM (Read by you after 12 seconds)
+Jeremy
+Please forward the email to me at jjohn73@clemson.edu it is likely a scam email but I can take a look.
+
+Apr 05, 2023  4:58:25 PM
+Me
+No, it was in person by my comm professor after I gave a speech on the legalization of shadow libraries
+
+Apr 05, 2023  4:58:57 PM
+Me
+You're in CCIT so I thought I'd ask
+
+Apr 05, 2023  4:59:23 PM (Read by you after 15 seconds)
+Jeremy
+No, I do not know anything about it.
+
+Apr 05, 2023  4:59:49 PM
+Me
+Thank you anyway l
+

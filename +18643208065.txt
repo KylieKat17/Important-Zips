@@ -1,0 +1,3496 @@
+Sep 29, 2023  8:36:18 PM (Read by you after 4 minutes, 45 seconds)
+Campbell Del Collo
+hey can you please help me with the retirement formula😭
+
+Sep 29, 2023  8:36:27 PM (Read by you after 4 minutes, 36 seconds)
+Campbell Del Collo
+its literally the one thing i can’t figure out
+
+Sep 29, 2023  8:41:10 PM (Read by them after 1 second)
+Me
+What’s the problem?
+
+Sep 29, 2023  8:41:24 PM
+Campbell Del Collo
+i dont know the formula
+
+Sep 29, 2023  8:41:28 PM
+Campbell Del Collo
+i have one but it’s not working
+
+Sep 29, 2023  8:43:22 PM (Read by them after 1 second)
+Me
+Are you doing it as one big formula?
+
+Sep 29, 2023  8:43:46 PM
+Campbell Del Collo
+no like i cant even get the formula to work on paper
+
+Sep 29, 2023  8:43:55 PM (Read by you after 1 second)
+Campbell Del Collo
+i havent even tried to add it to my code yet
+
+Sep 29, 2023  8:44:48 PM (Read by them after 2 seconds)
+Me
+Can you show me the paper?
+
+Sep 29, 2023  8:51:12 PM (Read by you after 2 minutes, 13 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/30/300d7ad50800eb3781a6d6fe70e2763d7c879662
+
+Sep 29, 2023  8:55:28 PM (Read by them after 1 second)
+Me
+I’m checking what the formula we submitted looks like because the one you have is wrong
+
+Sep 29, 2023  8:57:32 PM
+Me
+Where on earth did you get that formula?
+
+Sep 29, 2023  8:57:46 PM (Read by you after 1 second)
+Campbell Del Collo
+the internet
+
+Sep 29, 2023  8:57:49 PM
+Campbell Del Collo
+where is ours
+
+Sep 29, 2023  8:57:53 PM
+Campbell Del Collo
+i didn’t know we had one
+
+Sep 29, 2023  8:58:24 PM (Read by them after 1 second)
+Me
+It’s on the planning sheet but I’m going to send you some business Calc notes so it makes a little more sense
+
+Sep 29, 2023  8:59:07 PM (Read by them after 1 second)
+Me
+https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1choTnXv7g7c_YBBchyisbDjwMvhAEg__%2Fview%3Fusp%3Ddrivesdk&followup=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1choTnXv7g7c_YBBchyisbDjwMvhAEg__%2Fview%3Fusp%3Ddrivesdk&ifkv=AYZoVhdrwdaDIulirLDr6GRTPafFU0wxzKuBnKXZV5YAJwDmajigFo26qizfgXqEfNdAKhzKKqnT2w&osid=1&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1745684847%3A1696035546946178
+Google Drive: Sign-in
+Access Google Drive with a Google account (for personal use) or Google Workspace account (for business use).
+
+Sep 29, 2023  8:59:25 PM
+Campbell Del Collo
+ok i didn’t know😭
+
+Sep 29, 2023  8:59:26 PM (Read by you after 1 second)
+Campbell Del Collo
+thank you
+
+Sep 29, 2023  8:59:50 PM (Read by them after 1 second)
+Me
+Look at compound interest investments
+
+Sep 29, 2023  9:00:04 PM (Read by them after 1 second)
+Me
+yw
+
+Sep 29, 2023  9:00:25 PM (Read by you after 1 minute, 20 seconds)
+Campbell Del Collo
+ok i’m pretty sure i got it
+
+Sep 29, 2023  9:01:30 PM (Read by you after 15 seconds)
+Campbell Del Collo
+wait how do the monthly payments fit into that
+
+Sep 29, 2023  9:01:58 PM
+Me
+Monthly = year / 12
+
+Sep 29, 2023  9:02:50 PM (Read by them after 1 second)
+Me
+It’s compounded monthly instead of quarterly, semiannually, etc
+
+Sep 29, 2023  9:02:53 PM (Read by you after 2 seconds)
+Campbell Del Collo
+but there’s like no place to put in the monthly payments
+
+Sep 29, 2023  9:03:27 PM (Read by them after 1 second)
+Me
+I’m fairly certain I put this on the pseudocode doc
+
+Sep 29, 2023  9:03:49 PM (Read by you after 2 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/b8/b899899437664c58897e100f6e1ea24a82b3293b
+
+Sep 29, 2023  9:05:33 PM
+Me
+ah I see where the problem is
+
+Sep 29, 2023  9:07:08 PM (Read by you after 1 second)
+Campbell Del Collo
+wait have you done that part yet
+
+Sep 29, 2023  9:07:22 PM
+Campbell Del Collo
+i just texted this girl ik who’s really good at comp sci in our class
+
+Sep 29, 2023  9:07:28 PM
+Me
+I did this last year
+
+Sep 29, 2023  9:07:36 PM (Read by you after 1 second)
+Campbell Del Collo
+and she said she used a for loop to recalculate the interest every month??
+
+Sep 29, 2023  9:07:49 PM
+Me
+Yes
+
+Sep 29, 2023  9:08:06 PM
+Campbell Del Collo
+ok that makes sense
+
+Sep 29, 2023  9:08:33 PM (Read by them after 1 second)
+Me
+Inside the for loop monthly earnings/interest is calculated
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Sep 29, 2023  9:08:47 PM (Read by them after 1 second)
+Me
+You use that to calculate total growth immediately after
+
+Sep 29, 2023  9:13:42 PM (Read by you after 30 days, 22 hours, 23 minutes, 28 seconds)
+Campbell Del Collo
+okkkkk i think i got it now
+
+Sep 29, 2023  9:13:43 PM (Read by you after 30 days, 22 hours, 23 minutes, 27 seconds)
+Campbell Del Collo
+thank you
+
+Oct 04, 2023  4:06:47 PM (Read by you after 26 days, 3 hours, 30 minutes, 23 seconds)
+Campbell Del Collo
+also i forgot to tell you i tried the pepinos cake and it was so fucking good
+
+Oct 30, 2023  3:38:31 PM (Read by you after 3 hours, 58 minutes, 39 seconds)
+Campbell Del Collo
+thank you for sharing that with me. your writing made me feel so seen even if i don’t exactly know how
+
+Oct 30, 2023  7:39:45 PM (Read by them after 1 second)
+Me
+I’m glad you liked it. And, in the nicest way possible, I’m sorry the last two made you feel seen
+
+Oct 30, 2023  7:40:52 PM (Read by them after 1 second)
+Me
+Because the topics are parental neglect and not belonging in a family
+
+Oct 31, 2023  8:23:39 AM (Read by you after 2 hours, 32 minutes, 1 second)
+Campbell Del Collo
+yeah, i wouldny neccesarily say what i experienced at the same level as what the stories had, but the last one was very very good at capturing what i felt sometimes
+
+Oct 31, 2023  8:23:53 AM (Read by you after 2 hours, 31 minutes, 47 seconds)
+Campbell Del Collo
+but also damn ur really not ok either
+
+Oct 31, 2023  6:03:53 PM
+Me
+Lady you haven’t even seen what I wrote last Thursday or what my submission for CW was gonna be
+
+Oct 31, 2023  6:05:00 PM
+Me
+Oct 31, 2023  6:05:00 PM One of them is set to Wilbur Soot’s cover of Anymore by Frank Turner and the other one is set to False Nicities by CalistaWon and For Memories by Wilbur Soot
+Edited 1 minute, 4 seconds later: One of them is set to False Nicities by CalistaWon and For Memories by Wilbur Soot and the other one is set to Wilbur Soot’s cover of Anymore by Frank Turner
+
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Oct 31, 2023  6:09:55 PM
+Me
+There’s some quote like “Writer’s don’t cry, we bleed on paper”
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Oct 31, 2023  7:54:24 PM (Read by you after 5 days, 20 hours, 49 seconds)
+Campbell Del Collo
+that’s accurate from what i’ve read
+
+Nov 06, 2023  2:56:58 PM (Read by them after 1 second)
+Me
+Ava, if you want code feedback, make a git repo and share it with us
+
+Nov 06, 2023  3:02:25 PM (Read by you after 18 seconds)
+Campbell Del Collo
+guck
+
+Nov 06, 2023  3:02:29 PM (Read by you after 14 seconds)
+Campbell Del Collo
+i slept through it
+
+Nov 06, 2023  3:03:09 PM (Read by you after 1 second)
+Campbell Del Collo
+i don’t get credit for not being there anyway
+
+Nov 06, 2023  3:04:10 PM (Read by them after 2 seconds)
+Me
+Yeah, but if you want feedback, we’ll give it to you
+
+Nov 06, 2023  3:04:31 PM (Read by them after 1 second)
+Me
+Joshua did his Card.cpp in 13 lines!!!
+
+Nov 06, 2023  3:06:16 PM (Read by you after 17 seconds)
+Campbell Del Collo
+NOOOO
+
+Nov 06, 2023  3:06:29 PM (Read by you after 4 seconds)
+Campbell Del Collo
+i’ll be ok, that colab is beyond me
+
+Nov 10, 2023  9:42:58 AM (Read by you after 28 seconds)
+Campbell Del Collo
+oh my god i forgot to tell you
+
+Nov 10, 2023  9:43:11 AM (Read by you after 15 seconds)
+Campbell Del Collo
+there’s two random dudes in our lab group now
+
+Nov 10, 2023  9:43:18 AM (Read by you after 8 seconds)
+Campbell Del Collo
+i kinda hate it
+
+Nov 10, 2023  9:43:27 AM
+Campbell Del Collo
+there’s nothing wrong with them tho
+
+Nov 10, 2023  9:43:33 AM (Read by them after 1 second)
+Me
+Whaaaa?
+
+Nov 10, 2023  9:43:40 AM (Read by them after 1 second)
+Me
+Names?
+
+Nov 10, 2023  9:55:58 AM (Read by you after 1 minute, 49 seconds)
+Campbell Del Collo
+i do not remember
+
+Nov 10, 2023  9:58:11 AM (Read by them after 9 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/97/97624d38eb47e55bace077545a31f632c1be9bf3
+Were they even in our lab?
+
+Nov 10, 2023  9:59:49 AM (Read by you after 6 minutes, 44 seconds)
+Campbell Del Collo
+i don’t think so
+
+Nov 10, 2023 10:00:10 AM (Read by you after 6 minutes, 23 seconds)
+Campbell Del Collo
+also joshua looks so different what the hell
+
+Nov 13, 2023  2:48:37 PM (Read by you after 2 minutes, 41 seconds)
+Campbell Del Collo
+dude this guy keeps deleting  and rewriting everuthing i write
+
+Nov 13, 2023  2:51:53 PM
+Me
+I’m gonna show u a thing when we get food bc I’m fairly certain there aren’t supposed to be any accessors or mutators in Dealer
+
+Nov 13, 2023  2:52:12 PM
+Campbell Del Collo
+can we make them pick a different group
+
+Nov 15, 2023  9:33:08 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5b/5b2aa070a53aae14b12db8555a48b51dfe85cd33
+
+Nov 15, 2023  9:33:30 PM (Read by them after 1 second)
+Me
+https://www.youtube.com/watch?v=qfTjCyHlbPA
+Wilbur explains his hatred for Anteaters whilst I play Rocket League...
+Rocket League is now free on the Epic Games Store! Download here: https://pixly.go2cloud.org/SH26oThanks to Epic Games for sponsoring the video!♥ Follow the ...
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 15, 2023  9:38:59 PM (Read by you after 5 seconds)
+Campbell Del Collo
+AWWW I KNOW WHO PHILZS IS
+
+Nov 15, 2023  9:39:23 PM (Read by you after 5 seconds)
+Campbell Del Collo
+i don’t watch wilbur soot but i used to watch technoblade a ton in high school
+
+Nov 15, 2023  9:39:44 PM
+Me
+o7
+
+Nov 15, 2023  9:40:51 PM (Read by you after 1 second)
+Campbell Del Collo
+omg yeah i didn’t watch him anymore when he died so it kinda hit me out of nowhere
+
+Nov 15, 2023  9:41:24 PM (Read by them after 1 second)
+Me
+Wait, lemme find the original SBI tweet
+
+Nov 15, 2023  9:42:34 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/6e/6e05283f6f0fb46f6f6c2d5436c3c1e8f6f6498c
+
+Nov 15, 2023  9:43:19 PM
+Me
+SBI = Phil, Techno, Wilbur, and then eventually Tommy
+
+Nov 15, 2023  9:44:37 PM (Read by them after 1 second)
+Me
+Bruh, I’m too deep in this fandom to be dug out cleanly
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 15, 2023  9:45:30 PM (Read by you after 1 minute, 6 seconds)
+Campbell Del Collo
+k like the fish 
+
+Nov 15, 2023  9:45:32 PM (Read by you after 1 minute, 4 seconds)
+Campbell Del Collo
+he’s so
+
+Nov 15, 2023  9:46:45 PM (Read by them after 1 second)
+Me
+https://www.youtube.com/watch?v=6owbfsSuUiw
+Wilbur talking about eating Sand for 14 minutes...
+I was gonna have this in Episode 69 of season 4 Hardcore.... but it deserved it's own video lol, enjoy!♥ Follow the stream! https://www.twitch.tv/philza• Whe...
+
+Nov 15, 2023  9:47:29 PM
+Me
+This fandom is why I don’t use Twitter
+
+Nov 15, 2023  9:48:13 PM
+Me
+Bc it’s a dumpster full of toxic waste which is constantly on fire
+
+Nov 15, 2023  9:48:41 PM
+Me
+I do know the person who runs the Philza Updates Twitter account irl tho
+
+Nov 16, 2023 11:49:05 AM (Read by you after 7 seconds)
+Campbell Del Collo
+the instructions for the colab directly state what you said on the pseudo code day
+
+Nov 16, 2023 11:49:25 AM (Read by them after 1 second)
+Me
+Well duh
+
+Nov 16, 2023 11:57:15 AM (Read by you after 1 hour, 6 minutes, 5 seconds)
+Campbell Del Collo
+im gonna bring a seperate table for them 
+
+Nov 16, 2023 11:57:18 AM (Read by you after 1 hour, 6 minutes, 2 seconds)
+Campbell Del Collo
+desperate measures
+
+Nov 16, 2023  1:03:32 PM
+Me
+Sad sad souls they are
+
+Nov 16, 2023  2:11:09 PM
+Me
+https://www.youtube.com/watch?v=Ntrctz8VQF8
+WILBUR SOOT Addresses The Anteaters
+wilbur: https://www.twitch.tv/wilbursoot"what anteater broke up with you" - random chat message I saw
+Tapbacks:
+Loved by Campbell Del Collo
+
+    Nov 17, 2023  3:39:51 PM (Read by you after 3 hours, 13 minutes, 59 seconds)
+    Campbell Del Collo
+    im putting this on when i start doing my math notes
+
+
+Nov 17, 2023  3:11:35 PM
+Me
+Is the colab bad?
+
+Nov 17, 2023  3:19:51 PM (Read by you after 33 seconds)
+Campbell Del Collo
+no but there are certain parts that are tricky
+
+Nov 17, 2023  3:20:14 PM (Read by you after 10 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/eb/eb51fa195ed5eeb4cdb622c751363120c1450a4b
+
+Nov 17, 2023  3:20:32 PM
+Campbell Del Collo
+MAKE SUEE YOU USE THE STD FLAG ON ALL YOUR COMPILES OR THE AUTOGRADER WILL JOT FRADE IT
+
+Nov 17, 2023  3:20:50 PM
+Me
+Your makefiles pain me
+
+Nov 17, 2023  3:39:21 PM (Read by you after 3 hours, 14 minutes, 29 seconds)
+Campbell Del Collo
+you’re hating but i have 10/17 on the autograder
+
+Nov 17, 2023  3:39:51 PM (Read by you after 3 hours, 13 minutes, 59 seconds)
+Campbell Del Collo
+im putting this on when i start doing my math notes
+This message responded to an earlier message.
+
+Nov 17, 2023  6:54:03 PM (Read by them after 1 second)
+Me
+BAH
+
+Nov 19, 2023  5:01:01 PM
+Me
+You wanna live with me next year?
+
+Nov 19, 2023  5:25:58 PM (Read by you after 26 seconds)
+Campbell Del Collo
+i do but im already looking at a living situation with some people 😞
+
+Nov 19, 2023  5:25:58 PM (Read by you after 26 seconds)
+Campbell Del Collo
+sorry
+
+Nov 19, 2023  5:26:11 PM (Read by you after 13 seconds)
+Campbell Del Collo
+i do recommend the place were looking at if you’re interesting in places
+
+Nov 19, 2023  5:26:13 PM (Read by you after 11 seconds)
+Campbell Del Collo
+it looks so nice
+
+Nov 19, 2023  5:26:45 PM
+Me
+Nah, I’m doing on campus
+
+Nov 19, 2023  5:31:36 PM
+Me
+If you end up wanting to lmk
+
+Nov 19, 2023  5:31:55 PM
+Me
+My roommates are abandoning me 😭
+    Nov 20, 2023  4:03:22 PM (Read by you after 1 second)
+    Campbell Del Collo
+    i was so stressed out until about a week ago, i had no idea where i was gonna live but one of my friends is letting me stay with her and her two childhood friends
+
+
+Nov 20, 2023  4:01:45 PM (Read by you after 9 seconds)
+Campbell Del Collo
+bro i literally qokw up at 3:20 today
+
+Nov 20, 2023  4:01:48 PM (Read by you after 6 seconds)
+Campbell Del Collo
+i have no idea why
+
+Nov 20, 2023  4:02:07 PM
+Me
+So we both missed lab?
+    Nov 20, 2023  4:02:29 PM
+    Campbell Del Collo
+    im pretty sure no one was thre
+
+    Nov 20, 2023  4:02:33 PM (Read by you after 1 second)
+    Campbell Del Collo
+    joshua didnt text either
+
+
+Nov 20, 2023  4:02:18 PM (Read by you after 2 seconds)
+Campbell Del Collo
+i woke up a few times and just went back to sleep but i literally wentt o bed at 1:00 am last night so its not like im super tired
+
+Nov 20, 2023  4:02:29 PM
+Campbell Del Collo
+im pretty sure no one was thre
+This message responded to an earlier message.
+
+Nov 20, 2023  4:02:33 PM (Read by you after 1 second)
+Campbell Del Collo
+joshua didnt text either
+This message responded to an earlier message.
+
+Nov 20, 2023  4:02:42 PM
+Me
+👍
+
+Nov 20, 2023  4:03:03 PM
+Me
+I got an extension until tmrw because I got depressed this weekend and did absolutely nothing
+
+Nov 20, 2023  4:03:13 PM
+Me
+And now I’m so confused on this driver
+    Nov 20, 2023  4:03:37 PM (Read by you after 7 minutes, 38 seconds)
+    Campbell Del Collo
+    which part of it
+
+
+Nov 20, 2023  4:03:22 PM (Read by you after 1 second)
+Campbell Del Collo
+i was so stressed out until about a week ago, i had no idea where i was gonna live but one of my friends is letting me stay with her and her two childhood friends
+This message responded to an earlier message.
+
+Nov 20, 2023  4:03:37 PM (Read by you after 7 minutes, 38 seconds)
+Campbell Del Collo
+which part of it
+This message responded to an earlier message.
+
+Nov 20, 2023  4:03:47 PM (Read by you after 7 minutes, 28 seconds)
+Campbell Del Collo
+the autograder was set upu so badly
+
+Nov 20, 2023  4:11:32 PM
+Me
+I can even use the autograder to help me now
+
+Nov 20, 2023  7:38:30 PM (Read by you after 6 seconds)
+Campbell Del Collo
+what does that mean
+
+Nov 20, 2023  7:38:32 PM (Read by you after 4 seconds)
+Campbell Del Collo
+like
+
+Nov 20, 2023  7:38:36 PM
+Campbell Del Collo
+does it just give you more
+
+Nov 20, 2023  7:38:55 PM (Read by them after 1 second)
+Me
+No, it locked this morning when everyone else had it due
+
+Nov 20, 2023  7:39:06 PM
+Campbell Del Collo
+oh
+
+Nov 20, 2023  7:39:08 PM
+Campbell Del Collo
+you cant use it
+
+Nov 20, 2023  7:39:10 PM
+Me
+It’s so easy to extend an autograder deadline
+
+Nov 20, 2023  7:39:14 PM (Read by you after 1 second)
+Campbell Del Collo
+what the hell
+
+Nov 20, 2023  7:39:19 PM
+Me
+Idk why doesn’t just do that
+
+Nov 20, 2023  7:39:46 PM
+Campbell Del Collo
+hw 4 is so crazy i jjst finished it
+
+Nov 20, 2023  7:39:50 PM
+Me
+My Java prof extended it by three weeks for me last year when I got sick for the entirety of November
+
+Nov 20, 2023  7:39:55 PM (Read by them after 1 second)
+Me
+Got an extension on that too
+
+Nov 20, 2023  7:40:23 PM (Read by you after 2 minutes, 3 seconds)
+Campbell Del Collo
+i hate professors who dont do accomdations so much
+
+Nov 20, 2023  7:41:03 PM (Read by you after 1 minute, 23 seconds)
+Campbell Del Collo
+i need to get mine for next year because i thought that people sniffling/making noises wouldnt be as much of an issue for me this year because of how big the rooms are
+
+Nov 20, 2023  7:41:38 PM (Read by you after 48 seconds)
+Campbell Del Collo
+but i got so panicked during exam #2 because i could hear people breathing and so im definently going to try to take all my exams alone next year
+
+Nov 20, 2023  7:41:42 PM (Read by you after 44 seconds)
+Campbell Del Collo
+if theres away i can
+
+Nov 20, 2023  7:41:50 PM (Read by you after 36 seconds)
+Campbell Del Collo
+but im so scared im just gonna have to deal with it
+
+Nov 20, 2023  7:42:28 PM (Read by you after 1 second)
+Campbell Del Collo
+accomodations have always kind of been a mixed bag for me because my issues dont always come up and my grades have been good enough that i thought i would just never get tthem if i tried
+
+Nov 20, 2023  7:42:46 PM
+Me
+Lady that’s the reason for accommodations
+
+Nov 20, 2023  7:42:52 PM
+Me
+Especially the testing ones
+
+Nov 20, 2023  7:43:02 PM
+Me
+The testing center people are lovely
+
+Nov 20, 2023  7:43:39 PM
+Me
+As long as you give the University enough paperwork, they’ll give you accommodations
+
+Nov 20, 2023  7:43:48 PM (Read by you after 3 seconds)
+Campbell Del Collo
+its also then like whats the point because the same thing happens when im in normal class or with my family or whatever
+
+Nov 20, 2023  7:44:04 PM
+Campbell Del Collo
+but it definently makes a difference for exams so im gonna tlak to my therapist about it
+
+Nov 20, 2023  7:44:48 PM
+Me
+Do that and get them set up over break so you can access the accommodation portal for next semester?
+    Nov 20, 2023  7:45:01 PM
+    Campbell Del Collo
+    thats probably the best idea yeah
+
+    Nov 20, 2023  7:45:02 PM (Read by you after 1 minute, 6 seconds)
+    Campbell Del Collo
+    tyyyy
+
+
+Nov 20, 2023  7:45:01 PM
+Campbell Del Collo
+thats probably the best idea yeah
+This message responded to an earlier message.
+
+Nov 20, 2023  7:45:02 PM (Read by you after 1 minute, 6 seconds)
+Campbell Del Collo
+tyyyy
+This message responded to an earlier message.
+
+Nov 20, 2023  7:45:14 PM (Read by you after 54 seconds)
+Campbell Del Collo
+at least i wont have to deal with asking plaue for accomodations
+
+Nov 20, 2023  7:48:17 PM (Read by you after 5 seconds)
+Campbell Del Collo
+also this is literlaly the third time ive counted that theres been something either flat out wrong or missing in teh isntructions
+
+Nov 20, 2023  7:48:34 PM (Read by them after 1 second)
+Me
+Pardon?
+
+Nov 20, 2023  7:48:53 PM (Read by you after 10 seconds)
+Campbell Del Collo
+wait which part
+
+Nov 20, 2023  7:49:18 PM
+Me
+The instructions part
+
+Nov 20, 2023  7:49:49 PM (Read by you after 1 second)
+Campbell Del Collo
+the blackjack instructions were contradictory to the examples, the blackjack rules werent fully stated
+
+Nov 20, 2023  7:50:00 PM (Read by them after 1 second)
+Me
+Oh yeah
+
+Nov 20, 2023  7:50:08 PM
+Campbell Del Collo
+and then in hw4 it does not tell us where to submit part 3 analysis
+
+Nov 20, 2023  7:50:20 PM (Read by you after 1 second)
+Campbell Del Collo
+“just read the instructions” tho
+
+Nov 20, 2023  7:51:05 PM
+Me
+I’ll face that struggle in a minute after I get food
+
+Nov 20, 2023  7:51:26 PM
+Campbell Del Collo
+wait have you started
+
+Nov 20, 2023  7:51:32 PM
+Campbell Del Collo
+im assuming yes
+
+Nov 20, 2023  7:53:50 PM
+Me
+Yeah
+
+Nov 20, 2023  7:54:01 PM
+Me
+I’m done with 1 and I started 3
+
+Nov 20, 2023  7:54:36 PM (Read by them after 1 second)
+Me
+I genuinely don’t understand 2
+
+Nov 20, 2023  9:04:37 PM (Read by you after 7 seconds)
+Campbell Del Collo
+do you have any questions i can answer
+
+Nov 20, 2023  9:04:44 PM (Read by you after 1 second)
+Campbell Del Collo
+i finished it but i’m not super confident
+
+Nov 20, 2023  9:05:33 PM (Read by them after 1 second)
+Me
+It’s just doing math, right?
+
+Nov 20, 2023  9:22:40 PM (Read by you after 1 day, 20 hours, 33 seconds)
+Campbell Del Collo
+yeah
+
+Nov 20, 2023  9:22:43 PM (Read by you after 1 day, 20 hours, 30 seconds)
+Campbell Del Collo
+pretty much
+
+Nov 22, 2023  5:23:39 PM
+Me
+Should the analysis for Q3 be in the document with Q1 and Q2?
+
+Nov 22, 2023  5:35:01 PM (Read by you after 2 minutes, 2 seconds)
+Campbell Del Collo
+yes
+
+Nov 22, 2023  5:37:05 PM (Read by them after 2 seconds)
+Me
+Thank you
+
+Nov 22, 2023  5:52:28 PM (Read by them after 7 seconds)
+Me
+We’re there sample outputs for 3 that had to be matched?
+
+Nov 22, 2023  5:58:13 PM (Read by you after 4 hours, 45 minutes, 15 seconds)
+Campbell Del Collo
+no
+
+Nov 22, 2023  5:58:16 PM (Read by you after 4 hours, 45 minutes, 12 seconds)
+Campbell Del Collo
+i don’t think so
+
+Nov 22, 2023 10:44:00 PM (Read by them after 1 second)
+Me
+I have a question
+
+Nov 22, 2023 10:44:37 PM (Read by them after 1 second)
+Me
+How the actual fuck is the string for blackjack supposed to be either 3 or 4 cards?
+    Nov 22, 2023 11:14:42 PM
+    Campbell Del Collo
+    are you talking about when it prints out the hands?
+
+
+Nov 22, 2023 10:59:42 PM (Read by them after 1 second)
+Me
+And is the hand supposed to be hard coded?
+
+Nov 22, 2023 11:14:18 PM (Read by you after 14 seconds)
+Campbell Del Collo
+the hand should be a vector but it’s intializstion in dealer should be hard coded yeah
+
+Nov 22, 2023 11:14:22 PM (Read by you after 10 seconds)
+Campbell Del Collo
+it shouldn’t really matter
+
+Nov 22, 2023 11:14:42 PM
+Campbell Del Collo
+are you talking about when it prints out the hands?
+This message responded to an earlier message.
+
+Nov 22, 2023 11:14:53 PM
+Me
+Yeah
+
+Nov 22, 2023 11:15:17 PM (Read by them after 1 second)
+Me
+Am I supposed to change what it’s hard coded as until it’s either a win or loss?
+
+Nov 22, 2023 11:15:31 PM (Read by you after 1 second)
+Campbell Del Collo
+i don’t think that part matters at all
+
+Nov 22, 2023 11:15:51 PM (Read by you after 8 seconds)
+Campbell Del Collo
+its just for testing and i think the fact that you have the menu set up
+
+Nov 22, 2023 11:16:17 PM (Read by you after 1 second)
+Campbell Del Collo
+the only thing i remember it testing for dealer was command line args
+
+Nov 22, 2023 11:16:20 PM
+Campbell Del Collo
+i can like
+
+Nov 22, 2023 11:16:30 PM
+Campbell Del Collo
+tell you what the autograder was 
+
+Nov 22, 2023 11:16:32 PM (Read by you after 1 second)
+Campbell Del Collo
+if that’s helpful
+
+Nov 22, 2023 11:17:14 PM (Read by them after 1 second)
+Me
+I can see the test cases, but I threw only a single file in before it closed to do that. As a result, I have absolutely no clue what the test cases require bc I gave it nothing to compile
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 22, 2023 11:17:39 PM
+Campbell Del Collo
+can you see if it compiles
+
+Nov 22, 2023 11:18:00 PM
+Me
+Oh, it compiles and runs
+
+Nov 22, 2023 11:18:08 PM
+Campbell Del Collo
+ok slay
+
+Nov 22, 2023 11:18:23 PM
+Me
+Tho I don’t see why we have a male file if it’s supposed to be a command line argument
+
+Nov 22, 2023 11:18:32 PM (Read by you after 1 second)
+Campbell Del Collo
+you’re compiling with -stdc=98 right
+
+Nov 22, 2023 11:18:38 PM
+Campbell Del Collo
+that’s what i fucked up
+
+Nov 22, 2023 11:19:17 PM
+Campbell Del Collo
+wait
+
+Nov 22, 2023 11:19:36 PM (Read by you after 1 second)
+Campbell Del Collo
+-std=c++98
+
+Nov 22, 2023 11:20:40 PM
+Me
+I haven’t updated the makefile yet
+
+Nov 22, 2023 11:20:49 PM (Read by them after 1 second)
+Me
+Is it going to change everything?
+
+Nov 22, 2023 11:20:58 PM
+Campbell Del Collo
+yes
+
+Nov 22, 2023 11:21:00 PM
+Campbell Del Collo
+do it now
+
+Nov 22, 2023 11:21:04 PM
+Campbell Del Collo
+it won’t compile
+
+Nov 22, 2023 11:21:06 PM
+Campbell Del Collo
+it might
+
+Nov 22, 2023 11:21:07 PM
+Campbell Del Collo
+but like
+
+Nov 22, 2023 11:21:36 PM (Read by you after 1 second)
+Campbell Del Collo
+it doesn’t automatically check for c++ version 98 which is the version we’re supposed to use
+
+Nov 22, 2023 11:21:50 PM
+Campbell Del Collo
+but if you use that flat with g++ it will compile in the autograder
+
+Nov 22, 2023 11:26:15 PM (Read by them after 2 seconds)
+Me
+Like this?
+
+Nov 22, 2023 11:26:23 PM (Read by them after 15 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ac/acaa148c3a0e912e0de4f4b1756a0c281622a4fb
+
+Nov 22, 2023 11:34:25 PM (Read by them after 2 seconds)
+Me
+Bruh
+
+Nov 22, 2023 11:34:36 PM
+Me
+Now I can’t use stoi!!!
+    Nov 23, 2023 12:31:20 AM (Read by you after 1 hour, 5 minutes, 32 seconds)
+    Campbell Del Collo
+    use what
+
+
+Nov 22, 2023 11:34:42 PM
+Me
+I hate life
+
+Nov 22, 2023 11:42:38 PM (Read by them after 1 second)
+Me
+Fixed it
+
+Nov 23, 2023 12:31:20 AM (Read by you after 1 hour, 5 minutes, 32 seconds)
+Campbell Del Collo
+use what
+This message responded to an earlier message.
+
+Nov 27, 2023  4:57:40 PM (Read by you after 5 hours, 3 minutes, 29 seconds)
+Campbell Del Collo
+OMG SO 
+
+Nov 27, 2023  4:58:01 PM (Read by you after 5 hours, 3 minutes, 8 seconds)
+Campbell Del Collo
+in still pondering roomate situation but i found someone who’s looking for one
+
+Nov 27, 2023  4:58:04 PM (Read by you after 5 hours, 3 minutes, 5 seconds)
+Campbell Del Collo
+comp sci major
+
+Nov 27, 2023  4:58:05 PM (Read by you after 5 hours, 3 minutes, 4 seconds)
+Campbell Del Collo
+my age
+
+Nov 27, 2023 10:01:31 PM
+Me
+insane person?
+
+Nov 27, 2023 10:05:15 PM (Read by you after 1 minute, 17 seconds)
+Campbell Del Collo
+no i’ve known her for three years 
+
+Nov 27, 2023 10:05:29 PM (Read by you after 1 minute, 3 seconds)
+Campbell Del Collo
+and i know her roomates well and they all get along very well
+
+Nov 27, 2023 10:06:05 PM (Read by you after 27 seconds)
+Campbell Del Collo
+she actually asked me to room like a week ago too and i told her i couldn’t but i didn’t want to recommend her until she said she was still looking for one
+
+Nov 27, 2023 10:06:09 PM (Read by you after 23 seconds)
+Campbell Del Collo
+and she mentioned it today
+
+Nov 27, 2023 10:06:59 PM
+Me
+is she in 1070 with us?
+
+Nov 27, 2023 10:08:51 PM (Read by you after 1 minute, 10 seconds)
+Campbell Del Collo
+yes
+
+Nov 27, 2023 10:09:55 PM (Read by you after 6 seconds)
+Campbell Del Collo
+i can give you her number and let her know to expect a text if you want 
+
+Nov 27, 2023 10:10:05 PM
+Me
+not yet
+
+Nov 27, 2023 10:10:26 PM
+Me
+i’ve gotta check with my recitation partner on Wednesday
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 28, 2023 12:11:15 AM (Read by you after 15 hours, 19 minutes, 28 seconds)
+Campbell Del Collo
+ok slay
+
+Nov 28, 2023 12:11:17 AM (Read by you after 15 hours, 19 minutes, 26 seconds)
+Campbell Del Collo
+let me know
+
+Nov 29, 2023 12:26:36 PM (Read by them after 1 second)
+Me
+do u have a phone charger?
+
+Nov 29, 2023  1:12:18 PM (Read by you after 11 seconds)
+Campbell Del Collo
+no :(
+
+Nov 29, 2023  1:12:31 PM
+Campbell Del Collo
+let me search my bag once i get to physics
+
+Nov 29, 2023  1:12:37 PM (Read by them after 1 second)
+Me
+it’s all good
+
+Nov 29, 2023  1:12:40 PM (Read by you after 1 second)
+Campbell Del Collo
+but i’m pretty sure the answer is no
+
+Nov 29, 2023  1:12:50 PM (Read by them after 1 second)
+Me
+i went and bought one from the computer store
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 29, 2023  1:13:02 PM
+Campbell Del Collo
+bro i had to do that once
+
+Nov 29, 2023  1:13:29 PM
+Campbell Del Collo
+it was humiliating bc i only had 7 dollars on my card so i was like “what is the cheapest charger here”
+
+Nov 29, 2023  2:33:42 PM (Read by you after 1 hour, 8 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/d8/d8a857b5ed753ed67048a351aeb0968373be24d9
+
+Nov 29, 2023  3:34:07 PM (Read by them after 1 second)
+Me
+tell her to message me first
+
+Nov 29, 2023  3:34:17 PM
+Me
+actually no
+
+Nov 29, 2023  6:36:19 PM (Read by you after 28 seconds)
+Campbell Del Collo
+sorry i took like a two hour nap before exams
+
+Nov 29, 2023  6:36:37 PM (Read by you after 10 seconds)
+Campbell Del Collo
+id there anything you want me to do
+
+Nov 29, 2023  6:37:03 PM
+Me
+nah, i talked to her briefly
+
+Nov 29, 2023  6:37:26 PM (Read by you after 9 seconds)
+Campbell Del Collo
+ok slay
+
+Nov 29, 2023  6:37:30 PM (Read by you after 5 seconds)
+Campbell Del Collo
+what did you think
+
+Nov 29, 2023  6:38:02 PM (Read by them after 4 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/d8/d8585373ed3af588ea3e6d2c04e4e080f6fe12b0
+she hasn’t really replied so idk 🤷‍♀️ 
+
+Nov 29, 2023  6:52:51 PM (Read by you after 4 days, 16 hours, 2 minutes, 48 seconds)
+Campbell Del Collo
+i can’t remember if there’s exams for her tn
+
+Dec 04, 2023 10:56:21 AM (Read by them after 2 seconds)
+Me
+i’m going to be in the Hendrix center (hopefully in one of the enclosed glass rooms) if you’d like to help
+
+Dec 04, 2023 10:56:38 AM (Read by them after 2 seconds)
+Me
+(please help 🙏)
+
+Dec 04, 2023 11:00:39 AM (Read by you after 14 minutes)
+Campbell Del Collo
+i am going to math rn but i can definently help after lab
+
+Dec 04, 2023 11:00:49 AM (Read by you after 13 minutes, 50 seconds)
+Campbell Del Collo
+or if you wanna text me pics and stuff i’m not gonna be doing anything
+
+Dec 04, 2023 11:00:58 AM (Read by you after 13 minutes, 41 seconds)
+Campbell Del Collo
+there’s just a quiz at the start so i can’t fucking skip
+
+Dec 04, 2023 11:14:48 AM (Read by them after 2 seconds)
+Me
+check discord
+
+Dec 09, 2023  3:36:50 PM
+Me
+If you know any other people that want to live on campus next year lemme know bc Christina just backed out
+
+Dec 09, 2023  3:53:02 PM (Read by you after 11 minutes, 53 seconds)
+Campbell Del Collo
+can it be
+
+Dec 09, 2023  3:53:04 PM (Read by you after 11 minutes, 51 seconds)
+Campbell Del Collo
+a guy
+
+Dec 09, 2023  4:05:31 PM
+Me
+As far as I’m aware, Coed dorms aren’t allowed but Coed floors are so long as it’s not community style bathrooms
+
+Dec 09, 2023  4:07:51 PM (Read by you after 3 seconds)
+Campbell Del Collo
+wtf youre literally an adult
+
+Dec 09, 2023  4:08:36 PM
+Campbell Del Collo
+thats so weird to me, like were really segregating by gender in 2023?
+
+Dec 09, 2023  4:08:57 PM
+Me
+Dec 09, 2023  4:08:57 PM I can check but I seriously doubt it because of all of the legal stuff that would come into play were a Title VIIII issue to go down
+Edited 21 seconds later: I can check but I seriously doubt it because of all of the legal stuff that would come into play were a Title IX issue to go down
+
+    Dec 09, 2023  4:09:34 PM
+    Campbell Del Collo
+    i guess that makes senes
+
+
+Dec 09, 2023  4:09:08 PM
+Campbell Del Collo
+it makes sense for the freshman dorms bc parents might get mad but youre literally gonna be a junior
+
+Dec 09, 2023  4:09:34 PM
+Campbell Del Collo
+i guess that makes senes
+This message responded to an earlier message.
+
+Dec 09, 2023  4:10:17 PM
+Me
+Bruh, we’re in the south, ofc they still segregate based on sex
+
+Dec 09, 2023  4:11:00 PM (Read by them after 1 second)
+Me
+(Specifying biological sex bc that is what the university and law are concerned with. Not gender)
+
+Dec 13, 2023 12:43:07 PM (Read by them after 1 second)
+Me
+can you send the study stuff you made for exam 2?
+
+Dec 13, 2023 12:43:14 PM
+Me
+por favor?
+
+Dec 13, 2023  2:18:35 PM (Read by you after 39 minutes, 11 seconds)
+Campbell Del Collo
+yes
+
+Dec 13, 2023  2:18:38 PM (Read by you after 39 minutes, 8 seconds)
+Campbell Del Collo
+which
+
+Dec 13, 2023  2:18:39 PM (Read by you after 39 minutes, 7 seconds)
+Campbell Del Collo
+ones
+
+Dec 13, 2023  2:18:43 PM (Read by you after 39 minutes, 3 seconds)
+Campbell Del Collo
+or do you want all of it
+
+Dec 13, 2023  2:18:49 PM (Read by you after 38 minutes, 57 seconds)
+Campbell Del Collo
+you can come borrow my notes if you want
+
+Dec 13, 2023  2:18:56 PM (Read by you after 38 minutes, 50 seconds)
+Campbell Del Collo
+im not studying comp sci anymore today
+
+Dec 13, 2023  2:58:38 PM (Read by them after 1 second)
+Me
+Yeah, can I pop by in like an hour?
+
+Dec 13, 2023  9:02:08 PM (Read by you after 6 days, 1 hour, 55 minutes, 23 seconds)
+Campbell Del Collo
+shit im sorry i took a nap before physics
+
+Dec 13, 2023  9:02:17 PM (Read by you after 6 days, 1 hour, 55 minutes, 14 seconds)
+Campbell Del Collo
+but you are welcome to come by anytime 
+
+Dec 19, 2023 10:57:26 PM (Read by you after 5 seconds)
+Campbell Del Collo
+did you know that there was absestos in lever
+
+Dec 19, 2023 10:57:34 PM (Read by them after 1 second)
+Me
+yes
+
+Dec 19, 2023 10:57:59 PM (Read by them after 1 second)
+Me
+you have to sign a waiver to live there
+
+Dec 19, 2023 10:58:24 PM (Read by them after 1 second)
+Me
+tf do you think the popcorn ceiling is made out of?
+
+Dec 19, 2023 11:05:57 PM (Read by you after 7 seconds)
+Campbell Del Collo
+i did not sign a fucking waiver😭
+
+Dec 19, 2023 11:06:18 PM
+Campbell Del Collo
+girl i literally smoke it’s not like i’m suddenly broken up about my chances of lung disease
+
+Dec 19, 2023 11:06:24 PM
+Me
+Did you turn 18 before the housing agreement was signed?
+    Dec 19, 2023 11:06:29 PM (Read by you after 1 second)
+    Campbell Del Collo
+    yes
+
+
+Dec 19, 2023 11:06:26 PM
+Campbell Del Collo
+also how did the exam go
+    Dec 19, 2023 11:07:12 PM
+    Me
+    not good but grades went in today and I’ve got a C so I passed
+    Tapbacks:
+        Loved by Campbell Del Collo
+
+
+
+Dec 19, 2023 11:06:29 PM (Read by you after 1 second)
+Campbell Del Collo
+yes
+This message responded to an earlier message.
+
+Dec 19, 2023 11:06:35 PM
+Campbell Del Collo
+wait
+
+Dec 19, 2023 11:06:36 PM (Read by you after 1 second)
+Campbell Del Collo
+no
+
+Dec 19, 2023 11:06:47 PM
+Me
+One of your parents signed it then
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Dec 19, 2023 11:07:12 PM
+Me
+not good but grades went in today and I’ve got a C so I passed
+Tapbacks:
+Loved by Campbell Del Collo
+
+This message responded to an earlier message.
+
+Dec 19, 2023 11:16:55 PM (Read by you after 33 seconds)
+Campbell Del Collo
+omg slay
+
+Dec 19, 2023 11:16:57 PM (Read by you after 31 seconds)
+Campbell Del Collo
+me too
+
+Dec 19, 2023 11:17:11 PM (Read by you after 17 seconds)
+Campbell Del Collo
+which classes are you taking next sem
+
+Dec 19, 2023 11:18:27 PM
+Me
+Discrete Computing and then Algorithms and Data Structures
+
+Dec 19, 2023 11:18:44 PM
+Me
+Both with Wittman (however u spell his name)
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Dec 20, 2023  1:58:31 PM (Read by you after 6 days, 6 hours, 31 minutes, 45 seconds)
+Campbell Del Collo
+omg wait me too
+
+Dec 26, 2023  8:30:24 PM
+Me
+What times???
+
+Dec 26, 2023 10:02:49 PM (Read by them after 4 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3e/3e215f68911e98417a72d91e771a118591052279
+that’s me for next semester
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Dec 27, 2023 12:26:08 AM (Read by you after 14 hours, 6 minutes, 57 seconds)
+Campbell Del Collo
+hang on im logging into iroar rn
+
+Dec 27, 2023 12:26:24 AM (Read by you after 14 hours, 6 minutes, 41 seconds)
+Campbell Del Collo
+im taking 19 credit hours next sem and 8 of them are physics 
+
+Dec 27, 2023  2:32:59 PM (Read by you after 6 seconds)
+Campbell Del Collo
+girl i’m sorry i literally just went to bed idk how i forgot to do that
+
+Dec 27, 2023  2:33:12 PM
+Me
+download navigate
+
+Dec 27, 2023  2:34:05 PM (Read by you after 2 seconds)
+Campbell Del Collo
+can you look at your schedule
+
+Dec 27, 2023  2:34:16 PM (Read by you after 1 second)
+Campbell Del Collo
+fuck that’s way moreconvienent
+
+Dec 27, 2023  2:34:17 PM
+Me
+yup that’s what that screenshot is from
+
+Dec 27, 2023  2:34:52 PM
+Me
+it’s also how u make appointments with advisors and stuff
+
+Dec 27, 2023  2:36:29 PM (Read by you after 12 minutes, 55 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/68/6803214e81732bbde7db8b7fff7f8c77731593cb
+
+Dec 27, 2023  2:36:31 PM (Read by you after 12 minutes, 53 seconds)
+Campbell Del Collo
+ok slay
+
+Dec 27, 2023  2:36:43 PM (Read by you after 12 minutes, 41 seconds)
+Campbell Del Collo
+the three hour physics lab is going to kill me btw
+
+Dec 27, 2023  2:50:25 PM
+Me
+what times do you have 2070 and your 2121 lab?
+
+Dec 27, 2023  2:55:53 PM (Read by you after 4 minutes, 15 seconds)
+Campbell Del Collo
+2:30-3:20
+
+Dec 27, 2023  2:56:01 PM (Read by you after 4 minutes, 7 seconds)
+Campbell Del Collo
+for 2070
+
+Dec 27, 2023  2:56:22 PM (Read by you after 3 minutes, 46 seconds)
+Campbell Del Collo
+and 2121 is 3:30-4:45
+
+Dec 27, 2023  3:00:25 PM
+Me
+I’ve got 2070 w u
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Dec 27, 2023  3:00:33 PM
+Me
+are u sure that’s ur lab time?
+
+Dec 27, 2023  3:01:08 PM
+Me
+bc I’ve got 3:30 to 4:20 in section 006
+
+Dec 27, 2023  3:22:14 PM (Read by you after 1 hour, 19 seconds)
+Campbell Del Collo
+yeah i was looking at the lecture oops
+
+Dec 27, 2023  3:22:21 PM (Read by you after 1 hour, 12 seconds)
+Campbell Del Collo
+i have section 005😣
+
+Dec 27, 2023  4:22:39 PM
+Me
+damn
+
+Jan 06, 2024  2:07:13 PM (Read by them after 1 second)
+Me
+Hey
+
+Jan 06, 2024  2:07:33 PM
+Me
+would you be willing to come with me to CUCyber for emotional support?
+
+Jan 06, 2024  2:07:52 PM
+Me
+I refuse to back out of a club just bc the guy in charge is my crazy ex
+
+Jan 06, 2024  2:08:49 PM (Read by you after 6 minutes, 22 seconds)
+Campbell Del Collo
+yes i thought abt joining 
+
+Jan 06, 2024  2:08:58 PM (Read by you after 6 minutes, 13 seconds)
+Campbell Del Collo
+bc i need more clubs that match my interests
+
+Jan 06, 2024  2:15:27 PM
+Me
+i need more clubs period.
+
+Jan 06, 2024  2:15:58 PM
+Me
+If I can’t feel comfortable at Cyber than I need other environments that work for me
+
+Jan 06, 2024  2:16:18 PM (Read by you after 24 seconds)
+Campbell Del Collo
+are you looking for professional ones or like any
+
+Jan 06, 2024  2:16:57 PM
+Me
+thinking abt joining the chocolate milk club 😂
+
+Jan 06, 2024  2:23:23 PM
+Me
+but any really
+
+Jan 06, 2024  2:58:50 PM (Read by you after 1 minute, 48 seconds)
+Campbell Del Collo
+the late night board games club is really fun
+
+Jan 06, 2024  2:58:59 PM (Read by you after 1 minute, 39 seconds)
+Campbell Del Collo
+its tuesdays and thursdays 10-12
+
+Jan 06, 2024  3:00:50 PM (Read by them after 1 second)
+Me
+yes please
+
+Jan 06, 2024  3:00:56 PM
+Me
+that sounds amazing!
+
+Jan 06, 2024  3:01:06 PM
+Me
+where do they host it?
+
+Jan 06, 2024  3:01:16 PM
+Campbell Del Collo
+martin hall i think
+
+Jan 06, 2024  3:01:44 PM (Read by them after 1 second)
+Me
+the math building?
+
+Jan 06, 2024  3:01:53 PM (Read by you after 1 second)
+Campbell Del Collo
+yeah pretty sure
+
+Jan 06, 2024  3:01:57 PM
+Campbell Del Collo
+wait i have the discord
+
+Jan 06, 2024  3:02:12 PM (Read by you after 2 seconds)
+Campbell Del Collo
+https://discord.com/invite/zaab9qSA
+Join the Late Night Board Games Club Discord Server!
+Check out the Late Night Board Games Club community on Discord - hang out with 383 other members and enjoy free voice and text chat.
+
+Jan 06, 2024  9:37:07 PM (Read by you after 11 seconds)
+Campbell Del Collo
+how much was your rent on campus
+
+Jan 06, 2024  9:37:13 PM (Read by you after 5 seconds)
+Campbell Del Collo
+im trying ot talk to my parents
+
+Jan 06, 2024  9:37:23 PM
+Me
+lemme check
+
+Jan 06, 2024  9:48:46 PM
+Me
+Okay, so I couldn’t find mine but the housing and dining rates for next year have already been posted
+
+Jan 06, 2024  9:48:50 PM
+Me
+here you go:
+
+Jan 06, 2024  9:49:27 PM (Read by them after 2 seconds)
+Me
+https://housing.clemson.edu/wp-content/uploads/2023/10/24-25-Proposed-Rates-1.pdf
+24-25-Proposed-Rates-1
+
+Jan 06, 2024  9:54:49 PM
+Me
+Benefits:
+- with a regular lease you have to pay in the summer
+- you don’t have to pay a deposit, utilities (which are expensive af and you have to pay each of them—water, electricity, wifi, HVAC—separately), cleaning fees when you move out (unless you punch a whole thru a wall or something)
+- you have access to maintenance services who do day of or next day visits to fix stuff (my backed up toilet got fixed 8 hours after I submitted a 3 am request. Same goes for the time the washing machine decided it didn’t want to work or when the shower got clogged with hair)
+- you are on campus so no need to pay for commuting or gas money to get to school every single day
+- more likely to actually attend class on time given you are on campus and don’t have to deal with external factors such as traffic or busses being down
+
+Jan 06, 2024  9:55:15 PM (Read by them after 1 second)
+Me
+Also, Claire and I are still looking for roommates and we would love to have you!
+
+Jan 06, 2024  9:59:29 PM (Read by you after 1 second)
+Campbell Del Collo
+ok wait which one
+    Jan 06, 2024 10:00:14 PM (Read by them after 1 second)
+    Me
+    what does this mean?
+
+    Jan 06, 2024 10:02:58 PM (Read by you after 43 seconds)
+    Campbell Del Collo
+    which complex
+
+
+Jan 06, 2024  9:59:31 PM
+Campbell Del Collo
+bc
+
+Jan 06, 2024  9:59:52 PM
+Campbell Del Collo
+my parents are biting me back rn for my current housing arrangement
+    Jan 06, 2024 10:02:35 PM
+    Me
+    also, huh?
+
+
+Jan 06, 2024 10:00:01 PM
+Me
+?
+
+Jan 06, 2024 10:00:14 PM (Read by them after 1 second)
+Me
+what does this mean?
+This message responded to an earlier message.
+
+Jan 06, 2024 10:02:35 PM
+Me
+also, huh?
+This message responded to an earlier message.
+
+Jan 06, 2024 10:02:58 PM (Read by you after 43 seconds)
+Campbell Del Collo
+which complex
+This message responded to an earlier message.
+
+Jan 06, 2024 10:05:30 PM (Read by them after 1 second)
+Me
+Douthit hills West A-D Quad. I can promise you rn, Calhoun is shit and is so far from everything. I have been in those dorms, they have like zero insulation and, imo, are more gross than Lever
+
+Jan 06, 2024 10:07:38 PM (Read by them after 1 second)
+Me
+Also, I can guarantee you a spot on campus in Douthit
+
+Jan 06, 2024 10:08:19 PM
+Me
+I’ve got a meeting with Housing on Monday to establish that I’m living on campus for medical purposes, thus have guaranteed housing
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 06, 2024 10:10:00 PM
+Me
+(I’m trying everything to convince you to live with me. You are a wonderful human being and Claire and I are trying to create an environment where we can complain about programming and CS to our hearts content)
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 06, 2024 10:11:53 PM (Read by them after 1 second)
+Me
+Side perk, my mother sends mini care packages for my roommates back with me sometimes
+    Jan 06, 2024 10:15:23 PM
+    Me
+    Also, it’s really hard to find a dorm and sign a lease that’s affordable rn
+
+
+Jan 06, 2024 10:13:51 PM (Read by you after 14 seconds)
+Campbell Del Collo
+ok yeah i will send more when i calm down im reading all of it i just need to talk to my parents rn
+
+Jan 06, 2024 10:14:52 PM (Read by them after 1 second)
+Me
+when you do, let me know what’s going on with your roomie situation rn
+
+Jan 06, 2024 10:15:23 PM
+Me
+Also, it’s really hard to find a dorm and sign a lease that’s affordable rn
+This message responded to an earlier message.
+
+Jan 06, 2024 10:18:25 PM (Read by them after 1 second)
+Me
+But you need to let me know in the next few days bc I’ve got a pair of CS majors that are willing to live with us
+
+Jan 06, 2024 10:34:30 PM (Read by you after 1 second)
+Campbell Del Collo
+ok i will let you know by tommorrow how feasible everything is
+
+Jan 06, 2024 10:34:37 PM
+Campbell Del Collo
+we still need to hang out next semester
+
+Jan 06, 2024 10:34:44 PM (Read by them after 1 second)
+Me
+Absolutely!
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 06, 2024 10:36:05 PM (Read by you after 7 seconds)
+Campbell Del Collo
+idk why i texted that so ominously 
+
+Jan 06, 2024 10:36:17 PM
+Campbell Del Collo
+just lmk whenever you’re free in the next few weeks
+
+Jan 06, 2024 10:44:38 PM
+Me
+👍
+
+Jan 06, 2024 10:45:07 PM
+Me
+If I don’t see you before then, we have lecture together next Monday!
+
+Jan 06, 2024 11:13:29 PM (Read by you after 8 minutes, 2 seconds)
+Campbell Del Collo
+omg slay
+
+Jan 06, 2024 11:13:36 PM (Read by you after 7 minutes, 55 seconds)
+Campbell Del Collo
+im so nervous
+
+Jan 07, 2024  5:54:54 PM
+Me
+Did you talk to your parents?
+
+Jan 07, 2024  6:09:14 PM (Read by you after 8 minutes, 31 seconds)
+Campbell Del Collo
+right now i’m leaning towards living with you because my parents set like crazy goals i have to meet to live off campus
+
+Jan 07, 2024  6:09:31 PM (Read by you after 8 minutes, 14 seconds)
+Campbell Del Collo
+i don’t even feel strongly one way or another it’s just what i already agreed to do with people 
+
+Jan 07, 2024  6:09:52 PM (Read by you after 7 minutes, 53 seconds)
+Campbell Del Collo
+but it would definently be easiest, and it would be nice to live with a friend still
+
+Jan 07, 2024  6:18:53 PM
+Me
+I need a yes or a no. Will your parents agree to pay for Douthit? And are you going to pull out if you meet their requirements?
+
+Jan 07, 2024  6:19:16 PM (Read by you after 1 second)
+Campbell Del Collo
+yeah i’m sorry that wasn’t meant to be my answer
+
+Jan 07, 2024  6:19:18 PM
+Me
+Bc I need to find a fourth roommate if you can
+
+Jan 07, 2024  6:20:02 PM
+Campbell Del Collo
+i will absolutely not pull out if i agree, i am already stressed out about this because i take commitment really seriously and i don’t want to have to pull out of theirs
+
+Jan 07, 2024  6:20:10 PM (Read by you after 1 second)
+Campbell Del Collo
+but it looks like they could get a fourth random roomate
+
+Jan 07, 2024  6:20:40 PM
+Campbell Del Collo
+ok i will come back in around 20 minutes, going to talk to my parents and let them know i’m leaning towards you. i will come back with a yes or no
+
+Jan 07, 2024  6:20:58 PM (Read by you after 1 second)
+Campbell Del Collo
+im sorry if any of that sounded rude i was just trying to sound buisness like
+
+Jan 07, 2024  6:21:06 PM
+Me
+Talk to your parents abt the pricing bc Claire and I are aiming for the quad with a kitchen which is a little less than 11k
+
+Jan 07, 2024  6:21:23 PM
+Me
+We’re not doing large meal plans next year
+
+Jan 07, 2024  6:21:35 PM
+Campbell Del Collo
+ok my rent was 600 a month at the other place so it should be roughly equivalent 
+
+Jan 07, 2024  6:21:52 PM (Read by you after 1 second)
+Campbell Del Collo
+my parents have a college fund but i’ll probably pay my rent myself bc i’ll be working anyway
+
+Jan 07, 2024  6:22:15 PM
+Campbell Del Collo
+but that isn’t an issue, my parents are financial stable and could take over if i become unable to work
+
+Jan 07, 2024  6:23:42 PM (Read by you after 19 seconds)
+Campbell Del Collo
+it has a kitchen right?
+
+Jan 07, 2024  6:24:04 PM
+Me
+yeah
+
+Jan 07, 2024  6:24:25 PM (Read by them after 5 seconds)
+Me
+if we don’t get kitchen, hot plate is the answer
+
+Jan 07, 2024  6:41:42 PM (Read by you after 3 minutes, 23 seconds)
+Campbell Del Collo
+ok yeah i’m living with you
+
+Jan 07, 2024  6:45:18 PM (Read by them after 1 second)
+Me
+and you can get out of your agreement with your friends?
+
+Jan 07, 2024  6:45:25 PM (Read by them after 1 second)
+Me
+you didn’t sign anything?
+
+Jan 07, 2024  6:45:49 PM
+Campbell Del Collo
+no
+
+Jan 07, 2024  6:45:54 PM
+Campbell Del Collo
+just applied for the lease
+
+Jan 07, 2024  6:45:59 PM
+Campbell Del Collo
+i just sent the message to them
+
+Jan 07, 2024  6:46:03 PM (Read by them after 1 second)
+Me
+k
+
+Jan 07, 2024  6:46:08 PM
+Me
+WELCOME!
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 07, 2024  6:46:30 PM (Read by you after 3 minutes, 9 seconds)
+Campbell Del Collo
+i am really excited, it sucked to tell them no but now that i have 
+
+Jan 07, 2024  6:46:35 PM (Read by you after 3 minutes, 4 seconds)
+Campbell Del Collo
+like thag was the only bad part
+
+Jan 07, 2024  6:50:13 PM
+Me
+K, Rian just agreed and I let the pair know that I couldn’t do two people
+
+Jan 07, 2024  6:50:25 PM
+Me
+Imma throw y’all in a group chat
+
+Jan 07, 2024  6:50:25 PM (Read by you after 3 days, 13 hours, 58 minutes, 2 seconds)
+Campbell Del Collo
+ok slay 
+
+Jan 07, 2024  6:50:34 PM (Read by you after 3 days, 13 hours, 57 minutes, 53 seconds)
+Campbell Del Collo
+cool we can arrange a meet up 
+
+Jan 08, 2024  6:38:09 PM (Read by you after 2 days, 14 hours, 10 minutes, 18 seconds)
+Campbell Del Collo
+wait are you in ydsa
+
+Jan 08, 2024  6:38:13 PM (Read by you after 2 days, 14 hours, 10 minutes, 14 seconds)
+Campbell Del Collo
+isaw they followed you
+
+Jan 11, 2024  8:48:30 AM (Read by them after 1 second)
+Me
+No
+
+Jan 11, 2024  8:49:07 AM (Read by them after 1 second)
+Me
+I might be on their mailing list from last semester but I followed to keep up with one of the education bills that’s affecting the school
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 11, 2024 10:32:34 AM (Read by you after 4 minutes, 1 second)
+Campbell Del Collo
+oop i was just wondering
+
+Jan 11, 2024 10:32:41 AM (Read by you after 3 minutes, 54 seconds)
+Campbell Del Collo
+yeah i’m loosely in it
+
+Jan 11, 2024 10:32:47 AM (Read by you after 3 minutes, 48 seconds)
+Campbell Del Collo
+im gonna join more this year prob
+
+Jan 11, 2024 10:37:09 AM (Read by them after 1 second)
+Me
+I don’t feel queer enough to be welcome in queer spaces
+
+Jan 11, 2024 10:37:40 AM (Read by them after 1 second)
+Me
+None of the clubs had demisexual representation at Tiger Prowl last semester
+
+Jan 11, 2024 10:42:26 AM (Read by you after 24 seconds)
+Campbell Del Collo
+that’s really unfortunate i’m sorry
+
+Jan 11, 2024 10:43:45 AM (Read by you after 4 seconds)
+Campbell Del Collo
+i definently think demisexuality is as queer as any other identity and it really sucks that a lot of people don’t ahree
+
+Jan 15, 2024 12:18:16 PM (Read by them after 1 second)
+Me
+Am downstairs
+
+Jan 15, 2024 12:18:35 PM
+Me
+Red Buick right when you come out of the lounge doors
+
+Jan 16, 2024  3:37:45 PM (Read by them after 1 second)
+Me
+Who do you have for your physics courses?
+
+Jan 16, 2024  4:34:17 PM (Read by you after 7 minutes, 23 seconds)
+Campbell Del Collo
+brown and weldman 
+
+Jan 16, 2024  4:41:54 PM (Read by them after 1 second)
+Me
+Is board game club a thing you arrive early too?
+
+Jan 16, 2024  4:42:24 PM (Read by you after 2 minutes, 27 seconds)
+Campbell Del Collo
+do not think so
+
+Jan 29, 2024  1:48:08 PM (Read by them after 1 second)
+Me
+How did you get past this issue for the lab?
+
+Jan 29, 2024  1:48:37 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/29/29d75dd4f2d85125bef2e78b05516989f38fa301
+
+Jan 29, 2024  2:05:05 PM (Read by you after 12 seconds)
+Campbell Del Collo
+i think that happens when you don’t have it compile 
+
+Jan 29, 2024  2:05:15 PM (Read by you after 2 seconds)
+Campbell Del Collo
+or 
+
+Jan 29, 2024  2:05:18 PM
+Campbell Del Collo
+something
+
+Jan 29, 2024  2:05:50 PM
+Me
+Did you make a tester makefile?
+
+Jan 29, 2024  2:13:31 PM (Read by you after 53 seconds)
+Campbell Del Collo
+yes
+
+Jan 29, 2024  2:13:40 PM (Read by you after 44 seconds)
+Campbell Del Collo
+but you should just submit the headers
+
+Jan 29, 2024  2:14:40 PM (Read by them after 1 second)
+Me
+Mind sharing the makefile pls?
+
+Jan 29, 2024  2:17:26 PM (Read by you after 12 seconds)
+Campbell Del Collo
+yes let me get to my dorm and i’ll send it
+
+Jan 29, 2024  2:17:34 PM (Read by you after 4 seconds)
+Campbell Del Collo
+it should just be compiling the tester tho
+
+Jan 29, 2024  2:17:50 PM
+Campbell Del Collo
+like you include the header files and just g++ with nothing else
+
+Jan 29, 2024  2:17:50 PM
+Me
+Idk it’s being weird
+
+Jan 29, 2024  2:18:34 PM (Read by you after 11 seconds)
+Campbell Del Collo
+i’ll send a pic in like five
+
+Jan 29, 2024  2:18:50 PM
+Me
+Love you
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 29, 2024  2:19:01 PM (Read by them after 1 second)
+Me
+So much
+
+Jan 29, 2024  2:19:41 PM (Read by you after 11 seconds)
+Campbell Del Collo
+no probbbb
+
+Jan 29, 2024  2:19:44 PM (Read by you after 8 seconds)
+Campbell Del Collo
+this class might kill me
+
+Jan 29, 2024  2:27:18 PM (Read by you after 14 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/32/32a375bf542da6844d5f90769f212ad214e479f2
+
+Jan 29, 2024  2:27:21 PM (Read by you after 11 seconds)
+Campbell Del Collo
+yeah so this was just my makefile
+
+Jan 29, 2024  2:27:26 PM (Read by you after 6 seconds)
+Campbell Del Collo
+what error message are you getting
+
+Jan 29, 2024  2:27:53 PM
+Me
+Wait you had a testerMain????
+
+Jan 29, 2024  2:28:13 PM (Read by you after 1 second)
+Campbell Del Collo
+oh yeah that’s how i made an instance of the list class to test it
+
+Jan 29, 2024  2:28:19 PM (Read by you after 1 second)
+Campbell Del Collo
+you don’t need it for the autograder
+
+Jan 29, 2024  2:28:33 PM
+Me
+…would thou mind sharing that por favor???
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 29, 2024  2:28:36 PM
+Me
+🙏
+
+Jan 29, 2024  2:28:52 PM (Read by you after 1 second)
+Campbell Del Collo
+yes i can send you that
+
+Jan 29, 2024  2:31:26 PM (Read by you after 12 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/d8/d81f6a40a3e61cadc139451a310bd68e54c694b6
+
+Jan 29, 2024  2:59:04 PM (Read by them after 2 seconds)
+Me
+Thanks
+
+Jan 29, 2024  2:59:27 PM (Read by them after 1 second)
+Me
+Would you be up to help me with this?
+
+Jan 29, 2024  2:59:47 PM
+Me
+Like, my program is done but I’m debugging and really don’t understand the autograder issue
+
+Jan 29, 2024  3:11:57 PM (Read by you after 13 minutes, 30 seconds)
+Campbell Del Collo
+yes
+
+Jan 29, 2024  3:11:59 PM (Read by you after 13 minutes, 28 seconds)
+Campbell Del Collo
+i can 
+
+Jan 29, 2024  3:25:46 PM
+Me
+When/where?
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 29, 2024  3:37:23 PM (Read by them after 1 second)
+Me
+Ava, hearting it isn’t a response
+
+Jan 29, 2024  4:24:14 PM (Read by you after 1 minute, 20 seconds)
+Campbell Del Collo
+wait il sorry i thought i sent something
+
+Jan 29, 2024  4:24:36 PM (Read by you after 58 seconds)
+Campbell Del Collo
+i can do anytime after i get out of my lab at 6:30
+
+Jan 29, 2024  4:25:16 PM (Read by you after 18 seconds)
+Campbell Del Collo
+but i am geniunely sorry that looked fake as fuck i swear i forgot to respond after hearting it
+
+Jan 29, 2024  4:25:38 PM
+Me
+Omfg I fixed it
+
+Jan 29, 2024  4:25:42 PM
+Me
+82/90
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 29, 2024  4:31:19 PM (Read by you after 9 seconds)
+Campbell Del Collo
+SLAYYYY
+
+Jan 29, 2024  4:31:26 PM (Read by you after 2 seconds)
+Campbell Del Collo
+thats like three more test cases right
+
+Jan 29, 2024  4:31:37 PM
+Campbell Del Collo
+i was stuck at 48 and then 70 for like two days
+
+Jan 29, 2024  4:31:52 PM (Read by them after 1 second)
+Me
+9 and 15 are giving me Index out of Range which idk how to fix
+
+Jan 29, 2024  4:44:58 PM (Read by them after 1 second)
+Me
+90/90 now
+
+Jan 29, 2024  4:45:04 PM
+Me
+Just some typos
+
+Jan 29, 2024  5:23:31 PM (Read by you after 18 hours, 27 minutes, 27 seconds)
+Campbell Del Collo
+this lab is so boring
+
+Jan 29, 2024  5:23:37 PM (Read by you after 18 hours, 27 minutes, 21 seconds)
+Campbell Del Collo
+its literally a elf tire 
+
+Jan 29, 2024  5:23:39 PM (Read by you after 18 hours, 27 minutes, 19 seconds)
+Campbell Del Collo
+lecture
+
+Jan 29, 2024  5:23:41 PM (Read by you after 18 hours, 27 minutes, 17 seconds)
+Campbell Del Collo
+also slayyyuu
+
+Jan 29, 2024  5:56:55 PM (Read by you after 17 hours, 54 minutes, 3 seconds)
+Campbell Del Collo
+so you’re good?
+
+Jan 29, 2024  5:56:59 PM (Read by you after 17 hours, 53 minutes, 59 seconds)
+Campbell Del Collo
+my lab ended early 
+
+Jan 29, 2024  5:57:04 PM (Read by you after 17 hours, 53 minutes, 54 seconds)
+Campbell Del Collo
+oh wait yeah obviously you’re good
+
+Jan 29, 2024  5:57:06 PM (Read by you after 17 hours, 53 minutes, 52 seconds)
+Campbell Del Collo
+nvm
+
+Jan 30, 2024 11:51:13 AM (Read by them after 1 second)
+Me
+Are you going to the Cyber meeting on Thursday?
+
+Jan 30, 2024 12:15:16 PM (Read by you after 4 seconds)
+Campbell Del Collo
+what time is it again
+
+Jan 30, 2024 12:15:24 PM
+Me
+6:30
+
+Jan 30, 2024 12:15:35 PM (Read by them after 1 second)
+Me
+We’re having a guest speaker this week
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Jan 30, 2024  1:45:17 PM (Read by you after 10 seconds)
+Campbell Del Collo
+oh my gosh did i tell you i’m changing my major
+
+Jan 30, 2024  1:45:30 PM (Read by them after 1 second)
+Me
+No???
+
+Jan 30, 2024  1:45:33 PM (Read by them after 1 second)
+Me
+To what?
+
+Jan 30, 2024  1:45:36 PM
+Campbell Del Collo
+can i come for the first 30 minutes wait i think that’s rude
+
+Jan 30, 2024  1:45:36 PM (Read by you after 1 second)
+Campbell Del Collo
+nvm
+
+Jan 30, 2024  1:45:40 PM
+Campbell Del Collo
+physics and comp sci minor
+
+Jan 30, 2024  1:45:48 PM (Read by you after 2 seconds)
+Campbell Del Collo
+we’ll prob still have classes together
+
+Jan 30, 2024  1:46:04 PM
+Campbell Del Collo
+and i’m keeping all the ones i’m already taking
+
+Feb 02, 2024 12:48:15 PM
+Me
+Started sharing location!
+
+Feb 02, 2024  1:21:12 PM (Read by you after 5 seconds)
+Campbell Del Collo
+can you see it
+
+Feb 02, 2024  1:21:50 PM (Read by them after 8 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/df/df7d0422ede666e6961ec2e14e60ab188f1e00b1
+
+Feb 02, 2024  1:22:42 PM (Read by you after 2 minutes, 16 seconds)
+Campbell Del Collo
+ok wait
+
+Feb 02, 2024  1:22:45 PM (Read by you after 2 minutes, 13 seconds)
+Campbell Del Collo
+lemme check my settings
+
+Feb 02, 2024  1:22:53 PM (Read by you after 2 minutes, 5 seconds)
+Campbell Del Collo
+i can see yours 
+
+Feb 02, 2024  1:23:49 PM (Read by you after 1 minute, 9 seconds)
+Campbell Del Collo
+how abt now
+
+Feb 02, 2024  1:25:12 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/cb/cbd6ca29c783d1eff7a54a366444565ea4e59069
+It’s trying i think?
+
+Feb 02, 2024  1:25:25 PM
+Me
+Lemme finish this shower and we can fix it
+
+Feb 05, 2024 10:46:46 PM (Read by them after 1 second)
+Me
+Wanna get food sometime this week?
+
+Feb 05, 2024 11:09:24 PM (Read by you after 5 minutes, 9 seconds)
+Campbell Del Collo
+yesssss
+
+Feb 05, 2024 11:09:28 PM (Read by you after 5 minutes, 5 seconds)
+Campbell Del Collo
+what are you thinking
+
+Feb 05, 2024 11:09:39 PM (Read by you after 4 minutes, 54 seconds)
+Campbell Del Collo
+just decided to take the l with the lab 2
+
+Feb 05, 2024 11:09:47 PM (Read by you after 4 minutes, 46 seconds)
+Campbell Del Collo
+i got most of the test cases…
+
+Feb 05, 2024 11:14:47 PM (Read by them after 1 second)
+Me
+It was easier than 1 for me
+
+Feb 05, 2024 11:15:53 PM (Read by them after 1 second)
+Me
+Dude, Claire shared a makefile builder that lets you run all of the test cases on your own machine
+
+Feb 05, 2024 11:15:57 PM (Read by them after 1 second)
+Me
+It was so helpful
+
+Feb 05, 2024 11:16:03 PM
+Me
+She shared it with you too
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Feb 06, 2024 12:01:44 AM (Read by you after 2 days, 22 hours, 55 minutes, 24 seconds)
+Campbell Del Collo
+what did you want to do for lunch
+
+Feb 08, 2024 10:57:19 PM
+Me
+Sorry, got way too fucking busy
+
+Feb 08, 2024 10:57:27 PM
+Me
+I haven’t even started on the lab yet
+
+Feb 08, 2024 10:57:38 PM
+Me
+Next week, day time?
+
+Feb 09, 2024 11:39:43 AM (Read by you after 8 minutes, 15 seconds)
+Campbell Del Collo
+no me neither 💀 
+
+Feb 09, 2024 11:39:49 AM (Read by you after 8 minutes, 9 seconds)
+Campbell Del Collo
+im behind on e eye thing 
+
+Feb 09, 2024 11:39:51 AM (Read by you after 8 minutes, 7 seconds)
+Campbell Del Collo
+everything 
+
+Feb 09, 2024 11:39:59 AM (Read by you after 7 minutes, 59 seconds)
+Campbell Del Collo
+we can figure out more next week but that’s be good
+
+Feb 09, 2024 11:48:26 AM
+Me
+I’m starting today after I clean and do a stat quiz
+
+Feb 09, 2024 11:52:07 AM (Read by them after 1 second)
+Me
+I’ve got a date in my room tmrw and that requires a deep clean
+
+Feb 09, 2024  1:04:41 PM (Read by you after 2 minutes, 34 seconds)
+Campbell Del Collo
+slay but that’s scary
+
+Feb 09, 2024  1:04:45 PM (Read by you after 2 minutes, 30 seconds)
+Campbell Del Collo
+i feel the pressure to clean
+
+Feb 09, 2024  1:04:55 PM (Read by you after 2 minutes, 20 seconds)
+Campbell Del Collo
+is he a comp sci/cis major😞
+
+Feb 09, 2024  1:07:48 PM (Read by them after 1 second)
+Me
+Cybersecurity at Anderson but he’s atheist and liberal so 
+
+Feb 09, 2024  1:07:58 PM
+Me
+Man doesn’t know how to code for shit tho
+
+Feb 09, 2024  1:08:05 PM
+Campbell Del Collo
+cybersecurity guys and girlies are cool
+
+Feb 09, 2024  1:08:28 PM
+Campbell Del Collo
+how’d you meet then 
+
+Feb 09, 2024  1:08:32 PM (Read by them after 1 second)
+Me
+…
+
+Feb 09, 2024  1:08:35 PM
+Me
+Bumble
+
+Feb 09, 2024  1:09:14 PM
+Campbell Del Collo
+oop
+
+Feb 09, 2024  1:09:18 PM
+Campbell Del Collo
+i’ve only used hinge 
+
+Feb 09, 2024  1:09:41 PM (Read by you after 2 seconds)
+Campbell Del Collo
+on bumble the girls have to contact first right
+
+Feb 09, 2024  1:09:47 PM
+Me
+Yup
+
+Feb 09, 2024  1:10:01 PM
+Me
+“So, what kinda cybersec?”
+
+Feb 09, 2024  1:10:36 PM
+Me
+He got me flowers on the second date and chocolate on the first
+
+Feb 09, 2024  1:11:17 PM (Read by them after 16 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/7a/7afab1a36aac28227b4e633b0f549c271e3a684c
+
+Feb 09, 2024  1:11:31 PM (Read by them after 2 seconds)
+Me
+I don’t own a vase 🤗
+
+Feb 09, 2024  1:11:57 PM (Read by you after 18 days, 11 hours, 4 minutes, 39 seconds)
+Campbell Del Collo
+oh wow and those are so pretty too
+
+Feb 09, 2024  1:11:59 PM (Read by you after 18 days, 11 hours, 4 minutes, 37 seconds)
+Campbell Del Collo
+taste
+
+Feb 28, 2024 12:16:32 AM (Read by you after 4 seconds)
+Campbell Del Collo
+did you see the wilbur soot stuff
+
+Feb 28, 2024 12:16:39 AM (Read by you after 1 second)
+Campbell Del Collo
+i don’t think it was confirmed to be him so 
+
+Feb 28, 2024 12:16:51 AM
+Me
+I’m legit looking at Ranboo’s response from earlier rn
+
+Feb 28, 2024 12:17:00 AM (Read by them after 1 second)
+Me
+I haven’t opened Twitter
+Tapbacks:
+Loved by Campbell Del Collo
+
+    Feb 28, 2024 12:17:22 AM (Read by you after 1 second)
+    Campbell Del Collo
+    don’t open twitter
+
+
+Feb 28, 2024 12:17:10 AM (Read by you after 1 second)
+Campbell Del Collo
+i don’t watch him but i know of that entire sphere
+
+Feb 28, 2024 12:17:14 AM (Read by them after 1 second)
+Me
+I saw Wilbur’s response in a YT video
+
+Feb 28, 2024 12:17:22 AM (Read by you after 1 second)
+Campbell Del Collo
+don’t open twitter
+This message responded to an earlier message.
+
+Feb 28, 2024 12:17:55 AM (Read by them after 1 second)
+Me
+Wasn’t planning on it
+
+Feb 28, 2024 12:20:55 AM
+Me
+I still need to watch Shelby’s stream but I’ve gathered that there was emotional abuse and physical abuse (in the form of biting, which I thought the internet already knew abt because several platonic friends of his have publicly mentioned it’s a way he shows affection but the assumption was always that everybody was okay with it??? I’ll find the clip from Rhianna)
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Feb 28, 2024 12:22:04 AM
+Me
+Like, I’ve seen his cute aggression mentioned in fanfics for at least two years
+
+Feb 28, 2024 12:22:48 AM
+Me
+However, non-consensual biting counts as abuse so I’m not defending it, I just thought the internet was already aware
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Feb 28, 2024 12:25:00 AM
+Me
+Nope, holy fuck, just saw from Shubble’s stream. That’s extreme and definitely abusive
+
+Feb 28, 2024 12:26:43 AM (Read by them after 1 second)
+Me
+https://www.youtube.com/watch?v=5XhPWhdzKts
+Is Wilbur Soot an abuser? ((Check description for more details))
+⚠️I’m not saying that Wilbur is the person that shubble is talking about, but I just wanted to share this information to see what y’all think. I’m not siding...
+
+Feb 28, 2024 12:27:00 AM
+Me
+All references to biting are contained within
+
+Feb 28, 2024 12:27:09 AM (Read by you after 8 seconds)
+Campbell Del Collo
+i’ll watch this tmrw i’m about to go to bed
+
+Feb 28, 2024 12:27:16 AM (Read by you after 1 second)
+Campbell Del Collo
+i have an 8am lab tmrw😞
+
+Feb 28, 2024 12:27:23 AM
+Me
+I am so sorry
+
+Feb 28, 2024 12:27:50 AM (Read by them after 1 second)
+Me
+Physics or CPSC?
+
+Feb 28, 2024  2:46:09 PM (Read by you after 3 days, 21 hours, 50 minutes, 36 seconds)
+Campbell Del Collo
+physics
+
+Feb 28, 2024  2:46:21 PM (Read by you after 3 days, 21 hours, 50 minutes, 24 seconds)
+Campbell Del Collo
+i love taking a nap after tjo so it balances out
+
+Mar 03, 2024 12:37:09 PM (Read by them after 2 seconds)
+Me
+Do you own pantyhose or fishnet stockings?
+
+Mar 03, 2024  1:01:09 PM (Read by you after 23 hours, 27 minutes, 46 seconds)
+Campbell Del Collo
+i’m a masc lesbian so no😞
+
+Mar 04, 2024 12:29:32 PM
+Me
+The dichotomy between the responses from you and Claire 😂
+
+Mar 04, 2024 12:29:58 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/da/da994ed87c806d132e2a6bef29ea86da673a373a
+Tapbacks:
+Loved by Campbell Del Collo
+
+    Mar 04, 2024 12:50:23 PM (Read by you after 1 hour, 45 minutes, 15 seconds)
+    Campbell Del Collo
+    LMAOOO
+
+
+Mar 04, 2024 12:30:10 PM
+Me
+Anyways
+
+Mar 04, 2024 12:30:19 PM
+Me
+Are you in STAT 3090?
+
+Mar 04, 2024 12:30:56 PM
+Me
+If so, can I borrow your note guide if I can’t finish these notes in time for my exam today
+
+Mar 04, 2024 12:50:11 PM (Read by you after 1 hour, 45 minutes, 27 seconds)
+Campbell Del Collo
+i am not 😞 
+
+Mar 04, 2024 12:50:23 PM (Read by you after 1 hour, 45 minutes, 15 seconds)
+Campbell Del Collo
+LMAOOO
+This message responded to an earlier message.
+
+Mar 04, 2024  2:36:17 PM
+Me
+So, I opened Twitter last night. The first thing on my timeline was this
+
+Mar 04, 2024  2:36:59 PM (Read by them after 1 second)
+Me
+https://twitter.com/SueLMonroe/status/1762809997455409600?s=46&t=3Luzz76UsNVYSc934rMyDA
+sue monroe (@SueLMonroe) on X
+I've just finished editing my latest book about The Magnificent Moon Hare. It's dedicated to my adored mum, Queen Elsie, who has just passed away. It's a comfort that I can still write about her...
+
+Mar 04, 2024  2:39:33 PM
+Me
+She’s a great human and not only did her mother just die, but if people decide to look, there’s a possibility that her and her husband could be doxxed bc of the Shubble-Wilbur mess bc people are starting to attack and threaten rape at anybody who has openly said they support him or will continue to listen to his music
+
+Mar 04, 2024  2:40:25 PM
+Me
+And like, she’s his mom so I kinda want to send an email telling her to change the address of her husband’s business to a holding address instead of their home address
+
+Mar 04, 2024  2:41:59 PM
+Me
+(Don’t judge, I got bored over the summer and parsed through her Facebook to figure out her legal married name and husband’s name and checked the business registry to see if I could find her bookshop’s records—still haven’t been able to do that—and found her husband’s film LTD
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Mar 04, 2024  2:43:44 PM
+Me
+https://find-and-update.company-information.service.gov.uk/officers/ucnPFYHkxNb-PqPbHibkmLPobbg/appointments
+Susan Louise STERLING personal appointments - Find and update company information - GOV.UK
+Free company information from Companies House including registered office address, filing history, accounts, annual return, officers, charges, business activity
+
+Mar 04, 2024  2:43:44 PM
+Me
+My boredom knows no bounds
+
+Mar 04, 2024  2:44:05 PM
+Me
+Anyway, Sue Monroe be going through some shit rn
+
+Mar 05, 2024  3:31:38 PM
+Me
+For Exam 1, what text-editor did you use for your file of all the code?
+
+Mar 05, 2024  4:15:33 PM (Read by them after 1 second)
+Me
+Nvm, I’m copying everything from VSCode into a word doc
+
+Aug 19, 2024 11:56:06 PM (Read by them after 1 second)
+Me
+https://www.youtube.com/shorts/34W6dZSlTxY
+“I Got an Incurable Virus from Sharing a Drink” #really
+Sharing drinks might seem harmless, but it can lead to the transmission of certain viruses that stay with you for life. One such virus spreads easily through...
+
+Aug 19, 2024 11:56:25 PM
+Me
+My phone must have been listening earlier bc this was recommended to me
+
+Aug 19, 2024 11:58:28 PM (Read by you after 1 hour, 19 minutes, 14 seconds)
+Campbell Del Collo
+WAAIIT IM SO PARANOID NOW
+
+Aug 21, 2024  9:39:01 AM (Read by them after 5 seconds)
+Me
+The hashbrowns were so good
+
+Aug 21, 2024  9:39:07 AM (Read by them after 1 second)
+Me
+Thank you!
+
+Aug 21, 2024  9:46:07 AM (Read by you after 1 day, 4 hours, 12 minutes, 54 seconds)
+Campbell Del Collo
+no problem!!! have a good day with classes
+
+Aug 21, 2024 10:05:03 AM (Read by you after 1 day, 3 hours, 53 minutes, 58 seconds)
+Campbell Del Collo
+https://twitter.com/AriDrennen/status/1826000228920733961?s=46
+Ari Drennen 🍏🌴 (@AriDrennen) on X
+The Daily Wire has fallen to Wokeness:
+
+Aug 21, 2024 10:05:03 AM (Read by you after 1 day, 3 hours, 53 minutes, 58 seconds)
+Campbell Del Collo
+IS THIS HER
+    Aug 22, 2024  1:59:13 PM (Read by them after 1 second)
+    Me
+    YES
+
+
+Aug 22, 2024  1:35:38 PM (Read by you after 23 minutes, 23 seconds)
+Campbell Del Collo
+ignore that sorry i accidentally clicked on the notification from last night
+
+Aug 22, 2024  1:59:13 PM (Read by them after 1 second)
+Me
+YES
+This message responded to an earlier message.
+
+Aug 29, 2024  2:08:33 PM (Read by them after 1 second)
+Me
+Hey, whenever you get back, you need to wash the clothes in the basket on top to the dryer. They’ve been sitting there since Sunday night and they were wet. I checked with the others and they don’t belong to them. I think they’re the clothes you wore to work on Sunday, but I’m not certain
+
+Aug 29, 2024  2:09:09 PM (Read by them after 1 second)
+Me
+On the topic of drying stuff, if you have wet clothes in the wash machine and are away or asleep, would you like me to throw them in the dryer next time?
+
+Aug 29, 2024  3:15:54 PM (Read by you after 5 days, 23 hours, 15 minutes, 44 seconds)
+Campbell Del Collo
+oh shit sorry i completely forgot about those 
+
+Aug 29, 2024  3:16:00 PM (Read by you after 5 days, 23 hours, 15 minutes, 38 seconds)
+Campbell Del Collo
+yes you can move them whenever
+
+Aug 29, 2024  3:16:17 PM (Read by you after 5 days, 23 hours, 15 minutes, 21 seconds)
+Campbell Del Collo
+thanks for telling me
+
+Sep 04, 2024  2:31:46 PM (Read by them after 3 seconds)
+Me
+Are you working next Sunday?
+
+Sep 04, 2024  2:31:52 PM
+Me
+The 15th
+
+Sep 04, 2024  2:52:22 PM (Read by you after 26 seconds)
+Campbell Del Collo
+i do not know currently 
+
+Sep 04, 2024  2:52:36 PM (Read by you after 12 seconds)
+Campbell Del Collo
+what time? 
+
+Sep 04, 2024  2:52:57 PM (Read by them after 4 seconds)
+Me
+7:30 pm
+
+Sep 04, 2024  2:53:08 PM (Read by you after 1 second)
+Campbell Del Collo
+oh yeah i never work that late 
+
+Sep 04, 2024  2:53:10 PM (Read by you after 1 second)
+Campbell Del Collo
+on weekends
+
+Sep 04, 2024  2:53:12 PM (Read by them after 1 second)
+Me
+Trying to schedule roommate agreement appointment
+
+Sep 04, 2024  2:53:18 PM
+Me
+Perfect!
+
+Sep 04, 2024  2:53:33 PM
+Campbell Del Collo
+oooh i was wondering abt that
+
+Sep 04, 2024  2:53:36 PM
+Campbell Del Collo
+sounds good
+
+Sep 05, 2024  4:11:49 PM (Read by you after 9 seconds)
+Campbell Del Collo
+https://www.ratemyprofessors.com/professor/2817008
+Alexandra Adkins at Clemson University
+Alexandra Adkins  is a professor in the Computer Science department at Clemson University - see what their students are saying about them or leave a rating yourself.
+
+Sep 07, 2024  4:08:25 PM (Read by you after 40 seconds)
+Campbell Del Collo
+i am really really sorry for saying that, it was not appropriate of me at all. i should’ve kept that thought deep in my mind. i didn’t intend to cause any harm or gross feelings, it was very much a situation where it came into my mind and i said it without thinking at all. this isn’t an excuse but a reason for me to do better with my words.
+
+Sep 07, 2024  4:09:14 PM
+Me
+https://www.youtube.com/shorts/SlGhW4BCfE8
+This dog acts like a human 😂 @chancetheprancer
+
+Sep 07, 2024  4:12:16 PM (Read by you after 5 hours, 23 minutes, 30 seconds)
+Campbell Del Collo
+https://x.com/kirawontmiss/status/1832101328925098291/mediaviewer
+
+Sep 07, 2024  9:35:33 PM (Read by you after 13 seconds)
+Campbell Del Collo
+https://www.espn.com/college-football/story/_/id/9380123/howard-rock-damaged-clemson-university
+Howard's Rock at Clemson hit by vandals
+Howard’s Rock, one of the iconic fixtures in college football, was vandalized on June 2 or 3, according to a police report obtained from the Clemson University Police Department.
+
+Sep 08, 2024  5:01:12 PM (Read by you after 5 days, 21 hours, 19 minutes, 16 seconds)
+Campbell Del Collo
+if you’re cooking anything soon lmk and i’ll remove one of my pots, im taking up like half the stove rn
+
+Sep 08, 2024  5:01:22 PM (Read by you after 5 days, 21 hours, 19 minutes, 6 seconds)
+Campbell Del Collo
+they can stop cooking and start later, idv
+
+Sep 15, 2024  2:11:25 PM (Read by you after 5 seconds)
+Campbell Del Collo
+kylie i have bad news
+
+Sep 15, 2024  2:11:32 PM (Read by you after 1 second)
+Campbell Del Collo
+the miso soup is in fact gone
+
+Sep 15, 2024  2:11:48 PM (Read by them after 1 second)
+Me
+NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+Sep 24, 2024  5:38:55 PM (Read by you after 4 days, 6 hours, 5 minutes, 46 seconds)
+Campbell Del Collo
+https://twitter.com/itsJeffTiedrich
+Jeff Tiedrich (@itsJeffTiedrich) on X
+don't blame me, I voted for the email lady
+
+Sep 24, 2024  5:38:55 PM (Read by you after 4 days, 6 hours, 5 minutes, 46 seconds)
+Campbell Del Collo
+Check out Jeff Tiedrich on X.
+don't blame me, I voted for the email lady
+
+Sep 24, 2024  5:40:01 PM (Read by you after 4 days, 6 hours, 4 minutes, 40 seconds)
+Campbell Del Collo
+ken krassenstein
+
+Sep 24, 2024  5:41:20 PM (Read by you after 4 days, 6 hours, 3 minutes, 21 seconds)
+Campbell Del Collo
+also all of them are like pi posters but more specifically anti trump
+
+Sep 24, 2024  5:42:17 PM (Read by you after 4 days, 6 hours, 2 minutes, 24 seconds)
+Campbell Del Collo
+https://twitter.com/edafowlergmaic1
+kinda gerry (@edafowlergmaic1) on X
+Every picture tells a story don't it. trump toldnis13yorapevictimsheremindedhimofivanka. https://t.co/2abBVyrUml T.Joseph,S.Bacnom,G.Olear,G.Kirschner.#fbr
+
+Sep 24, 2024  5:42:17 PM (Read by you after 4 days, 6 hours, 2 minutes, 24 seconds)
+Campbell Del Collo
+Check out kinda gerry on X.
+Every picture tells a story don't it. trump toldnis13yorapevictimsheremindedhimofivanka. https://t.co/2abBVyrUml T.Joseph,S.Bacnom,G.Olear,G.Kirschner.#fbr
+
+Sep 28, 2024 11:45:24 PM (Read by them after 1 second)
+Me
+I asked Claire and Rian and they’re good with it. Riley’s AC is out and he just asked to crash on the couch
+
+Sep 28, 2024 11:45:38 PM
+Me
+Idk when he’ll be here
+
+Sep 28, 2024 11:46:18 PM (Read by you after 4 seconds)
+Campbell Del Collo
+yeah no prob i’m going to bed now anyways 
+
+Sep 28, 2024 11:46:33 PM
+Me
+Just wanted to make you aware
+
+Sep 28, 2024 11:46:50 PM
+Me
+I’m making him take the trash out in the morning 😁
+
+Sep 30, 2024 10:24:08 AM (Read by you after 1 hour, 37 minutes, 12 seconds)
+Campbell Del Collo
+wait i just realized i forgot to venmo you for the onions 
+
+Sep 30, 2024 10:24:20 AM (Read by you after 1 hour, 37 minutes)
+Campbell Del Collo
+is 3 dollars fine or were they more
+
+Sep 30, 2024 12:01:29 PM
+Me
+Dw abt it
+
+Oct 07, 2024  9:32:24 AM (Read by them after 1 second)
+Me
+Let us know when you board the plane
+
+Oct 07, 2024 11:36:59 AM (Read by you after 9 days, 1 hour, 27 minutes, 6 seconds)
+Campbell Del Collo
+i will!!! i’m planning on getting back really early in the morning tuesday
+
+Oct 16, 2024  1:04:31 PM (Read by them after 1 second)
+Me
+Can I throw the chickpeas out? The ziploc they were in was open
+
+Oct 16, 2024  1:04:55 PM
+Campbell Del Collo
+they should be good? i’ll close it when i get back 
+
+Oct 16, 2024  1:04:59 PM
+Campbell Del Collo
+sorry i thought i closed it
+
+Oct 16, 2024  1:05:21 PM (Read by them after 1 second)
+Me
+I zipped it
+
+Oct 16, 2024  1:05:31 PM (Read by you after 1 second)
+Campbell Del Collo
+thank you!
+
+Oct 16, 2024  1:05:37 PM
+Me
+I’m just throwing stuff out and reorganizing for space
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Oct 16, 2024  1:25:27 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/fb/fb3ead6c7fd1fb841ab878338c6591fb2cda8d84
+
+Oct 16, 2024  1:25:53 PM
+Me
+Can I throw this out? It’s got a crack in the lid and so it’s prob not good
+
+Oct 16, 2024  1:25:53 PM
+Campbell Del Collo
+that is good to be kept, i’m finishing it tn 
+
+Oct 16, 2024  1:26:02 PM
+Campbell Del Collo
+those lids are just cracked
+
+Oct 16, 2024  1:26:26 PM (Read by them after 1 second)
+Me
+Let’s throw out cracked lids from now on if possible
+
+Oct 16, 2024  1:32:13 PM (Read by you after 2 minutes, 4 seconds)
+Campbell Del Collo
+they’re helpful for cooling something warm when i don’t want steam to build up
+
+Oct 16, 2024  1:34:51 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/02/023de6840df389ab8178c9102496915744555e29
+
+Oct 16, 2024  1:34:54 PM
+Me
+What abt this?
+
+Oct 16, 2024  1:35:11 PM
+Campbell Del Collo
+it’s ost milk i made that yeatedsy  
+
+Oct 16, 2024  1:35:14 PM (Read by you after 1 second)
+Campbell Del Collo
+*yesterday
+
+Oct 16, 2024  1:35:25 PM
+Me
+Won’t touch it then
+
+Oct 16, 2024  1:35:27 PM (Read by them after 1 second)
+Me
+Thx
+
+Oct 16, 2024  1:35:38 PM (Read by you after 6 hours, 21 minutes, 51 seconds)
+Campbell Del Collo
+no problem!
+
+Oct 16, 2024  7:57:22 PM (Read by you after 7 seconds)
+Campbell Del Collo
+kylie you lowkey should’ve thrown the oat milk out because it looks exactly like cum and i’m afraid to drink it
+
+Oct 16, 2024  8:32:04 PM (Read by you after 8 seconds)
+Campbell Del Collo
+can i use your bathroom rian’s in the shower
+
+Oct 16, 2024  8:32:18 PM
+Me
+Go ahead
+
+Oct 16, 2024  8:32:33 PM (Read by you after 8 days, 18 hours, 22 minutes, 59 seconds)
+Campbell Del Collo
+🙏
+
+Oct 25, 2024  2:55:38 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/f9/f94130bc2ebb76876bb85fcdc531c2a12610730e
+
+Oct 29, 2024 12:56:39 PM (Read by you after 41 seconds)
+Campbell Del Collo
+are you at the apartment right now
+
+Oct 29, 2024 12:57:26 PM
+Me
+Yeah
+
+Oct 29, 2024 12:57:31 PM (Read by them after 1 second)
+Me
+Why?
+
+Oct 29, 2024 12:57:55 PM (Read by you after 7 seconds)
+Campbell Del Collo
+i’m freaking the fuck out rn i was walking in kinard and my friend was on the ground just like seizing up 
+
+Oct 29, 2024 12:58:14 PM (Read by you after 1 second)
+Campbell Del Collo
+i didn’t realize it was a seizure until other people came
+
+Oct 29, 2024 12:58:28 PM
+Campbell Del Collo
+but like if he’s just on the ground kind of slightly moving does that mean he’s gonna be ok
+
+Oct 29, 2024 12:58:39 PM (Read by you after 6 seconds)
+Campbell Del Collo
+i’m in the bathroom i can’t call rn
+
+Oct 29, 2024 12:58:48 PM
+Campbell Del Collo
+sorry i should say he has lots of adults around him
+
+Oct 29, 2024 12:58:59 PM
+Campbell Del Collo
+i called 911 like ten minutes ago and just 
+
+Oct 29, 2024 12:59:30 PM (Read by you after 1 second)
+Campbell Del Collo
+i stayed with him until a lot more people came and one of the professors said he also has seizures so i think he knows what to do 
+
+Oct 29, 2024 12:59:31 PM
+Me
+Did it end in under 3 minutes?
+
+Oct 29, 2024  1:00:10 PM (Read by you after 3 seconds)
+Campbell Del Collo
+i don’t know how long it was but he stopped seizing for like less than thirty seconds and started again and idk if that counts as a new one but i know that’s bad
+
+Oct 29, 2024  1:00:18 PM (Read by you after 1 second)
+Campbell Del Collo
+i think it was around three minutes but i’m not sure
+
+Oct 29, 2024  1:00:43 PM
+Me
+Did he hit his head when he fell?
+
+Oct 29, 2024  1:00:54 PM (Read by you after 1 second)
+Campbell Del Collo
+probably he was just on the ground 
+
+Oct 29, 2024  1:01:01 PM
+Campbell Del Collo
+his backpack might’ve made the fall better 
+
+Oct 29, 2024  1:01:20 PM
+Campbell Del Collo
+i’m not sure if he hit his head but i’m also worried
+
+Oct 29, 2024  1:01:25 PM (Read by them after 1 second)
+Me
+Like, you just found him already mid clonic portion of a seizure?
+
+Oct 29, 2024  1:01:38 PM (Read by you after 5 seconds)
+Campbell Del Collo
+i’ll be back at the dorm whenever i can stop crying
+
+Oct 29, 2024  1:01:39 PM (Read by you after 4 seconds)
+Campbell Del Collo
+yes 
+
+Oct 29, 2024  1:01:47 PM
+Campbell Del Collo
+that’s what i think 
+
+Oct 29, 2024  1:02:06 PM
+Me
+Does he have epilepsy?
+
+Oct 29, 2024  1:02:11 PM
+Campbell Del Collo
+i have no idea 
+
+Oct 29, 2024  1:02:15 PM (Read by you after 1 second)
+Campbell Del Collo
+we’re just in class friends 
+
+Oct 29, 2024  1:04:09 PM
+Me
+Ava, did he turn blue or start foaming at the mouth?
+
+Oct 29, 2024  1:04:13 PM (Read by you after 3 seconds)
+Campbell Del Collo
+no 
+
+Oct 29, 2024  1:04:26 PM
+Campbell Del Collo
+he looked like he was just sleeping at first 
+
+Oct 29, 2024  1:04:35 PM
+Campbell Del Collo
+and then i realized he was shaking when i got closer
+
+Oct 29, 2024  1:04:57 PM
+Me
+Shaking or convulsing?
+
+Oct 29, 2024  1:05:11 PM (Read by you after 6 seconds)
+Campbell Del Collo
+convulsing is probably better i don’t really know
+
+Oct 29, 2024  1:05:13 PM (Read by you after 4 seconds)
+Campbell Del Collo
+jerking 
+
+Oct 29, 2024  1:05:56 PM
+Me
+Yeah, that’s the clonic portion of a seizure
+
+Oct 29, 2024  1:06:19 PM (Read by them after 1 second)
+Me
+It was probably tonic-clonic or atonic
+
+Oct 29, 2024  1:06:30 PM
+Me
+Was it particularly hot in Kinard today?
+    Oct 29, 2024  1:09:16 PM
+    Campbell Del Collo
+    it was particularly cold
+
+
+Oct 29, 2024  1:08:25 PM
+Me
+Ava, I’ll be here when you get back, just lmk how I can help
+
+Oct 29, 2024  1:08:58 PM
+Campbell Del Collo
+someone stopped me on the way out
+
+Oct 29, 2024  1:09:00 PM
+Campbell Del Collo
+he’s fine
+
+Oct 29, 2024  1:09:10 PM
+Me
+Is he awake?
+
+Oct 29, 2024  1:09:16 PM
+Campbell Del Collo
+it was particularly cold
+This message responded to an earlier message.
+
+Oct 29, 2024  1:09:30 PM
+Campbell Del Collo
+she said he had a history of seizures but not epilepsy 
+
+Oct 29, 2024  1:09:48 PM
+Campbell Del Collo
+she didn’t say just that end was with him
+
+Oct 29, 2024  1:09:50 PM (Read by you after 1 second)
+Campbell Del Collo
+ems 
+
+Oct 29, 2024  1:09:58 PM
+Campbell Del Collo
+i’m walking back now
+
+Oct 29, 2024  1:10:11 PM (Read by them after 1 second)
+Me
+Tf do you mean? “History of seizures”
+
+Oct 29, 2024  1:10:22 PM
+Campbell Del Collo
+she said he had migraines that caused seizure
+
+Oct 29, 2024  1:10:33 PM
+Me
+Ohhhhhhhhh
+
+Oct 29, 2024  1:10:39 PM
+Me
+Nvm, not epilepsy
+
+Oct 29, 2024  1:10:51 PM
+Me
+Weird that it caused a Grand Mal tho
+
+Oct 29, 2024  1:11:18 PM (Read by you after 1 second)
+Campbell Del Collo
+i feel a lot calmer now i’m glad he’s ok
+
+Oct 30, 2024  1:23:45 PM (Read by you after 23 minutes, 48 seconds)
+Campbell Del Collo
+my friend is in class today!!!
+
+Oct 30, 2024  1:47:39 PM (Read by them after 7 seconds)
+Me
+👏👏👏
+
+Nov 03, 2024 11:19:31 PM (Read by you after 2 minutes, 1 second)
+Campbell Del Collo
+https://twitter.com/elisethoma5/status/1853208626565206502?s=46
+Elise Thomas (@elisethoma5) on X
+1. I've found a large, AI-driven bot network on X which is posting in support of Trump in the US election. 
+
+Thread.
+
+Nov 03, 2024 11:21:55 PM
+Me
+I love you
+Tapbacks:
+Loved by Campbell Del Collo
+
+
+Nov 12, 2024  2:43:57 PM (Read by you after 49 minutes, 18 seconds)
+Campbell Del Collo
+hey!! if you want a pastry lmk i get off work at 4:30
+
+Nov 12, 2024  2:44:06 PM (Read by you after 49 minutes, 9 seconds)
+Campbell Del Collo
+i’m assuming no caffeine but if you want a drink too lmk
+
+Nov 12, 2024  3:33:42 PM (Read by them after 1 second)
+Me
+Hi, just woke up but I’m prob going back to sleep
+
+Nov 12, 2024  3:34:49 PM
+Me
+If it’s not too much of an ask, one of those new savory holiday pastries and a Peppermint White Hot Chocolate please 🙏 
+
+Nov 12, 2024  3:56:50 PM (Read by you after 1 minute, 2 seconds)
+Campbell Del Collo
+yea no prob!! the danish right?
+
+Nov 12, 2024  3:57:18 PM (Read by you after 34 seconds)
+Campbell Del Collo
+wait the turkey danish or the sugar plum
+
+Nov 12, 2024  3:59:09 PM
+Me
+Turkey
+
+Nov 14, 2024  8:15:37 PM (Read by you after 9 days, 11 hours, 1 minute, 54 seconds)
+Campbell Del Collo
+lmk if it’s more than that
+
+Nov 24, 2024  7:17:40 AM (Read by them after 6 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/d5/d5ce1571c23ced018431ca4b5eac314e9cef2a59
+
+Nov 24, 2024  7:37:18 PM (Read by you after 9 seconds)
+Campbell Del Collo
+i have three turkey safe danishes for you
+
+Nov 24, 2024  7:37:24 PM (Read by you after 3 seconds)
+Campbell Del Collo
+fridge or freezer
+
+Nov 24, 2024  7:37:31 PM
+Me
+Fridge
+
+Nov 24, 2024  7:37:36 PM
+Me
+I will eat them
+
+Nov 24, 2024  7:37:40 PM (Read by them after 1 second)
+Me
+Thank you!
+
+Nov 24, 2024  7:38:09 PM (Read by you after 1 day, 20 hours, 14 minutes, 53 seconds)
+Campbell Del Collo
+no prob they wee gonna be thrown away
+
+Nov 26, 2024  3:53:08 PM (Read by them after 1 second)
+Me
+Do u get done at 4?
+
+Nov 26, 2024  3:56:21 PM (Read by you after 12 seconds)
+Campbell Del Collo
+he’s 
+
+Nov 26, 2024  3:56:22 PM (Read by you after 11 seconds)
+Campbell Del Collo
+yes
+
+Nov 26, 2024  3:56:45 PM
+Campbell Del Collo
+wait no probably like 4:30
+
+Dec 02, 2024 11:24:27 AM (Read by you after 41 minutes, 49 seconds)
+Campbell Del Collo
+how did ur exam go
+
+Dec 02, 2024 11:24:32 AM (Read by you after 41 minutes, 44 seconds)
+Campbell Del Collo
+mine was actually pretty good
+
+Dec 02, 2024 12:06:30 PM (Read by them after 2 seconds)
+Me
+Taking it at 12:15
+
+Dec 13, 2024  1:08:22 AM (Read by them after 1 second)
+Me
+Actually 6:30
+Tapbacks:
+Liked by Campbell Del Collo
+
+
+Dec 24, 2024  2:34:08 AM (Read by them after 3 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/83/832ea45c8e575cf0c7a991f096cf85b3f429a813
+When did you pick a new name?
+
+Jan 05, 2025  6:02:34 PM (Read by you after 7 minutes, 12 seconds)
+Campbell Del Collo
+i’m transgender i guess you could say 
+
+Jan 05, 2025  6:11:18 PM
+Me
+Do you want us to address you as Campbell and/or use different pronouns?
+
+Jan 05, 2025  6:12:01 PM (Read by them after 1 second)
+Me
+Also, trans, gender fluid, or NB?
+
+Jan 21, 2025  1:56:23 PM
+Me
+Remember Satajas?
+
+Jan 29, 2025 11:58:32 AM (Read by them after 1 second)
+Me
+https://www.clemson.edu/campus-life/parking/citations-and-appeals/index.html
+Citations and Appeals | Parking and Transportation Services
+Pay your parking citation and learn about appeals processes for Clemson students, faculty, staff, vendors and visitors.
+
+Jan 29, 2025 11:58:59 AM
+Me
+Click pay your citation or whatever it is and put in ur license plate
+
+Jan 29, 2025 11:59:23 AM
+Me
+Should be $114 if it got towed today
+
+Jan 29, 2025 12:04:09 PM (Read by you after 4 seconds)
+Campbell Del Collo
+do i have to pay the tower too
+
+Jan 29, 2025 12:04:27 PM
+Me
+The tower?
+
+Jan 29, 2025 12:04:55 PM (Read by them after 1 second)
+Me
+Clemson is the one who towed u right?
+
+Jan 29, 2025 12:05:51 PM
+Me
+U only have to pay once and then you go to the building next to Dillard and they’ll have someone take you to the impound lot to pick up your car
+
+Jan 29, 2025 12:06:02 PM (Read by you after 3 seconds)
+Campbell Del Collo
+OOOOH OK
+
+Jan 29, 2025 12:06:10 PM (Read by you after 1 second)
+Campbell Del Collo
+i thought they called a towed truck ok that’s so awesome 
+
+Jan 29, 2025 12:06:43 PM
+Me
+Nah, they’ve got their own tow trucks
+
+Jan 29, 2025 12:11:57 PM (Read by them after 1 second)
+Me
+Make sure you get it by 4 bc they close for the day at 4:30
+
+Jan 30, 2025 12:12:43 AM
+Me
+Could you please wash the pan in the sink? It’s got debris crusted on the side that I can’t get out. I think you used it for ur bean burger tonight
+
+Jan 30, 2025 12:13:02 AM
+Me
+You don’t have to do it now, just like, tmrw maybe
+
+Jan 30, 2025 12:09:17 PM (Read by you after 1 hour, 26 minutes, 45 seconds)
+Campbell Del Collo
+hey i washed the pan i used for the bean burger last night, im not sure where the other one came from but it was dirty when i started cooked 
+
+Jan 30, 2025  3:25:11 PM (Read by you after 21 seconds)
+Campbell Del Collo
+do u remember having to print out your receipt to show them you paid
+
+Jan 30, 2025  3:25:18 PM (Read by you after 14 seconds)
+Campbell Del Collo
+ or is online fine
+
+Jan 30, 2025  3:25:36 PM (Read by them after 1 second)
+Me
+You don’t have to
+
+Jan 30, 2025  3:25:47 PM (Read by them after 4 seconds)
+Me
+They check to see if you paid when u get to the office
+
+Jan 30, 2025  3:26:15 PM (Read by you after 1 second)
+Campbell Del Collo
+slayyyyy
+
+Jan 30, 2025  3:31:11 PM (Read by you after 2 days, 3 hours, 37 minutes, 26 seconds)
+Campbell Del Collo
+the parking services office gossip goes crazy
+
+Feb 01, 2025  7:39:51 PM (Read by you after 7 seconds)
+Campbell Del Collo
+i could not find everything but the bagel seasoning but i got everything else
+
+Feb 01, 2025  7:40:19 PM (Read by them after 1 second)
+Me
+Lmk how much I owe u and I’ll Venmo it
+
+Feb 01, 2025  7:40:51 PM (Read by you after 17 hours, 23 minutes, 25 seconds)
+Campbell Del Collo
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/82/82c18d884677263d8af971a61107c692ab8581b3
+
+Feb 01, 2025  7:40:51 PM (Read by you after 17 hours, 23 minutes, 25 seconds)
+Campbell Del Collo
+is this good? i got you two packs of twelve
+
+Feb 01, 2025  7:40:51 PM (Read by you after 17 hours, 23 minutes, 25 seconds)
+Campbell Del Collo
+also the little debby cakes come in chocolate do you want those instead
+
+Feb 01, 2025  8:23:29 PM (Read by you after 16 hours, 40 minutes, 47 seconds)
+Campbell Del Collo
+it was 7 for the cakes and the cheese 
+
+Feb 01, 2025  8:23:43 PM (Read by you after 16 hours, 40 minutes, 33 seconds)
+Campbell Del Collo
+but obviously mo rush 
+
+Feb 01, 2025  8:23:55 PM (Read by you after 16 hours, 40 minutes, 21 seconds)
+Campbell Del Collo
+i put the everything bagels and cheese away the cakes on the oven
+
+Feb 02, 2025 12:54:19 PM (Read by you after 9 minutes, 57 seconds)
+Campbell Del Collo
+just got it tysm :3
+
+Feb 07, 2025  4:31:15 PM (Read by them after 2 seconds)
+Me
+We’re stopping at Publix, do you still want soy milk?
+
+Feb 07, 2025  5:34:40 PM (Read by you after 10 seconds)
+Campbell Del Collo
+oh sorry
+
+Feb 07, 2025  5:35:00 PM
+Me
+Yes or no?
+
+Feb 07, 2025  5:35:16 PM
+Campbell Del Collo
+yes pwease
+
+Feb 07, 2025  5:35:18 PM (Read by you after 1 second)
+Campbell Del Collo
+sorry i’m out of it
+
+Feb 07, 2025  5:35:21 PM
+Campbell Del Collo
+just woke up
+
+Feb 07, 2025  5:35:33 PM
+Campbell Del Collo
+thank you
+
+Feb 07, 2025  5:35:39 PM
+Me
+Ur good. We’ll grab it
+
+Feb 07, 2025  5:45:02 PM (Read by you after 16 seconds)
+Campbell Del Collo
+also lmk if it’s more than 3 dollars, i venmoed you based off that so ill pay the difference
+
+Feb 09, 2025  5:22:56 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/e5/e5ed71071e927d99b94b0e07add9d98fa860e751
+391 Old Greenville Highway
+
+Feb 09, 2025 11:20:21 PM (Read by you after 16 seconds)
+Campbell Del Collo
+can i steal another handful of chips 
+
+Feb 09, 2025 11:20:44 PM (Read by them after 1 second)
+Me
+Take as many as you want
+
+Feb 09, 2025 11:21:16 PM (Read by you after 9 days, 22 hours, 24 minutes, 45 seconds)
+Campbell Del Collo
+thank u
+
+Feb 09, 2025 11:21:18 PM (Read by you after 9 days, 22 hours, 24 minutes, 43 seconds)
+Campbell Del Collo
+go birds
+
+Feb 11, 2025  2:43:54 PM (Read by you after 8 days, 7 hours, 2 minutes, 7 seconds)
+Campbell Del Collo
+ignore that 
+
+Feb 11, 2025  2:43:59 PM (Read by you after 8 days, 7 hours, 2 minutes, 2 seconds)
+Campbell Del Collo
+accidentally clicked
+
+Feb 14, 2025  7:23:25 AM (Read by you after 5 days, 14 hours, 22 minutes, 36 seconds)
+Campbell Del Collo
+hey i’m headed out early thank u so much anyways
+
+Feb 14, 2025  7:23:29 AM (Read by you after 5 days, 14 hours, 22 minutes, 32 seconds)
+Campbell Del Collo
+leaving tea on counter
+
+Feb 19, 2025  9:46:18 PM (Read by them after 1 second)
+Me
+Can I have one of the turkey danishes in the freezer?
+
+Mar 13, 2025 12:03:12 AM (Read by you after 7 seconds)
+Campbell Del Collo
+wait why tf did i just see this
+
+Mar 13, 2025 12:03:17 AM (Read by you after 2 seconds)
+Campbell Del Collo
+i got those for you yeah
+
+Mar 13, 2025 12:03:36 AM
+Me
+Dude, those are long gone
+
+Mar 25, 2025  3:57:17 PM (Read by you after 8 seconds)
+Campbell Del Collo
+i really don’t know what to do besides offer to buy whatever she picks but i’m really fucking scared bc this is quite literally the second glass of hers i’ve broken and even if i pay it back im really worried ahelll just like hate me 
+
+Mar 25, 2025  3:57:36 PM (Read by you after 1 second)
+Campbell Del Collo
+i’m sorry if i was being rude i’m just like really upset at myself for being dumb 
+
+Mar 25, 2025  3:57:52 PM (Read by you after 4 seconds)
+Campbell Del Collo
+im about to text her do you think there’s any ways besides google lense to find the original
+
+Mar 25, 2025  3:58:49 PM
+Me
+Not really. Claire removes all the barcode stickers from her stuff so that wouldn’t be helpful
+
+Mar 25, 2025  3:59:21 PM (Read by you after 1 second)
+Campbell Del Collo
+if it isn’t sentimental i’m going to buy her a really expensive nice one but if it is like i truly have no idea how i can make it up to her
+
+Mar 25, 2025  3:59:23 PM
+Me
+Honestly, no clue what the fallout of this one’s gonna be
+
+Mar 25, 2025  3:59:30 PM
+Campbell Del Collo
+what do you mean
+
+Mar 25, 2025  4:00:12 PM
+Me
+Claire is either gonna simmer and let it stew or get upset immediately 
+
+Mar 25, 2025  4:01:02 PM (Read by you after 15 seconds)
+Campbell Del Collo
+i cannot do this right now like i would move out to avoid the confrontation over this if i could i just feel so stupid for this i don’t know what to do 
+
+Mar 25, 2025  4:01:45 PM
+Me
+Man I got no clue. Start with apologizing
+
+Apr 07, 2025 10:49:26 AM (Read by you after 14 seconds)
+Campbell Del Collo
+you said they don’t tow on monday right?
+
+Apr 07, 2025 10:49:46 AM (Read by them after 1 second)
+Me
+Not usually
+
+Apr 07, 2025 10:49:57 AM
+Campbell Del Collo
+okay i’m trying to decide bc i forgot to move my car
+
+Apr 07, 2025 10:50:03 AM
+Me
+And definitely not this late
+
+Apr 07, 2025 10:50:17 AM
+Campbell Del Collo
+oh so i would’ve been towed already
+
+Apr 07, 2025 10:50:20 AM
+Campbell Del Collo
+THANK YOU YOURE THE GOAT
+Tapbacks:
+Laughed by Me
+
+
+Apr 07, 2025 10:58:58 AM (Read by you after 4 minutes, 30 seconds)
+Campbell Del Collo
+I JUST CHECKED WAS NOT TOWED
+
+Apr 23, 2025  6:28:22 PM (Read by you after 23 minutes, 17 seconds)
+Campbell Del Collo
+i can drop off some food or anything else you need 
+
+Apr 23, 2025  6:28:26 PM (Read by you after 23 minutes, 13 seconds)
+Campbell Del Collo
+just let me know
+
+Apr 23, 2025  6:28:31 PM (Read by you after 23 minutes, 8 seconds)
+Campbell Del Collo
+i hope everything is okay 
+
+Apr 23, 2025  6:28:39 PM (Read by you after 23 minutes)
+Campbell Del Collo
+i’m abt to text your mom too don’t tell her i got it 
+
+Apr 23, 2025  6:29:13 PM (Read by you after 22 minutes, 26 seconds)
+Campbell Del Collo
+well you can actually idk if you’re physically able to 
+
+Aug 08, 2025  1:34:28 PM (Read by you after 3 minutes, 5 seconds)
+Campbell Del Collo
+hey sorry to bother you but do you have access to that spreadsheet you sent us last year for packing? it was really helpful but i can’t find it
+
+Aug 08, 2025  1:34:40 PM (Read by you after 2 minutes, 53 seconds)
+Campbell Del Collo
+no worries if it’s buried deep somewhere you don’t have to go through all that
+
+Aug 08, 2025  1:37:44 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/87/87ef9c156e54e5120e622def771bee1f291a8207
+
+Aug 08, 2025  1:37:51 PM
+Me
+https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1Hi09abKRBMZwNRtMwJoIybMp6lQ9aDhvcHP_BaVvdZQ%2Fedit%3Fusp%3Ddrivesdk&followup=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1Hi09abKRBMZwNRtMwJoIybMp6lQ9aDhvcHP_BaVvdZQ%2Fedit%3Fusp%3Ddrivesdk&ifkv=AdBytiPUMYVDLbJVgIT3IXjyivMIrjpedjTJ-uuGrG9TgYPcYL4pChGaRfaJ-fjPfbvN4AfoEqHp7A&ltmpl=sheets&osid=1&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S337520531%3A1754674670607425
+Google Sheets: Sign-in
+Access Google Sheets with a personal Google account or Google Workspace account (for business use).
+
+Aug 08, 2025  1:37:58 PM (Read by them after 1 second)
+Me
+I was gonna search mop
+
+Aug 08, 2025  1:48:47 PM (Read by you after 180 days, 23 hours, 52 minutes, 10 seconds)
+Campbell Del Collo
+thank you you’re awesome
+
+Aug 08, 2025  1:49:00 PM (Read by you after 180 days, 23 hours, 51 minutes, 57 seconds)
+Campbell Del Collo
+let me know if you wanna grab coffee or something whenever you’re back in clemson
+

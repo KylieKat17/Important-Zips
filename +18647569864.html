@@ -1,0 +1,505 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FDBEF180-DCDE-912B-6AB1-01A90BE9B7ED">Oct 16, 2024  1:45:13 PM</a> </span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Reminder: Pre-Registration Advising @ School of Computing via Virtual <u>10/16/24 2:45pm-3:30pm ET</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4CAF0BB6-7B83-185A-D395-F1E65093477E">Feb 14, 2025 11:00:16 AM</a> (Read by you after 14 days, 4 hours, 10 minutes, 43 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">[CUNav] Reminder: Don&apos;t forget to schedule your pre-registration advising session for next semester! Check your email for instructions to book your session or click <a href="https://clemson.campus.eab.com/a/Q7XrEfolIQ">https://clemson.campus.eab.com/a/Q7XrEfolIQ</a>. Meeting with me is required to receive your registration PIN.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5A4BE787-4E02-4BB7-5F2F-607B42A5860C">Feb 21, 2025 11:00:09 AM</a> (Read by you after 7 days, 4 hours, 10 minutes, 50 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">[CUNav] Reminder: Don&apos;t forget to schedule your pre-registration advising session for next semester! Check your email for instructions to book your session or click <a href="https://clemson.campus.eab.com/a/Q7XrEfolIQ">https://clemson.campus.eab.com/a/Q7XrEfolIQ</a>. Meeting with me is required to receive your registration PIN.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2018297E-4772-9B9B-2DDD-B607D92DE040">Feb 28, 2025 11:00:13 AM</a> (Read by you after 4 hours, 10 minutes, 46 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">[CUNav] Urgent Reminder: Don&apos;t forget to schedule your advising session for next semester! Check your email for instructions or click <a href="https://clemson.campus.eab.com/a/Q7XrEfolIQ">https://clemson.campus.eab.com/a/Q7XrEfolIQ</a>. This is required to receive your registration PIN. Not returning? Changing your major? Email me at <a href="mailto:johnauw@clemson.edu">johnauw@clemson.edu</a>!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2E6D0F3C-57AE-25A0-E7F8-C03826FF80C0">Mar 07, 2025 11:00:25 AM</a> (Read by you after 28 days, 42 minutes, 47 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Use the link below to log into CU Navigate to view your midterm progress reports. Check your Clemson email for information about resources on campus to help you reach your goals this semester. Link to CU Navigate <a href="https://clemson.navigate.eab.com/">https://clemson.navigate.eab.com/</a>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=61AECC3F-D12C-35AF-416B-2052EC80A21B">Mar 21, 2025 11:00:07 AM</a> (Read by you after 14 days, 1 hour, 43 minutes, 5 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">[CUNav] Urgent Reminder: Don&apos;t forget to schedule your advising session for next semester! Check your email for instructions or click <a href="https://clemson.campus.eab.com/a/Q7XrEfolIQ">https://clemson.campus.eab.com/a/Q7XrEfolIQ</a>. This is required to receive your registration PIN. Not returning? Changing your major? Email me at <a href="mailto:johnauw@clemson.edu">johnauw@clemson.edu</a>!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=53D6E67B-6DF0-6F69-02CB-20051E07197B">Apr 01, 2025  2:30:11 PM</a> (Read by you after 2 days, 22 hours, 13 minutes, 1 second)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Reminder: Pre-Registration Advising @ School of Computing via Virtual <u>4/1/25 3:30pm-4pm ET</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E4D1CB4E-64BF-3566-E130-6764A0930588">Apr 04, 2025 11:00:10 AM</a> (Read by you after 1 hour, 43 minutes, 2 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">[CUNav] Urgent Reminder: Registration for next semester opens on <u>Monday, April 7</u>. You have not scheduled your advising session. Check your email for instructions to book or click <a href="https://clemson.campus.eab.com/a/Q7XrEfolIQ">https://clemson.campus.eab.com/a/Q7XrEfolIQ</a>. Not returning? Changing your major? Email me at <a href="mailto:johnauw@clemson.edu">johnauw@clemson.edu</a>!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=40BA9700-C2D8-6D50-0219-A490D0105A1A">May 13, 2025 11:01:33 AM</a> (Read by you after 107 days, 23 hours, 19 minutes, 15 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">There are still seats available in CU1010 (2 credit success skills course) for Summer 2025. <u>Wednesday, May 14</u> is the last day to add for the First Summer term! Request a seat with this form: <a href="https://forms.office.com/r/ehSVz5sAyv">https://forms.office.com/r/ehSVz5sAyv</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C4C58A9A-6E45-ED57-33D1-1F1BC0D02D31">Aug 26, 2025  9:30:09 AM</a> (Read by you after 3 days, 50 minutes, 39 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Reminder: Forgiving a Course @ School of Computing via In-Person <u>8/26/25 10:30am-10:45am ET</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=291A8A0A-07B9-9B6C-37CF-40470A5E50B1">Aug 29, 2025  9:45:09 AM</a> (Read by you after 35 minutes, 39 seconds)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Reminder: First Academic Coaching @ Academic Success Center via In-Person <u>8/29/25 10:45am-11:30am ET</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D3A4F79E-705F-0BEB-C5EC-98FC0B824491">Oct 28, 2025 11:20:09 AM</a> (Read by you after 1 minute, 1 second)</span>
+<span class="sender">+18647569864</span></p>
+<hr><div class="message_part">
+<span class="bubble">Reminder: Academic Form Completion @ School of Computing via In-Person <u>10/28/25 12:20pm-12:50pm ET</u></span>
+</div>
+</div>
+</div>
+</body></html>

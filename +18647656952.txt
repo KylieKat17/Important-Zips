@@ -1,0 +1,121 @@
+Sep 05, 2024 11:42:12 AM (Read by them after 2 seconds)
+Me
+Anna Galeano
+
+Sep 05, 2024 12:05:03 PM (Read by them after 3 seconds)
+Me
+Question: when it asks about Lab TAs, does it mean for our specific Lab Section or all of them?
+
+Sep 05, 2024 12:09:39 PM (Read by you after 2 hours, 21 minutes, 45 seconds)
+Anna Galeano
+In our section I think
+
+Sep 29, 2024  4:11:04 PM (Read by them after 2 seconds)
+Me
+Hey, for lab 4, I know what causes the seg fault bc I accidentally fixed it and had to change it back with the TA during class but I’m fairly certain I’m doing the entire gdb portion incorrectly 
+    Sep 30, 2024  3:31:03 PM (Read by you after 5 seconds)
+    Anna Galeano
+    Me when I can’t even find where it’s supposed to seg fault lmao
+
+
+Sep 29, 2024  4:12:05 PM
+Me
+Sep 29, 2024  4:12:05 PM What is the message supposed to look like when breakpoint is set to line 17 on functions.c (just before the issue causing the seg fault)
+Edited 6 seconds later: What is the message supposed to look like when breakpoint is set to line 17 on functions.c (just before the issue causing the seg fault) ???
+
+
+Sep 29, 2024  4:43:52 PM (Read by them after 4 minutes, 12 seconds)
+Me
+Nvm, I got it
+
+Sep 29, 2024  8:52:19 PM (Read by you after 15 hours, 15 minutes, 40 seconds)
+Anna Galeano
+Sorry!
+
+Sep 29, 2024  8:52:34 PM (Read by you after 15 hours, 15 minutes, 25 seconds)
+Anna Galeano
+I’ve been lacking wifi 😀 which has been amazing
+
+Sep 30, 2024  1:15:33 PM (Read by you after 15 seconds)
+Anna Galeano
+Was the lab that bad?
+
+Sep 30, 2024  1:15:45 PM (Read by you after 3 seconds)
+Anna Galeano
+I couldn’t connect for a while and was running around places looking for WiFi 
+
+Sep 30, 2024  1:15:49 PM (Read by you after 1 second)
+Anna Galeano
+I’m good now
+
+Sep 30, 2024  1:15:55 PM
+Me
+No, not bad
+
+Sep 30, 2024  1:16:00 PM
+Anna Galeano
+Okok good
+
+Sep 30, 2024  1:16:02 PM
+Anna Galeano
+Again so sorry
+
+Sep 30, 2024  1:16:08 PM
+Anna Galeano
+This hurricane is a pain
+
+Sep 30, 2024  1:16:12 PM
+Me
+You’re good
+
+Sep 30, 2024  3:31:03 PM (Read by you after 5 seconds)
+Anna Galeano
+Me when I can’t even find where it’s supposed to seg fault lmao
+This message responded to an earlier message.
+
+Sep 30, 2024  3:31:35 PM (Read by them after 1 second)
+Me
+It’s in functions.c
+
+Sep 30, 2024  3:33:14 PM (Read by you after 30 days, 10 hours, 24 minutes, 34 seconds)
+Anna Galeano
+This lab is so fun
+
+Jan 20, 2026  7:41:41 PM
+Me
+Quick question: there should only be one submission of the contract per group, correct?
+
+Jan 20, 2026  7:43:31 PM
+Me
+(Yes I did ask in Teams as well)
+
+Jan 20, 2026  8:03:41 PM (Read by them after 1 second)
+Me
+Nvm, question answered
+
+Jan 20, 2026  8:03:44 PM
+Me
+Sorry!
+
+Feb 14, 2026  9:02:51 AM (Read by them after 2 seconds)
+Me
+Feb 14, 2026  9:02:51 AM Hey, thought this would be quicker than teams. My group and I are in your Zoom meeting room rn for our first stand up
+Edited 23 seconds later: Hey, thought this would be quicker than teams. My group and I are in your Zoom meeting waiting room rn for our first stand up
+
+
+Feb 14, 2026  9:17:55 AM (Read by you after 54 seconds)
+Anna Galeano
+I apologize something came up up with a friend emergency 
+
+Feb 14, 2026  9:18:11 AM (Read by you after 38 seconds)
+Anna Galeano
+Please leave the zoom meeting we can tell briefly another time
+
+Feb 14, 2026  9:18:13 AM (Read by you after 36 seconds)
+Anna Galeano
+Apologies
+
+Feb 14, 2026  9:19:33 AM
+Me
+You’re good! I’ll let them know. Sorry about your friend!
+

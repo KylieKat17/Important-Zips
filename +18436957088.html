@@ -1,0 +1,1990 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF5A6209-6FB1-4355-BF2B-839581DAC243">Nov 04, 2020  8:05:19 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">May I please call you?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E1D6879B-2F58-7917-21DF-C00275015BC0">Nov 04, 2020  8:05:48 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3483EA03-F486-4BB3-9362-CEC14BD86125">Nov 10, 2020 11:11:05 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just got a notification that the 3.3 and 3.6 assignments were overriden? What does this mean?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9FBA07B1-1F75-1725-A4BD-E6D60CFCCF38">Nov 10, 2020  1:33:27 PM</a> (Read by you after 7 minutes, 48 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)Sorry. I typed this out and thought I sent it but it was sitting right here not sent. 
+
+3.3 was overridden because I extended the deadline. Check your </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69E09C2F-355C-E54C-5435-0B737065CAE1">Nov 10, 2020  1:33:32 PM</a> (Read by you after 7 minutes, 43 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)messages. I’m not sure why you got notification about 3.6. I </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=909AADC9-179E-C39E-C716-0BC935F8C72A">Nov 10, 2020  1:33:42 PM</a> (Read by you after 7 minutes, 33 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)haven’t begun grading that yet</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BDF08A1C-20E8-4448-9882-C88A9954DAC3">Nov 10, 2020  1:42:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes, I saw the message about the extension when you sent it last night. I was just confused as to why I got a notification (from the Moodle app) about it <u>this morning</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=63BFA61D-061A-4D77-98E4-5A009E8B81A9">Nov 10, 2020  1:42:43 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC608683-1096-A5D5-C5B3-87E1A6BCC38B">Nov 10, 2020  1:43:21 PM</a> (Read by you after 28 minutes, 56 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m not sure. Have you gotten them before?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=78DA8301-3A3E-4F00-B38D-706571EECD55">Nov 10, 2020  2:12:21 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">No ma&apos;am</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=195532C6-B6D2-1EA5-4483-FA44C5037AE2">Nov 10, 2020  2:12:57 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">So weird. Maybe Moodle did an update and changed how they do things. So weird. I have no idea</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=19AA485F-91FC-42A7-9444-EF37AFFC2B24">Nov 10, 2020  2:13:30 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Maybe</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C57C569E-C743-47C6-8E54-738EA0E67FDA">Nov 13, 2020  1:56:52 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good afternoon!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CFB80983-3B3B-4846-998C-84602B175ED7">Nov 13, 2020  1:58:08 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m working on the citations for one of the forums and was wonder if you would rather I use MLA format than APA? (which I have been using)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1CB9429B-AC87-A373-48C9-63928864F48F">Nov 13, 2020  1:59:33 PM</a> (Read by you after 9 minutes, 48 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">It doesn’t matter so long as you stay consistent throughout the paper.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A546F952-0F23-4ABF-9530-72EFCCCB453B">Nov 13, 2020  2:09:31 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DE67B82E-E658-AA5E-C296-CFC817E2E981">Nov 13, 2020  2:12:21 PM</a> (Read by you after 4 hours, 3 minutes, 20 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yep</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B3E03B9C-CC8A-45F1-8D1A-7BF8CAA03830">Nov 13, 2020  6:21:36 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mrs Soule,
+
+As you might know based on teaching AP Seminar, APA citation rules have been ingrained into my soul. And more than that, I&apos;m the person who may have used an open-access shadow library to download a copy of the most recent edition of the APA citation manual.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F4F03611-2BAB-4648-B038-1DEBBB1F5319">Nov 13, 2020  6:24:25 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">So, what I&apos;m asking is, can I please mention in my response to another person&apos;s post that using a web address to cite a source in text without a parenthetical is basically &quot;illegal&quot; and kindly provide them with a link to OWL Perdue Writing Lab for citation style?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DDECCAC6-C74E-E574-1C68-B8873D252096">Nov 13, 2020  6:27:20 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)Kylie, just use a citation machine. I don’t need you to memorize </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8BD4D5AF-1A63-188E-C6EF-95A6609384BD">Nov 13, 2020  6:27:30 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)the order of how things go, I just need you to know how to do it. Please </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3740E68-5FC9-7744-F2C6-6272BB4CD0EC">Nov 13, 2020  6:27:40 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)don’t kill yourself over it.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1B7C471A-8F85-496D-BD61-8F57F2632F60">Nov 13, 2020  6:28:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh, I&apos;m not asking for me. I know how to do it, I use noodletools so I don&apos;t mess it up and already had to consult my head librarian about a confusing source. I&apos;m asking if I can mention it in my response to someone&apos;s forum post.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=350737B4-2C50-6A47-B995-5872E5F35DDE">Nov 13, 2020  6:29:38 PM</a> (Read by you after 10 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)Yes. Please do that because they aren’t listening to me so maybe </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C3A60F12-AB4A-D599-6606-89E9F5A9218D">Nov 13, 2020  6:29:48 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)they will listen to you ;)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7A648343-46FE-498A-8892-AA084DA785EA">Nov 13, 2020  6:29:55 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=03402B2F-3B29-4056-A65B-55E277965CD8">Nov 13, 2020  6:30:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just wanted to make sure I could in case it was a rude or stupid idea.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=614144BA-8C50-A8B6-5746-6B73ED4D656A">Nov 13, 2020  6:31:20 PM</a> (Read by you after 3 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)Just be polite and make sure it’s a “helpful” suggestion and you </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9D47D44C-3C87-A3CE-95B7-D808708C593C">Nov 13, 2020  6:31:30 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)also include a response to the post with citations</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2F1A0FCF-CF78-42A9-96B4-820446526526">Nov 13, 2020  6:31:43 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=045360D3-B85F-4CCE-A42B-AB76DC7022D1">Nov 13, 2020  6:31:52 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=881623FC-66F0-4218-B0BA-083AEB3F6F4D">Nov 13, 2020 10:23:41 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry to bother you again, it&apos;s late and you might not even see this. But I&apos;m concerned that I won&apos;t finish the Essential Question Review Forum by midnight. I know I have extended time, but I also know that these forums need to close to everybody (at least I think that&apos;s how it works) so students don&apos;t submit thing two days after the deadline. If I don&apos;t finish the forum will I be able to complete it at a later date?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=925D76B8-8176-7117-D17F-3F590CD7D48C">Nov 13, 2020 10:25:10 PM</a> (Read by you after 23 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)You will. You will just need to wait until i grade everyone </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E1FA0952-2660-0F38-FA0F-DC4510A93714">Nov 13, 2020 10:25:20 PM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)else’s. It will open back up and I’ll grade yours then. Does that</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EE2C8CCD-54D6-6C5C-6A2F-F598371432FF">Nov 13, 2020 10:25:30 PM</a> (Read by you after 3 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)make sense</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DFD1C4D4-AE20-40EF-B119-8C034E1B2A58">Nov 13, 2020 10:25:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8FCF71F5-53E6-40B7-AD02-B1BD32717613">Nov 13, 2020 10:25:54 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I will try to get it in by midnight though.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=08797BBE-EF55-4E32-8E0A-C04FD2433C44">Nov 13, 2020 10:26:06 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D3EA1A08-B57C-483A-AF09-9D584078CB5D">Nov 17, 2020  8:34:01 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good morning!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E8232005-9839-4EDD-90D6-7E691E8B32EB">Nov 17, 2020  8:34:07 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">So, I wanted to ask you if you could maybe extend the deadline for the 3.8 and 3.10 assignments to <u>midnight tonight</u>? I stayed up trying to <u>finish 3.10</u> and got about 2.75/4 of it done. I don’t know if you got the email but I missed part of school <u>yesterday morning</u>. I actually fell asleep on my very sharp binder rings 😬</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F575E20D-687A-AC16-D2A6-AA9ED606AA6B">Nov 17, 2020  9:36:08 AM</a> (Read by you after 18 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s fine.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E85CCE23-5986-E96A-7223-14D068D27E0F">Nov 17, 2020  9:36:18 AM</a> (Read by you after 8 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh my goodness.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=244CB214-AF5E-4971-82C5-B7C707741090">Nov 17, 2020  9:58:01 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good evening!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EFE338D2-FCF6-4D2C-B842-1434D924A146">Nov 17, 2020  9:58:28 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Would you please open up the submissions for the 3.8 and 3.10 assignments?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=80746811-2AD2-DF8D-7E62-BFE617460ECE">Nov 17, 2020 10:05:16 PM</a> (Read by you after 12 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have to grade them first. They should be open <u>tomorrow</u> for you to submit.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4F5A2ADE-1A11-4904-8D02-72F8F0A0EB95">Nov 17, 2020 10:05:49 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you, Ms Soule!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E979D981-574A-4DBB-A471-A949EC11976D">Nov 17, 2020 10:08:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I hope your <u>Tuesday evening</u> isn&apos;t going too terribly (good luck with the grading 😬)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=490242C4-C9E4-20F8-8137-AEED424EBA7C">Nov 17, 2020 10:09:43 PM</a> (Read by you after 14 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)😂 I’m trying to muscle through. Dealing with adults who don’t </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B0232B57-A35D-AA6D-A519-FE9785B7048E">Nov 17, 2020 10:09:53 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)know basic technology. It’s way harder than any teenager. Ever. I</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DB57DDB8-2BD7-D882-311E-24B5E57A0274">Nov 17, 2020 10:10:03 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)promise.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D0B62CD8-A623-4865-9BCE-FB755013DFDC">Nov 17, 2020 10:13:24 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">At least we have that. Regular teenager &gt; adults living in the dark ages. 🤗</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FC824FDA-D18A-77CB-5A4A-DDD3972ECC54">Nov 17, 2020 10:13:59 PM</a> (Read by you after 24 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sooo true. Give me teens any day!!! 😝</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=98595D74-1E27-4FA1-9722-309856E0196A">Nov 17, 2020 10:22:23 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Well, I wish you luck with the at least 100 assignments you have to grade.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4FF8D661-6C05-420C-8894-F9D0654CFC39">Nov 17, 2020 10:22:49 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m off to go struggle with AP Calc 😬</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=48C481B8-8697-462F-B71A-D896ED51F03E">Nov 17, 2020 10:23:02 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Enjoy your evening!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AD368F9E-CE41-4D7A-9ED2-7C9CC0227D10">Nov 17, 2020 10:23:39 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/1b/1b18b2bf4dac0fc4e7d181d156202c28c102cfd0" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8EC32766-855A-F2EA-121C-49118A0ADBF8">Nov 17, 2020 10:24:13 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">More than that. . . Yours is not the only class that I teach 🤦‍♀️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=014AC022-DCDF-4A61-8015-61B6CCBE908D">Nov 19, 2020  1:48:42 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good afternoon!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5D5D9161-7950-5085-BD43-82C03D4A36E2">Nov 19, 2020  1:49:03 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Kylie</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1632F158-7A4A-44AB-B156-A72400D3FBE4">Nov 19, 2020  1:50:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I saw that u put the grades in for 3.8 and 3.10, I asked on <u>Tuesday</u> if you could open them and you said you would after you finished grading everyone else&apos;s...</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=15A194A3-B04D-478D-B1E0-F6B366256EF8">Nov 19, 2020  1:50:29 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">So, would you please open them?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3C7E53ED-E284-9F98-105F-A97886AA6938">Nov 19, 2020  1:51:01 PM</a> (Read by you after 9 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">And they have been open since <u>Tuesday night</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=79104101-508A-482B-8AEA-F02A2FA1C874">Nov 19, 2020  1:52:38 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/18/1897c64772a27784d219be76691bbb0aaed0767a" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/cb/cb5ec65d5b47b4fad578f20ef4268a85afc77e4d" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">These are the ones I&apos;m talking about.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C252E8B9-7977-4FCC-A408-6D29BFF64A4F">Nov 19, 2020  1:52:45 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Not the discussion forums</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8EF5C6FD-8627-9D48-464F-CD8773B479BE">Nov 19, 2020  1:53:50 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes. They are. They have been open. You may need to log out and log back in to reset your cookies but they have been open</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B22708FC-B309-4135-BB54-3DC07D64A254">Nov 19, 2020  1:54:13 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;ll try that and get back to you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FF4FEEF6-3295-489C-B2DA-657C16421C1C">Nov 19, 2020  1:54:20 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=431E9EB5-B90A-4204-A61C-32360A6A1F8B">Nov 19, 2020  1:54:31 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">And I&apos;m sorry for my misunderstanding</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1AA68F17-C9B7-C6ED-1DEF-4313DB259F37">Nov 19, 2020  1:55:17 PM</a> (Read by you after 17 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)No worries. It happens when you don’t log out or when you don’t </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A8E6F92A-8307-31DC-ED65-5EFCC6EFCC06">Nov 19, 2020  1:55:27 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)go through the student dashboard. It doesn’t allow Moodle to </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CECBBDCB-2B72-44BA-66AD-6E5CC8B1E2BC">Nov 19, 2020  1:55:37 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)reset</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5A7EC2B6-B002-4ED9-B342-6E12C733EDD3">Nov 19, 2020  2:02:19 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/12/12c0713cba9758223b87e73bdc8bfa05342d934b" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AC9E0398-F9DF-4A62-9D86-90C44B8AC250">Nov 19, 2020  2:02:46 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I opened it on my computer and reset the cookies and cached files and images and it still isn&apos;t opening</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F4571336-D15D-1E74-3FF7-CAB84E8217D0">Nov 19, 2020  2:05:26 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)Because you were asking about the forums. The forums are open. This is the letter. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=14FE4C1B-C777-9ACE-CEB9-D8C7D1222D06">Nov 19, 2020  2:05:36 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)That’s a different assignment</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC8A4E51-72EE-DA99-2D34-BFC75378B3B7">Nov 19, 2020  2:06:38 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just adjusted the due date for the letter.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CCAA17B8-883D-712D-8264-CA46EC426880">Nov 19, 2020  2:06:48 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">That should open for you now</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D55D32F9-FE48-4280-BEF9-BC8A2EC5E68B">Nov 19, 2020  2:06:56 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/6e/6e1ab9d9aad2c6c2727fccf48f91e6f24e56f65d" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/15/15511538932afdfcacadf38e707b0308380ae13d" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">The first image is the discussion forum and the second is 3.8 and 3.10</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=87191E4B-1DB5-4A98-8778-8FFED51D9084">Nov 19, 2020  2:07:11 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry if I confused you 😬</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=12B807B1-0B9F-C8BF-488E-118B08939B1E">Nov 19, 2020  2:07:50 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">3.8 is not a discussion forum.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2A536F73-904A-1971-624C-F87FE579BEE9">Nov 19, 2020  2:08:00 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Neither is 3.10</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C65D2000-A2AB-4F57-BA4C-475F903D715F">Nov 19, 2020  2:08:20 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Its the letter and 3.10 is the essay/LEQ</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FEA13BF7-897F-C2C0-336A-FAE59AF56FD8">Nov 19, 2020  2:08:41 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Both of those assignments were open for you until tuy</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=10F42B44-A83B-192F-CCF9-F7D287F9BE7E">Nov 19, 2020  2:08:46 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble"><u>Tuesday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C1396C6E-6EA1-32BE-4294-F6217607D392">Nov 19, 2020  2:08:56 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just opened them up for <u>today</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=78DC7DBB-19F4-1992-8696-84C3F13A3EDF">Nov 19, 2020  2:09:32 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)The only ones that I couldn’t extend at the time were forums. I </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=02CF783E-AE68-47A8-8163-80F165B074A7">Nov 19, 2020  2:09:41 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I don&apos;t know if you got an email but I have been in the nurses office asleep since abt <u>10 am</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B62C1413-93D1-B3B5-78D4-37F5E611595A">Nov 19, 2020  2:09:43 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)finished grading those on <u>Tuesday night</u> and then opened all those up for you as well</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=350B6EC0-BA84-D3A7-60C7-B415294A2941">Nov 19, 2020  2:09:58 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m not sure why you didn’t submit 3.8 and <u>3.10 on Tuesday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=74C6C3DA-7282-4B2A-87B2-DE7F63C40F97">Nov 19, 2020  2:10:18 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">And the forum is my mistake and I&apos;m sorry about that</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=21DA766C-231A-99D6-F1E3-B98C8819E209">Nov 19, 2020  2:11:09 PM</a> (Read by you after 9 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">They are all open for you <u>today</u>. If you tell me assignment numbers, it makes it less confusing.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4C12A5FF-1343-4311-870C-98E274F32D0D">Nov 19, 2020  2:13:10 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ECAF0B92-69E6-4EDD-B848-A61696CF471D">Nov 19, 2020  2:13:15 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Okay here they are:
+-3.8 Hamilton vs. Jefferson (letter)
+-3.10 Articles of Confederation and the Meaning of the Constitution</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C11DBC14-07E6-8FB3-BF0A-5DA4EB87D4BD">Nov 19, 2020  2:13:53 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">No worries. They are both extended <u>until midnight tonight</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF22B874-C92F-4744-B0C4-C06F02FAB581">Nov 19, 2020  2:14:02 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=54608A04-B475-4F47-AC86-3058A61147AD">Nov 19, 2020  2:14:36 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I am really very sorry</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3D95B1F5-B058-39FE-6092-6989125F2104">Nov 19, 2020  2:22:51 PM</a> (Read by you after 6 minutes, 13 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">No worries</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F31E6AC7-D1BB-46B7-A520-51D9726F0A30">Nov 19, 2020  2:30:32 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry to bother you again, but they still aren&apos;t open. Just to make sure it wasn&apos;t an issue on my end, I reset cache and cookies again and then checked with my schools media/tech specialist to be safe</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=60002132-4EFF-4464-BDAC-1A6994FF483A">Nov 19, 2020  2:30:50 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/b4/b454cc85827fe90893df1ab5068274c2a4bd0839" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3A3027A9-70AC-4B6E-A80D-BB89ABD8D5A8">Nov 19, 2020  2:33:37 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Also I just noticed this</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4C814B82-C3EE-42A4-99F4-389E692C2143">Nov 19, 2020  2:33:46 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5b/5bedae836de1e67e8b9fe91a17685fdbda731d14" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56F21A55-7486-42DD-837D-2A1BE54BFCB4">Nov 19, 2020  2:33:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7BADBC52-EF9E-0D86-0952-B398A9F61F91">Nov 19, 2020  2:36:30 PM</a> (Read by you after 1 minute, 39 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Refresh and try again</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=940658DB-C58A-48D5-9E55-68B14C1BF115">Nov 19, 2020  2:38:17 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">IT WORKED!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EE58D9B7-5770-4CD1-A258-6A207F88CBFB">Nov 19, 2020  2:38:23 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=452249F2-C957-60F6-E972-92F146F8D5F6">Nov 19, 2020  2:40:36 PM</a> (Read by you after 45 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yay!!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=731C1780-B786-4688-A652-0C446C3A6728">Nov 19, 2020  4:46:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have a legitimate question this time</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A9A328ED-CCB4-45F0-B976-79E3353761C8">Nov 19, 2020  4:47:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Before I turn in the letter...do you want parenthetical citations in the body of the letter or just a works cited?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C89E8B96-D7F3-581A-5018-8E58EAB21271">Nov 19, 2020  5:00:12 PM</a> (Read by you after 3 days, 19 hours, 29 minutes, 35 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Both. Please make sure you go over my weekly message. I was pretty explicit</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56DC2454-649F-444C-B9AC-FD303DE302BC">Nov 30, 2020  9:53:43 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good evening! (Sorry if I&apos;m disturbing you)
+
+I&apos;m working on the 4.4 Jefferson Discussion Forum right now and it basically asks if it is accurate to call Jefferson&apos;s first election the &quot;Revolution of the 1880s&quot;</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E0933777-E648-4B3A-BC43-943B19633A7B">Nov 30, 2020  9:54:37 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m confused as to if I&apos;m supposed to answer with a fact-based opinion or something else?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=220E9C63-4B75-6B8F-B91A-3A6BA3E8A52D">Nov 30, 2020  9:57:10 PM</a> (Read by you after 28 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)It is an opinion but it’s an opinion based in facts and you’d </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=06152491-2E43-3D75-58D8-2B01CBFB73D6">Nov 30, 2020  9:57:20 PM</a> (Read by you after 18 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)approach it as if you know the answer, for example: the election of 1800 was a revolution because of ______ OR the election of 1800 was not a revolution </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3A7B0D26-C17B-CA3A-B641-0D536B82757E">Nov 30, 2020  9:57:30 PM</a> (Read by you after 8 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)because of _____
+
+Does this help?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C77EB26-555B-40DB-9840-9B0C93E866F2">Nov 30, 2020  9:57:44 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0BCBEE10-F0D5-44D8-9DBA-E7709E2EEC75">Nov 30, 2020  9:58:03 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I was trying to think of ways I could validate the nickname</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8C08F425-2709-477D-BC92-1BB64704DA17">Nov 30, 2020  9:58:36 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Because &quot;revolution&quot; seems to be a bit of a stretch</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D5A9C313-814A-78B0-C06B-7EB1D09B7328">Nov 30, 2020  9:59:43 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Did I help or confuse you more?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C81BE83-5EB2-474A-9846-37B35107A9B5">Nov 30, 2020 10:00:10 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Helped</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0A034FAF-0956-4B31-A9C6-8D3508A6CD2C">Nov 30, 2020 10:00:23 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">The prompt was just a bit iffy</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0FFFE3A2-D6F6-86FD-41A5-A174EB6B90D7">Nov 30, 2020 10:01:11 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I use prompts that the college board has used in the past. So if they seem iffy beware. This is what you are facing</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=93491D7E-F09A-45D2-BDE8-AA6B6950E8C3">Nov 30, 2020 10:01:56 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thanks for the heads up</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3B8AAFE6-04FC-4268-82D8-8BBC2F7AB09C">Nov 30, 2020 10:03:01 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">✍️burn✍️all✍️college✍️board✍️exam✍️material✍️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=68AF1158-B9EF-663C-421F-C4C60408454F">Nov 30, 2020 10:17:44 PM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m down. 😂</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FDEA8D8B-055E-4BC8-B17A-D4B98A7C9132">Dec 04, 2020 11:46:24 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;ve been trying to submit the &quot;4.3 First and Second Great Awakenings&quot; assignment since about <u>9 am this morning</u>. Despite the fact that it was open for submission it wouldn&apos;t let me submit. In an attempt to fix this, I reset the cache and cookies, logged out of Moodle and VirtualSC dashboard, and restarted my computer. After this didn&apos;t work, I went to the media center to ask our tech specialist for help. She then informed me that the district is working/fixing some of the blockers that are in use when on the school campus and connected to the WiFi, and because of this, a few students had come in that had the same issues as I with turnitin, sci-hub, and some people even had issues with google classroom</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2D91A906-51C9-4247-941C-92C25C2BB11E">Dec 04, 2020 11:47:58 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Because of this I cannot submit the assignment until I get home around <u>5 pm</u>. So could you please extend the submission time deadline to then? I have the assignment finished and I even tried logging in on a friends computer a few minutes ago to see if that would work and it still didn&apos;t.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D53A780E-1750-4C06-9B9C-C1C20C797FB7">Dec 04, 2020 11:48:33 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Also, good (belated) morning!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A12E7077-7F1D-FA4A-C60A-12BA9DB3A803">Dec 04, 2020 12:06:34 PM</a> (Read by you after 38 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)Okay.  Don’t worry about it too much. Keep working with your </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F5C357C0-6345-46F9-003B-B81D1EB3AA34">Dec 04, 2020 12:06:39 PM</a> (Read by you after 33 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)media specialist and let me know an update later <u>today</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=058B5B68-6199-4A1A-AC2B-4ED59B990FE7">Dec 04, 2020 12:07:22 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I will, thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3B6057C-B9F8-474E-A234-B71C6A794072">Dec 15, 2020 10:39:26 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good morning!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2DDE25DE-DA9B-6845-23C2-F59305F22F1C">Dec 15, 2020 10:39:57 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good morning</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6459E561-86B5-4150-8B18-9BCECF4CBF59">Dec 15, 2020 10:42:18 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m reviewing my 4.11 Slavery and Historical Interpretations assignment before I turn it in. I just checked with the group me to make sure I was doing the right thing and I got a conflicting response. I also checked online to see what past students did bc I was so purely confused. Ella Hammond (group me) used the Historians were Zinn and Brinkley themselves while others are saying the historians that they mentioned in the text. Which ones am I supposed to write about?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=021A8DBF-3E82-E40E-16F5-595C6DBA6678">Dec 15, 2020 10:45:10 AM</a> (Read by you after 10 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">The ones mentioned in the text. I clarified it in the weekly message</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9CE05892-D0DA-460D-9E2A-F4C8E8F9E413">Dec 15, 2020 10:45:26 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C6816422-37DD-4693-B999-447074CC73EA">Dec 15, 2020 11:53:39 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have an issue. Power just cut out at my school, bringing the servers down with it. I literally just downloaded the PDFs for the assignments I need to submit and then it went down. We had a similar issue <u>yesterday</u> where the WiFi went down for two hours. I don&apos;t know how long the power will be out or if they will get the servers back up after they fix the power. I would ask you to extend this to when I got home around <u>4:30</u> but I have a two hour driving lesson <u>starting at 3:45</u>. So I could you please change the time stamp to <u>8:00</u>? I&apos;m so sorry that this keeps happening. If they let us out early because they can&apos;t heat the school I will let you know so you can change it if you want.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=62B814E7-D2D1-4A8E-A305-5D274CC443E8">Dec 15, 2020 11:54:54 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I also noticed when I had opened the Unit 4 Essay Assignment that the due date was marked as &quot;<u>Saturday December 15, 2018</u>.&quot; I just wanted to let you know.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9ABF4785-69ED-7E39-DD63-034B01C955B8">Dec 15, 2020 11:59:45 AM</a> (Read by you after 1 minute, 31 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll check those. Thanks</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=75DD96DE-4DEE-4530-A4AC-203595F55C9A">Jan 11, 2021  5:14:48 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Does Virtual SC ever offer Honors Gov &amp; Econ? I&apos;m checking the website and I&apos;m only seeing CP, AP, and Credit recovery</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=025CC243-FAEA-1CED-F159-91C72F91D0C2">Jan 11, 2021  5:45:52 PM</a> (Read by you after 2 hours, 51 minutes, 11 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">No. Only CP and CR and AP is brand new.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2C8E085F-95FE-4DC0-89CA-49D0B6781DA8">Jan 22, 2021 12:53:30 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good afternoon! I have an issue. I&apos;m at school right now, trying to open Moodle, and the website isn&apos;t having it. I cleared my cache and cookies in an attempt to fix this. I asked our Media Specialist and she said that the chrome books have been having issues all week because they are resetting the website blockers. Now, normally I would just wait until I got home to get around this, however I won&apos;t be at home this weekend. And, I won&apos;t be near WiFi <u>until 1 am</u> as I&apos;m going on a seven hour road trip to Tennessee as soon as school is out. So, and I know that you have already been extremely patient with me, could you please extend the deadline so that I can submit these?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6145CCE0-1B41-4B94-BB1C-5494348BB64E">Jan 22, 2021  2:30:48 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B3B8B553-4F58-4C6A-8FD1-7CE11ACDE04D">Feb 05, 2021  6:01:22 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good evening! 
+I&apos;m about to take a nap because I&apos;ve had a long, trying week but I wanted to send this to you first. Is there any time over the next few days where we could talk on the phone about everything going on? I know that you&apos;re a bit out of the loop so I just wanted to talk.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=74535C64-DA77-E490-6681-4733DD75237A">Feb 05, 2021  6:17:59 PM</a> (Read by you after 18 hours, 46 minutes, 8 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/2)I’m not home this weekend so it will need to be on <u>Monday</u>. I hope</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=82936DF8-F8E3-6F29-8446-7577049A6D0E">Feb 05, 2021  6:18:06 PM</a> (Read by you after 18 hours, 46 minutes, 1 second)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/2)you are feeling better</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DCE14167-1956-4E90-BF56-57BC19909AA0">May 07, 2021  2:12:31 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good afternoon!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=03410974-6625-4A42-9BF2-7AB6E796C0BA">May 07, 2021  2:12:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I sent the pacing guide in an email earlier <u>this morning</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5AC49F21-8E96-4E4A-A5ED-D83DA516ADB8">May 07, 2021  2:12:59 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just wanted to let you know</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F000A002-A2C0-43CD-AB88-5E18F037D614">May 07, 2021  2:13:04 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7B4BC2C-22C6-FA55-85ED-CB46655424B8">May 07, 2021  2:14:45 PM</a> (Read by you after 2 hours, 7 minutes, 19 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(1/3)Thanks for letting me know. I don’t hold office hours on <u>Friday</u> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=79D6475B-5487-59DA-B44A-11C9A361943D">May 07, 2021  2:15:11 PM</a> (Read by you after 2 hours, 6 minutes, 53 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(2/3)and would not have seen it. I won’t be home until later <u>today</u> to </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=432624AF-4DE7-5961-5A32-EBA607827FD8">May 07, 2021  2:15:36 PM</a> (Read by you after 2 hours, 6 minutes, 28 seconds)</span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">(3/3)submit the paperwork. Did you update the form for the extension?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3FD0AB1F-7B80-4B29-A9C8-F1FD1FAB7966">May 17, 2021  2:54:11 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good morning! I don&apos;t expect you to see this for a few hours but if I don&apos;t send it I will forget. For some reason the 6.9 Gilded Age Identities assignment isn&apos;t open. What do you want me to do about it? Or is there something you can do?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AD820163-FB1D-43C6-9D9E-4ABE5D61BC5C">May 17, 2021  2:54:37 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=154A5BEE-2BF8-448C-BC25-603341A4D9D5">May 17, 2021  2:54:57 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m gonna go get some sleep before I seize and miss the AP test on <u>Wednesday</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7FFBDFED-F2FB-41DC-BDCB-9DF53D667EC6">Jun 19, 2021  5:57:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good evening! Sorry to bother you, but am I supposed to do the Alternate final if I already took my EOC in person? I got an 81 and they sent it to VirtualSC. Again, sorry to bother you.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=505FB975-9740-A8EF-4934-8D6FFE7E9AF1">Jun 19, 2021  8:47:44 PM</a> </span>
+<span class="sender">Melissa Soule</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">No. You are good to go</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,687 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=564731FF-1B1F-9295-A5E9-B13372CF508F">Oct 11, 2024  1:50:43 PM</a> (Read by you after 1 day, 21 hours, 12 minutes, 33 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>1:30 PM Mon Oct 14</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/o3e7uGWWXx">https://phreesia.me/o3e7uGWWXx</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=33B9A8D3-CB65-0FEB-1AA9-5041826ABC4F">Oct 14, 2024  2:35:29 PM</a> (Read by you after 14 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics
+Kylie, hi there!
+Your doctor wants to know if you plan to pick up your prescription. Let them know here: <a href="https://phreesia.me/NghsmH72C5">https://phreesia.me/NghsmH72C5</a>
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=430E640C-E9DA-8AF1-104C-1C56BE0DAC02">Jan 03, 2025 11:20:49 AM</a> (Read by you after 2 days, 23 hours, 50 minutes, 47 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>11:30 AM Mon Jan 06</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/AT52X52DAM">https://phreesia.me/AT52X52DAM</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B9658E3B-4B60-3E0F-A990-98263147E03F">Jan 05, 2025 11:10:23 AM</a> (Read by you after 1 day, 1 minute, 13 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>11:30 AM Mon Jan 06</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/Qrc32uujht">https://phreesia.me/Qrc32uujht</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=290B55EB-1C8B-0A5C-B2F2-D155BA983B6B">Jan 06, 2025  7:05:21 AM</a> (Read by you after 4 hours, 6 minutes, 15 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics: You must check in now for your appt at <u>11:30 AM on Mon Jan 06</u>.
+
+Start here:
+<a href="https://phreesia.me/5pn7pKFALe">https://phreesia.me/5pn7pKFALe</a>
+
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=29757B84-E8C9-CD98-CD33-14B48EC0449D">Feb 17, 2025  2:54:31 PM</a> (Read by you after 29 days, 18 hours, 5 minutes, 41 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, thank you for choosing Chapin Pediatrics! You&apos;re almost done.
+Txt STOP to opt out
+
+Finish your check-in:
+<a href="https://phreesia.me/VQRQDxhZAm">https://phreesia.me/VQRQDxhZAm</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=90488486-D9CD-DC6E-2E64-292763BAD446">Mar 16, 2025 10:45:25 AM</a> (Read by you after 2 days, 23 hours, 14 minutes, 47 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>11:00 AM Wed Mar 19</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/fMa9yZorxt">https://phreesia.me/fMa9yZorxt</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A4A035AF-9179-3E1D-D663-DFBB9FF5A0C9">Mar 18, 2025 11:15:54 AM</a> (Read by you after 22 hours, 44 minutes, 18 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>11:00 AM Wed Mar 19</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/JwQb6Km8rP">https://phreesia.me/JwQb6Km8rP</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F35BBBD4-5933-16BC-9203-1809B17858AE">Mar 19, 2025  7:05:27 AM</a> (Read by you after 2 hours, 54 minutes, 45 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics: You must check in now for your appt at <u>11:00 AM on Wed Mar 19</u>.
+
+Start here:
+<a href="https://phreesia.me/55BJdNaCfm">https://phreesia.me/55BJdNaCfm</a>
+
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5AD4E4A9-684D-726F-01E1-E3E169B88B81">Mar 19, 2025 12:35:16 PM</a> (Read by you after 88 days, 1 hour, 35 minutes, 8 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics
+Kylie, hi there!
+Your doctor wants to know if you plan to pick up your prescription. Let them know here: <a href="https://phreesia.me/voEhsuYho6">https://phreesia.me/voEhsuYho6</a>
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B511DE10-5040-D766-66CB-A28D3F6E4FFE">Jun 15, 2025  2:10:20 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>2:00 PM Wed Jun 18</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/4RnddCCgLL">https://phreesia.me/4RnddCCgLL</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DE6F9A7A-8ED3-3231-25DA-B53B4FD7073B">Jun 17, 2025  2:15:37 PM</a> (Read by you after 23 hours, 48 minutes, 41 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>2:00 PM Wed Jun 18</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/Vsni6iYYGu">https://phreesia.me/Vsni6iYYGu</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DBB6DCB4-8AB2-1649-AA1C-543C8ECDE939">Jun 18, 2025  7:05:27 AM</a> (Read by you after 6 hours, 58 minutes, 51 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics: You must check in now for your appt at <u>2:00 PM on Wed Jun 18</u>.
+
+Start here:
+<a href="https://phreesia.me/jUw4RBKCkH">https://phreesia.me/jUw4RBKCkH</a>
+
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=125B2624-1229-88C1-33F7-D5653EE8A78E">Oct 10, 2025  8:15:45 AM</a> (Read by you after 2 hours, 29 minutes, 45 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>8:15 AM Mon Oct 13</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/73LpW4e6Ur">https://phreesia.me/73LpW4e6Ur</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A9E5D317-CE71-4009-FE15-72904640DCD5">Oct 10, 2025 11:25:25 AM</a> (Read by you after 37 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Your insurance summary is ready to view. This is not a bill.
+
+Thanks for pre-registering!
+
+View: <a href="https://phreesia.me/XaKjZ52EFV">https://phreesia.me/XaKjZ52EFV</a>
+
+See you soon at: Chapin Pediatrics.
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D58AF32A-9017-D549-1673-4C9A6130F545">Jan 02, 2026  8:25:09 AM</a> (Read by you after 1 day, 7 hours, 24 minutes, 57 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>8:30 AM Mon Jan 05</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/2SVZkoHNj7">https://phreesia.me/2SVZkoHNj7</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0CA4D0F8-3047-F454-F2BC-E84ACEDCB36D">Jan 04, 2026  8:50:24 AM</a> (Read by you after 22 hours, 45 minutes, 28 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, confirm your appt!
+<u>8:30 AM Mon Jan 05</u>
+Chapin Pediatrics <a href="tel:(803)%20932-2200">(803) 932-2200</a>
+Txt STOP to opt out
+
+Confirm now <a href="https://phreesia.me/VpCw4sGWYm">https://phreesia.me/VpCw4sGWYm</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5F484786-C97E-B0C4-DB13-57208719CC0C">Jan 05, 2026  7:05:26 AM</a> (Read by you after 30 minutes, 26 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics: You must check in now for your appt at <u>8:30 AM on Mon Jan 05</u>.
+
+Start here:
+<a href="https://phreesia.me/zscvR3sC7A">https://phreesia.me/zscvR3sC7A</a>
+
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=59374D01-52A9-2BF1-965E-76DAD300E502">Jan 05, 2026  8:01:03 AM</a> (Read by you after 50 minutes, 18 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Your insurance summary is ready to view. This is not a bill.
+
+Thanks for pre-registering!
+
+View: <a href="https://phreesia.me/B6LGMuMosG">https://phreesia.me/B6LGMuMosG</a>
+
+See you soon at Chapin Pediatrics
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=020EB3A7-765E-233B-74A8-BD43AA84BA4E">Jan 05, 2026  9:33:23 AM</a> (Read by you after 1 day, 3 hours, 34 minutes, 30 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics
+Kylie, hi there!
+Your doctor wants to know if you plan to pick up your prescription. Let them know here: <a href="https://phreesia.me/o3nyjU29sq">https://phreesia.me/o3nyjU29sq</a>
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=052F29D8-6F75-5AF0-4612-14D74933DC67">Jan 06, 2026 10:03:25 AM</a> (Read by you after 3 hours, 4 minutes, 28 seconds)</span>
+<span class="sender">+18664753804</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Pediatrics
+
+Hi, Kylie, this is a friendly reminder that your doctor wants to know if you plan to pick up your prescription. Please let them know here: &nbsp;<a href="https://phreesia.me/GTjH99Yh82">https://phreesia.me/GTjH99Yh82</a>
+
+Txt STOP to opt out</span>
+</div>
+</div>
+</div>
+</body></html>

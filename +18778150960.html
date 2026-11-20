@@ -1,0 +1,514 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=995F061F-003A-40E1-584B-BA92B6C65300">Sep 10, 2025  3:08:17 PM</a> (Read by you after 2 days, 1 hour, 12 minutes, 37 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reply Yes to confirm your appt on <u>Sat 9/13/25 at 3:00 PM</u>. Reply R to request reschedule call. IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DE74A4E5-1DD8-E950-6DF6-E1AE2E13C550">Sep 12, 2025  3:03:15 PM</a> (Read by you after 1 hour, 17 minutes, 39 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reminder your appt is <u>Sat 9/13/25 at 3:00 PM</u>. Reply STOP = end msgs <a href="tel:(803)%20781-1201">(803) 781-1201</a> IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=45DAE324-9B0D-116C-C1BF-CD045B1927CC">Sep 13, 2025  3:11:02 PM</a> (Read by you after 50 days, 22 hours, 13 minutes, 31 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa:Your feedback matters! Please rate your visit with us. <a href="http://na0.meevo.com/4tjbE/etGh">na0.meevo.com/4tjbE/etGh</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2288796D-C172-0CCE-CB47-49D4538EBBB0">Oct 30, 2025  2:09:43 PM</a> (Read by you after 3 days, 23 hours, 14 minutes, 50 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reply Yes to confirm your appt on <u>Mon 11/3/25 at 1:45 PM</u>. Reply R to request reschedule call. IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=65DB8FFE-8841-210D-1879-3415C842E1BF">Nov 02, 2025  1:49:08 PM</a> (Read by you after 22 hours, 35 minutes, 25 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reminder your appt is <u>Mon 11/3/25 at 1:45 PM</u>. Reply STOP = end msgs <a href="tel:(803)%20781-1201">(803) 781-1201</a> IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=112FDAA0-3D38-EAE1-F644-1CD563850D07">Nov 03, 2025  2:08:03 PM</a> (Read by you after 42 days, 2 hours, 15 minutes, 14 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa:Your feedback matters! Please rate your visit with us. <a href="http://na0.meevo.com/46zB5/5wC4">na0.meevo.com/46zB5/5wC4</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C303C30-4096-7C4D-7961-9AF1BCB905DC">Dec 13, 2025  1:33:53 PM</a> (Read by you after 2 days, 2 hours, 49 minutes, 24 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reply Yes to confirm your appt on <u>Tue 12/16/25 at 1:30 PM</u>. Reply R to request reschedule call. IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=037071DF-E4DA-C760-8069-A0E6B88B0F89">Dec 15, 2025  1:34:18 PM</a> (Read by you after 2 hours, 48 minutes, 59 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reminder your appt is <u>Tue 12/16/25 at 1:30 PM</u>. Reply STOP = end msgs <a href="tel:(803)%20781-1201">(803) 781-1201</a> IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6E9B503B-B505-B6DF-53F6-0251877E944C">Dec 16, 2025  1:32:12 PM</a> (Read by you after 18 days, 2 hours, 23 minutes, 17 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa:Your feedback matters! Please rate your visit with us. <a href="http://na0.meevo.com/ZTP3k/YhGy">na0.meevo.com/ZTP3k/YhGy</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C7B3A4A4-9B76-E85B-A298-E793AC15E09A">Feb 04, 2026  1:47:34 PM</a> (Read by you after 1 day, 22 hours, 34 minutes, 4 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Reply Yes to confirm your appt on <u>Sat 2/7/26 at 1:45 PM</u>. Reply R to request reschedule call. IMPORTANT No-shows and Cxls with less than 24 hours notice are subject to $50-$100 fee. <a href="tel:(803)%20781-1201">(803) 781-1201</a> Children are not permitted in spa. If more than ten minutes late, you may be rescheduled. STOP = end msgs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8926611D-5FE6-D0DE-5B93-AFE058380F21">Feb 06, 2026  9:01:25 AM</a> (Read by you after 3 hours, 20 minutes, 13 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Your appt has been cancelled for <u>Sat 2/7/26 at 1:45 PM</u>. Reply STOP = end msgs <a href="tel:(803)%20781-1201">(803) 781-1201</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6A4FFC61-5B88-0377-32C9-BA5362C84253">Feb 06, 2026 11:41:47 AM</a> (Read by you after 39 minutes, 51 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: HR - Follow Up Face is avail. on <u>Sat 3/14/26 @ 11:45 AM</u>. Reply 1 for Yes, 2 for No, or 3 to STOP. This opening expires @ <u>12:11 PM</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4FED3E45-A723-3040-7674-39E8DDCBDC59">Feb 06, 2026 12:14:24 PM</a> (Read by you after 7 minutes, 14 seconds)</span>
+<span class="sender">+18778150960</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rejuvenations Laser Center &amp; Medical Spa: Your pending appt on <u>Sat, 3/14/26, 11:45 AM</u> for HR - Follow Up Face has been removed as a reply was not received w/in the allotted time.</span>
+</div>
+</div>
+</div>
+</body></html>
