@@ -1,0 +1,748 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3D0D58AC-8987-42D3-AFB3-121092031770">May 17, 2021  7:38:38 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have a question</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C62CC343-ABEB-4C41-A8A0-0E7102A43C2B">May 17, 2021  7:40:13 PM</a> (Read by them after 8 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Welk actually I kinda want u to check something bc minitab forgot to give me the r-value and R-sq, but gave me adjusted as a percentage</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=93CAADA8-0E3D-467B-BE1C-F18F36494C9A">May 17, 2021  7:47:25 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok sure </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BECEEA09-AB43-4447-AF45-C10CEE7F81DC">May 17, 2021  7:48:01 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5c/5cf16241f08014837f6a9908ccce95cd50d5f888" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1F603D49-A0A6-4A62-BB01-477419FC722F">May 17, 2021  7:48:14 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/2d/2d498631339a93520ac451853a071419c9c456f9" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7109A572-BC90-4D59-AC0E-AAECFA00E59E">May 17, 2021  7:49:21 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is everything minitab gave me. I don’t have a straight up r-value (unless it’s that -0.22 at the bottom) or r-sq value but I think I may have found calculated it</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=50D1DED1-F1BC-4AF3-B1C3-6CA77CCD8389">May 17, 2021  7:49:36 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/7f/7ffba96a03166f6fcf844b6190dfd988437d1bba" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FCD3029E-8F2E-42DB-898C-92DB213D2613">May 17, 2021  7:49:49 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yeah usually software will give you r squared instead of just r</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BAE48AF8-7186-453C-88FB-5E8658EC1747">May 17, 2021  7:50:03 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">All you have to do is take the square root of that value to find r </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=646A3E91-7A5A-4D99-AAC3-10053BC74380">May 17, 2021  7:50:35 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">You usually want to use the first r squared value that it provides as well </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=621F24C5-E406-4DA1-B056-86B1DEF3AA5E">May 17, 2021  7:51:25 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">But, and I know this might sound stupid, I only have r-sq-adj and not straight up r-sq and I don’t know the difference but I know they’re not the same.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=195C3E34-A71D-4E13-BFC3-25C953031319">May 17, 2021  7:51:57 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Well it looks like from the first pic that you’re r squared is actually 0 </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56797EF6-122E-4662-ACBB-25EFE5AC576B">May 17, 2021  7:52:16 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Well crap</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E5D823E8-8F7D-48FE-9198-9443428B64DB">May 17, 2021  7:52:26 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Idk I guess I’d just go with the adjusted one then </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9A21F6C7-096D-43E2-BFEF-7F0EC1C9F18B">May 17, 2021  7:52:38 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">No problem if it’s 0 </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C3610BF6-DB18-4196-8732-D202AC945CE0">May 17, 2021  7:53:01 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">You could say that the r value was “approximately 0” if that makes you feel better </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BE6D8FD8-CA9E-4591-83E6-2DE832B4BA46">May 17, 2021  7:53:10 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I think it’s that thing at the bottom bc that looks like the scale for PCC</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A6037A80-B657-4BE4-85B8-FFE850C69DC6">May 17, 2021  7:53:10 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">And technically it is approximately 0</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2A83800A-EF5C-426D-8070-F09FDA46C68C">May 17, 2021  7:53:18 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ohh I see </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E3109C80-9520-4A92-AE83-9D409982F82A">May 17, 2021  7:53:37 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Well that value is red so it looks like it might’ve been flagged as an outlier </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=08AEB444-0388-4F72-82C4-4FF471B31D45">May 17, 2021  7:53:53 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh, I meant this</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7CD0ABD6-2A39-4614-8F49-9D0A0BCBA2E5">May 17, 2021  7:54:14 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3f/3fee141d396419df8caef26871db62d35bceabb0" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3E4D4E18-2B4C-46FA-8EC9-04C047D9DB86">May 17, 2021  7:54:18 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry for the confusion</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1C27F461-87C3-40EB-AFB1-A166C358E0F3">May 17, 2021  7:54:37 PM</a> (Read by you after 10 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh ok I see </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=20316A6A-E910-4328-9951-C90618C14492">May 17, 2021  7:54:41 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hmm that is confusing </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=52CBD8C0-B214-40CB-9EAD-4181E129A7B4">May 17, 2021  7:55:24 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thing is when u sq-rt 4.63% u get approx 0.22</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3640AABC-A6B3-4D6C-8F16-6C5482303A3D">May 17, 2021  7:55:39 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yeah that sounds right </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF638892-B105-4CB1-B917-2F8BF77A2CAE">May 17, 2021  7:55:48 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">I guess I’d go with that </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=176A7357-2FB2-4410-AD42-683D9D8E884D">May 17, 2021  7:55:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Okay thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=728474D4-4413-47F4-8A78-5C19866DCE95">May 17, 2021  7:55:59 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m sorry, it’s a mess</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=99CEB7CB-A5E2-4AAE-A0D0-A9072DB7E4C0">May 17, 2021  7:56:08 PM</a> (Read by you after 11 minutes, 24 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">No problem! </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=006FE228-7BC5-4832-8105-F1E2FC13385B">May 17, 2021  7:56:19 PM</a> (Read by you after 11 minutes, 13 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">I understand haha statistics are really confusing </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E418ABFD-9741-4A2F-BCA9-60AD8C87F16C">May 17, 2021  8:07:40 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">another question</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=36FA2BDD-9900-445C-9781-0632CEB8C1D6">May 17, 2021  8:08:29 PM</a> (Read by them after 8 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Is there an official divided PCC for types of association? I want to know the interval for weak negative.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1DD6037A-C795-48ED-BB6A-BF0D8515D8B5">May 17, 2021  8:27:47 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry what do you mean by PCC? </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=785B8FF9-60C6-4FBA-8E82-8F479D18266C">May 17, 2021  8:28:05 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Pearson correlation coefficient</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B08C1DE-422B-4E9C-8D6E-F43C432AED8A">May 17, 2021  8:28:12 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ohh yeah </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4FBB4E53-A13A-4388-9DC4-17F9B14C95F9">May 17, 2021  8:28:16 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m not sure </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=98164533-372B-4706-B527-E7211441DEAC">May 17, 2021  8:28:49 PM</a> </span>
+<span class="sender">Alyssa Raynor</span></p>
+<hr><div class="message_part">
+<span class="bubble">A linear regression t test gives you an interval for slope so I don’t think you can get an interval for r</span>
+</div>
+</div>
+</div>
+</body></html>

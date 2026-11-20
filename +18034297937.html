@@ -1,0 +1,1022 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=11872FBF-CE14-4D6A-97E3-A28201403846">Jul 04, 2018  8:45:07 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom says to order a drink for her in 10 min</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=25A1CC24-F379-BA24-ACD7-F017E22928B4">Jul 04, 2018  8:45:36 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">What drink?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=03AC323E-1A00-41EE-B3AF-2FFC5EAF8820">Jul 04, 2018  8:47:08 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Look on menu for a good Mojohito (maybe cucumbers) also where u sitting</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=27F96E7C-6AA4-B580-BE16-4929B6734330">Jul 04, 2018  8:47:54 PM</a> (Read by you after 13 minutes, 16 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Outside big table</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8255E152-5761-413C-9840-474A12781B8C">Aug 06, 2018  8:16:16 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi! Ok, I will feed griff before I leave. He will need to be fed again at 12 and 8 (if I&apos;m not home). I will leave a little bag of food on island, half for each feeding. Check his water too.  He needs to go out to pee several times a day still. Keep him out for awhe cuz it takes him longer to poop 😉.  Every couple hours. He wont poop but 2 or 3 times. I will leave a leash on island if u wanna walk him, or take him to your house for awhile.  When u leave him, keep the chairs lined up on the fence like they are. He may still get out!! If he does just put him back in and try to li e chairs up tighter. I will keep a pee pad out in back of kitchen just in case.  I&apos;ll leave an extra on island.. code to house is 3265 then hit lock button.  To relock, just hit lock button.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B0563C59-8746-4E2C-A0D9-CE3BADFC07B0">Aug 06, 2018  8:17:18 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am. Thank you.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F0604A15-70CE-20A8-9999-5C9D07C23EAF">Aug 07, 2018  2:53:53 PM</a> (Read by you after 8 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Is griff ok?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B4E12DC6-646E-491A-AE7A-40CBF04A562F">Aug 07, 2018  2:54:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3f/3f570679666e6d88ee8dd6440a7a16e459b0fd95" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">Yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5B05F685-0384-F71F-5282-D666EFF02339">Aug 07, 2018  2:55:25 PM</a> (Read by you after 11 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Aww thx!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3959D6EC-9110-66DF-9462-BBD25031C623">Aug 07, 2018  6:25:41 PM</a> (Read by you after 14 minutes, 11 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m hoping to be home by 10. But u dont have to keep griff that long. He can stay in my kitchen till I get home if he hasnt been in there alot all day</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F8309FEF-9665-409E-9941-2260005BB3D8">Aug 07, 2018  6:40:13 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C8A2E3CC-2EE1-448C-8BC6-D1CDEC5FB516">Aug 07, 2018  8:13:10 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Griff is in ur kitchen. He has food and water. I did take him for a walk and I kept him at my house most of the day bc it was easier to watch him. I did let him out before I left him. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3B94D862-42CC-87B3-CFA6-C9D86F35C8A4">Aug 07, 2018  8:16:32 PM</a> (Read by you after 1 hour, 33 minutes)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thanks so much!!! I will come by to pay u. It wont ne too late. More like 9:15ish</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=05486E51-C5F7-B58B-3D61-87AEF5D387F1">Aug 07, 2018  9:49:28 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">If you don&apos;t mind, I&apos;d like to pay you in the morning. I am just exhausted.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=89062B70-C03C-4E0E-BD7D-AE0BC5908EED">Aug 07, 2018  9:49:43 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure, thank you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4682AF9E-9180-3790-60A2-ABC149C3D1E2">Sep 01, 2018  9:34:48 AM</a> (Read by you after 21 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Any chance you could come check on griff and ket him out <u>around 12:30 to 1:00</u> ish?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E1350CE5-AE75-47D7-A10C-E87F224450CD">Sep 01, 2018  9:35:13 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D163508-1F39-E4CF-ADEF-868CFF7D9F3E">Sep 01, 2018  9:37:37 AM</a> (Read by you after 2 hours, 18 minutes)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yay! Thx. I&apos;ll pay ya!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8294A0EB-7748-F104-7398-7C2E1969CEED">Sep 06, 2018  5:33:41 PM</a> (Read by you after 1 day, 17 hours, 2 minutes, 9 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Gave yur mom $5 for checking on griff.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8D22453E-615A-C603-9B99-175606F3A95A">Sep 08, 2018 10:35:45 AM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Any  interest in checking on my dog a few times <u>today</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=785424DB-C945-4F9A-8E80-D60EE03946D0">Sep 08, 2018 10:36:06 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes I will. At what times?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=486FBB38-1042-E72C-7ADD-6F1EA02711CB">Sep 08, 2018 11:04:10 AM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m leaving around 12 so how about 3 ish and 6 ish? Then we can see when I&apos;m coming home. Maybe once more if I&apos;m stuck in traffic? However it works for u. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=34B8BD01-C873-4347-BAA4-6570ECE6D9BB">Sep 08, 2018 11:04:30 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">That&apos;s fine</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C30EB9D4-B678-851E-02BF-48474110E4FA">Sep 08, 2018 11:05:57 AM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rhx!! I feel so guilty leaving him.  Can u make sure he has water?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=11BB7A26-0F05-4A96-95C1-8A9A7ED9D370">Sep 08, 2018 11:06:14 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4555B5F9-6E54-105E-A8C4-35A5928F47FF">Sep 08, 2018  7:06:18 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Griffy ok?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7F7BD69C-3D02-4EEB-89AD-44ECF3654C9B">Sep 08, 2018  7:06:34 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E4803D1-1440-6AE1-090C-645CDB0C3FAE">Sep 08, 2018  8:11:20 PM</a> (Read by you after 12 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can u go by one more time and feed him?  Food in pantry on floor, one big handful . If u dont want to in dark, ok.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=89CD3229-1760-41A3-9F3B-32F0D2C55666">Sep 08, 2018  8:11:45 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=695EA632-9AF3-BCBF-5C4F-421904281E71">Sep 08, 2018  8:12:06 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Never mind, your mom doesnt want u walking neighborhood. Dont do it!!!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC8D6268-3E9F-438F-BA1D-40E5211DA9B9">Sep 08, 2018  8:12:15 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1C155885-BC00-E948-505B-657B03F2F5DF">Sep 22, 2018  5:21:39 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can you check on griff around 7?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A8AAD0B0-6552-46A2-ACFB-C241D97519D7">Sep 22, 2018  5:21:49 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=17740154-182A-4911-C821-D77601122B8C">Sep 22, 2018  5:22:00 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Or <u>7:30</u> is better. Just not after darlk.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9EA9726B-CECD-43B9-85DB-2DB7013E4BDB">Sep 22, 2018  5:22:08 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=782B602E-7DE8-B885-FD74-8E88E1826AFD">Sep 23, 2018  1:51:56 PM</a> (Read by you after 41 minutes, 40 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ru home? If so, u mind checking on griff?  </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=57B841B3-B4C5-2327-6567-BD0C61630C24">Sep 23, 2018  1:52:17 PM</a> (Read by you after 41 minutes, 19 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;ll pay u later <u>today</u> ur <u>tomorrow</u> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6BA2A4E6-D1EE-4660-9886-711933F7A196">Sep 23, 2018  2:33:40 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes I will</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=008E2E03-42EA-F476-A7C4-9C9AEEB0DAFB">Sep 23, 2018  2:41:15 PM</a> (Read by you after 11 minutes, 22 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thx!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=936BCE0B-F4B6-5752-7D52-0F874450F9AA">Oct 10, 2018  2:43:01 PM</a> (Read by you after 3 minutes, 55 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">I kindly. I wondered if you wanted to take care of my dog <u>Saturday</u> while I&apos;m at the football game. They could pretty much be on your schedule. Let me kno</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EDC2FB6C-6164-7772-1089-9D190336A1E0">Oct 10, 2018  2:43:02 PM</a> (Read by you after 3 minutes, 54 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">w. And, I know I still owe you  10.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B7E01F3-6916-4327-9A89-E258BA362159">Oct 10, 2018  2:47:46 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I might be going to the game. I don&apos;t know yet. I will ask. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1F89BDA4-E7B5-DB17-0AF7-19910991C4C7">Oct 10, 2018  3:06:54 PM</a> (Read by you after 33 minutes, 32 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh yeahI forgot. No worries!.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EEEF1948-C245-43FB-C395-2C07E4C6AB2D">Oct 27, 2018  5:51:15 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey if u havent checked on griff yet would you feed him? Two handfuls of food, food is in pantry on floor</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BEBEFCE3-A521-47F3-82AE-5D43470DFE51">Oct 27, 2018  5:51:26 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes ma&apos;am </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C2FF354-DF62-A73E-1521-FB8EA92E9F63">Feb 12, 2019  5:47:08 PM</a> (Read by you after 56 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Any chance u could check on griff, or is it raining there?  Dont do it if raining. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C60932AE-7DEC-40B1-A887-8693AB2B52BA">Feb 12, 2019  5:48:32 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m at the mall. I can check on him when I get on.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4504740B-6A4A-0917-001F-9E2432E10D29">Feb 12, 2019  5:49:21 PM</a> (Read by you after 46 minutes, 58 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Check with me first. I might be home. Thx</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3D1116AB-C615-4CE4-9D31-71F4DB8B7413">Mar 16, 2019 11:17:08 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">U checked on the dog right?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0650553-5647-415C-9FC3-EE64E789B682">Apr 03, 2019  6:24:48 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom wants to know if y&apos;all want to go eat</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=724754CF-7EAC-AE42-44D9-FBB678BC2980">Apr 03, 2019  6:34:46 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">We want to go to catch 22. That work? I am leaving tennis, be home by 7.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9C242C4A-D6F9-44BF-9AFA-5FBDC6FBDA7A">Apr 03, 2019  6:35:04 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can u text my mom?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=73033348-3309-6AD9-2CE6-E69B05119464">Aug 25, 2019  4:20:42 PM</a> (Read by you after 2 hours, 42 minutes, 32 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey honey. Im sorry about yohr aunt. I e got a bunch of bkaxk dressrs for u to try on. Cs
+An i drop them off?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1AA66667-2317-4DBB-8137-868E69C4CA9D">Sep 01, 2019  9:51:48 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We&apos;ll be back by <u>7 am</u>. How&apos;s the dog?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=280F6626-5057-9365-BF50-4B607FF379B5">Sep 01, 2019  9:55:18 PM</a> (Read by you after 27 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Fine
+ Misses u
+ Making friends with griff! I haven&apos;t been by <u>tonight</u> but was there  <u>at noon</u>. 
+ </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C99A0264-1A84-ED70-8F4C-557D0C3B2390">Sep 01, 2019  9:55:38 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ill stop by in 30 min</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=19F2B409-9098-4932-A09E-492A027D712D">Sep 01, 2019  9:55:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1032ABCB-352B-4108-85E9-10E8683CF047">Jan 29, 2022  7:40:39 PM</a> (Read by you after 16 hours, 10 minutes, 55 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/69/69f380d3130cf2d26308cdda63a4df6de8ea49e9" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B9B4CACD-5BFA-42A8-B1DF-F9AEDF28B775">Oct 02, 2022 10:49:27 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We are about 30 minutes away</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A99F5637-B917-4E67-BFF6-F73382E5F522">Oct 02, 2022 10:53:47 AM</a> (Read by you after 29 minutes, 16 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">We are parked around back, so try to park that way as well.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A9069B81-7820-4847-8443-4FC109616E18">Oct 02, 2022 11:23:09 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We just got here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=963CBB17-8555-48C7-A196-672564D7F3E9">Oct 02, 2022 11:30:47 AM</a> (Read by you after 34 minutes, 6 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Park and walk in. Can u see us on life 360?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0CEA791F-3DC4-4931-9D38-4C8C96383C9B">May 30, 2024  8:20:17 AM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">If you’re in a position near the stage, could you get a clearer video of Riley? We’re all the way at the back so it’s grainy from here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A3D72536-37C7-4631-999E-5D2DDFDBD04A">May 30, 2024  8:20:54 AM</a> (Read by you after 9 minutes, 58 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll try! I’m in the middle. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C5286A49-F9F6-4123-9A52-1CCAC6B36437">May 30, 2024  8:30:56 AM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EFD2BCC6-62DB-4642-8922-D42658568DF3">May 30, 2024  8:57:23 AM</a> (Read by you after 27 days, 3 hours, 31 minutes, 27 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/d9/d93a7686a2c08bf7ecd8648f1b3eb07cd5117ea1" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5c/5cf998b1d72e0f242625926b844e0ae429f03b3d" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/45/45cd22df199b31cd144f3853a5eaf9d48b9504bf" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/1b/1b38173c917dc3d0514b6a43eded4b7c91187361" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/c0/c05de5491f88451017e48243e98b073625866994" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5d/5d61de2a316907b5e752aae52bb58e977b00d97f" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E0EC0441-A919-455F-8970-B9989A0DE47A">May 30, 2024  8:57:23 AM</a> (Read by you after 27 days, 3 hours, 31 minutes, 27 seconds)</span>
+<span class="sender">Kelley Parr</span></p>
+<hr><div class="message_part">
+<span class="bubble">Not very clear. Sorry </span>
+</div>
+</div>
+</div>
+</body></html>

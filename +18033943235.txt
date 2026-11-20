@@ -1,0 +1,156 @@
+May 17, 2021  7:38:38 PM (Read by them after 1 second)
+Me
+I have a question
+
+May 17, 2021  7:40:13 PM (Read by them after 8 seconds)
+Me
+Welk actually I kinda want u to check something bc minitab forgot to give me the r-value and R-sq, but gave me adjusted as a percentage
+
+May 17, 2021  7:47:25 PM (Read by you after 4 seconds)
+Alyssa Raynor
+Ok sure 
+
+May 17, 2021  7:48:01 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5c/5cf16241f08014837f6a9908ccce95cd50d5f888
+
+May 17, 2021  7:48:14 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/2d/2d498631339a93520ac451853a071419c9c456f9
+
+May 17, 2021  7:49:21 PM (Read by them after 1 second)
+Me
+This is everything minitab gave me. I don’t have a straight up r-value (unless it’s that -0.22 at the bottom) or r-sq value but I think I may have found calculated it
+
+May 17, 2021  7:49:36 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/7f/7ffba96a03166f6fcf844b6190dfd988437d1bba
+
+May 17, 2021  7:49:49 PM
+Alyssa Raynor
+Yeah usually software will give you r squared instead of just r
+
+May 17, 2021  7:50:03 PM (Read by you after 1 second)
+Alyssa Raynor
+All you have to do is take the square root of that value to find r 
+
+May 17, 2021  7:50:35 PM
+Alyssa Raynor
+You usually want to use the first r squared value that it provides as well 
+
+May 17, 2021  7:51:25 PM (Read by them after 1 second)
+Me
+But, and I know this might sound stupid, I only have r-sq-adj and not straight up r-sq and I don’t know the difference but I know they’re not the same.
+
+May 17, 2021  7:51:57 PM
+Alyssa Raynor
+Well it looks like from the first pic that you’re r squared is actually 0 
+
+May 17, 2021  7:52:16 PM (Read by them after 1 second)
+Me
+Well crap
+
+May 17, 2021  7:52:26 PM (Read by you after 1 second)
+Alyssa Raynor
+Idk I guess I’d just go with the adjusted one then 
+
+May 17, 2021  7:52:38 PM
+Alyssa Raynor
+No problem if it’s 0 
+
+May 17, 2021  7:53:01 PM
+Alyssa Raynor
+You could say that the r value was “approximately 0” if that makes you feel better 
+
+May 17, 2021  7:53:10 PM
+Me
+I think it’s that thing at the bottom bc that looks like the scale for PCC
+
+May 17, 2021  7:53:10 PM (Read by you after 1 second)
+Alyssa Raynor
+And technically it is approximately 0
+
+May 17, 2021  7:53:18 PM
+Alyssa Raynor
+Ohh I see 
+
+May 17, 2021  7:53:37 PM (Read by you after 1 second)
+Alyssa Raynor
+Well that value is red so it looks like it might’ve been flagged as an outlier 
+
+May 17, 2021  7:53:53 PM
+Me
+Oh, I meant this
+
+May 17, 2021  7:54:14 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3f/3fee141d396419df8caef26871db62d35bceabb0
+
+May 17, 2021  7:54:18 PM (Read by them after 1 second)
+Me
+Sorry for the confusion
+
+May 17, 2021  7:54:37 PM (Read by you after 10 seconds)
+Alyssa Raynor
+Oh ok I see 
+
+May 17, 2021  7:54:41 PM (Read by you after 6 seconds)
+Alyssa Raynor
+Hmm that is confusing 
+
+May 17, 2021  7:55:24 PM (Read by them after 1 second)
+Me
+Thing is when u sq-rt 4.63% u get approx 0.22
+
+May 17, 2021  7:55:39 PM (Read by you after 4 seconds)
+Alyssa Raynor
+Yeah that sounds right 
+
+May 17, 2021  7:55:48 PM
+Alyssa Raynor
+I guess I’d go with that 
+
+May 17, 2021  7:55:51 PM
+Me
+Okay thank you!
+
+May 17, 2021  7:55:59 PM
+Me
+I’m sorry, it’s a mess
+
+May 17, 2021  7:56:08 PM (Read by you after 11 minutes, 24 seconds)
+Alyssa Raynor
+No problem! 
+
+May 17, 2021  7:56:19 PM (Read by you after 11 minutes, 13 seconds)
+Alyssa Raynor
+I understand haha statistics are really confusing 
+
+May 17, 2021  8:07:40 PM (Read by them after 1 second)
+Me
+another question
+
+May 17, 2021  8:08:29 PM (Read by them after 8 seconds)
+Me
+Is there an official divided PCC for types of association? I want to know the interval for weak negative.
+
+May 17, 2021  8:27:47 PM (Read by you after 5 seconds)
+Alyssa Raynor
+Sorry what do you mean by PCC? 
+
+May 17, 2021  8:28:05 PM (Read by them after 1 second)
+Me
+Pearson correlation coefficient
+
+May 17, 2021  8:28:12 PM
+Alyssa Raynor
+Ohh yeah 
+
+May 17, 2021  8:28:16 PM
+Alyssa Raynor
+I’m not sure 
+
+May 17, 2021  8:28:49 PM
+Alyssa Raynor
+A linear regression t test gives you an interval for slope so I don’t think you can get an interval for r
+

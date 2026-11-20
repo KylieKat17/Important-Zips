@@ -1,0 +1,737 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E1E86B7B-E3F2-482B-B2F6-329C0296B887">Jun 09, 2025 11:47:54 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Would either of you happen to own an Othello board?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=860F5761-82B2-4DBD-BFB1-34E36FD4BFFA">Jun 09, 2025 11:48:12 PM</a> (Read by you after 3 seconds)</span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have one at my dads</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=978CE00F-81E3-483F-910C-412EF11D3BBA">Jun 09, 2025 11:48:34 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">May I borrow it sometime soon</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B02DC2C-3518-458D-B1D6-F75280B892C5">Jun 09, 2025 11:48:48 PM</a> </span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure? Why do you need an othello board?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C5EC757-BC45-4E06-A075-7E081F31A337">Jun 09, 2025 11:49:04 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m coding a functional one and still don’t understand what the goal is other than you want to have the most pieces in your color on the board</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0BC3E0C-5F94-492A-A80E-3B9D46C1C8BB">Jun 09, 2025 11:49:26 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ngl, I thought it was just a piece of literature before last month</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=03B2DC91-95DC-4F2B-A6FC-4FCB9DEF8894">Jun 09, 2025 11:50:35 PM</a> </span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ah gotcha! Yeah this game has a lot of weird history (I suck at it) I know the rules cause I watched an anime about it once but that’s about it </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E1C5115-AE7F-490E-9436-785A6D52A2E9">Jun 09, 2025 11:50:42 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Or how the flipping mechanics actually work</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=78A6513D-A578-438F-BA4B-389547AF08A3">Jun 09, 2025 11:50:50 PM</a> </span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll pick up the board soon, when do you want it by?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0382E887-B396-4FD3-8B25-7F287834DF68">Jun 09, 2025 11:51:03 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I tried playing against a computer and it really does just feel like clicking random squares</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=12A06318-2950-4D76-B68A-82189EA2B1E8">Jun 09, 2025 11:51:28 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble"><u>Friday</u> if possible? Unless you guys are in Edisto</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9B9F0B0B-A590-4308-BC3B-812DF475C242">Jun 09, 2025 11:51:59 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We’re headed there <u>Friday</u> I’ll pick it up after work one day then or we can grab it on the way out to Edisto <u>Friday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1EA98AA1-9349-4A55-B988-CB9B2ED4A4C1">Jun 09, 2025 11:52:50 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh, I’m not in Edisto. I’ve got work and can’t go (like always 😔)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=34E71231-CF49-429B-BFB4-3BC02EA3F990">Jun 09, 2025 11:52:59 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Big sad</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B4DC61FF-8CF4-4F2B-9B4D-E195565612E2">Jun 09, 2025 11:53:27 PM</a> </span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Okie I’ll cop it and have it by <u>Friday morning</u> if that works</span>
+</div>
+<div class="replies">
+<div class="reply" id="9F3FB0FF-5874-4D23-97B4-645C455F576C"><div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9F3FB0FF-5874-4D23-97B4-645C455F576C">Jun 09, 2025 11:54:13 PM</a> </span>
+<span class="reply_anchor"><a title="View in context" href="#r-9F3FB0FF-5874-4D23-97B4-645C455F576C">⇲</a></span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Perfect! Do you want me to get it from y’all or y’all to drop it by my work on your way out?</span>
+</div>
+</div>
+</div>
+</div>
+<div class="reply" id="B22910EB-E0E2-478B-BCA3-C589524904D3"><div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B22910EB-E0E2-478B-BCA3-C589524904D3">Jun 09, 2025 11:54:23 PM</a> </span>
+<span class="reply_anchor"><a title="View in context" href="#r-B22910EB-E0E2-478B-BCA3-C589524904D3">⇲</a></span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m at the Bank of America building on Gervais</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E6A310C6-C607-4EA6-8B0A-B7DCF7C39A7B">Jun 09, 2025 11:53:44 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">My dad’s in town for the weekend and he probably knows how to play so I’m gonna use him as a guinea pig</span>
+</div>
+</div>
+</div>
+<div class="message" id="r-9F3FB0FF-5874-4D23-97B4-645C455F576C">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9F3FB0FF-5874-4D23-97B4-645C455F576C">Jun 09, 2025 11:54:13 PM</a> </span>
+<span class="reply_anchor"><a title="View in thread" href="#9F3FB0FF-5874-4D23-97B4-645C455F576C">⇱</a></span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Perfect! Do you want me to get it from y’all or y’all to drop it by my work on your way out?</span>
+</div>
+<span class="reply_context">This message responded to an earlier message.</span>
+</div>
+</div>
+<div class="message" id="r-B22910EB-E0E2-478B-BCA3-C589524904D3">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B22910EB-E0E2-478B-BCA3-C589524904D3">Jun 09, 2025 11:54:23 PM</a> </span>
+<span class="reply_anchor"><a title="View in thread" href="#B22910EB-E0E2-478B-BCA3-C589524904D3">⇱</a></span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m at the Bank of America building on Gervais</span>
+</div>
+<span class="reply_context">This message responded to an earlier message.</span>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F5F8165A-CA18-4CC5-812E-419DE47A0F1E">Jun 09, 2025 11:54:36 PM</a> (Read by you after 57 seconds)</span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heard! Either works whichever is more convenient to you since we will be out anyways </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D69B438D-25F0-4B8D-BED5-A7B6569600EA">Jun 09, 2025 11:55:27 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Jake Powers</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We also have to stop by the spa on the way out so there’s an option to do a drop off then</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7F5791AE-5CE4-487A-9C17-69035FFCDBC6">Jun 13, 2025  9:45:04 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Lmk when y’all are dropping the game off?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=692CCC83-BECB-4374-BBA2-8D9E441EBC37">Jun 13, 2025  9:45:36 AM</a> (Read by you after 11 seconds)</span>
+<span class="sender">Jake Powers</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">At your office yeah?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0C8EBC6A-6B0E-475B-8A22-FA213BA49393">Jun 13, 2025  9:45:53 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes please</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8D18E012-CAAE-4923-B19A-5E112A1C3431">Jun 13, 2025 12:12:31 PM</a> (Read by you after 1 minute, 39 seconds)</span>
+<span class="sender">Jake Powers</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">10 min out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3C6A3B4-B9A1-4C66-A74F-6E010E48BE58">Jun 13, 2025 12:14:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=32D81C68-C218-41F9-9390-CF3BDADAFC2F">Jun 13, 2025 12:14:33 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Lemme know if you get lost on parking</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C558455-28F3-46B3-8E43-99BC5F5D9633">Jun 13, 2025 12:14:45 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Should just be able to go where the ATM is</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B8A410A7-3C2B-47CA-9AB7-275E2E4E1C30">Jun 13, 2025 12:24:04 PM</a> (Read by you after 26 seconds)</span>
+<span class="sender">Jake Powers</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Okay I’m outside by the ATM</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=590911A4-977F-4D59-9155-4E5098D9A086">Jun 13, 2025 12:24:34 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Otw down</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0D4E860-7BCC-460F-9EA6-D2F85DB92490">Jun 13, 2025 12:29:27 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you both!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DC52D174-C0EC-44FA-B1A1-C6A3EB525622">Jun 13, 2025 12:29:40 PM</a> (Read by you after 237 days, 1 hour, 11 minutes, 42 seconds)</span>
+<span class="sender">Kenzie Paddok</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Glad we could help!</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,577 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B77AB48C-7CB9-43A9-B003-E59F7310F7E8">Aug 17, 2023 11:46:51 PM</a> (Read by you after 19 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">go to the area desk in maudlin </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B082B1A9-DCB9-41E4-B451-4498B8DD232A">Aug 17, 2023 11:47:26 PM</a> </span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">at least whenever i got locked out when living on west campus i’d go to the deschamps area desk and the one for east campus is in mauldin</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=590A8E7C-A36D-4C62-8106-84358C5BAF82">Aug 17, 2023 11:47:40 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=402B5BE2-BA74-46F6-A43E-64CE239E1C8A">Aug 17, 2023 11:48:03 PM</a> </span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">ofc queen see u <u>tomorrow</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E4F3D74A-22CF-43FC-975F-BFB3AFBAAA9B">Aug 17, 2023 11:48:57 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">See you <u>tomorrow</u>!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=97494434-467C-4206-9559-063C1AE79AEC">Aug 21, 2023  6:24:17 PM</a> (Read by you after 1 minute, 39 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">we r going to sit in moes cause it’s hot</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ACE921E8-15F6-4426-A33A-9775C84DCCD9">Aug 21, 2023  6:38:55 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="shared_location"><hr>Started sharing location!</span>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FE48DBF7-4FC4-466F-92D8-921155C1959D">Aug 28, 2023 10:58:44 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="data:?ver=50&data=rB3d27_tc7hD0.%26c6aa01tE.%3D233%25T7dW9.1160LA9%26%3DLdgyDCGp907%2618rt51ssC6%3D0bFb56o3d,97,3pe9gno-74%25W08228%3Dlr19m0c4s1C%3D%3D98uCuaraas.oY7e?0C11te8y%3D3l-eACgbs0C-1e2aeUhl0Ch.0ee,H4d2lo-,S%26-orvY7t6Dg7Clr4E.Fc%25CI.%3Dt.,%26oBty4l,ar4yaY17,T0yr1n9tt509R2pnN.%2606o0,3b2r%3D0cC40z,l0c%3DC0_ee2Y8yC8!m9d114A7eTmgpot%26%3D01btso9e63C-cHh%25l-n%2513i%25dm6_r03r%25n8eom6%26sb0-%26hDni,.oi40iklN,oaa,_1sond0vF001d%25c3%253a09huADeo%3Ds2W.ot9%25a9qr.%261190.a,6v'_8Ch0%3D00e%26st%3D%25Cc%264m4naruC5n8io9sc2gAq,,%269aii7Yr40c910Agh%3D,%25lnorI6,y,FD,,01%2547tyta3H%3Dn1u%25Tw0e127%263%267%26lq2rAa82%250So2rse1o.s732hr3od0550%25e2esrile4lS7y,a2,4C4uo%25pd%3D0"><div class="app_header"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/a0/a0c2bd3a3564687778a9beab326b12c9dbf6924b" loading="lazy"><div class="name">GamePigeon</div><div class="ldtext">Word Hunt</div></div><div class="app_footer"><div class="caption">Let's play Word Hunt!</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C19221E5-CDF0-4816-9347-56482D5D6BBB">Aug 28, 2023 11:00:08 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="data:?ver=50&data=%26e,I40Nol.6c79%25D%25_0Y.-093e0390124CChCII1,900T.o.c7N.oR%25N2C-gi,4%257It%25yG5rezh%25.9EL,cL0%25eSa0%3DL970cI1sv,1s0e024d2C1sA3diE611037ScTCt7C_7u0dn0yTI%250T%266E5%26he0.71%3DA.%25nC3r00%3D%3DIh%25%25ln0rI,0TI1eeb0C3b4m.0rlCCn8%26%25c0Cc,19bo7742o0sLC%3D%25,c099cC4Cbsl6nl1%2507CioLC00%3D00i57,0atv08EL-Y7uio%25e5,000%25,eT0-Eo%26D0%26%2540A9o1yh%25-1S%26IIdt,k,E0%25Taa3d,hk%26%3DNI.Cr8oa,it?C,2c4l%3Dslcrg7AW0rutt11sES3p9t00eyNo8N0FYGr2ogroE7%3D07R0oaE_1.8S767%258r,s-,I%26I%25.677%3DwG1Yi0SE3eSC47T9we3,olt09C4C734r0e500s0,C60ehA_7ea00%25,Da9Y.G3n%25%257No,2%3D%3D7d00oo_T,9tL9g%25a.,3C0.%25B67gTs,,61L02oCss.uW09N0r%26v%3D%25RS201090y7cFERmDs00.ldC7C7go%2510d2bYsE10,%260CCC25%25%25a%25s,N1N%2698rGc9042lcs%25%25o1gy076T0SArlc%25lACl4s0s70yo1,C%26%25CcsC1%2670,4e3Dl7GAR6bN,7%26,7,%25Ce0Trdiro%250g.an8%25C0oC07.0aC%26iai1lD%25tr_pn%25a11o7003a,0Lo0NNEHc,%3D97TmC,0hAtoCCc72I%25oCd2TBIr2h00.0lo.G7T8T0Nb27C7%3D0.031dN0C%25073rI0%3Dte.ts1made,Tb4o_7tFrs1,y97U6c507sso_hlc7r0000Te3E9%2520Fr_oe0pi00000778hr9%25ame.roCC07w,-T0oy0a0llIC3bw,d,6N,SI,vhs,9CpA%25h5o%3D3qcyIr7.a%25a2lC8Eda00_u.ChSC-8"><div class="app_header"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/65/65417682c8e2a0b929dc2ed28a0977379a0614c7" loading="lazy"><div class="name">GamePigeon</div><div class="ldtext">Word Hunt</div></div><div class="app_footer"><div class="caption">Your move.</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1515E4F2-3822-40E6-978A-49805DF94208">Aug 28, 2023 11:00:22 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="data:?ver=50&data=%265cs-zY,A4e747,E,c6%3D%2523db0%262C%250_14.0.n0a3eLN00aL0cCezl0A71g,%25S27le%3DbpyIv1o.7yCeh1tCV9F%25r04s%253ric6%253Aa%252le,%3Do%25eN0.9Cb4%25EgA-.1,s72EEh29,1sth1s0oc6r750o.oeCe,o.l06hocr4BdO14sI,_5yar9sCi%258Dwd4%3D4r%25nG1tn6tcrt17%26Dd1oL3r2rlr7CrCC%252%26G,S7LsO7aI%26135G0e0e6p8doC%26130%25,5LN_hv79i9%253L210%250h01S8alcEIo8l2Lb0ioImo4sa%25%25I30%26ITYT%2596lahd6D,os%2500C27%25%3D7esN-gE2AC20C%25%25L,Cl7k4,00%3D545,7nsGocer7o06tC0oop2r649Ce7d70-023m6%25L%26-_Vw8TC%25y3sI,I70x0,0,D975HiCD,zG._10CT,0gx4CeACoo413c%25N7S5aaE0,l7tmc8rrr79E7CA9uoHbN7ig0lCs0NR5y9%253r5i3,F6e,6-h33N0n0,0,l715C707Ac0lG%3D1ySa%26aN%25c8C5,898IE4Y-I%3DC%26C17E1b0o%3D0315T22YehsBae,I%25T4.o1h3l8I10627%260A%262G155%3Dx%26lF89.995Vs5c3-nA%25%25EeT44%2557.2r3t-890it61760%25srT%3D.ITh8CYaNSU1803dNC1orCC7C5%3DrT%26ia7,1E20B%25yTI70ol.3-z,.N7bem7.3_%25%25I.692GyWr7077_73cbL%25T97I79t74N.%25C77To3oiSwT%3DrcN%256N_0rd04aliroToCc.%3Dnt6E0o7EH%2602AU_s03u0%3D,_lr471kUTaL2EACShuD3dIC3di-C8C-3,%2501,d%26-,0Fs0w51o7q49sEul,g%262-1%25ILT7%25%26CT.%25Cdg6%26CER1r0C-C2uCN%25o%2533h96bo%3De8T4?S,087.,gIIal7%26yA,nv160,E,aatdc.2nyR0-%25G0t.%3DeFp6sBEC%256CE4%259%250s2Ns47%3Dh2.o9w.9E5oA%250r3tz_RCC10sA7arTc29N%25-EE0%3DCc0YbLw4024%2521T7o75o4RIt7e%3DAU3COI.2s,24siron,7%26hCav,%3D97,C90TsT7C5eIe7%3D5e7sHl%25mI76p16.%25co3c,C4dCN0w6tC2"><div class="app_header"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/76/768910c31981f8a204a1028e3b411e8e5e68cb98" loading="lazy"><div class="name">GamePigeon</div><div class="ldtext">Word Hunt</div></div><div class="app_footer"><div class="caption">You Won!</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FA383DDA-DF7A-42D1-BEDB-8EC4BCE90321">Sep 08, 2023 11:24:31 PM</a> (Read by you after 23 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">venmo @eduardo-cea-1
+
+5 dollar</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6E2DB1FD-9B33-4A1F-A18E-99211F99BBC6">Mar 05, 2024  8:45:23 PM</a> (Read by you after 23 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">i lost my favorite pair of athletic shorts and i feel they could have gotten lost in the laundry so if u see aerie shorts that aren’t yours in ur laundry anywhere pls lmk</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=354CDE99-4130-4E19-904F-6325F0873A8D">Mar 05, 2024  9:07:41 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">If I see them I will</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3D4E68B1-457E-49C2-AF33-9046035F1384">Mar 05, 2024  9:07:48 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">What color are they?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A204103F-85EF-48E2-B6E8-45A24CD51AD4">Mar 05, 2024  9:07:53 PM</a> </span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">black </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D9433ED8-1FB0-447C-99CE-0E9854BB7EC2">Mar 05, 2024  9:08:10 PM</a> </span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">they’re like shorts but they have flare-y parts</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=93205DDB-0968-4262-8ED1-45B2F118CC4E">Mar 05, 2024  9:08:23 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">👍</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0B051F01-88A4-4048-807D-58EA51B48E9D">Mar 05, 2024  9:08:28 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://www.ae.com/us/en/p/aerie/bottoms/shorts/offline-by-aerie-real-me-crossover-flowy-short/1706_1217_073?menu=cat1090003"><div class="app_header"><img src="http://s7d2.scene7.com/is/image/aeo/1706_1217_073_of" loading="lazy" onerror="this.style.display='none'"><div class="name">American Eagle Outfitters</div></div><div class="app_footer"><div class="caption">OFFLINE By Aerie Real Me Crossover Flowy Short</div><div class="subcaption">There aren’t enough heart emojis in the world to describe these.</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D024C532-91C8-42AC-B384-9705BBB64767">Mar 05, 2024  9:08:28 PM</a> </span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">thank you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=099226DC-74E1-4031-97D3-08E30D91DE40">Mar 05, 2024  9:08:39 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Hailey Wiethoff</span></p>
+<hr><div class="message_part">
+<span class="bubble">i just don’t know if they got lost in the laundry but imma look in all my clothes when i get back</span>
+</div>
+</div>
+</div>
+</body></html>
