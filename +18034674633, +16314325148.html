@@ -1,0 +1,1502 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3B3B2222-B727-44E5-8939-7F4C1C2F8076">May 04, 2019  8:23:03 AM</a> (Read by you after 2 hours, 44 minutes, 40 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<div class="attachment"><a href="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/e7/e7259ae1cf76587302f4631e4e580e5ca08d4f19">Click to download Milstein Hospital Building.loc.vcf (830.00 B)</a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D70B0A06-75EF-4096-8BF8-C5B59F1D8400">May 04, 2019  9:42:47 AM</a> (Read by you after 1 hour, 24 minutes, 56 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5f/5fd117f2dd36925990ca4efa459ae40084547887" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E462740A-0CDE-4636-9BA8-2D8E602BA4D3">May 04, 2019  9:52:39 AM</a> (Read by you after 1 hour, 39 minutes, 42 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Awww</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=710FCB26-38F1-42F0-8392-E63B3B8C4DF1">May 04, 2019  9:52:46 AM</a> (Read by you after 1 hour, 39 minutes, 35 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love you safe flight!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2924CE72-C2E7-4342-B005-75047B63D3C8">May 04, 2019  9:53:53 AM</a> (Read by you after 1 hour, 38 minutes, 28 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Susan still picking us up!!! Oh well - dad sucks too!
+Doesn’t matter get to give you hugs </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=72B8D702-78D6-40F0-8837-5568596C39AC">May 04, 2019  9:54:27 AM</a> (Read by you after 1 hour, 37 minutes, 54 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yess</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C49FC515-7F99-4CCA-8F8D-5429C91F9B57">May 04, 2019  9:54:36 AM</a> (Read by you after 1 hour, 37 minutes, 45 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">So wait Susan ugh</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2C9B4B1C-73A9-496F-85E4-D171C788D604">May 04, 2019  9:54:51 AM</a> (Read by you after 1 hour, 37 minutes, 30 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">You shouldn’t asked Tom</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=93133FF8-6CF6-47D8-9FE8-560416917F90">May 04, 2019  9:54:56 AM</a> (Read by you after 1 hour, 37 minutes, 25 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">He totally would’ve</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F65BAD16-E626-4CAE-A7BC-CF3B543F87E7">May 04, 2019  9:56:12 AM</a> (Read by you after 1 hour, 36 minutes, 9 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">What was the scent for batiste you said?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EE4DA66C-6948-4A48-8812-B399DAD02171">May 04, 2019  9:56:18 AM</a> (Read by you after 1 hour, 36 minutes, 3 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">It’s fine - forgot - still getting dads truck but will drive yours to city - I don’t care if it sits in driveway - lol
+What if you get out and need to  bring all to get you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C83CA929-A2CB-4169-A923-6530DBCE1F99">May 04, 2019  9:56:38 AM</a> (Read by you after 1 hour, 35 minutes, 43 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/73/73a4cb81826acd8818590b4e2d93af6d2ca11ee5" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=644BB262-3BB1-4853-BA7A-230BFA2B4876">May 04, 2019  9:56:39 AM</a> (Read by you after 1 hour, 35 minutes, 42 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes that’s true</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=879224DE-4F30-462D-A1D0-4F1EF6E56C61">May 04, 2019  9:56:44 AM</a> (Read by you after 1 hour, 35 minutes, 37 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Tom got tropical </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D68E733-8874-4B0E-81F5-A5C1B9C915D8">May 04, 2019  9:56:46 AM</a> (Read by you after 1 hour, 35 minutes, 35 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E49F4B0D-DF6D-4295-AE80-F513316B1FAB">May 04, 2019  9:56:52 AM</a> (Read by you after 1 hour, 35 minutes, 29 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">It’s good too</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F7BD054D-604B-45DD-B00E-1A52B99D1D64">May 04, 2019  9:57:01 AM</a> (Read by you after 1 hour, 35 minutes, 20 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Anything except the one one got</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=848DF1A5-367A-4AE9-A693-6879106EA2D9">May 04, 2019  9:57:15 AM</a> (Read by you after 1 hour, 35 minutes, 6 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I smell like ass flower </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F31FDB58-CF63-4ADD-8C76-F68965ACE0DD">May 04, 2019  9:57:18 AM</a> (Read by you after 1 hour, 35 minutes, 3 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">😂😂</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B31A2223-60FB-44A0-B6E8-1F367092A30C">May 04, 2019  9:59:16 AM</a> (Read by you after 1 hour, 33 minutes, 5 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble"> Mom</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1097957-4626-4064-9D2A-439B6AFC2D27">May 04, 2019 10:11:07 AM</a> (Read by you after 1 hour, 21 minutes, 14 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love you all so much!!! </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=97DBB853-F36B-47AB-886C-1247BBB55761">May 04, 2019 10:11:13 AM</a> (Read by you after 1 hour, 21 minutes, 8 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can not wait!!! </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=46BFA799-60CD-4AF3-AC57-77C1C5269232">May 04, 2019 10:11:23 AM</a> (Read by you after 1 hour, 20 minutes, 58 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">❤️🥰😘</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9ECAB2CD-0012-44FD-9BDE-2F0D262D0E54">May 04, 2019 12:56:32 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Are you here yet?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9D447BDE-C575-4389-8C28-6A39474F92AF">May 04, 2019 12:56:43 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=661CC372-E5C5-4312-833C-194C17030B16">May 04, 2019 12:56:47 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We are at the house</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=95338EC9-7226-4B99-947D-DF540D8A6982">May 04, 2019 12:56:51 PM</a> </span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yeaaaa</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=937420B3-FDE1-4C66-9502-2375FC27E502">May 04, 2019 12:56:54 PM</a> </span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Cool</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0B2B7967-60B1-4C9D-BD1B-4C6442EA7AE0">May 04, 2019 12:57:06 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Matt and Tom there?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C1CD0D2A-6E83-45A4-A1B6-68FD57D54E87">May 04, 2019  1:19:46 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/2f/2ff187f162cdb74774b31f707377b7e81200e231" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/16/1649d92858de0a2f7eb99e56240668307663b3ae" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/af/affa9c7d04aff32a19679a53ca6c63c9df73097e" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E927C963-77F1-4E64-BDA8-00EB52C7BC05">May 04, 2019  8:44:20 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Are coming home <u>tonight</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A6463577-07DA-4B73-90D1-836ED146FB8A">May 04, 2019  9:27:35 PM</a> (Read by you after 1 hour, 55 minutes, 4 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">On way now</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=173824A7-109E-4968-AB3A-3993EDBD76E5">May 05, 2019  5:36:28 PM</a> (Read by you after 22 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://share.icloud.com/photos/0dxbGfHYAtr8SBbBaGcbJlc3w#New_York_Presbyterian_Hospital_-_Edward_S_Harkness_Eye_Institute"><div class="app_header"><div class="name">Photos</div><div class="ldtext">New York Presbyterian Hospital - Edward S Harkness Eye Institute - 32 Photos</div></div><div class="app_footer"><div class="caption">New York Presbyterian Hospital - Edward S Harkness Eye Institute</div><div class="subcaption">32 Photos</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=36885212-ECB5-4C90-908D-A274958CAFF2">May 05, 2019 10:07:49 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We are on the way back</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6CD024D5-12C7-40AA-9C2F-F87EE7F1E7E5">May 05, 2019 10:08:38 PM</a> (Read by you after 24 minutes, 38 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">What time will you be here?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BBF9A2DD-0387-4A5C-B61A-AD1FB388D3AB">May 05, 2019 10:09:02 PM</a> (Read by you after 24 minutes, 14 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Text us when u get here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EC23D0E7-0E82-470A-A353-E6AFC2B74457">May 05, 2019 10:51:26 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B12B6A1-1D1D-45BC-9974-DBB1ED67618E">May 05, 2019 10:54:12 PM</a> (Read by you after 1 hour, 27 minutes, 53 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Coming</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A432B118-B0D9-46AE-8F09-263B6D210105">May 06, 2019 12:28:50 AM</a> (Read by you after 5 minutes, 18 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Made it to level 4 on cardiac 🎉</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7FF4AE38-677A-4134-914E-5E2F2F53016E">May 06, 2019  1:39:41 AM</a> (Read by you after 52 minutes, 5 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Home! Good job!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DC637577-EC6D-4AF9-A299-57C050C158AE">May 06, 2019  1:50:27 AM</a> (Read by you after 41 minutes, 19 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Phew ok good</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=91E9C3D0-AD1E-4964-AA40-FD67133473D4">May 06, 2019  1:50:33 AM</a> (Read by you after 41 minutes, 13 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Was waiting </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A2E3ECE9-6C7F-49C3-8818-5CE4917D2795">May 06, 2019  1:50:40 AM</a> (Read by you after 41 minutes, 6 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Make sure you’re safe</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B2A1A3CD-A8B3-426B-A680-61F666FF68CD">May 06, 2019  1:50:51 AM</a> (Read by you after 40 minutes, 55 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love you so very much 🥰🥰🥰</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CDFE537C-B1DA-492D-8B09-5A27701EDF04">May 06, 2019  1:51:14 AM</a> (Read by you after 40 minutes, 32 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom said she was gonna come <u>tomorrow</u> and I told her no dad was coming</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1BC00EC3-C3A6-4B5A-A577-ABACB1E64F0A">May 06, 2019  1:51:36 AM</a> (Read by you after 40 minutes, 10 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Lol</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BBC9A5A3-A5DC-46B5-BC10-0BE32705CA68">May 06, 2019  1:51:52 AM</a> (Read by you after 39 minutes, 54 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you I’ve seen her more than enough</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7F4362C4-E507-4A71-B342-EFD2E2488CA9">May 06, 2019  1:52:00 AM</a> (Read by you after 39 minutes, 46 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Lol</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4FF7A067-8E35-47B9-B89A-A623B4804CBA">May 06, 2019  1:52:05 AM</a> (Read by you after 39 minutes, 41 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Me too</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=40F6966A-6E7F-47F4-BAEF-1E7C692B25E9">May 06, 2019  1:52:14 AM</a> (Read by you after 39 minutes, 32 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ty for puppy 🐶</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CEDFCC9B-3252-470E-BD91-F2F56CEAF6D4">May 06, 2019  1:52:38 AM</a> (Read by you after 39 minutes, 8 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love u! Wish I could stay! </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4E8EAB65-D343-4CEB-B08C-A47FE0F4538D">May 06, 2019  1:53:01 AM</a> (Read by you after 38 minutes, 45 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Me too! 😭</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5466C5C9-6B5D-4917-BB7F-FC174EFCE3EA">May 06, 2019  1:53:14 AM</a> (Read by you after 38 minutes, 32 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">So wish we could live close by</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3AE7C4BF-6E2B-42D5-9733-246911CE4653">May 06, 2019  1:53:20 AM</a> (Read by you after 38 minutes, 26 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Each other</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C33D52F5-9229-4BC4-95FF-8E2C5EEC7945">May 06, 2019  1:53:27 AM</a> (Read by you after 38 minutes, 19 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">😘</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B3CA343D-FFA1-4FDD-8693-4F66C7C56BC1">May 06, 2019  1:55:03 AM</a> (Read by you after 36 minutes, 43 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sweet dreams ❤️❤️❤️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B9F86443-312D-4253-8F32-0FF977525098">May 06, 2019  6:05:10 AM</a> (Read by you after 1 hour, 9 minutes, 15 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Have a safe flight!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=74A1D62C-44E0-49FB-B346-15DEBF143418">May 06, 2019  7:14:38 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thx. Love you 😘 </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F130A70C-CE7B-49B3-A291-CA27194572EE">May 06, 2019  7:19:18 AM</a> (Read by you after 2 hours, 42 minutes, 11 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love you more ❤️😘🥰</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CC973E30-450F-4D4A-A30B-8E0D651C3FF9">May 06, 2019  9:12:21 AM</a> (Read by you after 49 minutes, 8 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">We landed. You good?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E394EE05-41B4-4D5C-8CD2-904DC6D934B2">May 06, 2019  9:13:40 AM</a> (Read by you after 47 minutes, 49 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Damn that was quick</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9F6197B2-9521-4B24-8CF0-CDD057782C52">May 06, 2019  9:14:31 AM</a> (Read by you after 46 minutes, 58 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">The guy next to me reeks so bad from the cdiff. I can’t stop gagging 🤢🤮</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C8E966F7-350E-4177-B2E5-E47BAB869461">May 06, 2019  9:30:41 AM</a> (Read by you after 30 minutes, 48 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ec/ece59694eeb5d3be34976372d59a4a7974603866" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">So much nicer here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=59FF30A7-FA32-4B90-AF2F-556C9DCC248D">May 06, 2019  9:30:41 AM</a> (Read by you after 30 minutes, 48 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Just took that pic</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=045C3597-3C40-4B3F-8AF8-5CD81D31BAC1">May 06, 2019  9:34:32 AM</a> (Read by you after 26 minutes, 57 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">God yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E40FB719-9EEF-4570-A819-FB4F5DF63798">May 06, 2019  9:34:39 AM</a> (Read by you after 26 minutes, 50 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Depressing here reall</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69208829-A683-4871-8B8E-8D53FAB0F341">May 06, 2019  9:36:04 AM</a> (Read by you after 25 minutes, 25 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Maybe I’ll get frontier for Memorial Day and come to you. We can take the kids out on the lake and fish, go to that place with the slides </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EF569128-3638-4FC1-B2A5-BDF5EE2515EB">May 06, 2019  9:48:59 AM</a> (Read by you after 12 minutes, 30 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">What was the info for the social worker(lung transplant team) that I needed to know. She’s coming <u>at 12:39</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5CD34B6F-59B3-4842-A7AF-B4D792A2F6CC">May 06, 2019 10:24:47 PM</a> (Read by you after 23 hours, 38 minutes, 8 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Not sure what you mean</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B3C2E4BC-9432-40BC-BA7A-9CDE813462DF">May 06, 2019 11:51:06 PM</a> (Read by you after 22 hours, 11 minutes, 49 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Like how to answer her questions for the lung transplant evaluation </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6D628879-F85A-445E-995A-73307C9ABC03">May 07, 2019  7:54:15 PM</a> (Read by you after 2 hours, 8 minutes, 40 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Miss you all so much!! ❤️❤️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8B177526-BBC5-4C5C-8736-B8EA071BDFF6">May 07, 2019  7:54:50 PM</a> (Read by you after 2 hours, 8 minutes, 5 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">How was dads visit?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9C3A8566-224B-428A-AC2D-80F191A59218">May 07, 2019  7:54:59 PM</a> (Read by you after 2 hours, 7 minutes, 56 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Short</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DDBC1416-FC08-4A79-9DF9-927A2DDD049D">May 07, 2019  7:55:06 PM</a> (Read by you after 2 hours, 7 minutes, 49 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Literally 40 minutes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ED790955-8E4E-4D5B-A783-03CE69408066">May 07, 2019  7:55:14 PM</a> (Read by you after 2 hours, 7 minutes, 41 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">What?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B9773C77-E043-4490-94D6-F6F612E862E6">May 07, 2019  7:56:16 PM</a> (Read by you after 2 hours, 6 minutes, 39 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Then pt came for me and he said..Susan and I are gonna go eat at the cafeteria and then head out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AEE7BDA6-33F5-4BD5-8A04-0F6CC1F4D8C3">May 07, 2019  7:56:35 PM</a> (Read by you after 2 hours, 6 minutes, 20 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I was like oh I’ll be back on 10 minutes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6E64DED5-9A6D-4AD5-B34C-5542E4A94090">May 07, 2019  7:56:45 PM</a> (Read by you after 2 hours, 6 minutes, 10 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Well my day sucked! Had a break caliper go bad... wtf
+$652 later!!!
+
+So sorry
+Why did Susan come????</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=858EA023-769D-4683-AB5A-C9BC948DFC2C">May 07, 2019  7:57:02 PM</a> (Read by you after 2 hours, 5 minutes, 53 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Let me go potty and come right back...</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7F0999C5-44AE-485B-A525-3BE737664A15">May 07, 2019  7:57:06 PM</a> (Read by you after 2 hours, 5 minutes, 49 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">So sorry</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3CEBDE18-2F94-40EA-B160-97A311667382">May 07, 2019  7:57:16 PM</a> (Read by you after 2 hours, 5 minutes, 39 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">It’s ok it was nice to see them</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4EDA1BBA-9498-468F-B85B-E22DB51D564B">May 07, 2019  7:57:23 PM</a> (Read by you after 2 hours, 5 minutes, 32 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Brb</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1847C08-339D-422F-AC96-45FD558499EE">May 07, 2019  8:54:02 PM</a> (Read by you after 1 hour, 8 minutes, 53 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">All iv meds are finished, pump I on now full strength. Now we wait 🙏🙏🙏</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4CBFAF89-6A60-4FB7-8CC6-5CB340B69CC8">May 07, 2019  8:56:45 PM</a> (Read by you after 1 hour, 6 minutes, 10 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/39/39a3067a6971e8709d8d1e45269546d6df39a36d" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=775B8988-9F38-4C69-A113-2F6762B05BE0">May 07, 2019 10:03:07 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Awesome </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1ED54967-6F26-4C70-923E-A5FE9D52A918">May 07, 2019 10:16:13 PM</a> (Read by you after 9 hours, 28 minutes, 48 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">❤️😘</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ED0279E2-1DED-4146-92FB-83118C134497">May 09, 2019  7:21:09 AM</a> (Read by you after 10 hours, 54 minutes, 25 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">How is it going?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=26005437-0222-4FDC-9842-D7A98DB841AD">May 09, 2019  8:13:47 AM</a> (Read by you after 10 hours, 1 minute, 47 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">GM I am ok. My muscles are so weak and I am having a lot of site pain, but it’s getting better with each hour</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F83AFE39-97CA-41BF-9B46-3C7CFD2665DD">May 09, 2019  9:39:30 AM</a> (Read by you after 8 hours, 36 minutes, 4 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Out of icu?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6B2094BA-77C5-4DC9-9445-561147A92D47">May 09, 2019  9:41:09 AM</a> (Read by you after 8 hours, 34 minutes, 25 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I got home last night! 🎉🎉🎉</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0C20A2FB-6C05-4645-B7EF-F530ED66CC55">May 09, 2019  9:41:33 AM</a> (Read by you after 8 hours, 34 minutes, 1 second)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Matt said mommy you gotta shower you smell like hospital lol</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A13F5691-6C5B-49F6-A400-72D7400F58D8">May 09, 2019  9:42:33 AM</a> (Read by you after 8 hours, 33 minutes, 1 second)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have so much site pain, redness and itchiness <u>yesterday</u> and <u>today</u>. I feel like I just got home from the moon</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C9FD5FFC-856B-4602-BFCD-27EF224A2FA8">May 09, 2019  9:43:35 AM</a> (Read by you after 8 hours, 31 minutes, 59 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom and dennis drove me home, then we picked up danny and went straight to Hoi Ming’s to eat. Anthony jr and Matthew me is there which was wonderful</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BF3FE3B3-F6AA-4EDF-960A-E25378CCA54A">May 09, 2019  9:44:03 AM</a> (Read by you after 8 hours, 31 minutes, 31 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<div class="attachment"><video controls> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ec/ecf74aaffdb23a33d3b12d95c66b830ae61d5a75" type="quicktime"> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ec/ecf74aaffdb23a33d3b12d95c66b830ae61d5a75"> </video></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8BCD5049-C092-44D7-85C3-207B0494C4BE">May 09, 2019  9:44:56 AM</a> (Read by you after 8 hours, 30 minutes, 38 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Finally got to sing Happy Birthday to Danny. 😍</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1B2D7E61-996A-4CA9-BBEC-02754A3679C5">May 09, 2019 11:33:07 AM</a> (Read by you after 6 hours, 42 minutes, 27 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love u</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CA1B89E1-7FB3-40A2-B794-B00DD4294FF4">May 09, 2019  1:12:16 PM</a> (Read by you after 5 hours, 3 minutes, 18 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">❤️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3BFD505-B510-467D-803D-304A25A1F935">May 11, 2019 10:26:12 AM</a> (Read by you after 11 minutes, 22 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good morning! 😘 So sorry my car was a filthy dirty mess when you drove it! <u>Yesterday</u> was my first day driving and back to school and I was horrified to see my messy car. 😝</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7A18B75-8193-4A2B-BCE7-262A77B38F4B">May 11, 2019 10:31:19 AM</a> (Read by you after 6 minutes, 15 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Really, I’m just glad you are alive!!! And happy to see Tom’s was messy too!!! 😂</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B8ACC031-668E-4ECA-AF26-24730786D880">May 11, 2019 10:31:39 AM</a> (Read by you after 5 minutes, 55 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yesss he told me!! </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7650BE5-EF60-48FD-93E3-725F89F40D37">May 11, 2019 10:31:56 AM</a> (Read by you after 5 minutes, 38 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m like no way it was messy! He’s like yes can u believe it!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=96A78BFD-37C9-4CD2-A94B-2C31AE33274D">May 11, 2019 10:32:22 AM</a> (Read by you after 5 minutes, 12 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">He does eat in his car a lot so I’m sure it was crumbs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3BE54139-95E5-494E-A3FC-46A8EFCC4133">May 11, 2019 10:32:23 AM</a> (Read by you after 5 minutes, 11 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m just glad to see you guys are normal!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=75EBD1CC-1998-4577-A84D-01249480E56F">May 11, 2019 10:32:35 AM</a> (Read by you after 4 minutes, 59 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes we are 🤪</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0DE54570-B125-4F17-B719-8BA0F050DB04">May 11, 2019 10:32:44 AM</a> (Read by you after 4 minutes, 50 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">So happy to be alive to</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A62BFF81-86BD-4674-A9F5-1F4D42D49745">May 11, 2019 10:33:10 AM</a> (Read by you after 4 minutes, 24 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">My diagnosis for the hospital stay was...</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=17EC9BB6-EADB-469E-B757-6BA9366D3480">May 11, 2019 10:34:03 AM</a> (Read by you after 3 minutes, 31 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">“Acute on chronic systolic(congestive) heart failure” 😬😬😳</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D829364E-BE6B-4040-A405-1A7370398955">May 11, 2019 10:34:24 AM</a> (Read by you after 3 minutes, 10 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s what my paperwork says I was treated for</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=84192210-1967-4B21-9C87-7EDD9E83C843">May 11, 2019 10:37:27 AM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Omg</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=167B29C3-2AD3-423C-9859-23C31FC9F485">May 11, 2019 10:37:45 AM</a> </span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thought was lungs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=91CCDF97-3455-4E7A-A12B-1DCB8981FEC9">May 11, 2019 10:37:47 AM</a> </span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3684A26B-E0FB-49A1-AACD-F7DE4C957713">May 11, 2019 10:38:14 AM</a> (Read by you after 6 hours, 48 minutes, 11 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">It’s my heart and lungs with the PH</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=84EAA597-54E2-459D-B736-92E9E95D31AC">May 11, 2019 10:39:55 AM</a> (Read by you after 6 hours, 46 minutes, 30 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">My arterioles in my lungs are completely constricted causing my heart to pump so freaking hard I have right sided heart failure. The right side of my heart is huge compared to the left. They showed me on the echocardiogram </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=696EA0CC-E5A9-465E-B29B-4882D6C84E0F">May 11, 2019 10:41:29 AM</a> (Read by you after 6 hours, 44 minutes, 56 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">The new medicine is slowly opening up my arteries so my heart doesn’t have to pump so hard to get the oxygenated blood from the lungs to the heart and to the rest of my body</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=775AAD11-2338-49D7-9123-788B11D9D4C1">May 11, 2019 10:42:38 AM</a> (Read by you after 6 hours, 43 minutes, 47 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank god I took A&amp;P 1  &amp; 2 so I  could understand what’s going on 🙏</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=919DC71E-09EF-408E-B164-AA3CB3908D8F">May 11, 2019 10:43:00 AM</a> (Read by you after 6 hours, 43 minutes, 25 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">My heart was ready to give out, it had had enough</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=387EFE91-475A-47F9-9660-67231FEE78E4">May 11, 2019 10:55:19 AM</a> (Read by you after 6 hours, 31 minutes, 6 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">:(</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=566B2EBA-1A60-499F-846D-92BD5F58740C">May 11, 2019 11:28:02 AM</a> (Read by you after 5 hours, 58 minutes, 23 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just have to tell you how thankful I am to have you! You are such an amazing person and the best sister I could ask for! ❤️🥰😘</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8CB377AA-F2AD-4A44-B61A-A6D05934E268">May 11, 2019 11:32:04 AM</a> (Read by you after 5 hours, 54 minutes, 21 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">❤️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=31CE2170-6AB7-44F1-B8A7-3852D0BFEEDE">May 11, 2019 11:32:10 AM</a> (Read by you after 5 hours, 54 minutes, 15 seconds)</span>
+<span class="sender">Mom</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love u! 
+</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C6F4FD40-6714-4727-977D-2E70C1BAFD10">May 11, 2019 11:32:46 AM</a> (Read by you after 5 hours, 53 minutes, 39 seconds)</span>
+<span class="sender">Aunt Darielle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Love you more </span>
+</div>
+</div>
+</div>
+</body></html>

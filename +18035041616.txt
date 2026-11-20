@@ -1,0 +1,395 @@
+Sep 01, 2024  7:59:51 PM (Read by them after 1 second)
+Me
+https://github.com/cqlupton/2120-makefile-builder
+
+Sep 01, 2024  8:01:06 PM
+Me
+https://github.com/cqlupton/2120-makefile-builder/blob/main/newMakefile.c
+
+Sep 01, 2024  8:02:58 PM (Read by them after 1 second)
+Me
+https://discord.com/invite/clemson-computer-science-386585461285715968
+Join the Clemson Computer Science Discord Server!
+Hello there, and welcome to the Clemson CS Discord server!!! | 2528 members
+
+Sep 01, 2024  8:03:28 PM (Read by them after 1 second)
+Me
+https://discord.com/channels/386585461285715968/1194289686680715386/1204087432149205042
+Group Chat That’s All Fun & Games
+Discord is great for playing games and chilling with friends, or even building a worldwide community. Customize your own space to talk, play, and hang out.
+
+Sep 09, 2024  5:28:52 PM
+Me
+Did Re ever say anything abt the main file?
+
+Sep 09, 2024  5:29:38 PM (Read by you after 14 seconds)
+Andre Dos Santos
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/5b/5b4605b82de95df84e20cbf09c125994b94bb757
+
+Sep 09, 2024  5:30:53 PM
+Me
+Thanks!
+
+Sep 14, 2024  2:18:13 PM (Read by them after 1 second)
+Me
+Do you still have the note sheet for the first ENGR 1020 exam?
+
+Sep 14, 2024  2:18:38 PM (Read by you after 2 seconds)
+Andre Dos Santos
+I do not unfortunately 
+
+Sep 14, 2024  2:18:42 PM (Read by you after 2 seconds)
+Andre Dos Santos
+Are you taking 1020?
+
+Sep 14, 2024  2:19:01 PM
+Me
+No, my brother is and he has the exam Monday but hasn’t made the note sheet yet
+
+Sep 14, 2024  2:19:31 PM (Read by you after 2 seconds)
+Andre Dos Santos
+They give you the formulas if I remember correctly so i would just keep examples
+
+Sep 14, 2024  2:20:14 PM
+Me
+He has it with Zhou so probably
+
+Sep 14, 2024  2:22:55 PM (Read by you after 46 minutes, 40 seconds)
+Andre Dos Santos
+It’s not bad but he need to work on pacing 
+
+Sep 14, 2024  2:23:01 PM (Read by you after 46 minutes, 34 seconds)
+Andre Dos Santos
+The time limits sucked
+
+Sep 14, 2024  2:23:05 PM (Read by you after 46 minutes, 30 seconds)
+Andre Dos Santos
+Most didn’t finish the exam
+
+Sep 14, 2024  3:09:39 PM
+Me
+Yikes
+
+Sep 20, 2024  4:28:31 PM
+Me
+Look at the gc bc I’ve got a question abt helper functions
+
+Oct 07, 2024  2:57:48 PM (Read by them after 1 second)
+Me
+When do you think you’re going to start on your test plans?
+
+Oct 07, 2024  4:23:18 PM (Read by you after 18 minutes, 44 seconds)
+Andre Dos Santos
+Probably around 6
+
+Oct 07, 2024  4:42:49 PM (Read by them after 1 second)
+Me
+I’d start on it sooner. I just spent like 4 hours fixing my part and confused myself several times in the process
+
+Oct 07, 2024  4:42:57 PM (Read by you after 5 seconds)
+Andre Dos Santos
+Ok
+
+Oct 07, 2024  6:31:39 PM
+Me
+We can’t hear you
+
+Oct 07, 2024  6:32:43 PM (Read by you after 14 seconds)
+Andre Dos Santos
+I can’t hear yall
+
+Oct 07, 2024  6:32:47 PM (Read by you after 10 seconds)
+Andre Dos Santos
+Idk if yall hear me
+
+Oct 07, 2024  6:33:23 PM (Read by them after 1 second)
+Me
+You don’t have an audio output connected
+
+Oct 07, 2024  6:33:32 PM
+Me
+Liv and I can hear each other
+
+Oct 08, 2024 12:16:19 AM (Read by you after 15 seconds)
+Andre Dos Santos
+Did everything in my part look good to you?
+
+Oct 08, 2024 12:16:45 AM (Read by them after 1 second)
+Me
+From what I saw
+
+Oct 08, 2024 12:16:52 AM (Read by you after 1 second)
+Andre Dos Santos
+Ok sounds good
+
+Oct 08, 2024 12:16:56 AM
+Andre Dos Santos
+I appreciate it
+
+Oct 08, 2024 12:17:02 AM (Read by them after 1 second)
+Me
+Not a huge fan of your test names but we’ll see what are says
+
+Oct 08, 2024 12:18:21 AM (Read by you after 6 hours, 15 minutes, 19 seconds)
+Andre Dos Santos
+I’m open to ideas but I tried to make them as descriptive as possible. I already wrote the test implementations (although I’ll change them if y’all want no worries) so yeah just lmk what he says
+
+Oct 08, 2024 11:48:17 AM (Read by them after 1 second)
+Me
+On the last page of the doc, I need you to go in and specify the test function names for the four tests of placePiece you wrote bc it’s required since Olivia did the first one
+
+Oct 08, 2024 11:51:59 AM (Read by you after 19 seconds)
+Andre Dos Santos
+OK will do. I have an exam and then work so I will probably get that done around nine.
+
+Oct 08, 2024  4:56:15 PM
+Me
+I forwarded Re’s feedback for the test plans
+
+Oct 08, 2024  5:09:33 PM (Read by you after 7 days, 18 hours, 39 minutes, 9 seconds)
+Andre Dos Santos
+Yeah I saw it. I’ll fix my stuff around 9 when I’m off
+
+Oct 16, 2024 11:49:00 AM (Read by them after 1 second)
+Me
+Any advice on Exam 1 for 2070?
+
+Oct 16, 2024 11:51:19 AM (Read by you after 27 seconds)
+Andre Dos Santos
+I’m not sure if it’s the same exam as us but basically know terms because there is a fill in the blank (I honestly don’t remember the question) but it’s 2 words (the answer) and there’s 2 questions on does this code run and what is good about it and there are a few select a few answer ones
+
+Oct 16, 2024 11:51:33 AM (Read by you after 13 seconds)
+Andre Dos Santos
+It’s honestly not too bad and you do get the score right after you’re done 
+
+Oct 16, 2024 11:51:39 AM (Read by you after 7 seconds)
+Andre Dos Santos
+25 is max for multiple choice
+
+Oct 16, 2024 11:51:58 AM (Read by you after 11 minutes, 24 seconds)
+Andre Dos Santos
+When are you taking it?
+
+Oct 16, 2024 12:03:27 PM (Read by them after 1 second)
+Me
+Monday
+
+Oct 16, 2024 12:04:26 PM (Read by them after 1 second)
+Me
+How’d the 2120 exam go?
+
+Oct 16, 2024 12:19:19 PM (Read by you after 2 minutes, 35 seconds)
+Andre Dos Santos
+Honestly I think it was ok but she still hasn’t released the grades 
+
+Oct 16, 2024 12:22:27 PM (Read by them after 1 second)
+Me
+They haven’t been released bc I haven’t taken it and releasing the grades would make the questions available again
+
+Oct 16, 2024 12:22:47 PM
+Andre Dos Santos
+Oh ok
+
+Oct 16, 2024 12:23:21 PM (Read by you after 17 minutes, 25 seconds)
+Andre Dos Santos
+That exams not too bad. Honestly the entire multiple choice is in the power points
+
+Oct 23, 2024  1:37:51 PM (Read by them after 1 second)
+Me
+Can you send me that pic of the board after it’s been constructed that he ran?
+
+Oct 23, 2024  1:38:54 PM (Read by you after 1 minute, 28 seconds)
+Andre Dos Santos
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/41/41074f74773662d64a50259a2185d6843f213a11
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/c7/c749a5e61d2b7d52d3362186a0a1479ae651b831
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/9a/9af689a78658274fd1c36fd5b2a53282f9143614
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/20/202736b5245c509dec678a36c095a419ef99adea
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/a5/a59235c4f0c29e06894c8235c10b2e9c7ae2ac8d
+
+Oct 23, 2024  1:48:42 PM
+Me
+Thanks!
+
+Oct 23, 2024  1:48:52 PM (Read by them after 1 second)
+Me
+I’m fixing the board rn
+
+Oct 23, 2024  1:51:00 PM (Read by you after 7 seconds)
+Andre Dos Santos
+Sounds good
+
+Oct 23, 2024  1:54:32 PM
+Me
+Liv, Diarra, and I are gonna do a call when Diarra gets home to go over everything if you wanna join
+
+Oct 23, 2024  2:10:38 PM (Read by you after 1 minute, 45 seconds)
+Andre Dos Santos
+Ok sounds good
+
+Oct 23, 2024  2:10:44 PM (Read by you after 1 minute, 39 seconds)
+Andre Dos Santos
+Lmk when and if I’m free I’ll join
+
+Oct 24, 2024  3:32:24 PM (Read by them after 1 second)
+Me
+Liv and I went through your tests this morning and fixed the boards (it was really only an issue with the 3rd and 4th rows bc they were filled with asterisks. Dw, I had the same problem yesterday). The only major thing was you had a location mismatch on the tests doc of where you wanted a piece to be placed. So, like (1,6) instead of (6,1) I think. But I fixed it on the test and the doc
+
+Oct 24, 2024  3:32:49 PM
+Me
+Diarra is finishing up hers and we’re aiming to have it finalized around 6:30
+
+Oct 24, 2024  3:33:52 PM
+Me
+Project 3 is gonna be awful btw, we looked at the instructions and there is sooooo much to do
+
+Oct 24, 2024  3:33:55 PM (Read by you after 4 seconds)
+Andre Dos Santos
+Sounds great I really appreciate it!
+
+Oct 24, 2024  3:34:00 PM (Read by you after 9 seconds)
+Andre Dos Santos
+Lovely
+
+Oct 24, 2024  3:34:05 PM (Read by you after 4 seconds)
+Andre Dos Santos
+I’ll get started this weekend
+
+Oct 24, 2024  3:35:01 PM (Read by them after 1 second)
+Me
+I think we should meet after class tmrw to divy it up between the 4 of us bc there’s like three new files that we need to make along with all the functionality of the existing ones
+
+Oct 24, 2024  3:35:12 PM (Read by you after 2 seconds)
+Andre Dos Santos
+I’m good with that
+
+Oct 24, 2024  3:35:33 PM (Read by them after 1 second)
+Me
+I’ll bring it up with Diarra when we call in like 30 min
+
+Oct 24, 2024  3:35:39 PM (Read by them after 1 second)
+Me
+For now, nap 😴 
+
+Oct 24, 2024  3:35:51 PM (Read by you after 4 hours, 47 minutes, 59 seconds)
+Andre Dos Santos
+Felt that lol
+
+Oct 24, 2024  8:24:11 PM
+Me
+Get in a call once you get off so I can run thru your bit real quick
+
+Oct 24, 2024  8:24:23 PM
+Me
+Liv and I just fixed the issues Diarra had
+
+Oct 24, 2024  8:34:50 PM (Read by you after 6 days, 5 hours, 22 minutes, 59 seconds)
+Andre Dos Santos
+Sounds good give me 15
+
+Oct 25, 2024 12:15:24 PM (Read by you after 5 days, 13 hours, 42 minutes, 25 seconds)
+Andre Dos Santos
+I got a big table back here
+
+Nov 02, 2024  8:02:37 PM (Read by them after 1 second)
+Me
+Could you run the updated CheckerBoard.java
+
+Nov 02, 2024  8:03:26 PM
+Me
+My IDE won’t let me
+
+Nov 02, 2024  8:03:58 PM (Read by you after 17 seconds)
+Andre Dos Santos
+I can try tomorrow
+
+Nov 02, 2024  8:04:05 PM (Read by you after 10 seconds)
+Andre Dos Santos
+I’m not at home rn
+
+Nov 02, 2024  8:04:19 PM
+Me
+👍
+
+Nov 02, 2024  8:04:23 PM
+Me
+Thanks!
+
+Nov 02, 2024  8:04:47 PM (Read by you after 1 second)
+Andre Dos Santos
+No problem 
+
+Nov 03, 2024  9:04:54 PM
+Me
+Dude, can you join bc we are a bit confused
+
+Nov 03, 2024  9:05:19 PM
+Andre Dos Santos
+Yeah I’m booting my computer 
+
+Nov 03, 2024 10:53:59 PM (Read by them after 1 second)
+Me
+https://www.gallupdesignbuild.com/portfolio
+Portfolio
+Gallup Design Build, a leading custom home builder in South Carolina, offers an all-inclusive experience with in-house architects and interior designers. Serving Columbia, Chapin, Lexington, and Lake Murray, we turn dreams into homes with exceptional quality and a stress-free client experience from start to finish.
+
+Nov 03, 2024 10:53:59 PM (Read by them after 1 second)
+Me
+Unfortunately, no images of the dog bath
+
+Nov 03, 2024 10:54:24 PM (Read by them after 1 second)
+Me
+Or the pantry with the sliding library shelf ladder
+
+Nov 03, 2024 10:54:41 PM (Read by you after 1 minute, 4 seconds)
+Andre Dos Santos
+Holy shit that’s nice 
+
+Nov 03, 2024 10:54:44 PM (Read by you after 1 minute, 1 second)
+Andre Dos Santos
+One day
+
+Nov 03, 2024 10:55:54 PM
+Me
+The porch
+
+Nov 03, 2024 10:55:58 PM (Read by them after 1 second)
+Me
+https://www.facebook.com/gallupdesignbuild/posts/this-modern-see-through-fireplace-is-the-perfect-blend-of-style-and-function-enj/1078586594273839/
+This modern see-through firepl...
+- Gallup Design Build
+This modern see-through fireplace is the perfect blend of style and function! 🔥✨ 
+
+Enjoy the warmth and ambiance from both sides—one on the private owners’ porch and the other on a spacious porch...
+
+Nov 03, 2024 10:56:27 PM (Read by you after 11 seconds)
+Andre Dos Santos
+Very nice 
+
+Nov 03, 2024 10:57:03 PM
+Me
+I will find the stupid dog bath they insisted on but don’t use
+
+Nov 03, 2024 10:57:24 PM (Read by you after 9 seconds)
+Andre Dos Santos
+😂
+
+Nov 03, 2024 10:57:31 PM (Read by you after 2 seconds)
+Andre Dos Santos
+Dog bath is crazy
+
+Nov 03, 2024 11:12:21 PM (Read by them after 3 seconds)
+Me
+Fancy wine cellar tour
+
+Nov 03, 2024 11:12:26 PM (Read by them after 1 second)
+Me
+https://www.facebook.com/17841406017922208/videos/1058141168778739/
+Reel by Gallup Design Build
+Elegance meets efficiency: Step into a custom-built cellar with climate control, closed cell spray foam, brass bottle pegs, sleek LED lighting, and sapele wood built-ins. 🍷✨ 
+
+#CellarDesign...
+
+Nov 04, 2024 10:54:54 AM (Read by you after 9 days, 47 minutes, 38 seconds)
+Andre Dos Santos
+Very fancy
+

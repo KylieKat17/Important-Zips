@@ -1,0 +1,541 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=99D55654-41A5-48EB-8F6F-638F7092F5DC">Nov 27, 2019  2:12:38 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">What food do y&apos;all want</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1EF33225-FB2A-4582-AD34-E8350229FCC0">Nov 27, 2019  2:12:44 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom is going to the store</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1559D92B-7F9C-499D-BA50-86F5A053650D">Nov 27, 2019  2:14:08 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble"><a href="http://chng.it/2jftvBh6">http://chng.it/2jftvBh6</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DD0A57D5-F104-4768-B4D4-D73753258A73">Nov 27, 2019  2:28:00 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Danny Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">did she already leave ?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=36231AA7-6E6A-449A-98F7-5262D13E5E94">Nov 27, 2019  2:28:07 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">No</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=300BB893-6D16-4771-8149-FC4764DD20CF">Nov 27, 2019  3:29:01 PM</a> (Read by you after 1 hour, 49 minutes, 56 seconds)</span>
+<span class="sender">Riley (Top G)</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey can you get some more cheese just ran out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5CC2E692-B3A1-44F9-889F-52D5021E72D8">Nov 27, 2019  5:18:50 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Danny Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">we are picking up the pizza now :)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C00F425-BD26-4F8D-873D-DBC77741D1CD">Nov 27, 2019  5:19:05 PM</a> (Read by you after 2 hours, 22 minutes, 50 seconds)</span>
+<span class="sender">Matty Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">PIZZA???</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D00EC2B6-7607-4CF5-AA51-F501F24106E2">Nov 27, 2019  5:19:11 PM</a> (Read by you after 2 hours, 22 minutes, 44 seconds)</span>
+<span class="sender">Matty Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">YAYAYAYYAYAYYAYAYAYYAYA</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2E14D86C-7FAE-49C7-A833-20F334CF83B9">Nov 27, 2019  7:57:43 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Danny Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">hey wait which wifi is the one to connect to</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CA5D4F44-84F0-48E4-951F-E22F71595AC4">Nov 27, 2019  7:57:56 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Our House</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BDF80A2E-C827-472C-B54C-8C2A91416897">Nov 27, 2019  7:58:00 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Danny Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">also... whats the password again i already forgot </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1980CA3C-997F-4D3E-B913-269A57F9C9DB">Nov 27, 2019  7:58:15 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">kylie2rileY</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D0A16F8E-D174-4384-803B-2B7815094192">Nov 27, 2019  7:59:00 PM</a> (Read by you after 13 hours, 37 minutes, 1 second)</span>
+<span class="sender">Danny Milazzo</span></p>
+<hr><div class="message_part">
+<span class="bubble">ty</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9858D93B-08A9-4A98-A46C-A20570CB585D">Nov 30, 2019  3:18:37 PM</a> (Read by you after 37 minutes, 40 seconds)</span>
+<span class="sender">Riley (Top G)</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie did you take your med</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=60CD67CC-7FDE-4394-93EA-6823935C9224">Nov 30, 2019  4:00:32 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes</span>
+</div>
+</div>
+</div>
+</body></html>
