@@ -1,0 +1,745 @@
+Feb 28, 2025  3:02:22 PM (Read by them after 1 second)
+Me
+Hey Sheff. It’s Kylie. Could you please check Slack? I asked 2 questions related to our conversation this morning
+
+Feb 28, 2025  3:02:50 PM (Read by you after 16 seconds)
+Steven Sheffield
+I will when I get home
+
+Feb 28, 2025  3:03:22 PM (Read by you after 1 second)
+Steven Sheffield
+Or text them to me here
+
+Feb 28, 2025  3:11:47 PM (Read by them after 1 second)
+Me
+1. What was the name of the data leak you mentioned?
+2. What’s your GitHub user?
+
+Mar 01, 2025  3:05:18 AM (Read by you after 4 days, 8 hours, 1 minute, 52 seconds)
+Steven Sheffield
+Data leak was the National Public Records leak April 2024
+
+Mar 01, 2025  3:09:23 AM (Read by you after 4 days, 7 hours, 57 minutes, 47 seconds)
+Steven Sheffield
+I could not find my old Trap Lord GitHub account so I set up a new one as:
+
+KhanOfEasley
+
+Mar 05, 2025 11:08:31 AM (Read by them after 1 second)
+Me
+I gave up and just invited you to it since there isn’t really anything that’s actually sensitive and it was taking too long to go through it and rename all the benefit and coverage plans 
+
+Mar 05, 2025 11:09:11 AM (Read by you after 12 seconds)
+Steven Sheffield
+I keep secrets for a living so it’s all good.
+
+Mar 05, 2025 11:10:31 AM (Read by them after 6 seconds)
+Me
+👍
+
+Mar 05, 2025 11:11:02 AM (Read by them after 1 second)
+Me
+Forgive the occasional spelling errors in the comments
+
+Mar 05, 2025 11:18:20 AM (Read by you after 1 minute, 15 seconds)
+Steven Sheffield
+No worries
+
+Jun 20, 2025  8:53:09 PM (Read by them after 1 second)
+Me
+has anybody pulled the big data breach from today?
+
+Jun 20, 2025  8:53:34 PM (Read by you after 1 second)
+Steven Sheffield
+No.  But some one should.
+
+Jun 20, 2025  8:53:57 PM
+Steven Sheffield
+I can’t where I’m at.  If you can find it and get me a copy, I’ll pay for it.
+
+Jun 20, 2025  8:58:35 PM (Read by them after 1 second)
+Me
+i’ve got an exam but i’ll give it a shot after
+
+Jun 20, 2025  9:00:49 PM (Read by you after 23 days, 9 hours, 20 minutes, 30 seconds)
+Steven Sheffield
+Solid gold
+
+Jun 20, 2025  9:01:13 PM (Read by you after 23 days, 9 hours, 20 minutes, 6 seconds)
+Steven Sheffield
+I’m at family in Jersey’s place.  Can’t even use the damned Wi-Fi.
+
+Jul 14, 2025  6:21:50 AM
+Me
+Hey, was the DeHashed password reset at some point in the last three or four weeks?
+    Aug 02, 2025  1:29:10 PM (Read by them after 1 second)
+    Me
+    ^^^
+
+
+Jul 14, 2025  7:57:24 AM (Read by you after 1 hour, 12 minutes, 11 seconds)
+Steven Sheffield
+Possibly
+
+Jul 14, 2025  7:57:32 AM (Read by you after 1 hour, 12 minutes, 3 seconds)
+Steven Sheffield
+I can check today
+
+Jul 14, 2025  9:09:39 AM (Read by them after 1 second)
+Me
+Thank you!
+
+Jul 14, 2025  9:10:17 AM (Read by you after 15 minutes, 38 seconds)
+Steven Sheffield
+I’ll be to work around 930 and check then
+
+Aug 02, 2025 11:54:52 AM (Read by them after 8 seconds)
+Me
+Any update?
+
+Aug 02, 2025  1:28:06 PM (Read by you after 20 seconds)
+Steven Sheffield
+No one knows an effective way to get your crypto back. They will have washed the crypto on one of the dark web services.
+
+Aug 02, 2025  1:28:33 PM (Read by them after 2 seconds)
+Me
+…?
+
+Aug 02, 2025  1:28:47 PM
+Me
+Sheff, that wasn’t my question
+
+Aug 02, 2025  1:29:00 PM
+Me
+Also, I have never invested in crypto ever
+
+Aug 02, 2025  1:29:10 PM (Read by them after 1 second)
+Me
+^^^
+This message responded to an earlier message.
+
+Aug 02, 2025  1:29:29 PM
+Me
+I think you may be getting old
+
+Aug 02, 2025  1:29:33 PM (Read by you after 2 seconds)
+Steven Sheffield
+Sorry, I didn’t have it saved that this was Kylie.  
+
+Aug 02, 2025  1:29:56 PM (Read by you after 18 minutes, 34 seconds)
+Steven Sheffield
+I thought you were the other 803 number I’m working with
+
+Aug 02, 2025  1:30:09 PM (Read by you after 18 minutes, 21 seconds)
+Steven Sheffield
+And yes.  I am 47.  Quite old.
+
+Aug 02, 2025  1:30:25 PM (Read by you after 18 minutes, 5 seconds)
+Steven Sheffield
+I’ll check the Dehashed here in just a bit.
+
+Aug 03, 2025  9:11:10 PM (Read by you after 1 day, 16 minutes, 48 seconds)
+Steven Sheffield
+Dehashed subscription is up for 3 more months.
+
+Password is D0nkFuture!
+
+Aug 04, 2025  9:28:12 PM (Read by them after 1 second)
+Me
+Yay! Thank you!
+
+Aug 20, 2025  8:20:19 AM (Read by them after 1 second)
+Me
+If you want the input (obviously I’ll redact people’s actual SSNs) and output for that SQL I shared, I grabbed it before I left my internship this summer, let me know
+
+Aug 20, 2025  9:16:55 AM (Read by you after 1 day, 44 minutes, 43 seconds)
+Steven Sheffield
+Sure!  Would be useful.
+
+Aug 20, 2025  9:17:12 AM (Read by you after 1 day, 44 minutes, 26 seconds)
+Steven Sheffield
+Thank you.
+
+Sep 02, 2025  3:49:30 PM
+Me
+I’m putting it in the repo. Both XLSX and CSV
+
+Sep 02, 2025  3:50:32 PM (Read by them after 1 second)
+Me
+Sep 02, 2025  3:50:32 PM Question: is there a searchable version of that breach because I’m trying to verify the identity of a seemingly internet ghost
+Edited 10 seconds later: Question: is there a searchable version of that breach? because I’m trying to verify the identity of a seemingly internet ghost
+
+
+Sep 02, 2025  4:25:33 PM (Read by you after 1 minute, 38 seconds)
+Steven Sheffield
+Not sure.  Who are you looking for?
+
+Sep 02, 2025  4:29:32 PM (Read by them after 1 second)
+Me
+Sep 02, 2025  4:29:32 PM Guy named Sahil Singh. Graduated from UC Berkeley in May 2025 with a degree in MCB. Presumably born in 2001/2002 (possibly in Nov). The ghost bit might be because of working at Google’s Calico
+Edited 1 minute, 2 seconds later: Guy named Sahil Singh. Graduated from UC Berkeley in May 2025 with a degree in MCB. Presumably born in 2002/2003 (possibly in Nov). The ghost bit might be because of working at Google’s Calico
+Edited 1 minute, 5 seconds later: Guy named Sahil Singh. Graduated from UC Berkeley in May 2025 with an undergrad degree in MCB and a mouthful of a minor. Presumably born in 2002/2003 (possibly in Nov). The ghost bit might be because of working at Google’s Calico
+
+
+Sep 02, 2025  4:29:48 PM
+Me
+I’m coming up empty
+
+Sep 02, 2025  4:51:21 PM (Read by you after 15 seconds)
+Steven Sheffield
+What do you want to know about him?  I’ll be on campus tomorrow if you want to go on the hunt.
+
+Sep 02, 2025  4:52:09 PM (Read by them after 1 second)
+Me
+Enough that I should have been able to find evidence of existence
+
+Sep 02, 2025  4:52:43 PM
+Me
+Sure!
+
+Sep 03, 2025 11:50:55 AM (Read by you after 6 seconds)
+Steven Sheffield
+I am free today from 1230-1 and after 2pm
+
+Sep 03, 2025 11:51:58 AM (Read by them after 2 seconds)
+Me
+I’m leaving here at 3:45
+
+Sep 03, 2025 11:52:40 AM (Read by them after 1 second)
+Me
+There’s a background check floating around somewhere. He coaches kids soccer and you’d need one for that
+
+Sep 03, 2025 11:53:37 AM (Read by you after 4 seconds)
+Steven Sheffield
+Why are we after this particular jackass
+
+Sep 03, 2025 11:56:39 AM (Read by them after 1 second)
+Me
+…potentially being catfished and he’s being specifically weird about anything regarding saving pictures of his face. Petty personal safety reason, ik. Which is why I just wanted to ask for the raw data. But when I say internet ghost despite all of the information I’ve been given, i genuinely do mean it
+
+Sep 03, 2025 12:02:41 PM (Read by you after 8 minutes, 37 seconds)
+Steven Sheffield
+Where does he live?
+
+Sep 03, 2025 12:11:26 PM (Read by them after 1 second)
+Me
+Does a Google drive work?
+
+Sep 03, 2025 12:11:34 PM
+Me
+If so, what’s a good email?
+
+Sep 03, 2025 12:11:55 PM (Read by you after 3 minutes, 24 seconds)
+Steven Sheffield
+Sure
+
+Sep 03, 2025 12:12:09 PM (Read by you after 3 minutes, 10 seconds)
+Steven Sheffield
+Ssheffi@g.Clemson.edu
+
+Sep 03, 2025 12:15:21 PM (Read by them after 1 second)
+Me
+Sent
+
+Sep 03, 2025 12:18:39 PM (Read by them after 1 second)
+Me
+Doc’s a bit of a mess
+
+Sep 03, 2025 12:18:57 PM (Read by you after 1 minute, 42 seconds)
+Steven Sheffield
+That’s ok.  
+
+Sep 03, 2025 12:19:34 PM (Read by you after 1 minute, 5 seconds)
+Steven Sheffield
+I’m heading to move my truck.  That meeting was bullshit.  I’ll be back in a bit.
+
+Sep 08, 2025  2:34:45 PM
+Me
+Real name: Mesara T Jayalath
+
+Sep 08, 2025  2:34:59 PM
+Me
+I’ve been blocked
+
+Sep 08, 2025  2:36:52 PM (Read by them after 2 seconds)
+Me
+Absolutely findable online
+
+Sep 08, 2025  2:37:23 PM (Read by you after 40 seconds)
+Steven Sheffield
+I got you
+
+Sep 08, 2025  2:37:59 PM (Read by you after 4 seconds)
+Steven Sheffield
+What from his story was actually true
+
+Sep 08, 2025  2:38:21 PM (Read by them after 1 second)
+Me
+I’ll add a second doc to that folder
+
+Sep 08, 2025  2:38:33 PM
+Me
+But not Berkeley
+
+Sep 08, 2025  2:38:55 PM
+Me
+He was at UCSD than UC Davis for a similar degree
+
+Sep 08, 2025  2:39:03 PM
+Me
+Still the soccer stuff
+
+Sep 08, 2025  2:39:14 PM
+Steven Sheffield
+I found his LinkedIn 
+
+Sep 08, 2025  2:39:18 PM (Read by them after 1 second)
+Me
+Yeah
+
+Sep 08, 2025  2:39:24 PM
+Me
+That’s how I verified it
+
+Sep 08, 2025  2:40:10 PM
+Me
+Still works in a similar field, but not what I was told
+
+Sep 08, 2025  2:41:39 PM
+Me
+I got a better pic and threw it into some reverse Face ID things and kept getting UC Davis
+
+Sep 08, 2025  2:42:06 PM (Read by them after 1 second)
+Me
+I think a lot of the little things were probably true, but the big ones not so much
+
+Sep 08, 2025  2:44:03 PM (Read by you after 1 minute, 39 seconds)
+Steven Sheffield
+What a weirdo.  He’s an impressive enough human.  Why lie?
+
+Sep 08, 2025  2:46:54 PM (Read by them after 1 second)
+Me
+Sep 08, 2025  2:46:54 PM I literally put “has a Novonesis” shirt on the doc 😑
+Edited 2 minutes, 19 seconds later: I literally put “has a Novonesis shirt” on the doc 😑
+
+
+Sep 08, 2025  2:48:15 PM (Read by them after 1 second)
+Me
+YikYak DMs have disappeared as well
+
+Sep 08, 2025  2:49:13 PM (Read by you after 1 second)
+Steven Sheffield
+I wonder if he has an arranged marriage or some shit
+
+Sep 08, 2025  2:50:19 PM
+Me
+Pretty sure that wouldn’t be it considering he’s Buddhist (there was a long philosophical conversation about religion)
+
+Sep 08, 2025  2:53:08 PM (Read by you after 6 minutes, 8 seconds)
+Steven Sheffield
+Good work getting to the bottom of this one
+
+Sep 08, 2025  2:59:34 PM (Read by them after 1 second)
+Me
+Gracias
+
+Sep 08, 2025  2:59:39 PM (Read by them after 1 second)
+Me
+I’m pissed
+
+Sep 08, 2025  3:00:12 PM (Read by you after 1 minute)
+Steven Sheffield
+You should be.  There was no reason for him to do that.
+
+Sep 08, 2025  3:05:35 PM (Read by you after 16 seconds)
+Steven Sheffield
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/c4/c431f7c0daac81e79461680f1f8df236f58f79c8
+
+Sep 08, 2025  3:05:36 PM (Read by you after 15 seconds)
+Steven Sheffield
+Enjoy in good health
+
+Sep 08, 2025  3:06:12 PM (Read by them after 1 second)
+Me
+I’ve been blocked on LinkedIn as of about 2 min ago
+
+Sep 08, 2025  3:06:13 PM
+Steven Sheffield
+I’m thinking about texting him myself just for Funsies 
+Tapbacks:
+Laughed by Me
+
+    Sep 08, 2025  3:10:53 PM (Read by them after 1 second)
+    Me
+    I wont be. I don’t have a fake set up and don’t plan on giving out my phone number
+
+
+Sep 08, 2025  3:07:45 PM (Read by them after 1 second)
+Me
+One of those is his mother’s I think
+
+Sep 08, 2025  3:10:53 PM (Read by them after 1 second)
+Me
+I wont be. I don’t have a fake set up and don’t plan on giving out my phone number
+This message responded to an earlier message.
+
+Sep 08, 2025  3:12:49 PM (Read by you after 36 seconds)
+Steven Sheffield
+No worries.
+
+Sep 08, 2025  3:12:59 PM (Read by you after 26 seconds)
+Steven Sheffield
+I’m gonna hit him from burner
+    Sep 08, 2025  3:15:30 PM (Read by them after 1 second)
+    Me
+    lol. Lemme know how that goes 
+
+
+Sep 08, 2025  3:15:08 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/53/537afccf5bf03a1ba5fc3589a77014898dd24960
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/f4/f4eef4285e4325d75dcdf4137e73d3f83bc38760
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/29/299e757c2ce468601f8e78f750c25bca2dcdc480
+
+Sep 08, 2025  3:15:30 PM (Read by them after 1 second)
+Me
+lol. Lemme know how that goes 
+This message responded to an earlier message.
+
+Sep 08, 2025  3:19:33 PM (Read by you after 4 seconds)
+Steven Sheffield
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/c9/c9f2552cc929743d54b6548ccd6fd090e5ecd198
+
+Sep 08, 2025  3:20:49 PM (Read by you after 36 seconds)
+Steven Sheffield
+Just the hint of casual subcontinent familial shaming
+    Sep 08, 2025  3:23:00 PM
+    Me
+    Have mercy. That’s a bit much
+
+
+Sep 08, 2025  3:21:41 PM (Read by them after 1 second)
+Me
+I’m popping EPIOS results into that drive folder
+
+Sep 08, 2025  3:21:52 PM (Read by you after 51 seconds)
+Steven Sheffield
+Do it
+
+Sep 08, 2025  3:22:01 PM (Read by you after 42 seconds)
+Steven Sheffield
+Make sure I’m a viewer
+
+Sep 08, 2025  3:22:11 PM (Read by you after 32 seconds)
+Steven Sheffield
+I couldn’t see the new files
+
+Sep 08, 2025  3:23:00 PM
+Me
+Have mercy. That’s a bit much
+This message responded to an earlier message.
+
+Sep 08, 2025  3:23:25 PM (Read by you after 3 minutes, 1 second)
+Steven Sheffield
+I wouldn’t dare actually do it
+
+Sep 08, 2025  3:23:42 PM (Read by you after 2 minutes, 44 seconds)
+Steven Sheffield
+But I like the idea of him shitting his pants a little
+
+Sep 08, 2025  3:26:49 PM (Read by them after 1 second)
+Me
+EPIOS results are in there now
+
+Sep 08, 2025  3:27:11 PM (Read by you after 2 minutes, 14 seconds)
+Steven Sheffield
+I just looked
+
+Sep 08, 2025  3:29:19 PM (Read by you after 6 seconds)
+Steven Sheffield
+Prasanna and Swarna are his parents.
+
+Sep 08, 2025  3:29:35 PM
+Me
+Yeah. I saw her name in the dehashed results
+
+Sep 08, 2025  3:30:53 PM (Read by you after 6 seconds)
+Steven Sheffield
+I’m not saying drive to his house or anything.  But we do know where that is.
+
+Sep 08, 2025  3:31:28 PM (Read by them after 2 seconds)
+Me
+Parents address I think based on the dehashed results for it
+
+Sep 08, 2025  3:31:51 PM (Read by you after 15 seconds)
+Steven Sheffield
+Yep
+
+Sep 08, 2025  3:32:03 PM (Read by you after 3 seconds)
+Steven Sheffield
+He’s 22 so that makes sense 
+
+Sep 08, 2025  3:33:51 PM
+Steven Sheffield
+You did really well on this
+    Sep 08, 2025  3:36:42 PM (Read by them after 1 second)
+    Me
+    Thank you!
+
+
+Sep 08, 2025  3:34:04 PM
+Me
+Brother’s name is Swarna based on the Venmo history
+
+Sep 08, 2025  3:34:23 PM (Read by you after 9 seconds)
+Steven Sheffield
+Tracks
+
+Sep 08, 2025  3:36:42 PM (Read by them after 1 second)
+Me
+Thank you!
+This message responded to an earlier message.
+
+Sep 08, 2025  3:38:42 PM (Read by you after 16 seconds)
+Steven Sheffield
+Next time I get a bounty type case, wanna work on it with me?
+
+Sep 08, 2025  3:39:07 PM
+Me
+Yes!
+
+Sep 08, 2025  3:39:14 PM
+Steven Sheffield
+Solid.
+
+Sep 08, 2025  3:39:37 PM (Read by them after 3 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/bc/bc2fde00dcf2904160a2ccc093cc2f96e237024a
+I think you did make him shit his pants a little bc he unblocked me and is trying to add me back
+
+Sep 08, 2025  3:40:04 PM (Read by you after 1 minute, 32 seconds)
+Steven Sheffield
+See what he says
+
+Sep 08, 2025  3:41:45 PM (Read by them after 1 second)
+Me
+Hath gone poof again
+
+Sep 08, 2025  3:43:22 PM (Read by them after 1 second)
+Me
+🫤
+
+Sep 08, 2025  3:43:53 PM (Read by you after 4 seconds)
+Steven Sheffield
+What a goob
+
+Sep 08, 2025  3:48:24 PM (Read by them after 1 second)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/51/51049e964000da04bb4da22c409338f00a6c9a9b
+I mean…
+
+Sep 08, 2025  3:49:20 PM (Read by you after 3 minutes, 21 seconds)
+Steven Sheffield
+Lightning!!!!
+
+Sep 08, 2025  3:56:23 PM (Read by them after 2 seconds)
+Me
+https://www.facebook.com/dhshub/posts/in-todays-student-stress-tip-tuesday-davis-high-senior-mesara-jayalath-shares-ho/5136194793089513/
+In today’s Student Stress Tip Tuesday Da...
+- The HUB
+In today’s Student Stress Tip Tuesday Davis High senior, Mesara Jayalath, shares how he uses soccer as a way to de-stress. If you are interested in being featured in one of our Stress Tip videos send...
+
+Sep 08, 2025  6:59:48 PM (Read by them after 1 second)
+Me
+Attempted to friend me again like 40 something min ago with a third account under his actual name, but when I opened the notif, it was gone
+
+Sep 08, 2025  7:01:41 PM (Read by them after 32 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/7e/7e63538ae9d979d13f4cf6ea400f4dcde471b6ec
+Got it
+
+Sep 08, 2025  7:03:57 PM (Read by them after 2 seconds)
+Me
+Idk why that account has me blocked too. Wouldn’t have known about it if I hadn’t seen the notif
+
+Sep 08, 2025  7:12:44 PM (Read by you after 1 hour, 40 minutes, 21 seconds)
+Steven Sheffield
+He’s really behaving like a punk
+
+Sep 11, 2025  1:02:16 PM (Read by you after 9 seconds)
+Steven Sheffield
+Mesara’s been probing around my LinkedIn 
+
+Sep 11, 2025  1:04:26 PM (Read by them after 1 second)
+Me
+Thought he blocked you? Also, didn’t he make his account private?
+
+Sep 11, 2025  1:05:15 PM (Read by you after 3 seconds)
+Steven Sheffield
+He did.  And he did.  He periodically undoes these things to try and pry.
+
+Sep 11, 2025  1:05:25 PM
+Steven Sheffield
+He’s a weirdo
+
+Sep 11, 2025  1:07:45 PM
+Me
+I mean, he wants to know who the guy with the scary text message is
+
+Sep 11, 2025  1:09:13 PM (Read by them after 1 second)
+Me
+Did that VoIP number get blocked?
+
+Sep 11, 2025  1:11:18 PM (Read by you after 35 seconds)
+Steven Sheffield
+Haven’t checked
+
+Sep 11, 2025  1:11:35 PM (Read by you after 18 seconds)
+Steven Sheffield
+I’m leaving him alone.  I shouldn’t have sent that message.  
+    Sep 11, 2025  1:16:07 PM (Read by them after 1 second)
+    Me
+    Prob not
+
+
+Sep 11, 2025  1:15:28 PM (Read by them after 2 seconds)
+Me
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/09/093c2b165797214726c459ed4d946ae42225643d
+Either he’s looking at mine in private mode or he’s using somebody else’s account to look at it
+
+Sep 11, 2025  1:16:07 PM (Read by them after 1 second)
+Me
+Prob not
+This message responded to an earlier message.
+
+Sep 11, 2025  1:16:30 PM (Read by you after 2 minutes, 13 seconds)
+Steven Sheffield
+It was immature and stupid of me
+
+Sep 11, 2025  1:16:58 PM (Read by you after 1 minute, 45 seconds)
+Steven Sheffield
+All good though.  Onward with life.
+
+Sep 11, 2025  1:17:27 PM (Read by you after 1 minute, 16 seconds)
+Steven Sheffield
+Or as my grandmother used to say:
+
+Live and learn. Die and forget it all.
+
+Sep 11, 2025  1:19:37 PM
+Me
+She sounds lovely and like the right kind of pessimistic!
+
+Sep 11, 2025  2:33:07 PM (Read by you after 1 hour, 2 minutes, 10 seconds)
+Steven Sheffield
+She was pretty amazing
+
+Oct 17, 2025  1:50:52 PM (Read by them after 8 seconds)
+Me
+DTACT doesn’t look like they hire straight out of college from what’s available online (which isn’t a lot, as expected)
+
+Oct 17, 2025  1:51:10 PM (Read by them after 1 second)
+Me
+Or lack of Python experience (I can learn 😭)
+
+Oct 17, 2025  2:07:14 PM (Read by you after 6 minutes, 24 seconds)
+Steven Sheffield
+They will hire you if I introduce you
+
+Oct 17, 2025  2:43:03 PM (Read by them after 1 second)
+Me
+Cool cool
+
+Oct 17, 2025  2:44:33 PM
+Me
+Oct 17, 2025  2:44:33 PM Potentially impertinent question
+Edited 37 seconds later: Potentially impertinent (but important) question
+
+
+Oct 17, 2025  2:45:55 PM
+Me
+What would the starting salary range be? (I’m setting expectations low)
+
+Oct 17, 2025  2:55:21 PM (Read by you after 3 minutes, 14 seconds)
+Steven Sheffield
+No idea.
+
+Oct 17, 2025  2:55:27 PM (Read by you after 3 minutes, 8 seconds)
+Steven Sheffield
+I can ask
+
+Oct 17, 2025  2:59:10 PM
+Me
+If that’s not too presumptuous
+
+Oct 17, 2025  2:59:29 PM (Read by you after 9 minutes, 18 seconds)
+Steven Sheffield
+Dutch are super chill
+
+Oct 23, 2025  3:27:05 PM (Read by them after 1 second)
+Me
+Two Questions:
+
+Oct 23, 2025  3:27:20 PM (Read by them after 1 second)
+Me
+1. Are you going to be in the Hub tomorrow?
+
+Oct 23, 2025  3:27:30 PM
+Steven Sheffield
+Yes
+
+Oct 23, 2025  3:29:41 PM
+Me
+2. Will pushing back my graduation date to August negatively impact chances of employment with the secretive Dutch people? Or in general?
+
+Oct 23, 2025  3:29:52 PM (Read by them after 1 second)
+Me
+(because in order to graduate in May, I’m looking at 7 classes - 21 credit hours - two of which are taught that semester by two notoriously awful professors)
+
+Oct 23, 2025  3:29:54 PM Steven Sheffield unsent a message!
+
+Oct 23, 2025  3:30:03 PM (Read by you after 33 seconds)
+Steven Sheffield
+Not at all
+
+Oct 23, 2025  3:30:15 PM (Read by you after 21 seconds)
+Steven Sheffield
+August is a better time to graduate
+    Oct 23, 2025  3:42:10 PM (Read by them after 1 second)
+    Me
+    Thanks! This actually made the decision much easier
+
+
+Oct 23, 2025  3:31:14 PM
+Steven Sheffield
+With what the economy appears to be doing, May graduation might be walking out into a shitshow
+
+Oct 23, 2025  3:31:33 PM (Read by you after 1 second)
+Steven Sheffield
+The Dutch will want to talk to you around April
+
+Oct 23, 2025  3:42:10 PM (Read by them after 1 second)
+Me
+Thanks! This actually made the decision much easier
+This message responded to an earlier message.
+
+Oct 23, 2025  3:42:29 PM (Read by them after 1 second)
+Me
+What times are you in the Hub tomorrow?
+
+Oct 23, 2025  3:42:49 PM
+Steven Sheffield
+9-3 give or take
+
+Oct 23, 2025  3:47:52 PM (Read by them after 1 second)
+Me
+Great! And when are you not busy with meetings or co-op stuff?
+
+Oct 23, 2025  5:37:10 PM (Read by you after 15 hours, 17 minutes, 36 seconds)
+Steven Sheffield
+Afternoon
+
+Oct 24, 2025 10:12:04 AM (Read by you after 2 days, 5 hours, 53 minutes, 43 seconds)
+Steven Sheffield
+I’ll be at Watt around noon
+

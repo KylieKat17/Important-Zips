@@ -1,0 +1,1181 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C24115CD-7AD2-1DD9-E598-17E9ACC89599">Sep 12, 2021  3:32:10 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder to complete your practice sight reading assignments.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A4F02DA7-9468-92D5-03E7-6F0CC0098E0C">Sep 12, 2021  3:32:11 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to complete your practice sight reading assignments.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1EF5464-37F6-4177-043D-98004E65182E">Sep 30, 2021  5:58:53 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=97B9926D-133A-66EB-39F9-A4B825032FDF">Sep 30, 2021  5:58:54 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=55A73EF9-70FA-A512-EEAE-9986103301C0">Oct 01, 2021  5:59:26 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7437C653-6FA2-177A-FF5F-BF3E995E66BF">Oct 01, 2021  5:59:31 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C6A8F6EF-4819-8F48-DC73-2C2605926C2A">Oct 02, 2021  5:59:37 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2C75E1BD-B916-CB65-0793-4BA46512600F">Oct 02, 2021  5:59:39 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder your first two sight reading factory assignments are <u>due Saturday at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9AB07ED5-E0F5-925F-D4B7-5D7A88A4DDD9">Oct 06, 2021  9:00:16 AM</a> (Read by you after 48 minutes, 14 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is CLOSED during <u>Lunch TODAY</u>! <u>Wednesday, October 6, 2021</u>. If you are in the Choir Room during Lunch you will be written up!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=452F9E27-FED3-C680-5729-BFE602A379EC">Oct 06, 2021  9:00:20 AM</a> (Read by you after 48 minutes, 10 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is CLOSED during <u>Lunch TODAY</u>! <u>Wednesday, October 6, 2021</u>. If you are in the Choir Room during Lunch you will be written up!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1DB93E5B-B131-53E3-219B-1B04161A503D">Oct 06, 2021 11:14:23 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is CLOSED during <u>Lunch TODAY</u>! <u>Wednesday, October 6, 2021</u>. If you are in the Choir Room during Lunch you will be written up!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=94E453A7-8183-8BBB-41AA-68231B3FBAAD">Oct 06, 2021 11:14:43 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is CLOSED during <u>Lunch TODAY</u>! <u>Wednesday, October 6, 2021</u>. If you are in the Choir Room during Lunch you will be written up!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B807B82-D3AE-C181-3D62-F1E52A28879E">Oct 07, 2021  8:09:24 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is OFF Limits <u>today for lunch</u>. Absolutely NO Choir Students in the Choir Room during POWERHOUR.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=80CD068F-3DC8-5F56-8850-90D5BC8633B3">Oct 07, 2021  8:09:34 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is OFF Limits <u>today for lunch</u>. Absolutely NO Choir Students in the Choir Room during POWERHOUR.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DF0C68FD-E987-988E-FCD4-4A7639D12E7F">Oct 07, 2021 11:14:13 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is OFF Limits <u>today for lunch</u>. Absolutely NO Choir Students in the Choir Room during POWERHOUR.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7A4EB266-44F3-7946-C6F9-A35FAFB76A7A">Oct 07, 2021 11:14:36 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is OFF Limits <u>today for lunch</u>. Absolutely NO Choir Students in the Choir Room during POWERHOUR.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=50CCCCCE-1CC0-0E00-DDB2-19FF889F26CA">Oct 08, 2021  7:59:48 AM</a> (Read by you after 42 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is OFF Limits to students during <u>lunch today</u>! No students are to be in the Choir Room during POWERHOUR!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0A94027E-E073-09DA-976A-5408B8BC6580">Oct 08, 2021  8:00:24 AM</a> (Read by you after 6 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is OFF Limits to students during <u>lunch today</u>! No students are to be in the Choir Room during POWERHOUR!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D92D412D-6F39-C9C8-9CC8-A05A10BAB72F">Oct 08, 2021 11:14:11 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room is OFF Limits to students during <u>lunch today</u>! No students are to be in the Choir Room during POWERHOUR!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E931169B-AC03-D8D6-DBEC-087BB0A034B8">Oct 08, 2021 11:14:28 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room is OFF Limits to students during <u>lunch today</u>! No students are to be in the Choir Room during POWERHOUR!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0529ADEC-70A7-591D-F2EA-1D6A43BEE921">Oct 22, 2021  7:59:48 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E5F45F30-F837-DC5A-2079-F95541E9F229">Oct 22, 2021  7:59:50 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BD3E0BF6-53F7-0B01-44DD-2B705F5BF459">Oct 25, 2021  4:10:22 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: All State Folks: If you are auditioning, please remember that $15 and permission form at <u>due tomorrow</u> to me. Please don&apos;t forget!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2ECC5222-993F-51DC-E7A0-A9420E78ADD1">Oct 25, 2021  8:30:12 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: All State Folks: If you are auditioning, please remember that $15 and permission form at <u>due tomorrow</u> to me. Please don&apos;t forget!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2F9DC054-7DF8-40AC-183A-A070E382220A">Oct 26, 2021  7:30:57 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: All State Folks: If you are auditioning, please remember that $15 and permission form at <u>due TODAY</u> to me. Please don&apos;t forget!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7D2EDA09-E2E2-F9B8-DA6C-2FEB499A4803">Oct 26, 2021  8:05:21 PM</a> (Read by you after 13 hours, 47 minutes, 54 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: All State Folks- have to have permission form and $15 for audition <u>tomorrow</u>. Have to get all recordings done <u>tomorrow</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D5CE24E8-C2F0-274E-D120-DCB5F254F4EF">Oct 27, 2021  6:00:02 PM</a> (Read by you after 23 hours, 4 minutes, 35 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A427C7F1-25D1-C42E-C3D1-117293D58D31">Oct 27, 2021  6:00:23 PM</a> (Read by you after 23 hours, 4 minutes, 14 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E2716FA2-4EE7-A104-64F9-A41AF6C601E0">Oct 29, 2021  6:59:13 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F7A40730-9EF4-C460-E0F6-B831117E657D">Oct 29, 2021  6:59:30 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: reminder Sight Reading Factory Assignments are <u>due next Saturday, October 30th at 11:30 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=753D6C08-F455-3136-7329-FC7FBF93F6C1">Nov 08, 2021  8:29:50 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3A5465EE-5150-46FA-113B-88B2E080CB77">Nov 08, 2021  8:29:55 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=042C0FBD-4F78-C5C5-0050-5EDE89ADF9C8">Nov 09, 2021  8:30:03 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A6C3EE35-B8AC-1CC9-D21E-9B7906B1477E">Nov 09, 2021  8:30:05 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9059F018-6640-E3B4-EC53-619938BA950C">Nov 09, 2021  8:30:09 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0E6A42F0-2F9A-48D2-FF91-63B199AA2D16">Nov 10, 2021  8:30:21 PM</a> (Read by you after 1 day, 3 hours, 13 minutes, 19 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D1D4FE3C-9139-B24D-A8E2-D0BCC0A992DD">Nov 10, 2021  8:30:27 PM</a> (Read by you after 1 day, 3 hours, 13 minutes, 13 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4B92A7F3-0898-A078-EA78-585A6C54F82F">Nov 11, 2021 11:19:29 PM</a> (Read by you after 24 minutes, 11 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=49A976A2-83A7-09B0-C92A-805D0AD04F3E">Nov 11, 2021 11:19:30 PM</a> (Read by you after 24 minutes, 10 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder to get your permission slip signed. <u>Due this Friday, November 12th.</u>
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CACA0B61-4EDD-13D1-AC0F-4E6EDE8A20B2">Nov 15, 2021  7:59:10 AM</a> (Read by you after 1 hour, 58 minutes, 28 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room OFF LIMITS during <u>Lunch TODAY</u>! If you eat in the Choir Room, find somewhere else to eat <u>TODAY</u>! Thank you!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F40AB101-AB4E-1C81-F269-90B37D5F46EC">Nov 15, 2021  8:00:04 AM</a> (Read by you after 1 hour, 57 minutes, 34 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room OFF LIMITS during <u>Lunch TODAY</u>! If you eat in the Choir Room, find somewhere else to eat <u>TODAY</u>! Thank you!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CEBC074A-1FB1-32B9-B0E3-4EBD88E1904D">Nov 15, 2021 11:25:18 AM</a> (Read by you after 9 hours, 8 minutes, 55 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir Room OFF LIMITS during <u>Lunch TODAY</u>! If you eat in the Choir Room, find somewhere else to eat <u>TODAY</u>! Thank you!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=024F88C8-AB53-CDEB-48DF-DFCA4EF0C0E8">Nov 15, 2021 11:25:24 AM</a> (Read by you after 9 hours, 8 minutes, 49 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir Room OFF LIMITS during <u>Lunch TODAY</u>! If you eat in the Choir Room, find somewhere else to eat <u>TODAY</u>! Thank you!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8DA8886A-F9A5-4B5E-DB99-DEE372F35541">Nov 19, 2021 12:13:40 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: If you are going on the field trip should already be in the choir room.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2D6B1CE2-7BEE-40AB-F301-6997E4B814AF">Nov 19, 2021 12:13:40 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: If you are going on the field trip should already be in the choir room.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=62B5B76A-7082-8344-5F2C-2145C6D3F634">Nov 21, 2021  2:55:13 PM</a> (Read by you after 1 day, 16 hours, 18 minutes, 42 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Reminder all Poinsettia Orders are <u>due tomorrow</u> to Shumate. Forms and money for each order are due!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1CCBA027-0D79-13B6-F2D5-6FD54F87DA1F">Nov 21, 2021  2:55:14 PM</a> (Read by you after 1 day, 16 hours, 18 minutes, 41 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Reminder all Poinsettia Orders are <u>due tomorrow</u> to Shumate. Forms and money for each order are due!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56F574B8-E2A0-5A83-2632-2B2F302D2AB8">Nov 22, 2021  8:06:31 AM</a> (Read by you after 23 hours, 7 minutes, 24 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Poinsettias orders <u>due today</u>. Bring to choir room
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=88B202D6-86E5-71E5-BC0D-33983C0A7FBB">Nov 22, 2021  8:06:32 AM</a> (Read by you after 23 hours, 7 minutes, 23 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Poinsettias orders <u>due today</u>. Bring to choir room
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=41E86D42-75E1-F15F-92A5-2F57CEE5C5E1">Nov 22, 2021  7:46:37 PM</a> (Read by you after 11 hours, 27 minutes, 18 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Last call for Poinsettia Orders. If you haven&apos;t turned in your order please text me at <a href="tel:(803)%20448-7361">(803) 448-7361</a> <u>tonight</u>!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D3274687-0676-0534-5D8D-880A51A587CC">Nov 22, 2021  7:46:37 PM</a> (Read by you after 11 hours, 27 minutes, 18 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Last call for Poinsettia Orders. If you haven&apos;t turned in your order please text me at <a href="tel:(803)%20448-7361">(803) 448-7361</a> <u>tonight</u>!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3E74316B-14D1-DD37-4508-9CFF3C86E34D">Nov 22, 2021  7:48:02 PM</a> (Read by you after 11 hours, 25 minutes, 53 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: All State Choir Audition Results have been emailed to your student emails. Please check them and contact me with any questions!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B97AB47E-9ADF-F05F-0632-66C6DD44D4FD">Nov 22, 2021  7:48:03 PM</a> (Read by you after 11 hours, 25 minutes, 52 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: All State Choir Audition Results have been emailed to your student emails. Please check them and contact me with any questions!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=300A5E40-3858-7391-1B01-B71BABE1D60D">Nov 30, 2021 11:57:58 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Dresses are here. If you have a dress to pick up come anytime to get them.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FF6FFC70-33A7-A794-2201-1DC9D49C200F">Nov 30, 2021 11:57:59 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Dresses are here. If you have a dress to pick up come anytime to get them.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=721B1141-BF01-D407-DF9F-6FEEB2CC83E4">Nov 30, 2021  3:27:52 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Choir: Check your email for important reminders/information for our concert week next week! These emails were sent to parents as well!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A46D0210-4B11-A931-E034-9E2C44A95A2F">Nov 30, 2021  3:27:54 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Choir: Check your email for important reminders/information for our concert week next week! These emails were sent to parents as well!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A746FB80-2812-A95C-E6BB-87D9F99C2EB5">Nov 30, 2021  3:33:01 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Chamber/HiLights- check your email about class <u>tomorrow</u>, <u>Wednesday, December 1st</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CC8577BC-31DB-C5DC-A17F-EB724462BE81">Dec 03, 2021 11:03:32 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Poinsettia orders are sorted and and ready.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3B9AFA5A-B6DD-8BA7-C9F6-657D42C84D41">Dec 03, 2021 11:03:32 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Poinsettia orders are sorted and and ready.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4E84EF3E-6FD3-818B-5CAB-6E900872EB4D">Dec 03, 2021 11:55:38 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Ladies- If you haven&apos;t taken your attire home please take it home <u>today</u>!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0293C1C3-546F-FCFE-E182-AC575C5B03BC">Dec 03, 2021 11:55:39 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Ladies- If you haven&apos;t taken your attire home please take it home <u>today</u>!
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BCA9A9CE-738C-B12F-F336-1644F9A0A12A">Dec 03, 2021 11:56:17 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Poinsettia pick up <u>today 4-7 pm</u>. All plants must be picked up <u>today</u> unless you&apos;ve contacted me.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C77F5C51-2474-3F1A-9DA5-6A0ED0147239">Dec 03, 2021 11:56:18 AM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Poinsettia pick up <u>today 4-7 pm</u>. All plants must be picked up <u>today</u> unless you&apos;ve contacted me.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=07F7D87F-EA90-7B78-4078-F6303E57BB69">Dec 03, 2021  4:00:49 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Poinsettia pick up <u>today 4-7 pm</u>. All plants must be picked up <u>today</u> unless you&apos;ve contacted me.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=965070F4-E371-BAFF-6DF5-533A98A5D9F7">Dec 03, 2021  4:00:54 PM</a> </span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Poinsettia pick up <u>today 4-7 pm</u>. All plants must be picked up <u>today</u> unless you&apos;ve contacted me.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F0713871-040B-B258-0611-2840A4C0FEA3">Dec 05, 2021  4:13:43 PM</a> (Read by you after 1 day, 7 minutes, 32 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: If you can help with Stage Set Up, please be at Chapin Presbyterian <u>7-8 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=98993D6A-0F9B-2001-4037-BCEB1111D759">Dec 05, 2021  4:13:45 PM</a> (Read by you after 1 day, 7 minutes, 30 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: If you can help with Stage Set Up, please be at Chapin Presbyterian <u>7-8 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F6F431AE-E7B7-B5BF-DFEA-779C1D94A2BC">Dec 05, 2021  6:48:08 PM</a> (Read by you after 21 hours, 33 minutes, 7 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: If you are coming to help set up stage, park where you see the band truck. We could still use people to help <u>7-8 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF7DD682-27E9-E330-9A08-1DE0CD81B11E">Dec 05, 2021  6:48:09 PM</a> (Read by you after 21 hours, 33 minutes, 6 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: If you are coming to help set up stage, park where you see the band truck. We could still use people to help <u>7-8 pm</u>.
+-
+Text back to reply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8DAE5F8B-77C7-7B9B-3776-D0FAD7C16938">Dec 06, 2021 12:35:22 PM</a> (Read by you after 3 hours, 45 minutes, 53 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Dress Rehearsal #1 <u>5-7:30 PM TODAY</u>, <u>Monday, December 6th</u>. Chapin Presbyterian Church 600 Old Lexington Hwy., Chapin, SC 29036.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D8BD9D08-D6D0-DDA8-05A5-0B88360AE61C">Dec 06, 2021 12:35:24 PM</a> (Read by you after 3 hours, 45 minutes, 51 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Dress Rehearsal #1 <u>5-7:30 PM TODAY</u>, <u>Monday, December 6th</u>. Chapin Presbyterian Church 600 Old Lexington Hwy., Chapin, SC 29036.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BBF7A844-27EB-FC10-2345-6C9FABA3E00E">Dec 06, 2021  4:30:27 PM</a> (Read by you after 3 hours, 12 minutes, 49 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">HiLights- Chapin H: Dress Rehearsal #1 <u>5-7:30 PM TODAY</u>, <u>Monday, December 6th</u>. Chapin Presbyterian Church 600 Old Lexington Hwy., Chapin, SC 29036.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B5542671-9F2F-FC04-9384-0235643949D4">Dec 06, 2021  4:30:32 PM</a> (Read by you after 3 hours, 12 minutes, 44 seconds)</span>
+<span class="sender">+12295898842</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chapin Choral Depa: Dress Rehearsal #1 <u>5-7:30 PM TODAY</u>, <u>Monday, December 6th</u>. Chapin Presbyterian Church 600 Old Lexington Hwy., Chapin, SC 29036.</span>
+</div>
+</div>
+</div>
+</body></html>

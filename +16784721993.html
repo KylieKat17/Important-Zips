@@ -1,0 +1,496 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AC120021-11D1-448A-8F7D-1527461D10F5">Jun 03, 2024  1:10:39 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry for my dad, idk what happened. I think he meant to text me and accidentally added the first two people in his contacts bc the other number is Riley’s friend whose name starts with A</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EDAAC625-FE58-4EA2-A9F8-41A20118D67F">Mar 22, 2025 12:40:12 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">What’s the Roomba type you have?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=264D8434-9745-4793-8E5B-658B275455E0">Mar 22, 2025 12:40:25 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mom wants one for her birthday</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FA6389C7-FE43-4871-8EF2-FFF8A65A992E">Mar 22, 2025 12:46:25 PM</a> (Read by you after 23 hours, 50 minutes, 53 seconds)</span>
+<span class="sender">Alicia Crusse DC</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi. Here it is. It’s a Roborock. I used to have a roomba but it was one of the first ones that came out. They are all good.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F45D894F-4CE1-4427-B4B3-304E5AED16BC">Mar 22, 2025 12:46:26 PM</a> (Read by you after 23 hours, 50 minutes, 52 seconds)</span>
+<span class="sender">Alicia Crusse DC</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://www.amazon.com/dp/B0CWR5SHZP/ref=cm_sw_r_cso_cp_apin_dp_ss_Y9T34T4RAYXR3SX313YE"><div class="app_header"><img src="https://m.media-amazon.com/images/I/31q1GxVT0XL._CLa%7C600,315%7C21XT3nJTAfL.png%7C285,0,315,315+00,0,300,315_PIStarRatingFOUR,TopLeft,60,167_ZA532,160,168,420,450,AmazonEmberBold,12,4,0,0_FMpng_BG255,255,255_.jpg" loading="lazy" onerror="this.style.display='none'"><div class="name">https://www.amazon.com/dp/B0CWR5SHZP/ref=cm_sw_r_cso_cp_apin_dp_ss_Y9T34T4RAYXR3SX313YE</div></div><div class="app_footer"><div class="caption">Deal: roborock Qrevo Master Robot Vacuum and Mop Combo, 10,000Pa Suction, FlexiArm Design Side Brush &amp; Mop, Auto Mop Washing &amp; Drying, Self-Emptying&amp;Refilling, Dock Self-Cleaning, Obstacle Avoidance, White</div><div class="subcaption">Experience elite cleaning with Roborock Qrevo Master. Boasting FlexiArm Design for thorough coverage, HyperForce suction power, a DuoRoller Riser Brush, and Multifunctional Dock 3.0. Convenient cleaning is just a call away with the “Hello Rocky” Intelligent Voice Assistant, coupled with Reactive ...</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E529E220-620A-498B-B96E-A65DE513DF0C">May 03, 2025  5:41:44 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">For later. These are the creative nonfiction comedies about dish soap</span>
+</div>
+</div>
+</div>
+<div class ="announcement"><p><span class="timestamp">May 03, 2025  5:41:49 PM</span> You unsent a message.</p></div><div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2141CF13-24DC-4AA3-8186-6625B840E7A8">May 03, 2025  5:44:06 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://drive.google.com/drive/folders/1t_7PqfgPthi269bI8xRfYh8UbRrjADM0"><div class="app_header"><div class="name">Google Drive</div></div><div class="app_footer"><div class="caption">dish soap things - Google Drive</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=287F8A9F-E002-4D20-936F-545808EEC178">May 03, 2025  7:24:48 PM</a> (Read by them after 3 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://docs.google.com/document/d/1fCsEw-tpXUurAefLX96VcReEvZJ-pdLQePKkpztBfUg/edit?usp=drivesdk&usp=embed_facebook"><div class="app_header"><img src="https://lh7-us.googleusercontent.com/docs/AHkbwyKjG-cjUXUFVfru3gzw_LCLPaiIeuoaENI2ortgAHk0XHXuNpzgF36SKpCQ8e2o80uLCq4GWWmgLlrgBm8gcJruElOmVKnTOXKBFaGFBXQ2eHyPqCZM=w1200-h630-p" loading="lazy" onerror="this.style.display='none'"><div class="name">Google Docs</div></div><div class="app_footer"><div class="caption">self-loathing and consciousness // a story truth - for publication</div><div class="subcaption">“self-loathing and consciousness // a story-truth”  Two people walk into a bar. There’s nothing entirely remarkable about the place. It’s rather plain, rather boring, rather like every other bar one would conjure up in their head. There’s nothing entirely remarkable about them, either. Just two ...</div></div></a></div>
+</div>
+</div>
+</div>
+<div class ="announcement"><p><span class="timestamp">May 03, 2025  7:27:26 PM</span> You unsent a message.</p></div><div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AEFE6BFD-9627-449D-91A9-FF61664E63C9">May 03, 2025  7:27:42 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://share.icloud.com/photos/0570y9eB-HGXwo6z9yL5bosvA"><div class="app_header"><div class="name">Photos</div><div class="ldtext">May 19, 2022 - 1 Video</div></div><div class="app_footer"><div class="caption">May 19, 2022</div><div class="subcaption">1 Video</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D75202B9-7AFE-4DD5-9EE7-24288B77291B">May 03, 2025  7:28:06 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s the recording from 2022</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FD98781E-7705-4BA9-A3F6-874ACEE3D9F7">May 03, 2025  7:47:07 PM</a> (Read by you after 277 days, 17 hours, 55 minutes, 2 seconds)</span>
+<span class="sender">Alicia Crusse DC</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you for sharing!!❤️❤️</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,737 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9BC97C06-D77C-4893-AF77-E7BA856C0A43">Dec 23, 2024  1:13:13 PM</a> (Read by them after 4 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie Gilbert</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=439AAB49-CA4E-40FA-A69D-CB7F1C062905">Dec 23, 2024  1:13:22 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kim’s daughter</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7833FDF-4FC6-462A-8374-7CAB4F686B3A">Dec 23, 2024  1:39:07 PM</a> (Read by them after 5 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Do we need to pick out something for her to wear? Or did y’all take care of that already?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FC6FDA32-3D10-4D15-9249-5E0367FCE9AE">Dec 23, 2024  2:55:29 PM</a> (Read by you after 3 hours, 29 minutes, 52 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We did that and gave it to the funeral parlor</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ECC2B68F-4B1F-43BC-9C9A-BB366E24531D">Dec 23, 2024  6:26:32 PM</a> (Read by them after 5 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We’re going to my aunts grave with Danny. Afterwards, would y’all like to go to dinner with the three of us? We tried to call Dennis; he didn’t answer</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9D0F9E33-C36C-4D75-92CB-FF62413CD7F9">Dec 23, 2024  6:35:27 PM</a> (Read by you after 7 minutes, 30 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you but we are chilling home <u>tonight</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=340175B6-BC4B-45F1-81EE-CB327048B7FA">Dec 23, 2024  6:37:39 PM</a> (Read by you after 5 minutes, 18 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just left him a message think he is on the ohone</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6E4B2957-343C-4387-9DA0-32E3A72F0937">Dec 23, 2024  6:37:47 PM</a> (Read by you after 5 minutes, 10 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Phone</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AD1D4023-6AAA-456B-A339-37D9F18A304B">Dec 23, 2024  6:40:20 PM</a> (Read by you after 2 minutes, 37 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Try going to the house </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D51A0E7D-6548-479A-A2D3-4C46852E79C5">Dec 23, 2024  6:43:09 PM</a> (Read by them after 3 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We’ll head over there</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F1B16F06-B1B5-48BD-A4CB-D45AF6F9C7B7">Dec 23, 2024  6:43:39 PM</a> (Read by you after 11 minutes, 40 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Terrific </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=321785BD-D51B-4657-BECE-65072E8F9D87">Dec 23, 2024  6:55:43 PM</a> (Read by them after 3 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We went by and asked. He said he’d already eaten and was about to go to bed</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C656271A-6DF4-4579-B7FE-A93036D21860">Dec 23, 2024  7:07:02 PM</a> (Read by you after 3 hours, 33 minutes, 53 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Enjoy your dinner hope he gets a good night&apos;s rest</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1750DF63-FBC9-442D-AAB1-2417D27B58AA">Dec 24, 2024  9:19:12 AM</a> (Read by you after 4 minutes, 6 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Morning Kylie the pics with your grandma wearing the purple outfit (which I loved on her) is our daughter Kasey and Shawn&apos;s wedding September 2007 the blue dress is Kurt and Erica&apos;s wedding May 2010. Thank you </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B993D242-88F1-4DB5-8F94-3DD6B83797A2">Dec 24, 2024  9:19:14 AM</a> (Read by you after 4 minutes, 4 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/a5/a55a1583becf6a25567d04ebe823361797103d87" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B5280627-059A-4885-943C-ABA8C7379F5F">Dec 24, 2024  9:19:16 AM</a> (Read by you after 4 minutes, 2 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/b6/b656b04da3e2d3d10c50fe9d92ab37ad79ddec84" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=47ABD3B6-6A3D-41D1-AAEC-C34EF3B8E607">Dec 24, 2024  9:19:18 AM</a> (Read by you after 4 minutes)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/f6/f68f37661eddf89d5394e77d0ae323f3315a14a4" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DF0D2C62-6624-49D2-AEE5-5CACAD966BFB">Dec 24, 2024  9:19:20 AM</a> (Read by you after 3 minutes, 58 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/04/04397ccbd04c2ebdb5b1f11b93052485ae4d5310" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3EE6EB25-D500-4C72-9AE6-38D41BD56DEE">Dec 24, 2024  9:25:59 AM</a> (Read by them after 3 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">The funeral home is asking about her hair. Dennis already told us the color and we’re going to get it. We remember it being very purple after we dyed it when she stayed with us; we remember it being very purple. Should we tone it down?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=18799EE1-B15E-41CC-B514-5F98E4D408E7">Dec 24, 2024  9:26:19 AM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Also, I agree, the purple dress looks lovely</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C47429FE-8B05-4D08-90B6-3E5EBC6347C2">Dec 24, 2024 11:18:21 AM</a> (Read by you after 4 minutes, 12 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hope you can find the dress, Kasey &quot;s wedding was 17:years ago, the dress I wore disintegrated and I threw it out. The blue one is pretty too so that could be a back up</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8B4D8158-C686-4035-AF52-AE6CC7AE7C9B">Dec 24, 2024 11:20:03 AM</a> (Read by you after 2 minutes, 30 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I know she used to shop at dress barn but that is gone. We chose the Crocs as she loved her crocs</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8283B2AB-BA92-46BE-8F6C-7E3C3AEA0D2C">Dec 24, 2024 11:46:47 AM</a> (Read by them after 3 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We went through the closet. Found the blue dress and a black kind of sparkly one</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F6FF1B86-7338-477C-87A6-4218E042B9AC">Dec 24, 2024 11:47:02 AM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you for your help!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8A449DEF-3B11-433A-BF5A-DE12DD712252">Dec 24, 2024 12:05:18 PM</a> (Read by you after 9 minutes, 48 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Terrific with her coloring the blue is lovely too </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=09436527-57E4-4334-85E7-73CE367DE81F">Dec 24, 2024 12:07:03 PM</a> (Read by you after 8 minutes, 3 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I remember and I believe I have pics some where of them dancing</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=58BE388F-F9C5-47ED-9568-F982F840F808">Dec 24, 2024 12:12:08 PM</a> (Read by you after 2 minutes, 58 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Found a nice one from Kurt and Erica&apos;s wedding of her in the blue one, it is both of them. Send it to you </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A8DF96A7-8A46-444F-8511-5833B1FA5CC1">Dec 24, 2024 12:16:47 PM</a> (Read by you after 1 hour, 47 minutes, 28 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">This one she looks beautiful I have the real picture I will bring it <u>Thursday</u> the picture of it does not do her justice</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A180D4BC-BA01-4C2E-BDBA-65737CAE24ED">Dec 24, 2024 12:16:49 PM</a> (Read by you after 1 hour, 47 minutes, 26 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/dc/dcdbab70c3fe9b2cac69a68a871973005dfcc43c" loading="lazy"></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4CA77B91-566F-43B0-BFF6-B95FB352D699">Dec 24, 2024  2:04:08 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I texted your Mom and she did not respond do you ladies have plans <u>tonight</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=87484BFE-0BDA-4E00-824E-CED36FDAEFE9">Dec 24, 2024  2:04:46 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Yes, we are staying with my cousins and eating with them</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=29C67194-1D40-4BA0-9670-8542E8FC62E0">Dec 24, 2024  2:05:07 PM</a> (Read by you after 2 hours, 47 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Very nice </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=16F50F89-965F-4435-AECB-3CF6A9E393FE">Dec 26, 2024 10:48:29 AM</a> (Read by you after 5 hours, 48 minutes, 40 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Still at the bank</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=689B246C-CA5F-43DE-958B-C2A233CE9495">Dec 26, 2024  4:33:42 PM</a> (Read by you after 3 minutes, 27 seconds)</span>
+<span class="sender">Sue Ellen</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Please extend an invitation to your family to join a celebration of Diane hosted by Dennis <u>tomorrow</u> after burial to Lombardi&apos;s on the bay 600 s ocean av Patchogue.</span>
+</div>
+</div>
+</div>
+</body></html>

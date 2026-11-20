@@ -1,0 +1,527 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C3DB6ACA-B23D-426D-8428-57F42945D9B5">Dec 26, 2024  3:26:10 PM</a> (Read by them after 4 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://docs.google.com/document/d/14FD9GhU0AIIf32w3WctE-hb70EAxO6L7Eix42OtLUnU/edit?usp=embed_facebook"><div class="app_header"><img src="https://lh7-us.googleusercontent.com/docs/AHkbwyKEk5DQ90_r59NID9qW3NtWdhw2sF-71RLnujVWeolRk0G5plcgSmN7waQc7bqtfKTfIt-c9G_2DvoOfTYxnMa9w5CUNtNjJ1xSJsxG8fSq0apDfqKf=w1200-h630-p" loading="lazy" onerror="this.style.display='none'"><div class="name">Google Docs</div></div><div class="app_footer"><div class="caption">purple&apos;s ribbons // an unwanted accessory - for publication</div><div class="subcaption">“purple’s ribbons // an unwanted accessory” (Editing - Draft 3 - Publishing)  Purple is one of the most important colors in my life. Purple reminds me that I’m not as unique or alone as I sometimes feel. Purple follows me daily, an invisible ribbon tied ‘round my throat. Purple has not always b...</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7B9EA017-60E4-4037-8AC5-35BFE591F23C">Dec 26, 2024  3:26:22 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie Gilbert</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C7F30B20-0415-4634-A010-B163D19802AD">Dec 26, 2024  3:26:39 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Kat Bingham</span></p>
+<hr><div class="message_part">
+<span class="bubble">
+The Woman Who Came From The Peat Bog
+
+
+You’ve called on the spirits 
+
+For grace and peace to be cast upon each piece of you, down to your spit
+
+You’ve called on a woman and yes she has come, but her image is pale and draws the pink from your lips
+
+For a dead body is what you’ve chosen to frisk
+
+Though animated and acting through perhaps a series of tiks
+
+Her Rigor Mortis veins are plump and thick
+
+Her husband to her side, though he stayed in his pit
+
+Not like him, her ways weren’t of god, and her soul perpetually alift 
+
+Wanderer and vagrant and a beauty her cold skin-every inch
+
+Watching, she simply sits
+
+On heavy eyed callers, who call themselves “out of their wits”
+
+And her dead heart cares for them, about until they expire, it’s not her, it’s that not quite passed on soul- stuck because this was her gift-
+
+every lover loves their hand dug ditch
+
+Handed to the sky but not before your meeting with this some Lilith 
+
+Spiny fingers and split nails extend their hand stitched gift to your rose scented crypt 
+
+A woman unafraid of gray hair and sagging lids
+
+How curiously unhinged 
+
+Eyes stoned too heavy to close, see through dirt and find nymphalids 
+
+To roam alone the road of choice, Through rotting trees of far gone away a high speed jig 
+
+Merchant soloist of the bigwigs 
+
+Run through the acrid 
+
+Too fast- the athodyd 
+
+The sin in the soul carefully undid
+
+The sun from the sky, where before her it would live
+
+Down down and downer forever…..
+
+You found her, you’ve found her, you’ve found her-a girl with such….
+
+Your hands draw wavy lines- and you’ve corrupted the grid
+
+And there she is stood there
+
+Amassing from dust her figure swallows the sorry surrounding air
+
+A summons, A wish 
+
+Someone to be the bitch 
+
+There she is- the Dead-headed witch</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0AD11BC4-4402-440D-8C75-4D80090424D3">Dec 26, 2024  3:38:18 PM</a> (Read by them after 22 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><a href="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/2a/2a7631991b62c5fd9525186726a6fb500b2958bc">Click to download The-Husband-Stitch.pdf (1.06 MB)</a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4DE7BF3C-5251-42E0-958E-C238F42937BE">Dec 26, 2024  3:54:03 PM</a> (Read by them after 12 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://soundcloud.com/kuow/carmen-maria-machado-reads-the-husband-stitch-out-loud-and-clear"><div class="app_header"><img src="https://i1.sndcdn.com/artworks-000288273476-h7y7jk-t500x500.jpg" loading="lazy" onerror="this.style.display='none'"><div class="name">SoundCloud</div></div><div class="app_footer"><div class="caption">Carmen Maria Machado reads ‘The Husband Stitch’ out loud and clear</div><div class="subcaption">Carmen Maria Machado gave this reading on January 18 at The Seattle Public Library’s Central Library. 
+Please note: This recording contains unedited language of an adult nature.</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F35D3A9A-41F0-4D47-AE9D-B3F0564AB844">Feb 23, 2025 11:34:23 AM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just saw the news. Congratulations!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=688982F9-2122-4C5A-A835-7EA628E8DB47">Feb 23, 2025  4:41:45 PM</a> (Read by you after 346 days, 20 hours, 1 minute, 7 seconds)</span>
+<span class="sender">Kat Bingham</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!!! ☺️☺️</span>
+</div>
+</div>
+</div>
+</body></html>

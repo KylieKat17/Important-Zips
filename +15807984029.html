@@ -1,0 +1,617 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=83D4B711-84F0-539F-BE6B-302C3E256265">Sep 22, 2021 11:33:40 AM</a> (Read by you after 5 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Check stream in senior class google classroom!! Look for <u>September 10</u> post and fill out form before attending IGP meeting.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=77657F62-5518-9BA4-83B6-4A64D337590F">Sep 22, 2021 11:35:42 AM</a> (Read by you after 4 hours, 3 minutes, 29 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Check senior class google classroom stream for scholarship info. Post on <u>September 8</u> requires you to fill out form if interested &amp; qualify</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=470F810B-A03C-7034-EA07-787475422F57">Oct 04, 2021  4:44:16 PM</a> </span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: If you got a message from Rhodes Graduation, please ignore! We meet soon to discuss ordering grad supplies. No need to order early!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=16702496-75B9-85E5-EC5C-030183D629CA">Oct 07, 2021 12:32:45 PM</a> </span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: For <u>tomorrow</u>&apos;s pep rally: you will be dismissed from your second block class, meet at end zone near field house. Wear your togas!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B619D2FE-6709-627A-EADD-FCD3CB4B083F">Oct 07, 2021 12:36:12 PM</a> </span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Here&apos;s the schedule. Follow assembly schedule. <a href="http://rmd.me/bsYprqyPJDk">rmd.me/bsYprqyPJDk</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=190FB507-0F94-E0E0-5A78-B3B66DA0EC9A">Oct 09, 2021 10:54:20 AM</a> </span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Good morning!! Please disregard the texts/emails from Rhodes graduation about ordering supplies. The company sent them in error.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=12CEFE0E-41DB-B586-6CCB-68D2B3CF5178">Oct 09, 2021 10:55:22 AM</a> </span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Our graduation supply meeting is <u>October 21st</u> and students will get all information about ordering at that time. Thank you!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1BF7B230-1AFA-A111-A4F5-47E1F533AB4B">Oct 20, 2021  9:35:48 AM</a> (Read by you after 1 day, 9 hours, 54 minutes, 55 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Meeting <u>Thursday</u> in arena during second half of PowerHour. Meeting will start promptly at <u>12:05</u>! For ordering grad supplies, class day, pics</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7B417D79-FD33-DC5C-130B-96B5AE016AB2">Oct 21, 2021 11:12:48 AM</a> (Read by you after 8 hours, 17 minutes, 55 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Meeting second half PowerHour in arena!! Be there!😀😀</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=521983D1-05E7-38EC-81CA-23D67340979F">Oct 21, 2021 12:05:39 PM</a> (Read by you after 7 hours, 25 minutes, 4 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Meeting now😀😀</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F6EF05AD-462A-5D20-00C5-9DAC114DDAE3">Oct 24, 2021  6:49:14 PM</a> (Read by you after 2 minutes, 2 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Seniors met with Rhodes Graduation to get info on ordering graduation items. Students got a packet and ordering is online. Orders <u>due 10/28</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DE77A770-A828-9D44-91B8-6A21DE9D0347">Oct 24, 2021  6:49:45 PM</a> (Read by you after 1 minute, 31 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: <a href="http://rmd.me/S9YXLA633fU">rmd.me/S9YXLA633fU</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=497A96F8-9C9A-D0B3-93A4-3A09677AA058">Oct 24, 2021  7:37:46 PM</a> (Read by you after 12 hours, 32 minutes, 37 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Please only order one diploma cover! Google doc has been updated. Cap, gown, tassel and diploma cover are all sold together.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=825854DC-1D1D-0681-C426-9769F6500257">Oct 25, 2021  8:49:55 PM</a> (Read by you after 2 hours, 50 minutes, 40 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Please wear senior shirts <u>tomorrow</u> for our group picture in arena second half of PowerHour!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B12878A6-7E45-2A0C-C6F2-58D39BE59FB5">Oct 25, 2021  8:51:18 PM</a> (Read by you after 2 hours, 49 minutes, 17 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Senior cap and gown photos <u>tomorrow</u>!! These are optional. Cap, gown, and diploma cover provided. Pictures in room 322 upstairs science hall.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DB7B2992-3980-B24F-3313-6CE3035C2763">Oct 25, 2021  8:55:47 PM</a> (Read by you after 2 hours, 44 minutes, 48 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Suggested schedule for cap and gown photos. If you can&apos;t go at scheduled time, you may go at a time that works. <a href="http://rmd.me/xgiX2YYKu1W">rmd.me/xgiX2YYKu1W</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9D4965F4-A00F-72D3-806A-54CB893DF6FF">Oct 26, 2021  7:30:56 AM</a> (Read by you after 3 hours, 47 minutes, 41 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Don&apos;t forget to wear your shirt! Picture day!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E15A7281-570B-D1F8-B164-9D1D0389AD56">Oct 26, 2021 10:04:09 AM</a> (Read by you after 1 hour, 14 minutes, 28 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Don&apos;t forget to go by and take your cap and gown photos!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EDFF86BE-4E65-07EE-5EF6-70CB24D7F5A0">Oct 26, 2021 11:59:43 AM</a> (Read by you after 2 days, 5 hours, 5 minutes, 2 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Group picture in the arena now!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4D8D1CD5-C3C6-121C-A4B0-F5AA3794430B">Oct 27, 2021  9:25:40 AM</a> (Read by you after 1 day, 7 hours, 39 minutes, 5 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Deadline to order graduation supplies is <u>tomorrow</u>! Don&apos;t miss the deadline! <a href="http://rmd.me/Ih92Eyh3XYU">rmd.me/Ih92Eyh3XYU</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9DB1E936-D71D-C5C6-7DEA-2AEBDED7C914">Nov 03, 2021  7:42:26 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: I&apos;ve had several questions about the senior yard signs. Here is the PTSO link to order. <a href="http://rmd.me/kGpwvsI4j1Y">rmd.me/kGpwvsI4j1Y</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1B1750B-AD91-69C7-32CB-D4C4190C2E33">Nov 04, 2021  8:10:49 AM</a> (Read by you after 24 minutes, 25 seconds)</span>
+<span class="sender">+15807984029</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">2022 seniors E-K: Pick up your early delivery graduation items <u>today</u> in the front lobby during power hour. If you&apos;re absent I will pick up your items for you.</span>
+</div>
+</div>
+</div>
+</body></html>
