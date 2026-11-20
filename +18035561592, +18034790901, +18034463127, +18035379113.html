@@ -1,0 +1,532 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B6950FA0-9D14-41C8-92D2-04854A441BB7">Nov 27, 2025  4:06:03 PM</a> (Read by you after 16 days, 3 hours, 57 minutes, 22 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble">Happy 🦃Day!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=35BC1825-D3C8-4620-94D2-6359DDC7911F">Nov 27, 2025  6:48:55 PM</a> (Read by you after 16 days, 1 hour, 14 minutes, 30 seconds)</span>
+<span class="sender">Keegan Gilbert</span></p>
+<hr><div class="message_part">
+<span class="bubble">Happy Thanksgiving !</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=458AE522-B43F-420F-AFCB-70B03B8B03C8">Dec 13, 2025  8:02:41 PM</a> (Read by you after 44 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble">My dad, John, died peacefully,  at 1348 at the VA long-term residence in Pueblo.  He began  declining medical intervention this last week after a severe bladder bleed.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=46A37068-CE75-4269-BFCB-25F6F07230EF">Dec 13, 2025  8:02:56 PM</a> (Read by you after 29 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<div class="attachment"><video controls> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/0f/0faff1b03d05018fdabd5fa5db3e6ba0ebea3cc9" type="mp4"> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/0f/0faff1b03d05018fdabd5fa5db3e6ba0ebea3cc9"> </video></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FDF639E2-893F-4080-9F7F-EAF82E1E0862">Dec 13, 2025  8:03:09 PM</a> (Read by you after 16 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<div class="attachment"><video controls> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ff/ffbc317cce8713fe840e49b44ff03d34fb7bc147" type="mp4"> <source src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ff/ffbc317cce8713fe840e49b44ff03d34fb7bc147"> </video></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=407DB8EE-2998-4110-AE80-F6364E454DE1">Dec 13, 2025  8:04:28 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Keegan Gilbert</span></p>
+<hr><div class="message_part">
+<span class="bubble">You ok?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5BF145B4-B50D-4ABE-8791-79868FD048DA">Dec 13, 2025  8:05:58 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble">Quite, talking with brother Justin.  Dad wanted to die.  He made the choice, the VA honored that choice.  Good to experience that genuine honor still exists.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FC7FB0DD-0DDE-4B0C-85EC-049174EB3D0D">Dec 13, 2025  8:38:49 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m sorry! I hope he wasn’t in too much pain</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=21C401D8-8656-430B-B899-C5D9C9CA8C3F">Dec 13, 2025  8:42:49 PM</a> (Read by you after 11 days, 13 hours, 18 minutes, 6 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble">The last week, heavy palliative care.  So, not much.  The last few years...  getting old is not for the faint of heart.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BEB7A5A5-A271-4B69-BA2E-AB7E98B1019E">Dec 18, 2025  3:31:50 PM</a> (Read by you after 6 days, 18 hours, 29 minutes, 5 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble"><a href="https://www.montgomerysteward.com/obits/john-mallory-gay/">https://www.montgomerysteward.com/obits/john-mallory-gay/</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=24052061-AF11-4A61-85E4-CDDC06010244">Dec 25, 2025  9:49:41 AM</a> (Read by you after 11 minutes, 14 seconds)</span>
+<span class="sender">Dad</span></p>
+<hr><div class="message_part">
+<span class="bubble">Merry Christmas 🎄🎅🏻</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent RCS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E157461F-D50A-4CAF-846C-C528B37724B9">Dec 25, 2025 10:01:29 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Happy Christmas!!! 🎄 ☃️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B9B6FF4-357E-4134-850D-E384CC60DF17">Dec 25, 2025 10:06:10 AM</a> (Read by you after 9 days, 5 hours, 49 minutes, 9 seconds)</span>
+<span class="sender">Keegan Gilbert</span></p>
+<hr><div class="message_part">
+<span class="bubble">Merry Christmas!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7E16BF2E-A663-4290-B5DD-890A3151F56F">Dec 25, 2025  3:12:34 PM</a> (Read by you after 9 days, 42 minutes, 45 seconds)</span>
+<span class="sender">Riley (Top G)</span></p>
+<hr><div class="message_part">
+<span class="bubble">Merry Christmas 🎄🎁 </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5940656D-DECF-4082-91D8-BBBB111EC92F">Dec 25, 2025  4:13:48 PM</a> (Read by you after 8 days, 23 hours, 41 minutes, 31 seconds)</span>
+<span class="sender">Rory Gilbert</span></p>
+<hr><div class="message_part">
+<span class="bubble">Merry Christmas!</span>
+</div>
+</div>
+</div>
+</body></html>

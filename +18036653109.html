@@ -1,0 +1,863 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=77EC7475-01FC-4638-94B6-9E0E18C4F316">Dec 05, 2023  3:23:49 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is Cathy Huddle with the Chapin Woman’s Club. I’ve was slack about meeting with you last semester but hope we can get together in Clemson this Spring. The club is having a luncheon for all of our scholarship recipients at <u>noon on Monday 12/18</u> at 424 Lookover Pointe Dr. Chapin. Please let me know if you can come. If you need a ride I’d be happy to pick you up.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7C559D82-E615-467E-BF38-D4AB7DEFE22D">Dec 05, 2023  9:47:26 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Unfortunately, I have a dentist appointment at <u>11 am on the 18th</u> that can’t be moved</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BDB382B3-0C0A-470C-AED2-29F62C27ECC2">Dec 05, 2023  9:47:45 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">So, I won’t be able to make it</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=92CB6DC7-D00C-44F6-B9FF-E78089859750">Dec 05, 2023  9:50:45 PM</a> (Read by you after 20 days, 22 hours, 40 minutes, 9 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s too bad but the dentist def comes first. When do you head back to Clemson?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C19BD0A2-10E7-4904-A5A6-273FE8560B13">Dec 26, 2023  8:31:19 PM</a> (Read by them after 4 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll be back in Clemson on either the 7th or 8th bc classes <u>start on the 10th</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C47510C8-D1AF-4F05-818C-61DE4368B5D3">Dec 26, 2023  8:31:33 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Who should I send my grades for this semester too?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9537BCDC-64D6-4973-B74F-06934430C00C">Dec 26, 2023  9:24:40 PM</a> (Read by you after 1 minute)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Paula Weinspach: weinspach (<a href="mailto:paula.weinspach@gmail.com">mailto:paula.weinspach@gmail.com</a></span>
+</div>
+<div class="replies">
+<div class="reply" id="4A8C3C79-4ACC-449E-AD74-5BABB3449EEF"><div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4A8C3C79-4ACC-449E-AD74-5BABB3449EEF">Dec 26, 2023  9:26:31 PM</a> </span>
+<span class="reply_anchor"><a title="View in context" href="#r-4A8C3C79-4ACC-449E-AD74-5BABB3449EEF">⇲</a></span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AA236F2D-F9E8-40B2-B363-CED9E8B1C4C4">Dec 26, 2023  9:25:27 PM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Could you meet for lunch in Chapin on <u>2/2</u> or 2/3?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5EA5F0BF-3B96-4A63-ACC4-2BCA02925C66">Dec 26, 2023  9:26:22 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">As in <u>February 2nd</u> or 3rd?</span>
+</div>
+</div>
+</div>
+<div class="message" id="r-4A8C3C79-4ACC-449E-AD74-5BABB3449EEF">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4A8C3C79-4ACC-449E-AD74-5BABB3449EEF">Dec 26, 2023  9:26:31 PM</a> </span>
+<span class="reply_anchor"><a title="View in thread" href="#4A8C3C79-4ACC-449E-AD74-5BABB3449EEF">⇱</a></span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+<span class="reply_context">This message responded to an earlier message.</span>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F2B25E6F-F94E-4E0F-9599-32AA7B39DDD1">Dec 26, 2023  9:26:46 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">January- next week</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=58995492-AF29-4D41-B999-0D8E3D5C8116">Dec 26, 2023  9:26:54 PM</a> </span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">In Chapin</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EF90F8A7-AD1A-4B52-8431-0DE040442246">Dec 26, 2023  9:27:44 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry, that 2/2 confused me. But yes I can do the 3rd</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=65175056-7F15-411B-B533-F85341053418">Dec 26, 2023  9:28:24 PM</a> (Read by you after 42 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">My mistake!!  How about Doza Rizen at <u>noon on the 3rd</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8033573B-FE38-498D-BD4D-A549F74BBA1B">Dec 26, 2023  9:29:27 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Perfect! I’ll see you then!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3DC8C049-7ABC-453F-B4C9-1AE570A01919">Dec 26, 2023  9:29:38 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Great!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E0F37C34-6278-46E2-BC1E-C4A1BC121704">Jan 02, 2024 12:02:49 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hello! Would it be possible for me to push our lunch back one day?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=29A2924D-A811-4045-A89C-5F8021584D5C">Jan 02, 2024 12:03:58 PM</a> (Read by you after 18 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Unfortunately I won’t be here on <u>Thursday</u> but we can catch up sometime in Clemson. I go up there a lot to see my mother</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=085115F8-D556-4065-907C-3A5AB8B4FB41">Jan 02, 2024 12:04:28 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure, just let me know when</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=90B2DFDD-5542-468F-829D-8D18CC4910BF">Jan 02, 2024 12:04:35 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m so sorry for cancelling!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E31ADBC3-AF05-4F3F-A092-3F85C19B68F3">Jan 02, 2024 12:05:21 PM</a> (Read by you after 131 days, 21 hours, 54 minutes, 24 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">No problem at all. I’ll let you know next time I plan to go up there</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=197A1FC7-5441-4C95-8799-90CEC5D2E175">May 13, 2024 10:59:40 AM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, This is Cathy Huddle with Chapin Woman’s Club. I don’t know if you’re going to the pool party for our scholarship recipients but I am out of town so won’t be there. I’m still looking forward to meeting you. Please let me know if you’ll be in Clemson and/or Chapin this summer. I’d like to try to meet for lunch again. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0A682FA4-19C2-4408-8729-3FA64534364B">May 23, 2024  5:41:02 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m sorry I wasn’t able to attend the pool party (though I’m fairly certain I declined the e-invite). I started working at BCBS on the 13th and go <u>through August 16th.</u> I’ll be in Chapin all Summer as a result so lunch would be great!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F13F1957-C18B-4C1A-9A19-13DFA33D9ABE">May 23, 2024  5:41:33 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll also be at the awards event <u>tonight</u> for my little brother</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8A5E0D34-FDC1-43B2-97D9-10E8F7046360">May 23, 2024  5:42:24 PM</a> </span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Unfortunately I’m actually in Clemson <u>today</u>. I’m actually from here and visiting my mom. Do you have to drive all the way to BCBS every day?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=54E0B5C6-4C98-405A-93EA-2D47A533D851">May 23, 2024  5:44:04 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="edited"><table><tbody><tr><td><span class="timestamp"></span></td><td>I have to leave for he Tower at 1301 Gervais St every morning by <u>6:20 am</u> to beat the Malfunction Junction traffic</td></tr></tbody><tfoot><tr><td><span class="timestamp">Edited 27 seconds later</span></td><td>I have to leave for the Tower at 1301 Gervais St every morning by 6:20 am to beat the Malfunction Junction traffic</td></tr></tfoot></table></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=191DBBA2-F634-42ED-9F8F-53432C78EDF4">May 23, 2024  5:47:36 PM</a> (Read by you after 26 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s brutal. I can come down there for lunch. How about <u>next Thursday</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CCBCA5F0-5FF0-4A29-9A22-AF5338810291">May 23, 2024  5:51:57 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble"><u>Next Thursday</u> Chapin has graduation so I’m taking off to attend for my younger brother. I also won’t be able to do that <u>Friday</u> either as it’s his birthday and I have family from NY visiting for both events</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=57302D12-C340-4B7C-9F8D-7F3A138E9820">May 23, 2024  5:54:23 PM</a> (Read by you after 1 minute, 33 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I totally forgot. I’ll be at graduation too. I’ll get in touch with you next week t week and we will try to find a time before you come back to Clemson - or see you up here. I’d love for you to meet my mom. She’s the first woman PhD in Computer Science from Clemson </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1FD35721-C6A1-4E5C-9F89-9CEE2C12D8A4">May 23, 2024  5:58:21 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s so cool! The disparity between men and women in undergrad is horrid. So a PhD in Computing from Clemson is such an accomplishment!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FF24F1EC-856D-4664-A41A-E01B0684D677">May 23, 2024  5:58:34 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’d love to meet her!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=78E7B504-720B-447D-B949-58B21BADF776">May 23, 2024  5:59:45 PM</a> (Read by you after 1 minute, 7 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Great!  We’ll try to meet before August and then go to lunch or dinner with her when school starts back. She’s 88 but fortunately still sharp as ever</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2345209B-59D2-4F7F-B147-9A1C296CCF94">May 23, 2024  6:00:35 PM</a> (Read by you after 17 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<div class="app"><a href="https://people.computing.clemson.edu/~ehare/vita.html"><div class="app_header"><div class="name">https://people.computing.clemson.edu/~ehare/vita.html</div></div><div class="app_footer"><div class="caption">Vita -- Eleanor Hare</div></div></a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B4B3E1ED-52CA-443F-8B55-BC4518F5EF03">Jul 01, 2024 11:58:15 AM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey, <span title="+18036653109"><b>Cathy</b></span> who should I send my updated transcript to now that I’ve completed my summer courses and fulfilled the 30 credit hrs requirement?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4944675E-3562-4852-AC10-E5352B3DA7FC">Jul 01, 2024 12:06:29 PM</a> (Read by you after 17 minutes, 5 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll ask</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F97E0A31-172B-4C36-8A3F-FE31B23D1CEB">Jul 01, 2024 12:23:39 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="edited"><table><tbody><tr><td><span class="timestamp"></span></td><td>Thank you?</td></tr></tbody><tfoot><tr><td><span class="timestamp">Edited 4 seconds later</span></td><td>Thank you!</td></tr></tfoot></table></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A0BB645E-EAE5-4213-8B1C-DF1F7C0E0D2E">Jul 01, 2024 12:43:46 PM</a> (Read by you after 1 day, 45 minutes, 8 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<div class="attachment"><a href="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/45/4562169c23447d028a2a9febb5d23b8eea4d80cb">Click to download Shannon  Allonier.vcf (266.49 KB)</a></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">Send to her. She is chair of the scholarship committee </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7A05B9A7-4101-470D-96A7-7B00C00216CC">Aug 18, 2024 12:02:38 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Cathy! I’m back in Clemson and I’d love to get lunch or something soon.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=33579B5D-D67D-496E-A45A-1A69CADE9046">Aug 18, 2024 12:59:52 PM</a> (Read by you after 5 minutes, 46 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">That’s great!  Are you available <u>for lunch this Friday</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A56CC5F2-C6BF-45AD-A71E-2AC587526FE6">Aug 18, 2024  1:07:56 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have class that day until just after noon, so I could do <u>2:00</u> if that works for you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2147A947-A50B-45E3-9C82-B87E41A4E2F2">Aug 18, 2024  1:11:03 PM</a> (Read by you after 39 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">We might need to find another day where you could go closer to noon. What is your schedule around lunch time on the other days of the week?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CCEA0E59-D82C-4468-B99E-A660CE90D7E2">Aug 18, 2024  1:12:17 PM</a> (Read by them after 2 seconds)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><img src="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/ef/ef1b93d6b262b4c1bc48dc1ce929c1b783c95822" loading="lazy"></div>
+</div>
+<hr><div class="message_part">
+<span class="bubble">I won’t have any labs this week so I’ll be done by <u>10:45 on Thursday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7DAB3E3-95C2-4E70-ACF6-8DD3CA00C6D5">Aug 21, 2024  8:10:21 PM</a> (Read by you after 3 minutes, 15 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">I am so sorry I realized I never replied. I can’t do <u>lunch tomorrow</u> but could meet for cofffee/tea around <u>3pm</u> or <u>Friday afternoon</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F9FFF3E1-1842-48EB-B4EB-AD5645E7B8BA">Nov 02, 2024  4:11:48 PM</a> (Read by them after 1 second)</span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Just voted for you and Loveless at Chapin Town Hall!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=314E61A9-E10F-4332-9D50-0B60F711DDC3">Nov 02, 2024  4:12:04 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good Luck!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=905AF360-9799-4E21-B83E-FED394734655">Nov 02, 2024  4:30:21 PM</a> (Read by you after 45 days, 40 minutes, 33 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!  Great to finally meet you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0DE5B292-05EA-487D-9D1A-57565E3ADC1F">Dec 16, 2024 11:35:41 AM</a> (Read by you after 1 day, 4 hours, 35 minutes, 13 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie!  I hope your semester went well!  Chapin Woman’s Club is hosting a luncheon for all the girls who receive scholarships. It’s <u>this Wednesday at 11:30am</u> at Chris Woodworth’s house in Night Harbor. Can you go?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C40A2558-BEA0-4F2F-923D-FDE1FC18D685">Dec 17, 2024  4:10:52 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Cathy Huddle</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi. Just checking again </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2CEBC1E2-36A3-4D23-AE41-C8067E2C5D47">Dec 17, 2024  4:59:02 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I will check and get back to you later <u>this evening</u>. I am very busy dealing with a private matter at the moment so I might not be able to</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Liked</b> by Cathy Huddle</span></div>
+
+</div>
+</div>
+</div>
+</body></html>

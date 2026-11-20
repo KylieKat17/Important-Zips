@@ -1,0 +1,865 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2C5F8C95-B1EE-C611-0408-4DCEE3E7BEEC">May 14, 2025 10:03:52 AM</a> (Read by you after 13 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Technical difficulties, per usual</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69973094-EF16-468A-AF2A-D2D5F0F95CE6">May 14, 2025 10:04:54 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I think it will be fine. They&apos;re not letting anybody but the hearing board in at the minute</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4E3517DC-252F-DF68-46B5-BEB46EE4B0B6">May 14, 2025 10:05:05 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh, good.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=883CA199-E896-850F-40C4-E8DB4F8AC3A1">May 14, 2025 10:21:25 AM</a> (Read by you after 1 minute, 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">PHEW. That was significant.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4EA3BA21-1325-4337-AB4A-9E3E13497BC2">May 14, 2025 10:22:59 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">He wasn&apos;t working on just checkers. Half the class had ConnectX</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8859DC62-06B2-4230-A4EE-4341A7ECA884">May 14, 2025 10:23:14 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">He also gave me an extension in an audio recording in the Drive</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7BA8915D-D101-4D84-9803-AFDDA7FCB970">May 14, 2025 10:25:22 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">He at the end of the semester said he left up public repositories for the sake of catching people cheating</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0FC9E18-A6FF-4078-A167-7E686467A202">May 14, 2025 10:29:23 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just found the commit of another student adding that specific function</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1AFBBA38-7F15-46CB-9CED-1AD41545659A">May 14, 2025 10:30:07 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Also somebody using one of the ones on screen now</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=82157CEC-0600-2293-4D66-34C12B107496">May 14, 2025 10:30:26 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Here we go - he came up with a plan for how to handle it</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=57E8662E-EBF3-6A6C-4DA8-EBEB0DD96C33">May 14, 2025 10:30:33 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is where he went wrong</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F12BE494-A0F8-6DC8-ACB3-C98B438CAD92">May 14, 2025 10:31:50 AM</a> (Read by you after 41 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ask him to clarify the timeline</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=34A3A069-2B37-B303-3D6F-90B4BFB18631">May 14, 2025 10:32:10 AM</a> (Read by you after 21 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Because it&apos;s unclear whether he looked at the commits first or second</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4574083A-AA2B-22A4-DCB3-B10651BA4997">May 14, 2025 10:32:30 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">And ask him if he reviewed Clemson&apos;s policies on academic integrity, including the faculty cheat sheet, before he sent that email</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C4CD4BC1-3262-44E3-D75E-E03F06ACA7AF">May 14, 2025 10:33:41 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">He&apos;s trying to move over the fact that he used a threat to force confession</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=24A80975-C324-4874-AAB2-C44B139F418E">May 14, 2025 10:35:10 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">She did, it&apos;s in the discord history</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CD351BB6-AB97-40F5-AAD4-F367DE9AAC06">May 14, 2025 10:39:30 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">They did know how to do it. He had us do documentation at the start of the semester with how to do it</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=41CA4327-DAA6-425F-FB01-79B34717A5E5">May 14, 2025 10:41:26 AM</a> (Read by you after 24 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">He should be embarassed that he is showing this email over and over</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2B897F50-6C18-4F34-9C1D-D4A9E2CAB004">May 14, 2025 10:42:05 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Bring that up now or no?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8CEC728A-5DDC-7929-767A-55A953251E9C">May 14, 2025 10:42:14 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">When it&apos;s your turn</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=46393FD5-5EF1-A1C5-C352-CA783D214F0F">May 14, 2025 10:42:19 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Point to it</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E6353E37-D1E0-6DAA-97CB-7ED1A25F31A0">May 14, 2025 10:42:39 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is a good line of questioning by her</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FEC8C994-9D29-4AB1-8A42-B423290E027F">May 14, 2025 10:43:23 AM</a> (Read by you after 45 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is fantastic. he&apos;s screwing up. Let&apos;s take a break out in a minute.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FC210156-4D77-EE1E-E89B-65C3565AB1F9">May 14, 2025 10:43:52 AM</a> (Read by you after 16 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Syllabus may cut against it. Let&apos;s see how this plays out .</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=145BE7D6-FF59-84E0-AABD-59869BC8DCB3">May 14, 2025 10:44:09 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Nevermind. It&apos;s there.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FBCB26C4-7AF3-D187-5F23-25B65BD14F79">May 14, 2025 10:47:55 AM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Which is literally where we are.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4712EEBB-F88A-553A-79EF-C518A8E9F446">May 14, 2025 10:48:16 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">I actually can&apos;t stand him, if you feel better about that :)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2EF12FDF-2964-4149-B45E-53CF463341F3">May 14, 2025 10:48:37 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I love her though</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=05E298FB-3C7D-64C4-C358-216DD3C0E8A1">May 14, 2025 10:48:45 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">She&apos;s FANTASTIC</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=94E5EE2A-87F2-D990-DD39-89C145009622">May 14, 2025 10:49:15 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">So he didn&apos;t align with his syllabus</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=00AAB1C1-F5A2-842B-49FF-F88DBDE12AC7">May 14, 2025 10:49:19 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">And he didn&apos;t align with the policy</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C73CEDB7-ABD5-470C-8E44-12883D2F32B5">May 14, 2025 10:49:27 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I&apos;m looking at it rn yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=721AC622-8A78-2840-4DEF-F9DE6B75BDE3">May 14, 2025 10:49:27 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">And he didn&apos;t proceed with exactly what he promised he would do in the email</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=065F1C72-5478-427D-A903-7D8B8C353308">May 14, 2025 10:50:03 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">So...entrapment</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=42933E87-4AF7-8784-071A-9B2E873B23B1">May 14, 2025 10:50:11 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">hOW DOES HE NOT KNOW WHAT WORKS ACROSS THE WHOLE UNIVERSITY</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DF7B485C-6332-4ABD-8DBE-48EA6E005C8D">May 14, 2025 10:51:51 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We had an extension on the project to either <u>Saturday</u> or <u>Sunday</u> as stated in a recording from an earlier meeting</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D2727EDC-6A1E-4F10-96DD-303DD6121EA1">May 14, 2025 10:52:12 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">It was not a boost</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A2A12F91-85C1-4CD0-904F-B1841EB9ECB6">May 14, 2025 10:53:37 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">He was aware I was out and later sorted through CPSC attendance records </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=13FDDD16-0B42-8BED-2010-C0B4CEFB5E06">May 14, 2025 10:55:41 AM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is incredible</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F2353D50-7A90-3FA6-2832-52019C95180F">May 14, 2025 10:55:45 AM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">This is fantastic</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DB1B1572-5DF2-C6E8-6AF5-2B0C43CEE48E">May 14, 2025 10:57:15 AM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">You ask him</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9B5396E9-45AB-CDBE-E0B2-7B3B64CD6334">May 14, 2025 10:57:17 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Two quesitons</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2927B63E-5E7A-A238-9F28-0C9D0044B106">May 14, 2025 10:58:03 AM</a> (Read by you after 3 minutes, 21 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Take a deep breath :)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=315C7FE0-2CD2-2471-6BC9-A7B01057730C">May 14, 2025 11:03:42 AM</a> (Read by you after 23 minutes, 23 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Just don&apos;t engage</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4B030DFC-490D-2130-901D-420FCE10D21B">May 14, 2025 11:07:11 AM</a> (Read by you after 19 minutes, 54 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Be sure to point out that you hadn&apos;t submitted the final project. Amariyana noticed that.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9031DCDA-F371-65CD-3CC8-CF12E3C2B2C0">May 14, 2025 11:24:21 AM</a> (Read by you after 2 minutes, 44 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">She doesn&apos;t understand that you were separated off from the group, I don&apos;t think.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AE3EE342-48C5-138A-FC30-61B289A9EE3F">May 14, 2025 11:24:47 AM</a> (Read by you after 2 minutes, 18 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">By you</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=70E5A0A0-C007-4DB3-8E1A-105EB9003FA7">May 14, 2025 11:39:18 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Pushing is the only way we can access any changes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC903F7C-BC6E-F0CD-2F6A-07134ECBBF45">May 14, 2025 11:39:19 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">Mention that he assessed you a penalty prior to the hearing</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9DA17399-9BFE-D27F-CC2D-41E392B7D099">May 14, 2025 11:39:52 AM</a> (Read by you after 1 minute, 10 seconds)</span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">It&apos;s still not submitted for a grade. Seems like he grades on commits for participation, not substance</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=12C35773-D134-5741-84A7-305060A82E72">May 14, 2025 11:41:08 AM</a> </span>
+<span class="sender">Leslie Hendrix</span></p>
+<hr><div class="message_part">
+<span class="bubble">He didn&apos;t even bother to look at or follow procedures</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C262DD9-DDDB-47CE-8158-BC1E925CB3C4">May 14, 2025 11:41:27 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">He had the option to not go further with it after my rebuttal was submitted</span>
+</div>
+</div>
+</div>
+</body></html>

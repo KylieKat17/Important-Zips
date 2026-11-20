@@ -1,0 +1,167 @@
+Nov 22, 2024  1:57:04 PM
+Me
+Would you be willing to look at a lab that runs perfectly and tell me if I need to condense the driver file and if I should remove a not technically required print to terminal help message?
+
+Nov 22, 2024  1:58:12 PM (Read by you after 13 seconds)
+John McCantz
+Uhhh maybe which class is this btw?
+
+Nov 22, 2024  1:58:19 PM (Read by you after 6 seconds)
+John McCantz
+Send over a photo
+
+Nov 22, 2024  1:58:30 PM (Read by them after 1 second)
+Me
+2310
+
+Nov 22, 2024  1:58:50 PM (Read by you after 1 second)
+John McCantz
+Oh lord this isn’t the ppm lab is it?
+
+Nov 22, 2024  1:59:06 PM
+Me
+The first one yes
+
+Nov 22, 2024  1:59:30 PM
+Me
+What’s your GitHub user?
+
+Nov 22, 2024  1:59:39 PM (Read by you after 1 second)
+John McCantz
+Yikes that one is very rough
+
+Nov 22, 2024  1:59:54 PM
+John McCantz
+Hold on lemme get it
+
+Nov 22, 2024  2:00:18 PM
+John McCantz
+I’ve got like an hour till I leave town so I’ll try to help out as much as possible
+
+Nov 22, 2024  2:00:44 PM (Read by you after 1 second)
+John McCantz
+mccant2004
+
+Nov 22, 2024  2:00:55 PM (Read by them after 1 second)
+Me
+It runs perfectly so I’m just worried abt her taking off for it being too long
+
+Nov 22, 2024  2:01:02 PM (Read by you after 1 minute, 23 seconds)
+John McCantz
+Email is mccant5@g.clemson.edu
+
+Nov 22, 2024  2:01:45 PM (Read by you after 40 seconds)
+John McCantz
+Oh what? Too long? 😅 like the code isn’t efficient or something?
+
+Nov 22, 2024  2:03:06 PM
+Me
+It is but she’s got a very vague thing in the assignment doc abt function length and I’m not sure if it applies to the main
+
+Nov 22, 2024  2:03:37 PM (Read by them after 1 second)
+Me
+Invited you
+
+Nov 22, 2024  2:07:40 PM (Read by you after 17 seconds)
+John McCantz
+Hmm to me it looks completely fine in terms of length. It definitely has some abundant error checking but that should honestly save you points instead of docking you any
+
+Nov 22, 2024  2:08:28 PM
+John McCantz
+Here’s what I’m gonna do, I’ve got my old code from 2310 and I’ll send over my ppm driver. It’s definitely a lot more minimalist than yours but it worked at the time, so you can compare
+
+Nov 22, 2024  2:08:38 PM
+Me
+No don’t do that
+
+Nov 22, 2024  2:08:56 PM
+Me
+I don’t want to see yours
+
+Nov 22, 2024  2:09:02 PM
+John McCantz
+Oh ok, 👌 
+
+Nov 22, 2024  2:09:24 PM
+John McCantz
+Sorry I didn’t wanna imply that you copy it or anything
+
+Nov 22, 2024  2:09:51 PM (Read by them after 1 second)
+Me
+No offense meant, just the computing department is very stringent abt code sharing of already submitted assignments
+    Nov 22, 2024  2:11:15 PM (Read by you after 1 second)
+    John McCantz
+    Ah I see, yeah I’ve heard the same.
+
+
+Nov 22, 2024  2:10:17 PM
+Me
+Thank you for looking at it tho
+    Nov 22, 2024  2:11:32 PM
+    John McCantz
+    Yeah of course lemme know if you need anything else!
+
+
+Nov 22, 2024  2:11:15 PM (Read by you after 1 second)
+John McCantz
+Ah I see, yeah I’ve heard the same.
+This message responded to an earlier message.
+
+Nov 22, 2024  2:11:20 PM
+Me
+What abt the printHelp() function I added?
+    Nov 22, 2024  2:12:02 PM
+    Me
+    This ^^^
+
+
+Nov 22, 2024  2:11:32 PM
+John McCantz
+Yeah of course lemme know if you need anything else!
+This message responded to an earlier message.
+
+Nov 22, 2024  2:12:02 PM
+Me
+This ^^^
+This message responded to an earlier message.
+
+Nov 22, 2024  2:13:38 PM (Read by you after 25 seconds)
+John McCantz
+I mean it’s definitely nice to have but I guess it doesn’t contribute to program functionality, does it?
+
+Nov 22, 2024  2:13:52 PM (Read by you after 11 seconds)
+John McCantz
+Does she require y’all to have printHelp()?
+
+Nov 22, 2024  2:14:10 PM (Read by them after 1 second)
+Me
+Nope
+
+Nov 22, 2024  2:14:31 PM
+Me
+It’s bc my makefile is confusing if you use it instead of just the terminal command
+
+Nov 22, 2024  2:15:49 PM (Read by you after 17 minutes, 29 seconds)
+John McCantz
+Yeah I think ur alright to use it
+
+Nov 22, 2024  2:16:42 PM (Read by you after 16 minutes, 36 seconds)
+John McCantz
+I mean the driver is not too long tbh, it only took a quick scroll thru to understand what’s going on. 
+
+Nov 22, 2024  2:16:56 PM (Read by you after 16 minutes, 22 seconds)
+John McCantz
+I think you’ll be a-ok
+
+Nov 22, 2024  2:33:28 PM
+Me
+I sent it to her so hopefully
+
+Nov 22, 2024  2:33:38 PM
+Me
+Now just one more lab and I’m done!
+
+Nov 22, 2024  2:34:40 PM (Read by you after 3 seconds)
+John McCantz
+Huzzah 🙌 assembly lab
+

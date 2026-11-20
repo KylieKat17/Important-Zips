@@ -1,0 +1,707 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0B1834EA-3B2D-4E7F-B10B-A5E905365F3D">Mar 09, 2025  5:22:11 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Tf did I do?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5CF75DE7-0DB9-4923-BCFA-A8BA6CFD95CF">Mar 09, 2025  5:22:54 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Don’t ask me 😭😭😭</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8F584C29-AE04-4B12-8DC8-B859F50A6F18">Mar 09, 2025  5:23:13 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Correction: what did Rian and I do???</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=96F79640-98C4-4847-BF2D-DEB0ED047E99">Mar 09, 2025  5:23:21 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">The only thing I could possibly think of is the idea of March</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=615FE33D-905D-47B4-936D-43B26DA608DF">Mar 09, 2025  5:24:26 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">I have to wonder if perhaps drugs or alcohol are involved </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CDFC401F-C375-4116-AB99-84D79AD25B89">Mar 09, 2025  5:24:58 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">It’s <u>5 pm</u> on a <u>Sunday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7FDB476F-6648-44EA-B61A-820972445F3F">Mar 09, 2025  5:26:28 PM</a> (Read by you after 7 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">I don’t know man I’m just trying to read my cute lil second person pov story and my roomates are beefing in the group chat 💀</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=590337E0-6DA3-4DF1-8FCD-8173350F0694">Apr 17, 2025 12:24:35 AM</a> (Read by you after 3 minutes, 29 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">I think you should probably stay home rian, just bc it would probably add to the chaos</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7E261C05-C2DC-4E3B-8C34-FBD3E0A4809A">Apr 17, 2025 12:25:41 AM</a> (Read by you after 2 minutes, 23 seconds)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok just keep me posted on what’s happening</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC6C460D-D257-45A6-865F-5C49E6E564B2">Apr 17, 2025 12:25:49 AM</a> (Read by you after 2 minutes, 15 seconds)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">i feel so bad i genuinely did not know anything was going on</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CD273544-1FB5-47D5-9116-D72794F3F78C">Apr 17, 2025 12:28:12 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Campbell’s dad’s otw</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Rian Glaholt</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=28F8707E-1F47-4BA1-9D51-3FE9D2AFF2F7">Apr 17, 2025 12:28:17 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Its okay it happens</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1513C8D2-237F-4411-ABB9-9A23D9B39A21">Apr 17, 2025 12:28:25 AM</a> </span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thats not your fault that you didnt know</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0D4F2349-BFE4-47FE-9156-162024EEA1D0">Apr 17, 2025 12:28:50 AM</a> (Read by you after 1 minute, 26 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Were in a room waiting for the doctor</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=953639F7-5BA4-4999-A2F5-C85B5AC97649">Apr 17, 2025 12:29:59 AM</a> (Read by you after 17 seconds)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">when did this happen like when did u guys leave</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1EA04AF2-610B-40AF-8629-DC9EB4214CCD">Apr 17, 2025 12:31:01 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">In car by <u>11:52</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A76DA12C-2555-4D1B-AA16-3244948E8199">Apr 17, 2025 12:33:26 AM</a> (Read by you after 37 seconds)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">is cam coming back <u>tonight</u> or going with their dad</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AEB4A765-1B27-40DC-A944-EB66728F7AD0">Apr 17, 2025 12:33:43 AM</a> (Read by you after 20 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">We dont know yet</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A1632CEF-B487-4C4D-AF54-D3168C1CBBE5">Apr 17, 2025 12:34:06 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok i gotchu</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DE1A6E20-B1BB-439A-8BAE-BAFB23B989A1">Apr 17, 2025 12:34:17 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Doctors here yet </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ECF06FD1-FC37-4A52-8F42-94E1307D1384">Apr 17, 2025 12:34:33 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Not here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=935354F2-14F1-42FC-A892-DBEC015A4E57">Apr 17, 2025 12:34:40 AM</a> </span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">gotcha</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4760A26D-C50A-46FA-A2B1-E61BD0861494">Apr 17, 2025 12:35:50 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I can’t type</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=ED81A7D5-3EBD-4723-BCFB-6CE2DD785D08">Apr 17, 2025  1:00:56 AM</a> (Read by you after 4 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Were still waiting on the doctor but cams doing a little better now</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FE8F10B7-2D48-4A20-A61C-1559215066F3">Apr 17, 2025  1:01:30 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok very very good</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9427600C-29CE-48C4-A208-156ED9C85A31">Apr 17, 2025  1:01:40 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">How’s the puddle?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FEBF9E0E-BC6B-487B-8548-3AB4AE1F6762">Apr 17, 2025  1:01:56 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">The said theyre not having a panic attack anymore</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Rian Glaholt</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4391BF61-B5E6-4EE6-8967-8A32BE7F6F38">Apr 17, 2025  1:02:00 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">cleaned 🫡</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Claire Lupton</span></div>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Me</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3CCF1547-B727-4459-A229-2D84949DE09B">Apr 17, 2025  1:02:12 AM</a> (Read by you after 1 second)</span>
+<span class="sender">Rian Glaholt</span></p>
+<hr><div class="message_part">
+<span class="bubble">i also put the brita away and the soy sauce </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7A115C99-F12F-4F9C-8BB4-C062C18B7D50">Apr 17, 2025  1:02:28 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4EF96F7F-2E9B-421B-BC48-E4CE2E8904B1">Apr 17, 2025  1:02:30 AM</a> </span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">I forgot about the soy sauce</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1339B7B0-5D82-4CD8-94F3-12B0A5EA8573">Apr 17, 2025  1:07:07 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Doctors here</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AACA1420-0FCB-404D-A878-4C89FA60E2DE">Apr 17, 2025  1:32:22 AM</a> (Read by you after 294 days, 12 hours, 12 minutes, 37 seconds)</span>
+<span class="sender">Claire Lupton</span></p>
+<hr><div class="message_part">
+<span class="bubble">Everything is alright now</span>
+</div>
+</div>
+</div>
+</body></html>
