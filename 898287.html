@@ -1,0 +1,1859 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=71428D89-DAB2-CDA9-A1B5-E7AF0892634C">Sep 06, 2024  2:07:50 PM</a> (Read by you after 4 days, 20 hours, 29 minutes, 5 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LEV to be automatically refilled for you at CVS Pharmacy?
+
+Text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AD876240-9360-ACA3-3E66-1D11DC7EFC56">Sep 08, 2024  1:51:11 PM</a> (Read by you after 2 days, 20 hours, 45 minutes, 44 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LEV to be automatically refilled for you at CVS Pharmacy?
+
+Text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=828A5849-CF2E-20FB-AC76-797815B0F5B4">Sep 11, 2024 10:34:20 AM</a> (Read by you after 2 minutes, 35 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your Rx LEV is in stock for the next refill. Schedule it now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7A71995-90CE-40CA-9059-E971E5B005AF">Sep 11, 2024 10:37:08 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=80EA1EDB-7B8B-B21C-D757-E33D5F5C2416">Sep 11, 2024 10:37:17 AM</a> </span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Thanks! Your pharmacist will schedule Rx LEV for you when due and text you when it&apos;s ready.
+Questions? Call <a href="tel:8646536724">8646536724</a> or visit <a href="http://m.cvs.com/rxi">m.cvs.com/rxi</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B73CB1BA-3817-BD43-2B3F-C04F8F1E2D9C">Sep 15, 2024  3:00:52 PM</a> </span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: The pharmacy is now in your hand. Rx status, refills, and cost estimates are available in the CVS app. Create your account here: <a href="http://cvs.co/4b2bpas">cvs.co/4b2bpas</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D7184ED-675C-418E-3877-8AF58EBA2D77">Sep 18, 2024  9:10:27 AM</a> </span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi KYLIE, double up on defense this season with Flu and COVID vaccines. Walk in or book your shots at: <a href="http://i.cvs.com/F7QiXR7lr">i.cvs.com/F7QiXR7lr</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A38D930E-F101-E0A9-AA61-9DEA85E06501">Sep 27, 2024 10:25:49 AM</a> (Read by you after 6 days, 5 hours, 6 minutes, 3 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi KYLIE, our community is nearing this year&apos;s Flu and COVID season. We understand life can be busy. Book a quick shot: <a href="http://i.cvs.com/eopgfc0ID">i.cvs.com/eopgfc0ID</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=508777BF-2A1F-739A-CEF2-D768103202EB">Sep 29, 2024 12:20:05 PM</a> (Read by you after 4 days, 3 hours, 11 minutes, 47 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LAM is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD.
+
+When you arrive, tap <a href="http://i.cvs.com/vr0n7oI0Q">i.cvs.com/vr0n7oI0Q</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F24770BF-06F6-6EA7-B30E-77D12C476AE6">Oct 02, 2024 11:09:44 AM</a> (Read by you after 1 day, 4 hours, 22 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, reminder to pick up LAM from prescriber S Nunley by <u>Sun, 10/13</u> @ CVS Pharmacy: 1300 TIGER BLVD.. Got your back!
+<a href="http://i.cvs.com/JqoNHvk9y">i.cvs.com/JqoNHvk9y</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=61A53638-4D43-FC63-04C3-2544B83D3606">Oct 04, 2024 11:04:08 AM</a> (Read by you after 47 minutes, 47 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LAM from prescriber S Nunley is available for pickup <u>before Sun, 10/13</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/P3EiLesut">i.cvs.com/P3EiLesut</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=23A66656-FB45-8849-0A1A-3A91442EF345">Oct 12, 2024  9:14:43 AM</a> </span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi KYLIE, enjoy a $5 off $20 coupon after your Flu/COVID appointment: <a href="http://i.cvs.com/cAgACIr2u">i.cvs.com/cAgACIr2u</a>. Restrictions apply. See coupon for details. </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A4DA211F-EF4B-3192-BA9E-B6D62BF8B216">Oct 23, 2024  3:00:10 PM</a> (Read by you after 1 day, 3 hours, 32 minutes, 26 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, check your prescription status before your next arrival. Update your account here: <a href="http://i.cvs.com/xMCPo9utv">i.cvs.com/xMCPo9utv</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2A702646-1351-711C-DA1F-BBFD0BA6C47B">Nov 21, 2024 10:20:08 AM</a> (Read by you after 38 days, 6 hours, 37 minutes, 46 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your Rx LAM is in stock for the next refill. Schedule it now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=742F197A-2F83-344A-62F6-9D5F0C7D10A1">Nov 22, 2024 10:20:58 AM</a> (Read by you after 37 days, 6 hours, 36 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your Rx LAM is in stock for the next refill. Schedule it now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E0039B04-B1AD-CA12-2A93-7865A9454647">Nov 22, 2024  6:49:05 PM</a> (Read by you after 36 days, 22 hours, 8 minutes, 49 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1330 DUTCH FORK RD.
+
+When you arrive, tap <a href="http://i.cvs.com/XSosdj4Xd">i.cvs.com/XSosdj4Xd</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1AA7B852-2485-42FC-0C00-5ABDFDDDE667">Nov 23, 2024  4:30:57 PM</a> (Read by you after 36 days, 26 minutes, 57 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, check your prescription status before your next arrival. Update your account here: <a href="http://i.cvs.com/ALOjQU2g0">i.cvs.com/ALOjQU2g0</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0AB848A9-DA3A-31E7-FC94-1D7AF2E78781">Nov 24, 2024 10:35:58 AM</a> (Read by you after 35 days, 6 hours, 21 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1330 DUTCH FORK RD. <u>before Fri, 12/06</u>. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/CnD1DlgfM">i.cvs.com/CnD1DlgfM</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B38914FF-6798-17BC-CDDC-C54552030AA1">Nov 25, 2024 11:08:21 AM</a> (Read by you after 34 days, 5 hours, 49 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Kylie, reminding you to pick up Rx LEV <u>before Fri, 12/06</u> at CVS Pharmacy: 1330 DUTCH FORK RD.. (We got your back!)
+
+Details: <a href="http://i.cvs.com/bH9DhMJM3">i.cvs.com/bH9DhMJM3</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=63978F02-3E2C-BFAB-6158-E5D04F6D1E23">Nov 27, 2024 10:36:52 AM</a> (Read by you after 32 days, 6 hours, 21 minutes, 2 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi, CVS Pharmacy again. Rx LEV is available for pickup <u>before Fri, 12/06</u>. Ready when you are, Kylie!
+
+Order details: <a href="http://i.cvs.com/WYnv6Fpef">i.cvs.com/WYnv6Fpef</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=71D4AF72-7892-62C4-3601-E6393EC1FF65">Nov 29, 2024 12:11:02 PM</a> (Read by you after 30 days, 4 hours, 46 minutes, 52 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 7 days left to get LEV @ the 1330 DUTCH FORK RD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/NHHqKauM5">i.cvs.com/NHHqKauM5</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=26827A93-5331-4C2D-E2D4-E4B7C2211227">Dec 01, 2024 10:50:11 AM</a> (Read by you after 28 days, 6 hours, 7 minutes, 43 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 5 days left to get LEV @ the 1330 DUTCH FORK RD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/kEczaf3Li">i.cvs.com/kEczaf3Li</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=75125ED7-AF49-595D-D53F-F513CCB907D2">Dec 06, 2024  9:14:39 AM</a> (Read by you after 23 days, 7 hours, 43 minutes, 15 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;re placing an order for Rx LEV. Will text you when available.
+More info: <a href="http://i.cvs.com/Zoi2NsSVE">i.cvs.com/Zoi2NsSVE</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9B002F9A-1E69-A6DC-CBE1-085D9206C5E8">Dec 10, 2024  7:40:21 PM</a> (Read by you after 18 days, 21 hours, 17 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;re placing an order for Rx LEV. Will text you when available.
+More info: <a href="http://i.cvs.com/kvt1t2Bme">i.cvs.com/kvt1t2Bme</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DF9CC1C6-F2AD-3278-D206-9A974371245B">Dec 11, 2024 10:34:54 AM</a> (Read by you after 18 days, 6 hours, 23 minutes)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your Rx LEV is in stock for the next refill. Schedule it now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4212DD19-1AF2-C0CA-AA10-D74FCBD002FA">Dec 12, 2024 10:34:46 AM</a> (Read by you after 17 days, 6 hours, 23 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your Rx LEV is in stock for the next refill. Schedule it now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C2F8AA6-1140-6657-6979-7ACE643C8647">Dec 12, 2024  5:21:26 PM</a> (Read by you after 16 days, 23 hours, 36 minutes, 28 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD.
+
+When you arrive, tap <a href="http://i.cvs.com/lVWQqAMSK">i.cvs.com/lVWQqAMSK</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C4B6C052-0B47-1D06-99CB-5EBA4A474337">Dec 14, 2024  9:17:17 AM</a> (Read by you after 15 days, 7 hours, 40 minutes, 37 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1300 TIGER BLVD. before Thu, 12/26. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/YSl8lIutg">i.cvs.com/YSl8lIutg</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B75FC098-B6F5-8355-23F4-704A6C921A2D">Dec 16, 2024 11:21:38 AM</a> (Read by you after 13 days, 5 hours, 36 minutes, 16 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Kylie, reminding you to pick up Rx LEV <u>before Thu, 12/26</u> at CVS Pharmacy: 1300 TIGER BLVD.. (We got your back!)
+
+Details: <a href="http://i.cvs.com/MYMeX8S2Y">i.cvs.com/MYMeX8S2Y</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EB9AE3F8-89D5-D08B-CAE4-E43C4B293977">Dec 18, 2024 11:04:58 AM</a> (Read by you after 11 days, 5 hours, 52 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 8 days left to get LEV @ the 1300 TIGER BLVD.: CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/xZjtaKHHu">i.cvs.com/xZjtaKHHu</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BA9DA502-7654-5195-4401-F643AD5734F9">Dec 20, 2024 11:00:55 AM</a> (Read by you after 9 days, 5 hours, 56 minutes, 59 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 6 days left to get LEV @ the 1300 TIGER BLVD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/LK2xSJeAp">i.cvs.com/LK2xSJeAp</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=95BCF211-758B-C7F2-1258-CED4B93136C3">Dec 22, 2024 11:34:55 AM</a> (Read by you after 7 days, 5 hours, 22 minutes, 59 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 4 days left to get LEV @ the 1300 TIGER BLVD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/Zf59eFH8K">i.cvs.com/Zf59eFH8K</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=337F57D6-99A6-5287-7AAA-26810BD5FEEA">Dec 23, 2024 11:16:36 AM</a> (Read by you after 6 days, 5 hours, 41 minutes, 18 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 3 days left to get LEV @ the 1300 TIGER BLVD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/plP72YW2h">i.cvs.com/plP72YW2h</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8CA20576-1870-1480-1B15-97D890FA08AA">Dec 29, 2024  4:57:35 PM</a> (Read by you after 19 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie, would you like to refill LEV that&apos;s due for refill at 1330 DUTCH FORK RD.? Text YES or NO. Txt NAME for full Rx name.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6F2B9EAB-9EB8-405B-BE55-D62556D01C8C">Dec 29, 2024  4:58:00 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4F9642C9-AB7D-7D7D-0B7D-E907D1ED9670">Dec 29, 2024  4:58:05 PM</a> (Read by you after 8 days, 23 hours, 9 minutes, 48 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thanks! We&apos;ll refill LEV.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C8D2DCB-C022-E5F7-EA3C-4AADD3AAD2DE">Dec 29, 2024  4:58:20 PM</a> (Read by you after 8 days, 23 hours, 9 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received your prescription request. View Rx details &amp; check order status: <a href="http://i.cvs.com/gB5GntpoB">i.cvs.com/gB5GntpoB</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BA4695BE-C636-D45A-2FF9-B6C119CDB199">Dec 29, 2024  5:05:06 PM</a> (Read by you after 8 days, 23 hours, 2 minutes, 47 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1330 DUTCH FORK RD.
+
+When you arrive, tap <a href="http://i.cvs.com/VNq0sK0PY">i.cvs.com/VNq0sK0PY</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EC923BB7-43FF-0E50-D4F0-D777507F6E7E">Dec 31, 2024  9:23:29 AM</a> (Read by you after 7 days, 6 hours, 44 minutes, 24 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1330 DUTCH FORK RD. <u>before Sun, 01/12</u>. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/XQes0jNVm">i.cvs.com/XQes0jNVm</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0B69AB4-2046-0E03-CBFB-04F3189B7A0F">Jan 03, 2025 11:04:19 AM</a> (Read by you after 4 days, 5 hours, 3 minutes, 34 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Kylie, reminding you to pick up Rx LEV <u>before Sun, 01/12</u> at CVS Pharmacy: 1330 DUTCH FORK RD.. (We got your back!)
+
+Details: <a href="http://i.cvs.com/7Xp8HyEmU">i.cvs.com/7Xp8HyEmU</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=37D9022B-EBEF-4E6E-D66E-38F29660B106">Jan 05, 2025 11:18:02 AM</a> (Read by you after 2 days, 4 hours, 49 minutes, 51 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 7 days left to get LEV @ the 1330 DUTCH FORK RD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/vtjOSvbT3">i.cvs.com/vtjOSvbT3</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=85A6C186-44E1-A97D-6D9E-9933F3FA43D3">Jan 06, 2025  9:48:47 AM</a> (Read by you after 1 day, 6 hours, 19 minutes, 6 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi KYLIE, great job staying on top of your health! Double-up your defenses with a COVID vaccine. Schedule easily now: <a href="http://i.cvs.com/O1WcXP6eB">i.cvs.com/O1WcXP6eB</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69955AF4-6615-D79E-749B-B95909574EF1">Jan 06, 2025 11:06:29 AM</a> (Read by you after 1 day, 5 hours, 1 minute, 24 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 6 days left to get LEV @ the 1330 DUTCH FORK RD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/Zyxp68PYI">i.cvs.com/Zyxp68PYI</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A196B981-0A79-4019-26C5-29383FA7C48C">Jan 07, 2025  4:11:22 PM</a> (Read by you after 18 hours, 53 minutes, 39 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received your prescription request. View Rx details &amp; check order status: <a href="http://i.cvs.com/uvE41Zzxf">i.cvs.com/uvE41Zzxf</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D390A58-0342-9B28-D67D-6C90B8D2EA77">Jan 08, 2025  9:22:21 AM</a> (Read by you after 1 hour, 42 minutes, 40 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, LEV, LAM are ready for pickup @ CVS Pharmacy: 1300 TIGER BLVD.
+
+Tap <a href="http://i.cvs.com/HzQNrQOGH">i.cvs.com/HzQNrQOGH</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EAFD1B21-B3A4-3C22-9AD8-E49F961AC36F">Jan 08, 2025 11:04:47 AM</a> (Read by you after 14 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 4 days left to get LEV @ the 1330 DUTCH FORK RD. CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/UxHe7ejD7">i.cvs.com/UxHe7ejD7</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56E89354-7793-D565-57D0-58CD9D4D10B2">Jan 09, 2025  5:31:50 PM</a> (Read by you after 4 days, 15 hours, 59 minutes, 32 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, this is a reminder that you have 2 Rxs ready for pickup at CVS Pharmacy: LEV, LAM. Please pick them up <u>today</u>. <a href="http://i.cvs.com/eYNhRLztq">i.cvs.com/eYNhRLztq</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5B88C8CF-3C1E-0A10-03CE-5CFCDCFEC121">Jan 10, 2025 11:16:37 AM</a> (Read by you after 3 days, 22 hours, 14 minutes, 45 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Heads up, Kylie! 2 days left to get LEV @ the 1330 DUTCH FORK RD.: CVS Pharmacy.
+
+Order details: <a href="http://i.cvs.com/ikMQU4EVX">i.cvs.com/ikMQU4EVX</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0314E35A-CA71-8BC3-5146-23665CAA348E">Jan 11, 2025  9:16:11 AM</a> (Read by you after 3 days, 15 minutes, 11 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Hi Kylie, it&apos;s CVS Pharmacy. It&apos;s the last day to get LEV @ 1330 DUTCH FORK RD.. Looking forward to seeing you!
+
+<a href="http://i.cvs.com/CFbTXhPHt">i.cvs.com/CFbTXhPHt</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D682BF90-0FC7-356F-66AE-B4C266DEF359">Jan 12, 2025 11:36:49 AM</a> (Read by you after 1 day, 21 hours, 54 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, this is a second reminder that you have 2 Rxs ready for pickup at CVS Pharmacy: LEV, LAM. Please pick them up <u>today</u> <a href="http://i.cvs.com/rNN8T4zFJ">i.cvs.com/rNN8T4zFJ</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FCF271F0-7FE2-A7DB-AE11-EB359C4F0FE9">Jan 13, 2025 11:18:10 AM</a> (Read by you after 22 hours, 13 minutes, 12 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">8 days left to pickup
+
+Kylie, you have 2 Rxs ready for pickup at CVS Pharmacy: LEV, LAM.
+
+Please pick them up <u>today</u>. <a href="http://i.cvs.com/1vQUdwvve">i.cvs.com/1vQUdwvve</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DEB6B548-41CA-6879-7C78-8B449FB956FC">Jan 15, 2025 11:05:14 AM</a> (Read by you after 5 days, 22 hours, 26 minutes, 49 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, you have 2 Rxs ready for pickup: LEV, LAM. We&apos;ll hold them for 6 days at CVS Pharmacy. Please pick them up <u>today</u>. <a href="http://i.cvs.com/34DqPtz2N">i.cvs.com/34DqPtz2N</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BEE3DCD6-7A35-FDB3-EB78-16E60FA46D2A">Jan 20, 2025  9:45:46 AM</a> (Read by you after 23 hours, 46 minutes, 17 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie, your Rx for LAM is out of refills, but we have another Rx on file that we can fill for you. Text YES to fill when due</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0193D32B-94D0-7BD0-8B8D-4C1DD219087E">Jan 21, 2025  9:31:46 AM</a> (Read by you after 17 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie, your Rx for LAM is out of refills, but we have another Rx on file that we can fill for you. Text YES to fill when due</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=48FB0AED-B52F-8376-CE34-7C9723958878">Feb 07, 2025  6:30:11 PM</a> (Read by you after 2 days, 2 hours, 38 minutes, 30 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LAM is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD.
+
+When you arrive, tap <a href="http://i.cvs.com/ci9NfSWNi">i.cvs.com/ci9NfSWNi</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4F00A847-D1F4-6CD2-B05D-08C3BC1C401C">Feb 09, 2025 11:31:51 AM</a> (Read by you after 9 hours, 36 minutes, 50 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LAM at 1300 TIGER BLVD. before Fri, 02/21. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/Ht3NtW4JD">i.cvs.com/Ht3NtW4JD</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=85C4359B-9121-6970-F0A5-164F5879C06A">Feb 10, 2025 11:07:51 AM</a> (Read by you after 7 days, 2 hours, 3 minutes, 55 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, reminder to pick up LAM from prescriber J Melchert by <u>Fri, 02/21</u> @ CVS Pharmacy: 1300 TIGER BLVD.. Got your back!
+<a href="http://i.cvs.com/bIFb3KvXT">i.cvs.com/bIFb3KvXT</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BAD7BA36-5354-8A0B-2011-4B0186A257C3">Feb 12, 2025 11:00:23 AM</a> (Read by you after 5 days, 2 hours, 11 minutes, 23 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LAM from prescriber J Melchert is available for pickup <u>before Fri, 02/21</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/MAmBdWcCv">i.cvs.com/MAmBdWcCv</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4B5DAC0F-9E40-3E35-4116-5819AA6AB1BD">Feb 14, 2025 11:20:39 AM</a> (Read by you after 3 days, 1 hour, 51 minutes, 7 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 7 days left to pick up your Rx LAM at the CVS Pharmacy: 1300 TIGER BLVD..
+
+Details: <a href="http://i.cvs.com/a9vZYqche">i.cvs.com/a9vZYqche</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=02B14F0A-0D85-81E9-4080-1391486F0320">Feb 16, 2025 11:48:24 AM</a> (Read by you after 1 day, 1 hour, 23 minutes, 22 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 5 days left to pick up your Rx LAM at the CVS Pharmacy: 1300 TIGER BLVD..
+
+Details: <a href="http://i.cvs.com/n4g8oudXk">i.cvs.com/n4g8oudXk</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A5EC7A57-F820-DEEF-291E-1ECD71C9BF08">Feb 17, 2025 11:26:04 AM</a> (Read by you after 1 hour, 45 minutes, 42 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 4 days left to pick up your Rx LAM at the CVS Pharmacy: 1300 TIGER BLVD..
+
+Details: <a href="http://i.cvs.com/eQYVLYhWK">i.cvs.com/eQYVLYhWK</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B6E60A15-F278-9A64-2131-5702089666C0">Feb 19, 2025 11:02:52 AM</a> (Read by you after 15 days, 2 hours, 51 minutes, 26 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 2 days left to pick up your Rx LAM at the CVS Pharmacy: 1300 TIGER BLVD..
+
+Details: <a href="http://i.cvs.com/6WkavEYCK">i.cvs.com/6WkavEYCK</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D264C977-1786-5AF4-7AAE-794BD94EF173">Feb 20, 2025  9:37:29 AM</a> (Read by you after 14 days, 4 hours, 16 minutes, 49 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Kylie, this is your CVS pharmacist. <u>Today</u> is the last day to pick up LAM at CVS Pharmacy: 1300 TIGER BLVD..
+<a href="http://i.cvs.com/ibv4iMAux">i.cvs.com/ibv4iMAux</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F505B416-B99F-6A84-7906-65B28ACBC10D">Mar 01, 2025  4:46:33 PM</a> (Read by you after 4 days, 21 hours, 7 minutes, 45 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Order Issue
+
+CVS Pharmacy: Kylie, it is too early for Rx LEV to be covered by insurance. We will fill it on <u>04/10</u> and text you when it is available</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=04CA5349-DBB0-889B-061D-7BC86FE6C4A4">Mar 01, 2025  4:50:02 PM</a> (Read by you after 4 days, 21 hours, 4 minutes, 16 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LAM is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD.
+
+When you arrive, tap <a href="http://i.cvs.com/SqS9Flq8s">i.cvs.com/SqS9Flq8s</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=439EDAD3-1FE4-7654-D5DC-A5D9A7ADE771">Mar 04, 2025 11:19:38 AM</a> (Read by you after 2 days, 2 hours, 34 minutes, 40 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LAM to be automatically refilled for you at CVS Pharmacy?
+
+Text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1E3B1C62-5314-A3F2-0F83-A0F3B9BA133E">Mar 06, 2025 11:04:32 AM</a> (Read by you after 2 hours, 49 minutes, 46 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LAM to be automatically refilled for you at CVS Pharmacy?
+
+Text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A0F27154-0959-446B-BA11-F8DBBEEAE2B1">Mar 06, 2025  1:54:28 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EBC90F54-B075-8446-69FD-E662FFBC9A7B">Mar 06, 2025  1:54:33 PM</a> (Read by you after 62 days, 23 hours, 36 minutes, 29 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thanks! Your eligible LAM will be added to ReadyFill.
+
+We will text you when your scripts are ready for pickup at 1300 TIGER BLVD..</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7098412-E42F-0C1C-7AD9-2DC17AC5BAD8">Mar 20, 2025  6:15:30 PM</a> (Read by you after 48 days, 20 hours, 15 minutes, 32 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, help manage potential side effects of your prescription LAM. Reply M for more info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1CEF634A-8BDD-228F-7CF6-8FF3BED2B7B8">Apr 11, 2025  9:52:54 AM</a> (Read by you after 27 days, 4 hours, 38 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD
+
+When you arrive, tap <a href="http://i.cvs.com/FE9L7cNTj">i.cvs.com/FE9L7cNTj</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=166EA95E-7DFA-BEF6-6769-1927386A9D73">Apr 12, 2025  9:22:50 AM</a> (Read by you after 26 days, 5 hours, 8 minutes, 12 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1300 TIGER BLVD before Thu, 04/24. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/sxcEAbSbV">i.cvs.com/sxcEAbSbV</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FE7335F0-4F11-3058-A3FB-F69D3C97B683">Apr 14, 2025 11:07:24 AM</a> (Read by you after 24 days, 3 hours, 23 minutes, 38 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, reminder to pick up LEV from prescriber J Melchert by <u>Thu, 04/24</u> @ CVS Pharmacy: 1300 TIGER BLVD. Got your back!
+<a href="http://i.cvs.com/RCQAZNXxa">i.cvs.com/RCQAZNXxa</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FCFEFC51-F60D-AD6B-E94E-9CF9F4F087E0">Apr 24, 2025  8:27:29 AM</a> (Read by you after 14 days, 6 hours, 3 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received a new prescription order from your provider. View Rx details &amp; check order status: <a href="http://i.cvs.com/d51LltvG5">i.cvs.com/d51LltvG5</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AA0755EE-2A6D-0EAF-D5D9-39610EAA8729">Apr 24, 2025 11:48:54 AM</a> (Read by you after 14 days, 2 hours, 42 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LAM is ready for pickup at CVS Pharmacy: 1330 DUTCH FORK RD
+
+When you arrive, tap <a href="http://i.cvs.com/dsQhren0z">i.cvs.com/dsQhren0z</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A17FDA4E-ECC0-C0C4-9154-16033AFE90E5">Apr 25, 2025 11:05:58 AM</a> (Read by you after 13 days, 3 hours, 25 minutes, 4 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LAM at 1330 DUTCH FORK RD <u>before Wed, 05/07</u>. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/5TIQpPOIm">i.cvs.com/5TIQpPOIm</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=21B22CE0-2BC8-2BF3-8AF6-D8EC616936EA">Apr 27, 2025 11:18:58 AM</a> (Read by you after 11 days, 3 hours, 12 minutes, 4 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, reminder to pick up LAM from prescriber E Craft by <u>Wed, 05/07</u> @ CVS Pharmacy: 1330 DUTCH FORK RD. Got your back!
+<a href="http://i.cvs.com/HJdDL4lCR">i.cvs.com/HJdDL4lCR</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A54963B6-248A-C0E0-53A7-24C36EC320E0">Apr 28, 2025 11:04:25 AM</a> (Read by you after 10 days, 3 hours, 26 minutes, 37 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LAM from prescriber E Craft is available for pickup <u>before Wed, 05/07</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/4keiG1phj">i.cvs.com/4keiG1phj</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D5D1412B-3C5A-68E5-C8EA-C689ADF7CC5B">Apr 30, 2025 11:00:36 AM</a> (Read by you after 8 days, 3 hours, 30 minutes, 26 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 7 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/IBGk7Kd1O">i.cvs.com/IBGk7Kd1O</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=52917318-94BB-DDC5-ADB0-B7B79BE2D023">May 02, 2025 11:08:44 AM</a> (Read by you after 6 days, 3 hours, 22 minutes, 18 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 5 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/MVsOj80qx">i.cvs.com/MVsOj80qx</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CB02CCD0-1693-4EBD-9714-A35BE0225B6F">May 04, 2025 11:38:32 AM</a> (Read by you after 4 days, 2 hours, 52 minutes, 30 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 3 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/6CTCnMdQU">i.cvs.com/6CTCnMdQU</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D1483189-03D7-024F-97FF-0D4146D8802F">May 05, 2025 11:02:44 AM</a> (Read by you after 3 days, 3 hours, 28 minutes, 18 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 2 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/YEQaVrVzx">i.cvs.com/YEQaVrVzx</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FF602C0F-4C6F-D602-C130-C87DD3E4E4FB">May 06, 2025  9:20:07 AM</a> (Read by you after 2 days, 5 hours, 10 minutes, 55 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Kylie, this is your CVS pharmacist. <u>Today</u> is the last day to pick up LAM at CVS Pharmacy: 1330 DUTCH FORK RD.
+<a href="http://i.cvs.com/KPOfUIAeu">i.cvs.com/KPOfUIAeu</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B30803C4-5C49-AB40-5B00-1E65F22F738A">May 12, 2025  6:35:41 PM</a> (Read by you after 3 days, 16 hours, 7 minutes, 44 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received a new prescription order from your provider. View Rx details &amp; check order status: <a href="http://i.cvs.com/XLiuN8aNu">i.cvs.com/XLiuN8aNu</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=55D2C56D-D15A-18A0-4CB3-5582AE70FED9">May 13, 2025  8:29:48 AM</a> (Read by you after 3 days, 2 hours, 13 minutes, 37 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LAM is ready for pickup at CVS Pharmacy: 1330 DUTCH FORK RD
+
+When you arrive, tap <a href="http://i.cvs.com/ehYcUSYtf">i.cvs.com/ehYcUSYtf</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=250A5962-47AB-6AD1-F42C-D2C5319F1F9E">May 14, 2025 11:06:58 AM</a> (Read by you after 1 day, 23 hours, 36 minutes, 27 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LAM from prescriber E Craft is available for pickup <u>before Mon, 05/26</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/ns9pmAgQt">i.cvs.com/ns9pmAgQt</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FCB75DF6-8BF9-E548-A7EE-12C582DF88B6">May 16, 2025 11:03:14 AM</a> (Read by you after 21 days, 1 hour, 17 minutes, 58 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LAM from prescriber E Craft is available for pickup <u>before Mon, 05/26</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/2jmgEnvpZ">i.cvs.com/2jmgEnvpZ</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5F240300-B983-0B8A-6CD6-123AA2CC7C45">May 18, 2025 12:04:04 PM</a> (Read by you after 19 days, 17 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 8 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/jInLkH7LR">i.cvs.com/jInLkH7LR</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FE5064BE-E668-E133-3B66-3D0A00E6007E">May 19, 2025 11:06:57 AM</a> (Read by you after 18 days, 1 hour, 14 minutes, 15 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 7 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/xwH96QpfG">i.cvs.com/xwH96QpfG</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F13F37DF-66BA-84C5-712B-D33653172363">May 21, 2025 11:02:51 AM</a> (Read by you after 16 days, 1 hour, 18 minutes, 21 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 5 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/suKOQQw6c">i.cvs.com/suKOQQw6c</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CC866733-0A9E-3D21-CCEE-B7B1AC8732CE">May 23, 2025 11:04:23 AM</a> (Read by you after 14 days, 1 hour, 16 minutes, 49 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 3 days left to pick up your Rx LAM at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/PAwxEfe8z">i.cvs.com/PAwxEfe8z</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BCD29A45-E55A-FBF1-C4E1-AF0D004264EE">May 24, 2025 12:11:20 PM</a> (Read by you after 13 days, 9 minutes, 52 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD
+
+When you arrive, tap <a href="http://i.cvs.com/p0BsSYitL">i.cvs.com/p0BsSYitL</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=088BE7E2-E807-779E-C4A9-3399280FA2E4">May 25, 2025 11:35:46 AM</a> (Read by you after 12 days, 45 minutes, 26 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Kylie, this is your CVS pharmacist. <u>Today</u> is the last day to pick up LAM at CVS Pharmacy: 1330 DUTCH FORK RD.
+<a href="http://i.cvs.com/HMrdrHvHv">i.cvs.com/HMrdrHvHv</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B520F4FA-41FE-A18C-B3F3-E8B5423AA167">May 26, 2025 11:09:22 AM</a> (Read by you after 11 days, 1 hour, 11 minutes, 50 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1300 TIGER BLVD before Sat, 06/07. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/rcAk3hmJa">i.cvs.com/rcAk3hmJa</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0CAEEE73-6D96-75AD-0A77-CA746A67D980">May 28, 2025 11:04:49 AM</a> (Read by you after 9 days, 1 hour, 16 minutes, 23 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hey Kylie, reminding you to pick up Rx LEV <u>before Sat, 06/07</u> at CVS Pharmacy: 1300 TIGER BLVD. (We got your back!)
+
+Details: <a href="http://i.cvs.com/ir0AzCAsI">i.cvs.com/ir0AzCAsI</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=648DFEEF-B396-A8B0-DB65-6F963AB0D531">May 30, 2025 11:03:50 AM</a> (Read by you after 7 days, 1 hour, 17 minutes, 22 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 8 days left to pick up your Rx LEV at the CVS Pharmacy: 1300 TIGER BLVD.
+
+Details: <a href="http://i.cvs.com/EpwJklixy">i.cvs.com/EpwJklixy</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0BD02377-4B00-FD6E-7D83-C6EA1204B596">Jun 01, 2025 11:39:49 AM</a> (Read by you after 5 days, 41 minutes, 23 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 6 days left to pick up your Rx LEV at the CVS Pharmacy: 1300 TIGER BLVD.
+
+Details: <a href="http://i.cvs.com/g6L37pTqv">i.cvs.com/g6L37pTqv</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6E97A667-A6A6-23EC-8214-F3601B1FB278">Jun 02, 2025 11:10:00 AM</a> (Read by you after 4 days, 1 hour, 11 minutes, 12 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 5 days left to pick up your Rx LEV at the CVS Pharmacy: 1300 TIGER BLVD.
+
+Details: <a href="http://i.cvs.com/ZiFv8UyrM">i.cvs.com/ZiFv8UyrM</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4973F888-D446-697C-727B-D16A615F2152">Jun 04, 2025 11:20:17 AM</a> (Read by you after 2 days, 1 hour, 55 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 3 days left to pick up your Rx LEV at the CVS Pharmacy: 1300 TIGER BLVD.
+
+Details: <a href="http://i.cvs.com/lzHqOtR1C">i.cvs.com/lzHqOtR1C</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=26DAC5C3-DD4C-0AF9-D7D9-F26A5A132553">Jun 06, 2025 11:04:35 AM</a> (Read by you after 1 hour, 16 minutes, 37 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Kylie, this is your CVS pharmacist. <u>Today</u> is the last day to pick up LEV at CVS Pharmacy: 1300 TIGER BLVD.
+<a href="http://i.cvs.com/ij2XvlGgZ">i.cvs.com/ij2XvlGgZ</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4232E41A-AC4E-1D55-831A-FFC39115CA41">Jun 23, 2025  4:53:15 PM</a> (Read by you after 21 days, 17 hours, 46 minutes, 40 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Please Reply: LEV is no longer ready for pickup. Kylie, reply YES to have CVS Pharmacy refill it at 1300 TIGER BLVD. CLEMSON SC. NAME for Rx name.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DCEFEBB7-D299-36E3-B71A-90733CA272B5">Jul 10, 2025  8:07:06 AM</a> (Read by you after 5 days, 2 hours, 32 minutes, 49 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Rx LEV is ready for pickup at CVS Pharmacy: 1330 DUTCH FORK RD
+
+When you arrive, tap <a href="http://i.cvs.com/n7LVoAKIN">i.cvs.com/n7LVoAKIN</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A7A9BF5F-1BF5-2011-E570-AC46C898CDE1">Jul 11, 2025 11:04:37 AM</a> (Read by you after 3 days, 23 hours, 35 minutes, 18 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, it&apos;s CVS Pharmacy. Pick up LEV at 1330 DUTCH FORK RD <u>before Wed, 07/23</u>. We&apos;ll keep in touch w/reminders.
+
+Details: <a href="http://i.cvs.com/b6mw7xdFg">i.cvs.com/b6mw7xdFg</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B20927F6-0874-A5D1-33E0-27B5A2400100">Jul 13, 2025 11:18:32 AM</a> (Read by you after 1 day, 23 hours, 21 minutes, 23 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, reminder to pick up LEV from prescriber E Craft by <u>Wed, 07/23</u> @ CVS Pharmacy: 1330 DUTCH FORK RD. Got your back!
+<a href="http://i.cvs.com/dGS9x7AHo">i.cvs.com/dGS9x7AHo</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1513811-70AF-E890-925A-7BA46946E9CE">Jul 14, 2025 11:00:59 AM</a> (Read by you after 23 hours, 38 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: your new LEV from prescriber E Craft is available for pickup <u>before Wed, 07/23</u>. Ready when you are, Kylie!
+<a href="http://i.cvs.com/yROmYX5U3">i.cvs.com/yROmYX5U3</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6DE566FA-1443-D6C1-E23C-ABA7756D4E10">Jul 16, 2025 10:53:38 AM</a> (Read by you after 6 days, 4 hours, 45 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 7 days left to pick up your Rx LEV at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/raHiSNsk1">i.cvs.com/raHiSNsk1</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=936451FC-7F66-38BD-B182-942F556AAADE">Jul 18, 2025 10:33:35 AM</a> (Read by you after 4 days, 4 hours, 20 minutes, 48 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 5 days left to pick up your Rx LEV at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/UsRqgj6kq">i.cvs.com/UsRqgj6kq</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0A50EF3D-58CD-D399-1AE1-EE9D769788BC">Jul 20, 2025 10:36:27 AM</a> (Read by you after 2 days, 4 hours, 17 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 3 days left to pick up your Rx LEV at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/LqHqL85j3">i.cvs.com/LqHqL85j3</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E604F09A-1D79-FDE0-CAD5-197D0D152C8B">Jul 21, 2025 10:19:51 AM</a> (Read by you after 1 day, 4 hours, 34 minutes, 32 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, this is your CVS pharmacist. 2 days left to pick up your Rx LEV at the CVS Pharmacy: 1330 DUTCH FORK RD.
+
+Details: <a href="http://i.cvs.com/OgkFtQY8q">i.cvs.com/OgkFtQY8q</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=87D0BD78-2252-6233-D95C-899D13A38EFB">Jul 22, 2025  9:16:47 AM</a> (Read by you after 5 hours, 37 minutes, 36 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Rx Ready [LAST DAY]
+
+Kylie, this is your CVS pharmacist. <u>Today</u> is the last day to pick up LEV at CVS Pharmacy: 1330 DUTCH FORK RD.
+<a href="http://i.cvs.com/nc0UxQOWm">i.cvs.com/nc0UxQOWm</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=74AAC6AE-E4CC-273E-9F93-9D9B2EED3B0F">Jul 25, 2025 11:19:28 AM</a> (Read by you after 162 days, 5 hours, 35 minutes, 59 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received a new prescription order from your provider. View Rx details &amp; check order status: <a href="http://i.cvs.com/KNYLMXaHv">i.cvs.com/KNYLMXaHv</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=607926F7-52E3-C061-EA88-8072E2CB1566">Jul 25, 2025 11:50:10 AM</a> (Read by you after 162 days, 5 hours, 5 minutes, 17 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, LEV, LAM are ready for pickup @ CVS Pharmacy: 1330 DUTCH FORK RD
+
+Tap <a href="http://i.cvs.com/7eQxbsHo3">i.cvs.com/7eQxbsHo3</a> to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7F0F2F3-B070-AA30-A19A-8F21FC5DA9CC">Aug 17, 2025 12:43:03 PM</a> (Read by you after 139 days, 4 hours, 12 minutes, 24 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, we&apos;re approaching this year&apos;s flu season. The pharmacy team understands how busy life can be. Your flu shot is waiting for you! Schedule your fall appointment <u>today</u>: <a href="http://i.cvs.com/BS3Pem0sZ">i.cvs.com/BS3Pem0sZ</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=473BD843-D2D5-696B-07E1-F52CBDCC92D8">Aug 26, 2025  4:38:27 PM</a> (Read by you after 130 days, 17 minutes)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, 2 Rx due for refill. LAM is OUT OF REFILLS. Have your pharmacist contact your Dr to refill? Txt YES or NO. Txt NAME for full Rx name</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=53215BF7-8F1E-0DA0-9E81-5B025AE412A7">Aug 28, 2025  4:57:42 PM</a> (Read by you after 127 days, 23 hours, 57 minutes, 45 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, 2 Rx due for refill. LEV is OUT OF REFILLS. Have your pharmacist contact your Dr to refill? Txt YES or NO. Txt NAME for full Rx name</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4EAFDCFB-F7D1-42E0-BEC9-F9BF6E6C05D7">Aug 31, 2025 12:43:23 PM</a> (Read by you after 125 days, 4 hours, 12 minutes, 4 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi KYLIE, our community is approaching this year&apos;s flu season. Schedule early - September slots fill fast: <a href="http://i.cvs.com/KFgz5ueh7">i.cvs.com/KFgz5ueh7</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E39CB4C-B340-4B2D-6FDB-238AA1F54E90">Sep 02, 2025  6:41:00 PM</a> (Read by you after 122 days, 22 hours, 14 minutes, 27 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, 2 Rx due for refill. LEV is OUT OF REFILLS. Have your pharmacist contact your Dr to refill? Txt YES or NO. Txt NAME for full Rx name</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=51C58DCD-1A97-AB03-DB08-A6E1F19113A1">Sep 04, 2025  4:40:19 PM</a> (Read by you after 121 days, 15 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, 2 Rx due for refill. LAM is OUT OF REFILLS. Have your pharmacist contact your Dr to refill? Txt YES or NO. Txt NAME for full Rx name</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=304887AD-BF6C-6A8B-13DD-7204F98CAE52">Sep 18, 2025  9:22:24 AM</a> (Read by you after 107 days, 7 hours, 33 minutes, 3 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, flu vaccines are available now. Schedule your appointment at: <a href="http://i.cvs.com/uuTpKHu1Z">i.cvs.com/uuTpKHu1Z</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=358D472B-3A9B-D90F-389D-5681D20A5A68">Oct 09, 2025  9:31:37 AM</a> (Read by you after 86 days, 7 hours, 23 minutes, 50 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, our community is approaching flu season. We understand life can be busy. Book your quick flu shot at: <a href="http://i.cvs.com/xQh1ss8i4">i.cvs.com/xQh1ss8i4</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C2FEAA0A-87E4-FC42-6327-28B6961886B9">Nov 03, 2025  9:03:39 AM</a> (Read by you after 61 days, 6 hours, 51 minutes, 48 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, get your flu and COVID vaccines and prioritize your health this season. Walk in or schedule at: <a href="http://i.cvs.com/mtBpio9eo">i.cvs.com/mtBpio9eo</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=282CA95B-BA1E-EA9A-DFFC-E092B6E5501D">Nov 14, 2025  4:35:51 PM</a> (Read by you after 49 days, 23 hours, 19 minutes, 36 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received a new prescription order from your provider. View Rx details &amp; check order status: <a href="http://i.cvs.com/qgZg8iMIV">i.cvs.com/qgZg8iMIV</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0149CCB0-0DEC-7A44-BDEE-AD2EA054AEF8">Nov 14, 2025  5:39:34 PM</a> (Read by you after 49 days, 22 hours, 15 minutes, 53 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, your pharmacist has questions related to CLO. Click here to answer: <a href="http://i.cvs.com/vYA1M7Gs4">i.cvs.com/vYA1M7Gs4</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2E2AC936-CF05-9854-A4ED-53404FE3699D">Nov 19, 2025  9:27:58 AM</a> (Read by you after 45 days, 6 hours, 27 minutes, 29 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">✅ Rxs Ready
+
+KYLIE, you have 3 Rxs: LAM,LEV,CLO &amp; more ready @ CVS Pharmacy. Pick them up <u>today</u>
+<a href="http://i.cvs.com/LFIVjPpo5">i.cvs.com/LFIVjPpo5</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7ABC487-F293-B268-3329-45A12CE2E656">Nov 21, 2025  9:20:37 AM</a> (Read by you after 43 days, 6 hours, 34 minutes, 50 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, you have 3 Rxs ready for pickup: LAM,LEV,CLO &amp; more. We&apos;ll hold them for 6 days at CVS Pharmacy. Pick up <u>today</u>. <a href="http://i.cvs.com/O2XLqTbcy">i.cvs.com/O2XLqTbcy</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8FA123FD-C320-216C-76D1-D3EC056EA50A">Nov 23, 2025 10:11:53 AM</a> (Read by you after 41 days, 5 hours, 43 minutes, 34 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, you have 3 Rxs ready for pickup: LAM,LEV,CLO &amp; more. We&apos;ll hold them for 4 days at CVS Pharmacy. Pick up <u>today</u>. <a href="http://i.cvs.com/i4ZotfyBd">i.cvs.com/i4ZotfyBd</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A3D58175-B1EB-E884-3DD6-8A5B3FE8534D">Nov 23, 2025  3:14:48 PM</a> (Read by you after 41 days, 40 minutes, 39 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, we&apos;ve received a new prescription order from your provider. View Rx details &amp; check order status: <a href="http://i.cvs.com/iDr5TK4nB">i.cvs.com/iDr5TK4nB</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D1EAAAF0-FC26-F42F-1212-3F4D8A756873">Nov 24, 2025  1:00:31 PM</a> (Read by you after 40 days, 2 hours, 54 minutes, 56 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, stay protected for the holidays with flu and COVID vaccines. Learn more and schedule at: <a href="http://i.cvs.com/0mMoudYWC">i.cvs.com/0mMoudYWC</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BAAB1659-95F6-DA48-0B1D-AE32316F5008">Nov 26, 2025 10:15:52 AM</a> (Read by you after 38 days, 5 hours, 39 minutes, 35 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LEV to be automatically refilled for you at CVS Pharmacy?  
+ Visit <a href="http://i.cvs.com/XjDjYJukc">i.cvs.com/XjDjYJukc</a> or text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=423CFA85-5562-9332-17CD-8910F0C46843">Nov 28, 2025 10:13:01 AM</a> (Read by you after 36 days, 5 hours, 42 minutes, 26 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie, would you like your LEV to be automatically refilled for you at CVS Pharmacy? 
+ Visit <a href="http://i.cvs.com/THuR6SPqQ">i.cvs.com/THuR6SPqQ</a> or text YES to accept.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5E1C2E02-8920-83F2-3143-66CDEEE0199D">Nov 30, 2025 10:51:19 AM</a> (Read by you after 34 days, 5 hours, 4 minutes, 8 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, your pharmacist has questions related to NAY. Click here to answer: <a href="http://i.cvs.com/xf56ekqfK">i.cvs.com/xf56ekqfK</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2F02C680-0205-E2FD-F684-6D2E4E6A3AD7">Dec 02, 2025  9:30:24 AM</a> (Read by you after 32 days, 6 hours, 25 minutes, 3 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your 2 Rxs are in stock for their next refill. Schedule Rx LAM now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2167B991-DB51-739B-2993-3735F61CA12F">Dec 03, 2025  9:28:21 AM</a> (Read by you after 31 days, 6 hours, 27 minutes, 6 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: PLEASE RESPOND: Kylie you can help ensure your 2 Rxs are in stock for their next refill. Schedule Rx LAM now by replying YES</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2016C67C-41B9-6D73-4429-9202F99CB89C">Dec 17, 2025 12:49:08 PM</a> (Read by you after 17 days, 3 hours, 6 minutes, 19 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, it&apos;s not too late to get your flu and COVID-19 vaccines (if eligible) to help stay protected. Schedule <u>today</u>: <a href="http://i.cvs.com/TRusDD1n5">i.cvs.com/TRusDD1n5</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=05733188-CF73-6FAB-575F-89F7D42AD5C4">Jan 09, 2026  4:50:57 PM</a> (Read by you after 21 hours, 23 minutes, 55 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, flu cases are on the rise in your area. Help protect yourself with a flu shot <u>today</u>: <a href="http://i.cvs.com/wuy0cP8vD">i.cvs.com/wuy0cP8vD</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C33F0FCC-216B-9029-7444-35A9B11FA1A7">Jan 12, 2026 12:03:09 PM</a> (Read by you after 24 days, 20 hours, 52 minutes, 25 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, it is too early to fill Rx TAZ based on your insurance coverage and we will retry filling it when your insurer approves it on <u>02/04</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=00A07A31-69A6-87AD-B96F-6394BBCC64F8">Feb 04, 2026  2:45:47 PM</a> (Read by you after 1 day, 18 hours, 9 minutes, 47 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, Rx TAZ is ready for pickup at CVS Pharmacy: 1300 TIGER BLVD
+
+When you arrive, tap <a href="http://i.cvs.com/b5LZSIk0a">i.cvs.com/b5LZSIk0a</a>  to use your pickup barcode &amp; manage order</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A113D44D-F64F-4104-F699-966E60677384">Feb 04, 2026  4:37:19 PM</a> (Read by you after 1 day, 16 hours, 18 minutes, 15 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Hi Kylie, flu cases are on the rise in your area. It&apos;s not too late to help protect yourself with a flu shot <u>today</u>: <a href="http://i.cvs.com/JzVlIl3JO">i.cvs.com/JzVlIl3JO</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=86A5CF80-486B-B757-0C0E-4F29C7C921A8">Feb 05, 2026  2:41:11 PM</a> (Read by you after 18 hours, 14 minutes, 23 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, CVS Pharmacy: Pick up TAZ from prescriber JERRI SHEALY @ 1300 TIGER BLVD by TUE, 02/17. We got your back!
+Delivery: <a href="http://i.cvs.com/Ee258OKK2">i.cvs.com/Ee258OKK2</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BC40D1AB-E206-A0D9-6307-56E894858040">Feb 05, 2026  6:02:01 PM</a> (Read by you after 14 hours, 53 minutes, 33 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">CVS Pharmacy: Kylie, measles is very contagious and can cause serious illness. Help protect you and your community with an MMR vaccine if eligible: <a href="http://cvs.co/mmr">cvs.co/mmr</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=745EB06F-CB64-0114-AA8C-219B27A459B8">Feb 07, 2026  2:41:42 PM</a> (Read by you after 5 days, 2 hours, 10 minutes, 37 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, CVS Pharmacy: Pick up TAZ from prescriber JERRI SHEALY @ 1300 TIGER BLVD by TUE, 02/17. We got your back!
+Delivery: <a href="http://i.cvs.com/Oxy7R90bW">i.cvs.com/Oxy7R90bW</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=204B8E86-6616-69AC-6E73-DEA82D810971">Feb 09, 2026  5:45:00 PM</a> (Read by you after 2 days, 23 hours, 7 minutes, 19 seconds)</span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">KYLIE, CVS Pharmacy: Pick up TAZ from prescriber JERRI SHEALY @ 1300 TIGER BLVD by TUE, 02/17. We got your back!
+Delivery: <a href="http://i.cvs.com/8Qf6tUbNl">i.cvs.com/8Qf6tUbNl</a> </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F648C1EE-3B3D-686D-A3BE-D0DD951C24DD">Feb 13, 2026  2:43:48 PM</a> </span>
+<span class="sender">898287</span></p>
+<hr><div class="message_part">
+<span class="bubble">4 days left to pickup
+
+Friendly reminder, KYLIE: TAZ is ready @ the 1300 TIGER BLVD CVS Pharmacy.
+
+Skip a trip &amp; get speedy delivery: <a href="http://i.cvs.com/LEcb6aVjL">i.cvs.com/LEcb6aVjL</a> </span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,24 @@
+Sep 27, 2024  7:57:09 AM (Read by you after 6 hours, 57 minutes, 47 seconds)
+226787
+URGENT CU ALERT: 911 Emergency Lines on Main Campus are currently not working. If you need emergency assistance, please call 864-656-2222.
+
+Jun 07, 2025 12:44:30 PM (Read by you after 18 days, 7 hours, 43 minutes, 16 seconds)
+226787
+URGENT CU ALERT: Water main break affecting the availability of drinking water and campus cooling systems. Check alerts.clemson.edu for more.
+
+Jun 15, 2025 10:02:34 AM (Read by you after 10 days, 10 hours, 25 minutes, 12 seconds)
+226787
+URGENT CU ALERT: Power outage reported for main campus. The entire campus is impacted at this time. Estimated time of restoration is 12:30pm.
+
+Jun 25, 2025  8:11:10 PM (Read by you after 16 minutes, 36 seconds)
+226787
+URGENT CU ALERT: High Wind Warning has been issued for the Clemson area until 9:30 pm. Possible gusts up to 60 mph.
+
+Nov 12, 2025 11:54:37 AM (Read by you after 52 days, 4 hours, 56 seconds)
+226787
+CU ALERT: This is a test message. No action is necessary. 11/12/2025
+
+Dec 10, 2025 12:30:09 PM (Read by you after 24 days, 3 hours, 25 minutes, 24 seconds)
+226787
+CU ALERT: This is a test message. No action is necessary. 12/10/2025
+

@@ -1,0 +1,523 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E353E574-1181-34A7-9983-3CC8EED22FFB">Sep 23, 2024  6:17:33 PM</a> (Read by you after 17 minutes, 21 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: Due to TRAFFIC COLLISION all traffic on PERIMETER RD FROM CENTENNIAL BLVD TO WILLIAMSON RD is being redirected. Avoid the area.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9CABF94D-0F09-B108-14F8-63F03348D2FC">Sep 26, 2024  6:07:37 PM</a> </span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT (clarified): Due to the impacts of Hurricane Helene, Clemson&apos;s main campus is closed <u>Friday through noon</u>. More info to come via email.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=50664434-836D-E4D0-C3CB-33844A091026">Sep 30, 2024  7:28:59 AM</a> </span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: Police non-emergency phones are not working. If you need assistance, call <a href="tel:864-656-6099">864-656-6099</a> or <a href="tel:864-656-4300">864-656-4300</a>. If you have an emergency, dial <a href="tel:911">911</a>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=20A8859E-D43D-0E43-BE22-B5C7400D0946">Oct 17, 2024 10:12:03 AM</a> </span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">Urgent CU Alert: All Clear- S Palmetto Blvd and Woodland Cemetery has reopened. Normal operations have resumed. <u>10/17/2024</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=87F89D2B-4F4F-F292-3283-47880E77FA7A">Dec 11, 2024 11:45:48 AM</a> (Read by you after 29 days, 8 hours, 15 minutes, 47 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">CU ALERT: This is a test message. No action is necessary. <u>12/11/2024</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=16677120-4486-70F3-F913-8EC16A005564">Jan 09, 2025  8:01:31 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: Due to forecasted winter weather, Clemson University&apos;s main campus will close at <u>noon on Friday, Jan. 10</u>. See email for full details.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=85001ADF-4D46-0321-2191-7FEDC7CB01CE">Apr 09, 2025 11:48:35 AM</a> (Read by you after 59 days, 9 hours, 12 minutes, 45 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">CU ALERT: This is a test message. No action is necessary. <u>April 9th 2025</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B09AC30E-1B90-CB0F-286E-E678708D8033">May 02, 2025  1:46:04 PM</a> (Read by you after 36 days, 7 hours, 15 minutes, 16 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: High Wind Warning has been issued for the Clemson area <u>until 3:00 pm</u>. Possible gusts up to 60 mph.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6A50BEEF-4D65-CD81-9F47-E8AFADF6D102">Jun 07, 2025  3:44:01 PM</a> (Read by you after 5 hours, 17 minutes, 19 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">Urgent CU Alert: Water service for main campus restored. Boil water advisory lifted for all areas except Barnes Center. Visit <a href="http://alerts.clemson.edu">alerts.clemson.edu</a> for updates.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C88D6A53-D0A9-79D9-A70D-C70CC4975FCC">Jun 07, 2025  6:48:03 PM</a> (Read by you after 2 hours, 13 minutes, 17 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: High Wind Warning has been issued for the Clemson area <u>until 8:00 pm</u>. Possible gusts up to 70 mph.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=04B55E0F-65E4-08E5-9F36-D5576D12CA64">Jun 26, 2025  5:08:10 PM</a> (Read by you after 212 days, 22 hours, 3 minutes, 54 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: High Wind Warning has been issued for the Clemson area <u>until 6:00pm</u>. Possible gusts up to 60 mph.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=30297AE2-ECDF-D8BC-E0F5-674349C475C1">Aug 26, 2025  9:16:03 AM</a> (Read by you after 152 days, 5 hours, 56 minutes, 1 second)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">Urgent CU Alert: Update: Situation stable. Single aircraft crash near Seneca Creek Meadow. Pilot sustained minor injuries. No other injuries reported. Avoid the area due to downed power lines. Traffic light out at Hwy 93 and Seneca Creek Rd. CUPD directing traffic.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5EDB7D0B-00ED-E1DB-64BC-420840AA6649">Jan 25, 2026  2:12:00 PM</a> (Read by you after 4 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">URGENT CU ALERT: Due to hazardous conditions caused by winter weather, Clemson&apos;s main campus will be closed <u>Monday, Jan. 26</u>. <a href="https://go.tig.rs/8zvlf9">https://go.tig.rs/8zvlf9</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69CEED3E-A7CF-6676-E7E5-D815D14BBC70">Feb 04, 2026 11:51:43 AM</a> (Read by you after 8 days, 5 hours, 36 seconds)</span>
+<span class="sender">67283</span></p>
+<hr><div class="message_part">
+<span class="bubble">CU ALERT: This is a test message. No action is necessary. <u>2/4/2026</u></span>
+</div>
+</div>
+</div>
+</body></html>

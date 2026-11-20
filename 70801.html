@@ -1,0 +1,589 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=73688752-3A39-5993-AEEA-02299A4D1C9F">Sep 02, 2021  3:08:49 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Get free college advising. Find a program that best supports you: <a href="https://bit.ly/38jX8aF">https://bit.ly/38jX8aF</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F7441A99-8287-C84F-DB4F-D7FE3DB44012">Sep 03, 2021  3:08:20 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">AP Students: Find colleges based on your academic strengths! Search now: <a href="https://bit.ly/38kDJXq">https://bit.ly/38kDJXq</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0F2F1DAD-6512-538E-910A-ABA8509B47F1">Sep 06, 2021  3:06:31 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: You&apos;re qualified to win a $500 scholarship this month! Sign up here: <a href="https://bit.ly/3jANZkK">https://bit.ly/3jANZkK</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0292F74B-16C4-4BEC-9E0D-3E6D9BFD39FE">Sep 08, 2021  4:38:10 PM</a> (Read by you after 4 hours, 50 minutes, 50 seconds)</span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Get FREE help w/ college apps &amp; financial aid from CollegePoint! <a href="https://bit.ly/3yAOu2q">https://bit.ly/3yAOu2q</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5FFBB825-A491-5AB0-967C-525576FB36A5">Sep 13, 2021  4:08:35 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Get free support from our partners to help you plan for college: <a href="https://bit.ly/3mTeQKQ">https://bit.ly/3mTeQKQ</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=14375FCB-A998-6C58-BB19-C6557D31F291">Sep 18, 2021 12:43:06 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">We&apos;re here to remind you: Most students raise their scores when they retake the SAT. Sign up <u>today</u>. <a href="https://bit.ly/3jOvvgt">https://bit.ly/3jOvvgt</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6A138EBE-7537-A42B-12AE-36C1AD6EA745">Sep 27, 2021  5:15:55 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: You&apos;re eligible to earn $40 participating in virtual research from home. Learn more: <a href="https://bit.ly/3o0zzwF">https://bit.ly/3o0zzwF</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=07A4A052-2A1D-2F08-AACE-0E2D0FEAA48E">Sep 30, 2021  3:09:52 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Get free college advising. Find out which program will best support you: <a href="https://bit.ly/3ATYBRS">https://bit.ly/3ATYBRS</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2C4BFFB6-4BD8-5160-693D-24DB289E936E">Sep 30, 2021  4:52:34 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">AP student: Use your academic strengths to find your dream schools: <a href="https://bit.ly/2WeTuws">https://bit.ly/2WeTuws</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E937FB3-A0CA-FD39-7079-570B032A3971">Oct 02, 2021 11:36:50 AM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">AP student: You&apos;ve qualified for a scholarship! Sign up to be an October winner. <a href="https://bit.ly/39VmIUv">https://bit.ly/39VmIUv</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6984ECB6-E1C1-17EB-3EE6-9426582E85C1">Oct 05, 2021  3:20:37 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Good things are worth repeating and that goes for your SAT test. You&apos;ll likely raise your score. <a href="https://bit.ly/3l9s7NX">https://bit.ly/3l9s7NX</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CB5A79DF-B962-5AFD-9D91-C3131642B6A0">Oct 06, 2021  4:03:44 PM</a> (Read by you after 57 minutes, 4 seconds)</span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: You&apos;re eligible for FREE college advising from CollegePoint!  <a href="https://bit.ly/2Ya35Fv">https://bit.ly/2Ya35Fv</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F4E8B731-6CEB-C013-5905-8457EC45D4B4">Oct 07, 2021  4:23:02 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Don&apos;t miss out on FREE college planning support. Sign up <u>today</u>: <a href="https://bit.ly/2Y5Yi7Z">https://bit.ly/2Y5Yi7Z</a> Reply STOP to quit, HELP for info. Msg&amp;DataRatesMayApply</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=40513695-0CC5-99E9-7283-04A6478260FA">Oct 13, 2021  3:06:59 PM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Don&apos;t miss out on FREE college advising
+from CollegePoint! <a href="https://bit.ly/3iz7adP">https://bit.ly/3iz7adP</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=47A6CD35-45DE-FF00-C95C-0F38C9DCFBCC">Oct 14, 2021  3:11:04 PM</a> (Read by you after 1 day, 20 minutes, 49 seconds)</span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">AP: Take these steps for success in AP this school year: <a href="https://bit.ly/3iEgtZY">https://bit.ly/3iEgtZY</a>
+Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2F45612D-7A78-A240-E306-EB0C523843C1">Oct 20, 2021  3:37:45 PM</a> (Read by you after 1 day, 3 hours, 53 minutes, 23 seconds)</span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">College Board: Last chance to get FREE college planning support. Sign up <u>today</u>: <a href="https://bit.ly/3oPJwNU">https://bit.ly/3oPJwNU</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=226AC2F5-13F9-B398-FF50-0B11188511F1">Nov 02, 2021  3:16:59 PM</a> (Read by you after 1 day, 4 minutes, 53 seconds)</span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Last call! You can retake the SAT on <u>December 4</u> if you want to improve your score. Register now. <a href="https://bit.ly/3GrsDPW">https://bit.ly/3GrsDPW</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F319A0E6-16C9-8717-5D65-7BF6D01A514D">Nov 07, 2021 11:16:24 AM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">AP: 3 reasons to take AP Exams: <a href="https://bit.ly/3jKKS9v">https://bit.ly/3jKKS9v</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=97431DD1-28E7-4387-FBD5-03A4FE1F5F12">Nov 20, 2021 11:16:38 AM</a> </span>
+<span class="sender">70801</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Try out another SAT practice test, and see if retaking it may raise your score. Begin <u>today</u>. <a href="https://bit.ly/3oqLB1g">https://bit.ly/3oqLB1g</a> Reply STOP to quit, HELP for info.</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,611 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F19DA769-D33F-8AEF-CAB9-6C5BDA9E58BD">Oct 17, 2024  1:29:26 PM</a> </span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔗 Kylie, Jana Mallory shared a link: <a href="https://fb.me/263P8rfKNDufiFs">https://fb.me/263P8rfKNDufiFs</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D4273F91-3973-6E45-30BE-C2F3AA52635E">Oct 19, 2024  5:48:18 PM</a> (Read by you after 3 days, 3 hours, 31 minutes, 11 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Keegan Gilbert accepted your friend request: <a href="https://fb.me/1ScLZvAfYgXeBQD">https://fb.me/1ScLZvAfYgXeBQD</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B436CD4D-EE9B-4603-1D57-95A6723B76D9">Oct 22, 2024  9:15:33 PM</a> (Read by you after 3 minutes, 56 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔔 Kylie, you have 81 new notifications and 1 new friend on Facebook: <a href="https://fb.me/s5p1cqp3WzPmDUL">https://fb.me/s5p1cqp3WzPmDUL</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F88FFB16-67DC-9EAE-D39A-17E9E3C33D9E">Nov 01, 2024  8:26:02 AM</a> (Read by you after 74 days, 5 hours, 3 minutes, 17 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">💬 See Amy&apos;s comment on a post <a href="https://fb.me/2b9XsWAv5MOM6tQ">https://fb.me/2b9XsWAv5MOM6tQ</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A331E2FD-B08B-35CC-84A0-CB3FF7F18346">Nov 03, 2024  2:39:32 PM</a> (Read by you after 71 days, 21 hours, 49 minutes, 47 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">📷 Kylie, Amy Powers Estes shared a photo: <a href="https://fb.me/1KhuqeXjnRrD2KN">https://fb.me/1KhuqeXjnRrD2KN</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=753189D6-8D4C-7E64-2FD7-179C61D8A811">Nov 11, 2024 12:02:17 PM</a> (Read by you after 64 days, 27 minutes, 2 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">💬 Kylie, your friend Amy commented o... <a href="https://fb.me/27bXxfJmKhCmLPo">https://fb.me/27bXxfJmKhCmLPo</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CF5352C7-7FB5-8807-71E2-2D1B6BE58EDC">Nov 25, 2024  5:55:50 PM</a> (Read by you after 49 days, 18 hours, 33 minutes, 29 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Allison Robinson Hajj sent you a friend request: <a href="https://fb.me/1Zin8wB4dSXCsnx">https://fb.me/1Zin8wB4dSXCsnx</a>
+
+Reply &quot;stop&quot; or go to <a href="https://fb.me/1X8mBeMveN9CgGQ">https://fb.me/1X8mBeMveN9CgGQ</a> to turn off SMS for your Facebook account on this mobile number.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=674ACD9D-8086-22A3-9600-BD8DF2FD6306">Dec 29, 2024  9:40:32 PM</a> (Read by you after 15 days, 14 hours, 48 minutes, 47 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Holley Zeigler Barfield posted on your Timeline: <a href="https://fb.me/22qY73Ck1F5yxfS">https://fb.me/22qY73Ck1F5yxfS</a>
+
+Reply &quot;stop&quot; or go to <a href="https://fb.me/1Li8ZEuFsrQxSKw">https://fb.me/1Li8ZEuFsrQxSKw</a> to turn off SMS for your Facebook account on this mobile number.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E732D0E-243D-D390-4DA4-583CC901D3F9">Jan 14, 2025 12:29:07 PM</a> (Read by you after 12 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">💬 Kylie, your friend Amy commented o... <a href="https://fb.me/1J7YDDWOQfd5Si6">https://fb.me/1J7YDDWOQfd5Si6</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A730EA09-28C9-72F9-72C1-4A2274A0AEEC">Jan 17, 2025  9:53:27 AM</a> (Read by you after 13 days, 3 hours, 56 minutes, 34 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Isabel Colefield accepted your friend request: <a href="https://fb.me/2w8w1p8QV3s7Yst">https://fb.me/2w8w1p8QV3s7Yst</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1E00040E-AEA8-C96A-CC60-D6D35381714D">Jan 25, 2025 10:35:13 AM</a> (Read by you after 5 days, 3 hours, 14 minutes, 48 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🎂 Kylie, wish Isabel Colefield a hap... <a href="https://fb.me/1L0iY3OIoeoSKIl">https://fb.me/1L0iY3OIoeoSKIl</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CF478FE6-60C5-9D17-BC60-87BCF8CC5811">Jan 29, 2025 10:35:37 AM</a> (Read by you after 1 day, 3 hours, 14 minutes, 24 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🎂 Kylie, wish Kylee Fonseca a happy birthday <u>today</u>: <a href="https://fb.me/siFOc3PO0dXpmjz">https://fb.me/siFOc3PO0dXpmjz</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D5BB001-37E4-EF41-B43D-838380C1C81D">Jan 30, 2025  1:41:44 PM</a> (Read by you after 8 minutes, 17 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔔 Kylie, you have 1 new friend and 2... <a href="https://fb.me/1XpRn6nDGXPpdkr">https://fb.me/1XpRn6nDGXPpdkr</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A6D463D4-7A9F-8FA5-2603-9840A454DFD9">Jan 31, 2025  6:15:32 PM</a> (Read by you after 14 days, 16 hours, 44 minutes, 12 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔔 Kylie, you have 67 new notificatio... <a href="https://fb.me/1MxnL0CSmRRvExa">https://fb.me/1MxnL0CSmRRvExa</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C82A1F81-11E6-AC46-F8B6-7B3AE3A73938">Feb 01, 2025  8:40:55 PM</a> (Read by you after 13 days, 14 hours, 18 minutes, 49 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">💬 Kylie, your friend Charlene commen... <a href="https://fb.me/1Lzrp8aHJmKiyod">https://fb.me/1Lzrp8aHJmKiyod</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=494D8D12-14CA-14F6-43D1-E9848BA7A9CC">Feb 15, 2025  8:12:14 AM</a> (Read by you after 2 hours, 47 minutes, 30 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie, Jake Powers sent you a friend request: <a href="https://fb.me/1MPQuvtIEz3wpi3">https://fb.me/1MPQuvtIEz3wpi3</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C4C6647-4181-4477-40E3-0DC791577D9B">Feb 16, 2025  7:42:05 PM</a> (Read by you after 29 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Jake Powers sent you a friend request that you haven&apos;t responded to yet. <a href="https://fb.me/2CkS2dCkF0Q0FU4">https://fb.me/2CkS2dCkF0Q0FU4</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=22351AD1-0D66-6F5B-9232-AAF0A7262FF7">Feb 20, 2025  4:25:22 PM</a> (Read by you after 10 days, 2 hours, 44 minutes, 57 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">💬 Kylie, your friend Charlene commen... <a href="https://fb.me/1MZRfAYOs1Tmb1w">https://fb.me/1MZRfAYOs1Tmb1w</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C8814203-BF57-794C-7170-9CA8359FA0CE">Mar 02, 2025  7:10:11 PM</a> (Read by you after 8 seconds)</span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔗 Kylie, Amy Powers Estes shared a link: <a href="https://fb.me/1MeFlrpGHtYMUGR">https://fb.me/1MeFlrpGHtYMUGR</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=112A7CF8-BC07-2089-56C2-36910F413601">Mar 16, 2025 12:07:00 PM</a> </span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Chris sent you a friend request that you haven&apos;t responded to yet. <a href="https://fb.me/2fiyeCLwxEp2BVq">https://fb.me/2fiyeCLwxEp2BVq</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=259862EB-7957-4BE8-D8AC-D672B5242663">Mar 19, 2025  6:19:01 PM</a> </span>
+<span class="sender">32665</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">🔔 Kylie, you have 57 new notificatio... <a href="https://fb.me/1JMYwODkQrpN4sn">https://fb.me/1JMYwODkQrpN4sn</a></span>
+</div>
+</div>
+</div>
+</body></html>
