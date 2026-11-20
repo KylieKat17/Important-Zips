@@ -1,0 +1,1853 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7F254932-CB19-4328-A317-3FBE31B88025">Nov 25, 2019  2:53:23 PM</a> (Read by you after 36 minutes, 16 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">this is the group chat for our top</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9B09CE37-EDC1-4B6C-9354-964F4BDC5587">Nov 25, 2019  2:53:26 PM</a> (Read by you after 36 minutes, 13 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">tmp </span>
+</div>
+</div>
+</div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 25, 2019  3:25:51 PM</span> Ava Stewart named the conversation <b>tmp🤠😎</b></p></div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BA0CB196-0E79-4FE0-A765-299F4744E569">Dec 02, 2019  2:40:21 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I put a document in the main folder where we can share important sources</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6B8F6737-4586-4740-AEF8-004C329C6EF2">Dec 02, 2019  2:43:43 PM</a> (Read by you after 15 minutes, 23 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">okay cool</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FB77BE11-E317-4FBC-9674-E4688B8B153D">Dec 02, 2019  3:33:59 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can we say contraceptive methods instead of birth control</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1056FDA7-FCB2-4A1A-8B73-F6397A67BBE6">Dec 02, 2019  3:34:02 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56ACCA44-0161-4C3C-8EA1-4D049F9C783F">Dec 02, 2019  3:35:10 PM</a> (Read by you after 59 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">What about contraception</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=31DC5936-4F21-4FEF-ABA9-1449F9C9B165">Dec 02, 2019  3:35:29 PM</a> (Read by you after 40 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i think contraception would probably be best</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=155411AB-7899-420B-8C92-70E325854D79">Dec 02, 2019  3:35:48 PM</a> (Read by you after 21 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">sure</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5171A214-7D95-401C-AACE-E832ED6FAF7F">Dec 03, 2019  5:43:09 PM</a> (Read by you after 23 minutes, 34 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">it’s 5 citations for <u>tomorrow</u> right</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7E12A26E-7DD6-4221-B874-F092EF529C2B">Dec 03, 2019  5:43:17 PM</a> (Read by you after 23 minutes, 26 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">yes</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=97D08D3D-5246-41CC-A115-E84D29F4E760">Dec 03, 2019  5:43:54 PM</a> (Read by you after 22 minutes, 49 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok thanks 😎</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CF11A949-1B02-4F61-A2E3-6AB551A98BF9">Dec 03, 2019  5:52:06 PM</a> (Read by you after 14 minutes, 37 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">do we have anything do for funk <u>tomorrow</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9EA05418-5C38-485C-B93C-7F2A51AD061E">Dec 03, 2019  6:01:02 PM</a> (Read by you after 5 minutes, 41 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">no</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=56A6BD4B-1109-4E74-83A9-6C93024381D9">Dec 03, 2019  6:01:08 PM</a> (Read by you after 5 minutes, 35 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">the next lit circle is <u>due friday</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=31724741-1736-4901-A3B9-5F62A0D580B3">Dec 03, 2019  6:01:17 PM</a> (Read by you after 5 minutes, 26 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4C274932-95C4-472E-ACB7-F28CC110E695">Dec 03, 2019  8:29:10 PM</a> (Read by you after 4 minutes, 13 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">For whoever is doing the political lens, might consider the UN sustainable goals and its section on female reproductive health</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2074EF1C-B4AF-4E3C-A2DF-BC00527E7397">Dec 03, 2019  8:29:38 PM</a> (Read by you after 3 minutes, 45 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">For whoever is doing social, might consider unmet family planning needs within Europe</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8531C038-055C-4C23-926A-DE6D69AD7D97">Dec 03, 2019  8:30:23 PM</a> (Read by you after 3 minutes)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">the unmet needs one is good i used it even thought i’m political</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3DD58C5-F7B8-423C-832F-0875AB14C6BF">Dec 03, 2019  8:33:08 PM</a> (Read by you after 15 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">For whoever is doing historical, maybe something on traditional vs modern contraceptive methods and their respective prominence in Europe over time</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2601B5AB-40F9-4411-B34E-4F77EE535A42">Dec 03, 2019  8:33:35 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Got it thx</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9A933244-3CC0-46C8-B833-E91DA530BB13">Dec 03, 2019  8:33:48 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">yes man</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1631CDFE-2E0C-467E-A78D-BE9EACD4B050">Dec 03, 2019  8:33:50 PM</a> </span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ex. Southern Europe used traditional methods more than western Europe in 2015</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4F4CA99D-F61D-4B83-A66B-ECB1C86E1141">Dec 04, 2019  3:34:55 PM</a> (Read by you after 1 hour, 24 minutes, 28 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i think we may need to adjust our question </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FCD7623E-8F37-4C76-BDBA-3550860131E0">Dec 04, 2019  3:35:07 PM</a> (Read by you after 1 hour, 24 minutes, 16 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">in what way?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=78054E50-A514-45FD-87D0-C8D6D4B8F7E5">Dec 04, 2019  3:36:15 PM</a> (Read by you after 1 hour, 23 minutes, 8 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">the un defines part of reproductive rights as access to contraception so it seems like there’s really only 1 possible outcome</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F8C23C3E-F608-454B-A6EF-32AA8E30BF99">Dec 04, 2019  4:27:29 PM</a> (Read by you after 31 minutes, 54 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">What would we change it to?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C24D8C3B-7C6A-4854-99BD-FE8FD0A42576">Dec 04, 2019  4:34:15 PM</a> (Read by you after 25 minutes, 8 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i’m not sure but i feel like since access to contraception is already an indicator of reproductive rights our question really has no need to be researched</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=76B1187C-D7D1-468E-921E-76B5286C235D">Dec 04, 2019  4:36:06 PM</a> (Read by you after 23 minutes, 17 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">our question is reproductive health, not rights</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CBFC45CF-3847-4053-9686-CB32DF89F710">Dec 04, 2019  4:37:22 PM</a> (Read by you after 22 minutes, 1 second)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=122D61D6-EC8E-4A19-837B-931CF7CE5C70">Dec 04, 2019  6:54:42 PM</a> (Read by you after 2 minutes, 1 second)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">when do you guys want to sign up for the practice tmp</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F2F22F1C-FEB0-40B0-AA75-7A4D7B694FE8">Dec 04, 2019  6:54:56 PM</a> (Read by you after 1 minute, 47 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m okay with both times</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=10010D3B-9BB5-4721-96A6-3AA0464DC3CF">Dec 04, 2019  6:57:42 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Preferably on a <u>Friday</u> in case any of our teachers schedule a test or quiz at the last minute</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5E67CFF0-2ED9-4A52-9D9D-24A30AC437FA">Dec 09, 2019  9:38:29 PM</a> (Read by you after 1 day, 9 hours, 2 minutes, 46 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Are we focusing on reversible or permanent contraception (or both)?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CB2A2BAE-7C3B-46E2-A0EA-9136298BF9BA">Dec 09, 2019  9:38:48 PM</a> (Read by you after 1 day, 9 hours, 2 minutes, 27 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Modern or traditional contraception methods?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=91A7D65A-ED4A-4C9D-8FB9-1795FE626172">Dec 09, 2019  9:39:47 PM</a> (Read by you after 1 day, 9 hours, 1 minute, 28 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I didn&apos;t really do research on permanent contraception methods so reversible for me and I researched more traditional methods (considering my lens is historical)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=575154A5-B7BB-4645-B818-A640062DDDFE">Dec 09, 2019  9:40:44 PM</a> (Read by you after 1 day, 9 hours, 31 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">my lens is political so most of it was less involved that the type of contraception but i would probably go with both</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1CB1C5F-3617-4647-92FF-BC770D4E1CDD">Dec 09, 2019  9:44:40 PM</a> (Read by you after 1 day, 8 hours, 56 minutes, 35 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">👍 ok thanks guys</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4A030C0C-FA21-4B24-ABB9-511C44FEBE1A">Dec 09, 2019 10:34:25 PM</a> (Read by you after 1 day, 8 hours, 6 minutes, 50 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m only at 847 words and the rough draft is <u>due tomorrow</u>, this is the end of the road for me</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B175F6C1-E076-46AB-83FC-18D59ABD346A">Dec 09, 2019 10:34:59 PM</a> (Read by you after 1 day, 8 hours, 6 minutes, 16 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I believe in cindy ju! do you?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C21AB816-CA66-4B91-88FA-1C6EDC91A1A7">Dec 09, 2019 10:35:40 PM</a> (Read by you after 1 day, 8 hours, 5 minutes, 35 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">At the rate I’m going, nope</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Disliked</b> by Ava Stewart</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=58CB8E43-6509-42F7-B895-19328A033F9B">Dec 09, 2019 10:36:49 PM</a> (Read by you after 1 day, 8 hours, 4 minutes, 26 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i have 689</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DA5B9138-BA58-494F-9CA8-A51B1389A9AE">Dec 09, 2019 10:36:56 PM</a> (Read by you after 1 day, 8 hours, 4 minutes, 19 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i will not sleep</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F5E356B7-BA0D-4C47-8E10-B91C1E442692">Dec 09, 2019 10:37:15 PM</a> (Read by you after 1 day, 8 hours, 4 minutes)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Same</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B8E57464-F28E-44D1-81F0-DF225C31E4A2">Dec 09, 2019 10:37:40 PM</a> (Read by you after 1 day, 8 hours, 3 minutes, 35 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">but also i already have 2/3 perspectives don’t and 300 words to go minimum so i don’t know how i’m gonna stretch this out</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=28CC842F-9223-4279-9D0B-CBE548D3380D">Dec 09, 2019 10:38:46 PM</a> (Read by you after 1 day, 8 hours, 2 minutes, 29 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">time to add some adjectives i guess</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=35B3A995-3954-4591-89B8-52CC28C45BEE">Dec 09, 2019 10:40:07 PM</a> (Read by you after 1 day, 8 hours, 1 minute, 8 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">My entire paper is all over the place. At this point I’m just trying to meet the word count, then organize later</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3256C1D-7464-4C5B-B1D2-2F0C46E281A6">Dec 09, 2019 10:41:51 PM</a> (Read by you after 1 day, 7 hours, 59 minutes, 24 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">exactly </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C375BE8C-1B6E-49D7-B632-9D1A9731BC01">Dec 09, 2019 10:42:44 PM</a> (Read by you after 1 day, 7 hours, 58 minutes, 31 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">but i just added multiple lists of countries for examples and now i’m at 727</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=796E125C-121A-4DB4-BAEF-CA71AE5D96FC">Dec 16, 2019 10:46:42 PM</a> (Read by you after 5 minutes, 18 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m rewriting my IRR and hating life rn</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F19929B4-F16A-4EC6-A950-38076CECB0C6">Dec 16, 2019 10:52:09 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">STUDY FOR CHEM</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5D5161D4-77A6-4959-BD75-6788D155B71A">Dec 16, 2019 10:52:35 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">ITS HIGHER UP ON THE LIST OF IMPORTANT THINGS</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D0420211-2D1B-469D-80D5-535F22105B2B">Dec 17, 2019  9:09:14 PM</a> (Read by you after 3 hours, 21 minutes, 59 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Everyone, don’t forget to make sure you’ve commented something substantial on each IRR for the other group</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=76FC2B43-BBD7-4E3B-9605-63B6444F240D">Dec 17, 2019  9:13:56 PM</a> (Read by you after 3 hours, 17 minutes, 17 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">didnt she say we don’t each need to comment</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=63B4AD26-7D23-4C19-AC1F-BABA20CA3EEB">Dec 17, 2019  9:14:20 PM</a> (Read by you after 3 hours, 16 minutes, 53 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">that we just need someone to have made good comments?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D02CC5AC-6842-460E-9F20-A87B08957A72">Dec 17, 2019  9:14:37 PM</a> (Read by you after 3 hours, 16 minutes, 36 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">she already graded it anyway</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1ECCAC53-8D9E-47DC-9943-A46BB2FE4489">Dec 18, 2019  2:39:57 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I just put the IRR to TMP planning sheet in our group folder</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Ava Stewart</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=70F53067-726D-4556-9FE1-99CF1C39C8B9">Dec 18, 2019  2:40:09 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">thanks</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E8058D17-D20D-439E-93DC-3D98C98E9D64">Dec 18, 2019  2:58:42 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’m doing a rewrite and I need a third thesis point for the social lens. Rn I have religion and regional contraceptive use. What should I put?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=33FDB165-45E9-420E-BAD7-8EC4830EB9B5">Dec 18, 2019  2:59:44 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">overpopulation?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=73FA8AF6-C295-4E88-91CF-390F52074AA7">Dec 18, 2019  2:59:51 PM</a> </span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I don&apos;t really understand what you mean</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=496C659D-5A5F-42B7-9C1E-AD6732C5B816">Dec 18, 2019  3:00:30 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Europe has an under population issue so that won’t work seeing as it has the lowest fertility rate in the world</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C91AEBB-8364-40FB-B824-3CD14D3F1394">Dec 18, 2019  3:01:25 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I need a third point and I might split regional contraceptive use into two sections: use and awareness.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E7A90EEA-0081-40F9-90E8-6F81442C3CD5">Dec 18, 2019  3:04:20 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E409BC02-A777-4BF4-AC3A-93C3E9995A07">Dec 18, 2019  3:04:21 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">So that?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=EB5EFC00-8D91-43B9-872A-AF9B3298B2D9">Dec 18, 2019  3:04:41 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">And Cindy I need you to insert a page break for me on my new IRR draft</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=FD715461-AD14-4F97-99A7-57627C5B2E86">Dec 18, 2019  3:08:41 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Should I give it a slightly different name? Like “Contraceptive Awareness”</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E9FD811B-9EF2-4EBA-B954-CCD9EB216C0A">Dec 18, 2019  3:11:40 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Halp?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D952586A-859C-43D1-961E-E5C8BDC97DA5">Dec 18, 2019  3:12:07 PM</a> (Read by you after 2 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i think contraceptive awareness is fine</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F8E25865-821F-4853-82B7-0F9D96CA6F40">Dec 18, 2019  3:13:33 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">So...don’t put regional in front of it?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2CB91699-94E1-4A58-9E07-CD24B8392505">Dec 20, 2019  2:30:43 PM</a> (Read by you after 46 minutes, 43 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ava were thinking about using an eu program to modernize birth control in eastern and central europe for our solution</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=988DA730-9E80-4DE5-B419-DF527A9B128D">Dec 20, 2019  2:30:48 PM</a> (Read by you after 46 minutes, 38 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">thoughts?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0DB544EA-473D-42DA-8754-B95A049E0090">Dec 20, 2019  2:31:45 PM</a> (Read by you after 45 minutes, 41 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">that works for me</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B0ACA3FC-D878-4972-A62A-DE58719CD451">Dec 20, 2019  2:31:47 PM</a> (Read by you after 45 minutes, 39 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">for the solution?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=54D83F2B-6404-4DE2-A752-13E146A360B2">Dec 20, 2019  2:32:06 PM</a> (Read by you after 45 minutes, 20 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">yes ma’am </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A6E16A6C-6ADD-402C-A632-F21EFDFE5E70">Dec 20, 2019  2:32:44 PM</a> (Read by you after 44 minutes, 42 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">i&apos;m cool with that</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AE8A698A-152F-42DA-B063-C0F96340DB4D">Dec 20, 2019  3:14:36 PM</a> (Read by you after 2 minutes, 50 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">new plan were forming a new organization </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B78B2AEB-CCE8-4027-B6FF-1CA39038B65F">Dec 20, 2019  3:14:51 PM</a> (Read by you after 2 minutes, 35 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">okay sounds good lol</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B524C317-ABD5-4B19-980A-21C12AF51997">Jan 06, 2020 11:58:52 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Y’all should know that we have our mandatory practice TMP on <u>Friday</u> after school. Im going to go ahead and make the layout <u>today</u>.</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=40D41AA3-0687-4E60-A78D-9104C3452A9F">Jan 06, 2020 12:00:27 PM</a> (Read by you after 4 minutes, 50 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">okay</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C63EB53B-C536-4DFA-B976-7BB7BED4C2DA">Jan 06, 2020  1:06:06 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">We’re in kimberlin’s room for the presentation practice</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Ava Stewart</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=A4C6E55E-D9FF-422F-BD29-ED79D9280B08">Jan 08, 2020  2:33:56 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Do y’all wanna FaceTime sometime tn and work on the tmp</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C0CF3724-E4FE-409C-8250-57AD6F623D95">Jan 08, 2020  2:34:00 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C6B4093A-09C0-4C7D-9089-B8A2BA8129C5">Jan 09, 2020  7:16:56 PM</a> (Read by you after 21 minutes, 39 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Is there a time <u>today</u> that’s good for everyone?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=618164EE-0EC7-46E5-A143-63901E4A1978">Jan 09, 2020  7:39:17 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Around <u>8:30</u>? I’m gonna take a shower in about 10 mins so I can’t do it rn</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=40CF53F9-F573-4748-A7DA-D27C3B4CF3F9">Jan 09, 2020  7:39:37 PM</a> (Read by you after 12 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">👌</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7CB8781-95A7-463F-990D-9038D895F777">Jan 09, 2020  8:32:06 PM</a> (Read by you after 19 minutes, 25 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">are we ready </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1C79B709-6293-4234-A6B5-05AB36C22C62">Jan 09, 2020  8:32:18 PM</a> (Read by you after 19 minutes, 13 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I think so. Is everyone else here?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4F7F9009-90CB-4824-BF56-BC378881A1A9">Jan 09, 2020  8:33:18 PM</a> (Read by you after 18 minutes, 13 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i am</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=36B5B232-4A46-4680-88C8-048BD305EE81">Jan 09, 2020  8:33:38 PM</a> (Read by you after 17 minutes, 53 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Kylie and Ava?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=469579C1-DE2A-40E0-A141-ABBEA9E2CBB8">Jan 09, 2020  8:34:46 PM</a> (Read by you after 16 minutes, 45 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Do you want to just start now and they can join when they get on?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C67C138A-FB04-4AA8-9418-A64C136CA15A">Jan 09, 2020  8:34:54 PM</a> (Read by you after 16 minutes, 37 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">sure</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=594C1E1D-C4C8-4D4C-A40D-57EA8BE3B945">Jan 09, 2020  8:51:39 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ll be there in a minute</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=04479DDA-7071-4A3F-B90A-BDB2194DE4E7">Jan 09, 2020  8:51:47 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Just have to dry off</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=362554BA-12AC-4B59-A2EE-DA4C53AA6489">Jan 11, 2020  6:18:15 PM</a> (Read by you after 2 hours, 2 minutes, 48 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">whoever got he rubrics everyone filled out for us at the practice presentation can you send pictures of all of them?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AE0E959F-BCF1-457D-8FD8-3FD56CDAC028">Jan 11, 2020  6:44:23 PM</a> (Read by you after 1 hour, 36 minutes, 40 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i’ll send them when i get home</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7D2C8A96-8AD1-4C04-932E-E2E3F048869B">Jan 11, 2020  6:44:31 PM</a> (Read by you after 1 hour, 36 minutes, 32 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">okay</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5D565807-CE23-484E-A04A-B54F7FCC7BBB">Jan 11, 2020  7:08:51 PM</a> (Read by you after 1 hour, 12 minutes, 12 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+<hr><div class="message_part">
+<span class="attachment_error">Attachment does not exist!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F53DA634-F5A3-46C7-821B-30E600964D32">Jan 11, 2020  7:09:15 PM</a> (Read by you after 1 hour, 11 minutes, 48 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I love u</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7DB00CF9-915A-4E51-B29B-3648526BA6D8">Jan 11, 2020  7:09:33 PM</a> (Read by you after 1 hour, 11 minutes, 30 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">love u more</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=76283306-F1C9-40B0-9E61-D2355F031305">Jan 11, 2020  7:11:07 PM</a> (Read by you after 1 hour, 9 minutes, 56 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">one of them says “talks a lot about contraceptives” like homie that’s the question </span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Laughed</b> by Ava Stewart</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=06F9665F-AD37-4999-A8E3-AF6EBB7F95C1">Jan 11, 2020  7:11:30 PM</a> (Read by you after 1 hour, 9 minutes, 33 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">someone called me out for notecards😳</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=672E3901-6BF5-41B7-93A1-80E5B9AD44E2">Jan 11, 2020  7:12:50 PM</a> (Read by you after 1 hour, 8 minutes, 13 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i’m glad we have plenty of time </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AB993E89-3D8E-44A8-A3DE-877282BAB494">Jan 11, 2020  7:14:32 PM</a> (Read by you after 1 hour, 6 minutes, 31 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">same</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0BF5E1EB-F702-47F8-AEB1-C73959FE78FB">Jan 11, 2020  7:19:50 PM</a> (Read by you after 1 hour, 1 minute, 13 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">LOL that one comment on how I managed to pull it together at the end during the questions</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CBBDBDCA-4A44-4D56-964C-A97BDB6C0722">Jan 11, 2020  7:22:43 PM</a> (Read by you after 58 minutes, 20 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i mean that counts</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6C857CD9-A026-41EB-A120-A28BC14972DB">Jan 11, 2020  7:23:36 PM</a> (Read by you after 57 minutes, 27 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Thankfully it seems most people let it slide</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0A475F40-517F-4FCF-A261-0A7B8C38AA24">Jan 11, 2020  7:25:08 PM</a> (Read by you after 55 minutes, 55 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">we really got the 2 part combo of how people misspell isaac</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6A44064C-80A7-4EE5-8AE5-CB50E21DB3A2">Jan 11, 2020  7:26:13 PM</a> (Read by you after 54 minutes, 50 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">isacc</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8B617733-0004-4288-95FA-429484624855">Jan 11, 2020  7:27:02 PM</a> (Read by you after 54 minutes, 1 second)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I mean, they automatically jumped to the Isaac in Isaac Newton. You’re part of the scientific revolution now</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BB487A45-2FC3-4A6E-A2F1-F4F8F55B3F65">Jan 11, 2020  7:28:07 PM</a> (Read by you after 52 minutes, 56 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I wonder if there’s an Isacc in the world though</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=20DA32A0-F716-4904-A812-DF76FCEC833C">Jan 11, 2020  7:28:11 PM</a> (Read by you after 52 minutes, 52 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Issaacc</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Loved</b> by Issac Hill</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=04BAD5B9-FF59-4362-A6D2-F747950A5089">Jan 12, 2020  4:43:54 PM</a> (Read by you after 1 hour, 11 minutes, 1 second)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">WHy does it say TMP presentations <u>tomorrow</u> on weathersbee’s calendar?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=468AD575-7858-43DD-881E-A4386F08CD56">Jan 12, 2020  5:48:41 PM</a> (Read by you after 6 minutes, 14 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I don&apos;t know, I wouldn&apos;t worry though</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=75AA5D0B-2186-440C-B9CB-9819ABCFB8EA">Jan 12, 2020  5:48:56 PM</a> (Read by you after 5 minutes, 59 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">the other teams still haven&apos;t even done the practice so I don&apos;t think it&apos;s the real thing</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AE97F9E6-DB2B-4EB5-B9AC-036963124D8F">Jan 12, 2020  5:58:14 PM</a> (Read by you after 10 minutes, 51 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">oh it’s probably the other practice tmp</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=29D13715-B744-4CCC-AD0F-9523A654A53C">Jan 13, 2020  2:18:17 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Across the hall?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF0C5039-F568-4228-9806-5BE1AF8B430F">Jan 14, 2020  9:41:48 PM</a> (Read by you after 1 hour, 53 minutes, 44 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">would you guys be mad if I skipped school <u>tomorrow</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=201A2839-9D7C-438D-B142-BA58B079F0D7">Jan 14, 2020  9:43:10 PM</a> (Read by you after 1 hour, 52 minutes, 22 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">do what you need to if it’s for your mental health </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2ED1773C-3F9A-41AF-B376-4892978A9FF3">Jan 20, 2020  4:02:22 PM</a> (Read by you after 19 hours, 28 minutes, 48 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Do you guys have time to FaceTime <u>today</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=18B129B0-3C14-4186-8ED2-3BBF16473B98">Jan 20, 2020  4:25:14 PM</a> (Read by you after 19 hours, 5 minutes, 56 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">I really can&apos;t</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1D9335B3-BFF8-4455-8712-5F200AA0A754">Jan 20, 2020  4:25:24 PM</a> (Read by you after 19 hours, 5 minutes, 46 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">do you guys wanna meet during powerhour or something instead?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C1F1D66B-D672-4385-88CB-6B8EA263A82E">Jan 20, 2020  4:34:09 PM</a> (Read by you after 18 hours, 57 minutes, 1 second)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sure, throughout all of power hour or just during one half?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0312EC58-DFC7-4EAF-9F6D-1C809616BB5F">Jan 20, 2020  4:42:17 PM</a> (Read by you after 18 hours, 48 minutes, 53 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i’m busy first half</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E8B98823-27F3-4EB9-82F2-5A9A9764D4FC">Jan 20, 2020  4:42:54 PM</a> (Read by you after 18 hours, 48 minutes, 16 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">So <u>tomorrow</u>, 2nd half in the library?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5B02F119-6818-4499-8420-BA724F66D21A">Jan 20, 2020  4:46:56 PM</a> (Read by you after 18 hours, 44 minutes, 14 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">that&apos;s good for me</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=030CCE84-50E7-441E-9341-8287C253674C">Jan 20, 2020  4:47:41 PM</a> (Read by you after 18 hours, 43 minutes, 29 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">me too</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7CDA7DEA-A328-4ECD-80B5-6BA8A3CA3860">Jan 21, 2020 11:31:24 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Do we have mast</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E3465F4D-89EB-4C21-A808-1AAE424E8005">Jan 21, 2020 11:33:20 AM</a> (Read by you after 7 hours, 9 minutes, 17 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">no</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2522B366-F5B1-4F83-9718-DBBDAB6818E1">Jan 21, 2020  5:31:10 PM</a> (Read by you after 1 hour, 11 minutes, 27 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">NOTE: replaced BALKANS with SOUTHERN EUROPE</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4E41C89C-6C1D-4996-B87D-5E4057536F47">Jan 21, 2020  7:30:23 PM</a> (Read by you after 8 minutes, 26 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Is everyone available for FaceTime?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=189C4DA1-5AE4-4823-AF09-8D2982B4FF16">Jan 21, 2020  7:31:38 PM</a> (Read by you after 7 minutes, 11 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">i’m actually busy but i will try to join soon and if i can’t make it i will review the questions thoroughly </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D68AE9FF-8FB2-4079-BE0E-499B30DC6C79">Jan 21, 2020  7:32:31 PM</a> (Read by you after 6 minutes, 18 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I’ve made a lot of changes to the slides and scripts so make sure to look over that as well. I’m assuming we have a late <u>Wednesday</u> <u>tmrw</u>, so is everyone willing to try and go over it in the morning?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C279CE1F-06D3-47D2-9390-BF4D0A6F2555">Jan 21, 2020  7:33:33 PM</a> (Read by you after 5 minutes, 16 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">how much did you change?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=3F9207AB-EB8F-4F14-935B-22E6BB20B0C6">Jan 21, 2020  7:34:55 PM</a> (Read by you after 3 minutes, 54 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">I added in several graphs, an explanation of modern Vs traditional, some historical background, reworded some stuff in context. I don’t think any of your slides were changed though. Mainly the beginning slides</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=796B41E2-E5D6-4206-B8E3-633C9A28C7F1">Jan 21, 2020  7:35:09 PM</a> (Read by you after 3 minutes, 40 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">okay</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=4C9DB3FD-C3AF-480F-86A7-E693FF9BDB85">Jan 21, 2020  7:36:01 PM</a> (Read by you after 2 minutes, 48 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B9FEE4E3-97AD-4C06-9200-D956D1610BE0">Jan 21, 2020  7:39:23 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">I can FaceTime in about twenty minutes if that works</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D3D6EA90-A1EB-480B-8B83-EAE48937C461">Jan 21, 2020  7:45:07 PM</a> (Read by you after 5 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok, is <u>8:00</u> good?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9E98949F-BA53-4195-82B6-012FB9F9C13C">Jan 21, 2020  7:45:14 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Si</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5AF5323D-D1F8-498B-90D1-A46848427210">Jan 21, 2020  8:12:54 PM</a> (Read by you after 17 minutes, 52 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">can I just like practice in my own I feel like at this point I just need to work on memorizing everything</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F5340ED1-6DA4-4533-B974-86F86264B3D9">Jan 21, 2020  8:13:19 PM</a> (Read by you after 17 minutes, 27 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Np, go ahead</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=DAAFC694-D0F3-4C97-878B-1EA94C3E8CB8">Jan 21, 2020  8:30:26 PM</a> (Read by you after 20 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">can we just all agree to change the slide after each of our slides</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=6D0D13B0-2A0D-4F6F-90DF-A1E7561B6803">Jan 21, 2020  8:30:59 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=BF522B55-0601-4921-B751-A23BD33C10D3">Jan 21, 2020  8:31:51 PM</a> (Read by you after 36 minutes, 28 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">like after I finish a slide, I change the slide, and so in</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=87FCDA6F-1D79-4D66-A37B-627BF42E87C1">Jan 21, 2020  8:31:54 PM</a> (Read by you after 36 minutes, 25 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">*on</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F059C08E-1FBE-4448-AD0D-2828E30E4DE1">Jan 21, 2020  8:32:02 PM</a> (Read by you after 36 minutes, 17 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">so it looks most professional</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AF234F17-7176-490A-B0FF-EB1D85FF1D15">Jan 21, 2020  8:32:47 PM</a> (Read by you after 35 minutes, 32 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">👍</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F5840FBB-9FAD-4B73-AED1-28753F6BABFB">Jan 21, 2020  8:37:58 PM</a> (Read by you after 30 minutes, 21 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">do we have a smart board or is it a whiteboard with a projector?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C681B66C-6146-40BA-BC95-1C190E094012">Jan 21, 2020  8:38:17 PM</a> (Read by you after 30 minutes, 2 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">It should be a smart board</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=550F09C3-21AC-4E39-9F61-614BA4CC5DB0">Jan 21, 2020  8:40:09 PM</a> (Read by you after 28 minutes, 10 seconds)</span>
+<span class="sender">Issac Hill</span></p>
+<hr><div class="message_part">
+<span class="bubble">ok then i agree with ava</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2A51BDAB-A330-41D0-8E63-137553EFCCE9">Jan 21, 2020  8:45:46 PM</a> (Read by you after 22 minutes, 33 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">try not to add too much more because i&apos;m worried we might go over time and literally all my slides are at the end</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8D829E20-B141-4B48-A47C-612255CA263F">Jan 21, 2020  8:47:33 PM</a> (Read by you after 20 minutes, 46 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">As of Right now we’ve reached nine minutes.  Once Kylie’s slide is all done, we’ll do a complete run through and see if we need to cut</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=1A44753F-97CC-41F4-9210-E5E23AD8B1B3">Jan 21, 2020  8:48:41 PM</a> (Read by you after 19 minutes, 38 seconds)</span>
+<span class="sender">Ava Stewart</span></p>
+<hr><div class="message_part">
+<span class="bubble">just try not to add too much more, this is the night before the presentation this really is not the time to add stuff</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E5D8F9E4-418F-4891-A92C-9C05CB08E0DB">Jan 21, 2020  9:09:16 PM</a> (Read by you after 39 minutes, 38 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<hr><div class="message_part">
+<span class="bubble">Ok, we’re done with all the script editing and were within time. Wishing everyone good luck <u>tmrw</u></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5C2578A3-207D-4033-B0E5-58F8295F379E">Jan 21, 2020 10:10:30 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Okay I think we’re all done as far as graphics go</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5DFF6E3D-6117-49C0-9C01-FAE4A7A50B7F">Jan 22, 2020 10:46:13 AM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can we meet during PH to go over stuff</span>
+</div>
+</div>
+</div>
+</body></html>
