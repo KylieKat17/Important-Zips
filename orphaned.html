@@ -1,0 +1,1082 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class ="announcement"><p><span class="timestamp">Aug 22, 2017 11:30:55 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 22, 2017 11:30:55 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2017 11:40:01 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2017 11:40:01 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 13, 2017  9:14:59 AM</span> Kylee Frye added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 13, 2017  9:14:59 AM</span> Kylee Frye added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:54 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:54 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 22, 2017  8:01:55 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 27, 2017  7:07:35 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 27, 2017  7:07:35 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2017  8:04:56 PM</span> Cole Elisor added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 20, 2017 10:29:26 PM</span> +18035377136 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 20, 2017 10:29:26 PM</span> +18035377136 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 30, 2017  7:43:51 AM</span> Emma added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 30, 2017  7:43:51 AM</span> Emma added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 04, 2017  5:18:03 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 04, 2017  5:18:03 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 25, 2017  9:36:52 AM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 25, 2017  9:36:52 AM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2018  7:37:47 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2018  7:37:47 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 12, 2018  4:55:58 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 12, 2018  4:55:58 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 28, 2018  4:26:02 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 28, 2018  4:26:02 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 31, 2018  7:48:51 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 31, 2018  7:48:51 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 16, 2018 11:03:01 AM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 16, 2018 11:03:01 AM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 19, 2018  3:49:51 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 19, 2018  3:49:51 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 19, 2018  3:49:51 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:34 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 24, 2018  3:18:52 PM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 14, 2018  9:59:14 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 14, 2018  9:59:14 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 14, 2018  9:59:14 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 14, 2018  9:59:14 AM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 19, 2018  9:54:12 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 19, 2018  9:54:12 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 29, 2018 12:00:35 AM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 29, 2018 12:00:35 AM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 30, 2018  8:18:52 PM</span> Autumn Theole added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 30, 2018  8:18:52 PM</span> Autumn Theole added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 01, 2018  9:33:57 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 01, 2018  9:33:57 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 05, 2018 11:51:29 AM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 05, 2018 11:51:29 AM</span> Violet Raftery added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 16, 2018  4:07:49 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 19, 2018  8:06:48 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 19, 2018  8:06:48 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 21, 2018  2:06:56 PM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 21, 2018  2:06:56 PM</span> Hailey L added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 30, 2018  3:30:05 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 30, 2018  3:30:05 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 30, 2018  3:30:05 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:12:15 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:12:15 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:12:15 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:13:08 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:13:08 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  8:13:08 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  4:32:58 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 04, 2018  4:32:58 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 27, 2018 10:19:56 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 25, 2018 11:51:15 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 25, 2018 11:51:15 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 11, 2018  2:37:07 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 10, 2018  7:45:31 AM</span> Dawn Deans added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 10, 2018  7:45:31 AM</span> Dawn Deans added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 10, 2018  3:39:50 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 10, 2018  3:39:50 PM</span> Dad added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 01, 2018  6:04:15 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 01, 2018  6:04:15 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 01, 2018  6:04:15 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 07, 2018 11:58:49 AM</span> Sarah Kathrine Rogers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 17, 2019 12:13:16 PM</span> Sara Fuller added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2019  2:47:08 PM</span> Maddie Maylath added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 28, 2019  7:25:40 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 28, 2019  7:25:40 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 08, 2019  1:36:59 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 08, 2019  1:36:59 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 08, 2019  1:36:59 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 08, 2019  8:44:12 PM</span> Lakin Luoma added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 08, 2019  8:44:12 PM</span> Lakin Luoma added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 09, 2019  4:27:47 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Feb 09, 2019  4:27:47 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 11, 2019  7:48:18 AM</span> Holley Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 11, 2019  7:48:18 AM</span> Holley Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 11, 2019  7:48:18 AM</span> Holley Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 04, 2019  8:23:04 AM</span> Aunt Darielle added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 04, 2019  8:23:04 AM</span> Aunt Darielle added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 11, 2019  8:59:28 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 11, 2019  8:59:28 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">May 11, 2019  8:59:28 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 06, 2019  8:12:29 PM</span> Holley Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jun 06, 2019  8:12:29 PM</span> Holley Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 15, 2019  9:08:22 AM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 15, 2019  9:08:22 AM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 21, 2019 12:32:47 PM</span> Kelly Powers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 21, 2019 12:32:47 PM</span> Kelly Powers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 24, 2019  4:23:02 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 24, 2019  4:23:02 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jul 24, 2019  4:23:02 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 12, 2019 11:49:48 AM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 12, 2019 11:49:48 AM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Sep 12, 2019 11:49:48 AM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 05, 2019  4:20:20 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 05, 2019  4:20:20 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 05, 2019  4:20:20 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 05, 2019  4:20:20 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:11 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:11 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:11 PM</span> Jessica Gilliam added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:11 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 16, 2019  1:19:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 23, 2019  9:25:06 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Oct 23, 2019  9:25:06 AM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 08, 2019  1:04:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 08, 2019  1:04:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 08, 2019  1:04:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 08, 2019  1:04:12 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 25, 2019  2:53:23 PM</span> Issac Hill added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 25, 2019  2:53:23 PM</span> Issac Hill added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Nov 25, 2019  2:53:23 PM</span> Issac Hill added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 18, 2019  9:58:20 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 18, 2019  9:58:20 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 18, 2019  9:58:20 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 27, 2019  9:00:32 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 27, 2019  9:00:32 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Dec 27, 2019  9:00:32 PM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 01, 2020 12:01:51 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 01, 2020 12:01:51 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 01, 2020 12:01:51 AM</span> Mom added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:55 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:55 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:55 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 08, 2020 12:16:56 PM</span> +18034575683 added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2020  9:39:32 AM</span> Kate Stebbins added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2020  9:39:32 AM</span> Kate Stebbins added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Jan 22, 2020  9:39:32 AM</span> Kate Stebbins added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 18, 2020  4:06:05 PM</span> Rowan Coutsos added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 18, 2020  4:06:05 PM</span> Rowan Coutsos added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Mar 18, 2020  4:06:05 PM</span> Rowan Coutsos added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 25, 2020  9:55:18 PM</span> Alexis Powers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Apr 25, 2020  9:55:18 PM</span> Alexis Powers added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 02, 2020  6:45:47 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 02, 2020  6:45:47 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 02, 2020  6:45:47 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+
+<div class ="announcement"><p><span class="timestamp">Aug 02, 2020  6:45:47 PM</span> The Best Katie Barfield added Me to the conversation.</p></div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=0D73999E-FD74-77EC-6D48-A9AFC83D8785">Mar 04, 2021  6:05:37 PM</a> (Read by you after 20 seconds)</span>
+<span class="sender">9329</span></p>
+<hr><div class="message_part">
+<span class="bubble">Your passcode is <u>35421</u> Don&apos;t get scammed! Sprint won&apos;t call/text to ask for your passcode. Didn&apos;t request it? Call us ASAP by dialing *2 on your Sprint phone.</span>
+</div>
+</div>
+</div>
+<div class ="announcement"><p><span class="timestamp">Aug 23, 2023 11:14:10 PM</span> You unsent a message.</p></div><div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=5468388D-7624-40D9-920F-95BB955B0FF2">Nov 01, 2024  8:04:16 AM</a> </span>
+<span class="sender">Me</span></p>
+<span class="shared_location"><hr>Started sharing location!</span>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=69FF6CF4-4F0D-48F8-A416-89B2259802F8">Nov 02, 2024  5:12:17 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="shared_location"><hr>Started sharing location!</span>
+</div>
+</div>
+<div class="message">
+<div class="sent SMS">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B986499F-3E89-4DB7-911C-E85397AD9458">Feb 02, 2025  4:15:42 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<div class="attachment"><a href="C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3f/3fa2628fe2154b239cc3a6e051bcaa72d9b73a32">Click to download Lecture+4+and+5+-+Requirements+and+UMLs.pdf (1.78 MB)</a></div>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=2CB71555-31A3-41E5-834F-8755B3997916">May 20, 2025  9:50:15 AM</a> (Read by you after 7 days, 20 minutes, 14 seconds)</span>
+<span class="sender">Denise Hicks</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie! Going forward please let us know before your start work time. Are you coming in <u>this afternoon</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=76993DFC-16AB-471A-BE2E-944CB93AD73A">Jul 03, 2025  9:06:26 AM</a> (Read by you after 25 days, 1 hour, 32 minutes, 30 seconds)</span>
+<span class="sender">Denise Hicks</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie! Do not join the call while you are driving. What time will you be in the office <u>today</u>?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=12930253-49A9-44BD-B693-E40F432A3056">Aug 08, 2025 12:17:08 PM</a> (Read by you after 2 days, 23 hours, 39 minutes)</span>
+<span class="sender">Denise Hicks</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hi Kylie! When will you drop off your badge and parking pass? </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=CC9162CB-6075-CFDD-0617-796FEF480E0A">Sep 07, 2025  5:33:20 PM</a> </span>
+<span class="sender">+19894049158</span></p>
+<hr><div class="message_part">
+<span class="bubble">Hello Tiger! 
+We want to hear from you! Please take 2 mins to share feedback on your recent Coaching appointment <a href="https://tinyurl.com/32rhujex">https://tinyurl.com/32rhujex</a>&nbsp;. Your input helps us serve you better. 
+
+Thank you!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7E71DF42-D8EB-41A5-AE4B-35EECF88FADA">Sep 11, 2025  7:45:01 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble"><a href="mailto:miss.kyliegilbert@gmail.com">miss.kyliegilbert@gmail.com</a></span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7529939F-A488-403B-AAF4-59955655D381">Sep 11, 2025  7:45:07 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">For the essay</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=E4287223-5E38-4442-9C0F-DBFFE94228F8">Sep 11, 2025  7:45:21 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">She said you’re going to apply here!!!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7A4804D5-E299-488A-8DE0-D90561EF371A">Sep 11, 2025  7:48:36 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">(One of my CI profs teaches the poli comm course. Also, the people at the MFH would love you! Could be in a CI by your second semester here 👀)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=74D1EE6B-3EA0-4699-870B-FF60CBD7E938">Sep 11, 2025  7:48:51 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Spy Class 🕵️</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D58E80DF-53EA-4E02-90AC-C77DF3BE1AC3">Sep 11, 2025  7:49:05 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">(Legit that’s what the hw doc for <u>tmrw</u> is called)</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=9B40824D-2999-4007-B107-436CB1C39A52">Sep 11, 2025  8:23:46 PM</a> </span>
+<span class="sender">Me</span></p>
+<hr><div class="message_part">
+<span class="bubble">Sorry, wrong person!!!!</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D7A4E080-9C8C-A4BC-05CA-1917748CAA2A">Sep 20, 2025  1:25:09 AM</a> </span>
+<span class="sender">74843</span></p>
+<hr><div class="message_part">
+<span class="bubble">Jesus 🏎💨. (jesusbautis.) added you on Snapchat: <a href="https://snapchat.com/t/d3D7z2pi">https://snapchat.com/t/d3D7z2pi</a>
+
+Unsubscribe: <a href="http://w.snapchat.com/FKenEf5p">w.snapchat.com/FKenEf5p</a></span>
+</div>
+</div>
+</div>
+</body></html>
