@@ -1,0 +1,576 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+:root {
+    --border-radius: 25px;
+    --message-padding: 15px;
+    --opacity-medium: 0.6;
+    --opacity-high: 0.75;
+    --imessage-blue: #1982FC;
+    --sent-green: #65c466;
+    --received-gray: #d8d8d8;
+    --border-width: thin;
+
+    --background-color: transparent;
+    --text-color: black;
+    --muted-text: dimgray;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+p {
+    margin: 0;
+}
+
+svg {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.message {
+    margin: 1%;
+    overflow-wrap: break-word;
+}
+
+.message .sent,
+.message .received {
+    border-radius: var(--border-radius);
+    padding: var(--message-padding);
+    max-width: 60%;
+    width: fit-content;
+}
+
+.message .sent {
+    background-color: var(--sent-green);
+    color: white;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message .sent.iMessage,
+.message .sent.Satellite {
+    background-color: var(--imessage-blue);
+}
+
+.message .received {
+    background-color: var(--received-gray);
+    color: black;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message .sent .replies .reply .message .sent {
+    border-style: solid;
+    border-color: white;
+    border-width: var(--border-width);
+}
+
+.message .received .replies .reply .message .received {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+}
+
+.message .received .replies {
+    border-left: dotted dimgray;
+    border-bottom: dotted dimgray;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.message .sent .replies {
+    border-left: dotted white;
+    border-bottom: dotted white;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.received .replies,
+.sent .replies {
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.reply .received,
+.reply .sent {
+    max-width: 85%;
+    padding: var(--message-padding);
+}
+
+.app {
+    background: white;
+    border-radius: var(--border-radius);
+}
+
+.app a {
+    text-decoration: none;
+}
+
+.app_header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    color: black;
+}
+
+.app_header img {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.app_header audio {
+    padding-bottom: 2%;
+}
+
+.app_header .image_title,
+.app_header .image_subtitle,
+.app_header .ldtext,
+.app_header .name {
+    padding: 1% var(--message-padding);
+    overflow: auto;
+}
+
+.app_header .name {
+    color: black;
+    font-weight: 600;
+}
+
+.app_footer {
+    display: grid;
+    grid-template-areas:
+        'caption trailing_caption'
+        'subcaption trailing_subcaption';
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: darkgray;
+    border-width: var(--border-width);
+    color: black;
+    background: lightgray;
+    padding-bottom: 1%;
+}
+
+.app_footer .caption,
+.app_footer .subcaption,
+.app_footer .trailing_caption,
+.app_footer .trailing_subcaption {
+    margin-top: 1%;
+    padding-left: var(--message-padding);
+    padding-right: var(--message-padding);
+    overflow: auto;
+}
+
+.app_footer .caption {
+    grid-area: caption;
+}
+
+.app_footer .subcaption {
+    grid-area: subcaption;
+}
+
+.app_footer .trailing_caption {
+    grid-area: trailing_caption;
+    text-align: right;
+}
+
+.app_footer .trailing_subcaption {
+    grid-area: trailing_subcaption;
+    text-align: right;
+}
+
+.timestamp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.timestamp a:hover {
+    text-decoration: underline;
+}
+
+span.timestamp,
+span.reply_context,
+span.expressive,
+span.tapbacks,
+span.deleted,
+div.sticker_effect,
+div.sticker_name,
+div.genmoji_prompt {
+    opacity: var(--opacity-medium);
+}
+
+span.unsent,
+span.transcription {
+    opacity: var(--opacity-high);
+}
+
+span.reply_anchor,
+span.sender {
+    opacity: 1;
+}
+
+span.subject {
+    font-weight: 600;
+}
+
+span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+div.translated::before {
+    content: "▼ Translated from";
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: var(--opacity-high);
+}
+
+div.translated span.bubble {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: var(--opacity-medium);
+}
+
+div.tapbacks img {
+    max-width: 5em;
+    padding-right: 1em;
+}
+
+div.tapback {
+    display: flex;
+    align-items: center;
+}
+
+span[class^="animation"] {
+    text-shadow: #000 0 0 10px;
+}
+
+div.sticker img {
+    max-width: 5em;
+}
+
+.announcement {
+    text-align: center;
+    padding: 2vh 1vw;
+    word-wrap: break-word;
+    color: var(--muted-text);
+}
+
+img,
+video {
+    max-width: 100%;
+    max-height: 90vh;
+}
+
+audio {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sent table {
+    color: white;
+}
+
+.received table {
+    color: black;
+}
+
+.received .sent table {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    border-bottom: 2px solid white;
+}
+
+td {
+    padding: 2px 5px;
+}
+
+.sent tbody,
+.received .sent tbody {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.received tbody {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.received .announcement {
+    color: black;
+}
+
+.sent .announcement {
+    color: white;
+}
+
+.poll-container {
+    color: black;
+}
+
+.poll-option {
+    padding: 10px;
+}
+
+.option-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-bar-container {
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.vote-bar {
+    height: 100%;
+    background: #F5BD61;
+    border-radius: 10px;
+    transition: none;
+}
+
+.vote-count {
+    background: var(--imessage-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.voters-list {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.voter {
+    background: #e8f4f8;
+    margin: 2px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: black;
+        --text-color: white;
+        --muted-text: lightgray;
+    }
+}
+</style><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B1CCF31E-EC65-4CB9-AF1F-E2A7A62D0D00">Jan 08, 2020 12:16:51 PM</a> (Read by you after 8 minutes, 29 seconds)</span>
+<span class="sender">+18034575683</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">only thing that changes rate constant is temperature - dr taylor</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=47DEBE21-B9F0-4F5D-A4B5-B32B6D213667">Jan 08, 2020 12:29:47 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Can you all say ur names? bc I don’t have ur numbers</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C4D26B82-5737-4A6A-BF1C-504D6DED8548">Jan 08, 2020  4:10:45 PM</a> (Read by you after 20 minutes, 14 seconds)</span>
+<span class="sender">Rowan Coutsos</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Dawson</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=006CE7F2-BEF6-4EAB-8F98-E51199555398">Mar 27, 2020 11:40:49 AM</a> (Read by you after 40 minutes, 10 seconds)</span>
+<span class="sender">+18034575683</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">did i make this up or did dr taylor say she would drop the lowest homework grade at the end of the quarter? </span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=80203094-D1E3-4D25-A538-F04428A8AFFD">Mar 27, 2020 11:50:04 AM</a> (Read by you after 30 minutes, 55 seconds)</span>
+<span class="sender">Cindy Ju</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">That definitely happened</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=7E8545E0-810C-4871-A0DA-E0AD30160F01">Mar 27, 2020 12:20:19 PM</a> (Read by you after 40 seconds)</span>
+<span class="sender">Rowan Coutsos</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">She definitely said that, but we need to remind her</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=AA2C196B-784A-4E3E-8990-531934D8F4A0">Mar 27, 2020 12:20:36 PM</a> (Read by you after 23 seconds)</span>
+<span class="sender">Connor Weathersbee</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I emailed she said she’ll change it next week</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Liked</b> by +18034575683</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=F3F645A9-4F2C-4300-B79B-A6C2E98EE610">Mar 27, 2020 12:20:53 PM</a> (Read by you after 6 seconds)</span>
+<span class="sender">+18034767234</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">I thought she was going to take the lowest two grades off</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Emphasized</b> by Connor Weathersbee</span></div>
+
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=D325CCC2-35C2-4043-8801-4507266B6C9F">Mar 27, 2020 12:21:15 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">When did this happen?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=11B91077-3880-4589-8B73-09AAB936D2B5">Mar 27, 2020 12:21:26 PM</a> </span>
+<span class="sender">Rowan Coutsos</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Oh yeah, the lowest two</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=66C9E2CA-BA62-4FD8-A21C-B351B9FA6D53">Mar 27, 2020 12:21:51 PM</a> (Read by you after 1 second)</span>
+<span class="sender">Rowan Coutsos</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">It was a few weeks ago when she first started grading them more harshly</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=799CF819-B44E-467A-81AA-7013D7E5BE8B">Mar 27, 2020 12:22:06 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Was I asleep?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=8907CA3A-FB67-49AA-B95C-58601B79897A">Mar 27, 2020 12:22:16 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Or in the nurses office?</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=B132C0D0-1933-48CF-AC7E-085E3DFFCDB9">Mar 27, 2020 12:23:22 PM</a> (Read by you after 39 seconds)</span>
+<span class="sender">Rowan Coutsos</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">Idk, I don’t think you were in class that day</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="sent iMessage">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=C4FF4A85-35BC-4A0D-AC8C-5486E75A2742">Mar 27, 2020 12:24:09 PM</a> </span>
+<span class="sender">Me</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">👍</span>
+</div>
+</div>
+</div>
+<div class="message">
+<div class="received">
+<p><span class="timestamp"><a title="Reveal in Messages app" href="sms://open?message-guid=88283B79-8ECB-48BF-84BE-ADAA05690D91">May 14, 2020 12:50:40 PM</a> (Read by you after 13 minutes, 50 seconds)</span>
+<span class="sender">+18034575683</span></p>
+<span class="deleted">This message was deleted from the conversation!</span></p>
+<hr><div class="message_part">
+<span class="bubble">good luck everyone👏👏</span>
+</div>
+<div class="tapbacks"><hr><p>Tapbacks:</p>
+<div class="tapback"><span class="tapback"><b>Liked</b> by +18037385227</span></div>
+<div class="tapback"><span class="tapback"><b>Liked</b> by Cindy Ju</span></div>
+<div class="tapback"><span class="tapback"><b>Liked</b> by +18033812533</span></div>
+<div class="tapback"><span class="tapback"><b>Emphasized</b> by Davis Ricks</span></div>
+<div class="tapback"><span class="tapback"><b>Liked</b> by Rowan Coutsos</span></div>
+<div class="tapback"><span class="tapback"><b>Liked</b> by Me</span></div>
+<div class="tapback"><span class="tapback"><b>Loved</b> by +18035976745</span></div>
+<div class="tapback"><span class="tapback"><b>Liked</b> by Catherine Chu</span></div>
+
+</div>
+</div>
+</div>
+</body></html>

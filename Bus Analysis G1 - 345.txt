@@ -1,0 +1,1884 @@
+Sep 03, 2025  5:57:24 PM (Read by you after 25 seconds)
+Sutton Johnson
+Hello guys, business analysis gc
+
+Sep 03, 2025  5:57:28 PM (Read by you after 21 seconds)
+Sutton Johnson
+Sutton Johnson
+
+Sep 03, 2025  5:57:38 PM (Read by you after 11 seconds)
+Sara Osterhaus
+Sara Osterhaus
+
+Sep 03, 2025  5:57:47 PM (Read by you after 2 seconds)
+Matt Anastacio
+Matt Anastacio 
+
+Sep 03, 2025  5:57:47 PM (Read by you after 2 seconds)
+Kylie Horan
+Kylie Horan 
+
+Sep 03, 2025  5:57:56 PM
+Me
+Kylie Gilbert
+
+Sep 03, 2025  5:57:59 PM
+Sara Osterhaus
+https://lucid.app/users/registerOrLogin/free?showLogin=false&invitationId=inv_3da506fc-22e8-4deb-9067-b69e56cf8516&productOpt=chart&invitationType=documentAcceptance&returnUrlOverride=%2Flucidchart%2F9c00075b-aad3-4ec7-a49c-7d411c45aa69%2Fedit%3Fviewport_loc%3D605%252C-139%252C2588%252C1349%252Cm-5o7ONTd-nK%26invitationId%3Dinv_3da506fc-22e8-4deb-9067-b69e56cf8516
+Group Activity 1
+
+Sep 03, 2025  7:05:47 PM Sutton Johnson renamed the conversation to Bus Analysis G1
+
+Sep 03, 2025  7:05:47 PM Sutton Johnson renamed the conversation to Bus Analysis G1
+
+Sep 03, 2025  7:07:17 PM (Read by you after 3 days, 19 hours, 42 minutes, 31 seconds)
+Sutton Johnson
+Ok main goal: have all three done by Monday, so we can ask questions as needed in class. Also if we get them done by this Friday would allow for everyone to come up with questions over the weekend
+
+Sep 07, 2025 12:00:18 PM (Read by you after 2 hours, 49 minutes, 30 seconds)
+Sara Osterhaus
+Ive had a crazy weekend but I will work on the diagrams tmrw morning before class
+
+Sep 07, 2025 12:00:54 PM (Read by you after 2 hours, 48 minutes, 54 seconds)
+Sutton Johnson
+Same I’ll be able to work on it tn
+Tapbacks:
+Emphasized by Kylie Horan
+
+
+Sep 07, 2025  1:53:29 PM (Read by you after 56 minutes, 19 seconds)
+Baylie
+Sep 07, 2025  1:53:29 PM Same I work on it
+Edited 14 seconds later: Same I’ll work on it
+
+
+Sep 07, 2025  2:50:19 PM
+Me
+I got sick on Thursday but I’ll work on it tonight
+
+Sep 08, 2025 11:05:03 AM (Read by you after 4 seconds)
+Sara Osterhaus
+has anyone done the quiz
+
+Sep 08, 2025 11:05:31 AM
+Me
+No. But I’ve been working on the diagram for the check in process
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Sep 08, 2025 11:57:30 AM (Read by you after 14 minutes, 5 seconds)
+Sutton Johnson
+On the diagram are we supposed to have a swim lane for the software for future state?
+
+Sep 08, 2025 12:03:20 PM (Read by you after 8 minutes, 15 seconds)
+Sara Osterhaus
+it is for the check in process future state it hoguth
+
+Sep 08, 2025 12:09:02 PM (Read by you after 2 minutes, 33 seconds)
+Sara Osterhaus
+Thought
+
+Sep 08, 2025 12:11:24 PM (Read by you after 11 seconds)
+Sutton Johnson
+Yes yes the check-in process future state
+
+Sep 08, 2025 12:13:16 PM (Read by you after 1 hour, 7 minutes, 44 seconds)
+Sutton Johnson
+I’m working on one with a software swimlane because it makes the most sense to me but I’ll ask in class, I didn’t delete the one without the software that I started, just in case
+Tapbacks:
+Liked by Kylie Horan
+
+
+Sep 08, 2025 12:13:28 PM (Read by you after 1 hour, 7 minutes, 32 seconds)
+Sutton Johnson
+Just working under it
+
+Sep 08, 2025 12:23:25 PM (Read by you after 57 minutes, 35 seconds)
+Sutton Johnson
+Jk I’m working on the checkout one
+
+Sep 08, 2025 12:23:32 PM (Read by you after 57 minutes, 28 seconds)
+Sutton Johnson
+But yeah 
+
+Sep 08, 2025 12:28:03 PM (Read by you after 52 minutes, 57 seconds)
+Baylie
+This is Baylie btw. I can continue with the check in future state.
+
+Sep 08, 2025 12:38:40 PM (Read by you after 42 minutes, 20 seconds)
+Sutton Johnson
+Do you think there should be a third swimlane for the checkin for the system since it’s storing data?
+
+Sep 08, 2025  1:04:24 PM (Read by you after 16 minutes, 36 seconds)
+Baylie
+Sep 08, 2025  1:04:24 PM Yeah I thought about that but I didn’t know if you guys were okay with that. I was just gonna stick it in there and see what you thought 
+Edited 17 seconds later: Yeah I thought about that but I didn’t know if you guys were okay with that. I was just gonna stick it in there and see what you thought 
+
+
+Sep 08, 2025  1:05:18 PM (Read by you after 15 minutes, 42 seconds)
+Baylie
+I will try it and see how it looks 👍🏼
+
+Sep 08, 2025  1:11:01 PM (Read by you after 9 minutes, 59 seconds)
+Sara Osterhaus
+i am about to start working on it
+
+Sep 08, 2025  1:35:15 PM (Read by you after 1 hour, 40 minutes, 35 seconds)
+Sara Osterhaus
+I think return/check in process future state is done
+
+Sep 08, 2025  1:35:20 PM (Read by you after 1 hour, 40 minutes, 30 seconds)
+Sara Osterhaus
+But if anyone ones to change my stuff u can
+
+Sep 08, 2025  1:42:25 PM (Read by you after 1 hour, 33 minutes, 25 seconds)
+Sara Osterhaus
+How does the checkout process future state end?
+
+Sep 08, 2025  1:42:46 PM (Read by you after 1 hour, 33 minutes, 4 seconds)
+Sutton Johnson
+Sorry will finish it shortly when I get back home
+
+Sep 08, 2025  1:42:59 PM (Read by you after 1 hour, 32 minutes, 51 seconds)
+Sara Osterhaus
+No worries I just want to make sure I am adding stuff right
+
+Sep 08, 2025  1:43:03 PM (Read by you after 1 hour, 32 minutes, 47 seconds)
+Sara Osterhaus
+I added more stuff to it
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Sep 08, 2025  1:43:07 PM (Read by you after 1 hour, 32 minutes, 43 seconds)
+Sara Osterhaus
+And we can show him in class
+Tapbacks:
+Liked by Sutton Johnson
+Liked by Kylie Horan
+
+
+Sep 08, 2025  2:29:18 PM (Read by you after 46 minutes, 32 seconds)
+Kylie Horan
+This all looks great guys!! Is there anything else that needs to be done?
+Tapbacks:
+Emphasized by Sara Osterhaus
+
+
+Sep 08, 2025  4:57:11 PM (Read by you after 4 minutes, 46 seconds)
+Sara Osterhaus
+Does the bottom flow chart need an ending? Or is it an iteration?
+
+Sep 08, 2025  5:03:10 PM
+Me
+I’m not going to be in class, I’m not feeling well after my Software Eng class just now. Lmk what his feedback is
+Tapbacks:
+Liked by Kylie Horan
+Liked by Sutton Johnson
+
+
+Sep 08, 2025  5:38:45 PM (Read by you after 9 seconds)
+Sutton Johnson
+I asked him in my last class with him that ended at 5:15 when there would be time for us to ask Qs and he said he would probably have a little time after today’s content bc it’s supposed to be a little shorter, but I think we’re in a good state to ask questions. Probably need to fix a few things b4 final but solid for asking good questions
+
+Sep 08, 2025  7:57:41 PM (Read by you after 1 hour, 42 minutes, 4 seconds)
+Baylie
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/15/15492dc87235ce61da5c3198ad00175028d4568f
+Tapbacks:
+Loved by Sutton Johnson
+Loved by Kylie Horan
+
+
+Sep 08, 2025  7:59:56 PM (Read by you after 1 hour, 39 minutes, 49 seconds)
+Sutton Johnson
+Thanks Baylie! Rest of team pls look at next steps listed :)
+Tapbacks:
+Liked by Kylie Horan
+
+
+Sep 08, 2025  8:00:30 PM (Read by you after 1 hour, 39 minutes, 15 seconds)
+Sutton Johnson
+If you guys could check those things out before noon tmw, I’ll submit it then.
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Sep 08, 2025  8:00:54 PM (Read by you after 1 hour, 38 minutes, 51 seconds)
+Sutton Johnson
+If you have any questions on what we changed or fixed beyond, what is listed feel free to text me or call me
+
+Sep 08, 2025  9:39:32 PM (Read by you after 13 seconds)
+Sara Osterhaus
+will do! thank you for asking him to look it over
+
+Sep 09, 2025  9:47:10 AM (Read by you after 1 day, 8 hours, 15 minutes, 9 seconds)
+Sara Osterhaus
+I just went through and looked it over. I edited some spelling mistakes and cleaned up some arrows but it looks good to me!
+Tapbacks:
+Liked by Baylie
+
+
+Sep 09, 2025 10:42:10 AM (Read by you after 1 day, 7 hours, 20 minutes, 9 seconds)
+Sara Osterhaus
+Do we all have to turn it in or just one of us?
+
+Sep 09, 2025 12:10:59 PM (Read by you after 1 day, 5 hours, 51 minutes, 20 seconds)
+Sutton Johnson
+You know, idk maybe we should all submit
+
+Sep 09, 2025 12:11:23 PM (Read by you after 1 day, 5 hours, 50 minutes, 56 seconds)
+Sutton Johnson
+But I’m going to submit it on my end in a few minutes 
+
+Sep 09, 2025 12:14:26 PM (Read by you after 1 day, 5 hours, 47 minutes, 53 seconds)
+Sara Osterhaus
+Ok I will see if it lets me submit after u submit
+
+Sep 09, 2025 12:16:38 PM (Read by you after 1 day, 5 hours, 45 minutes, 41 seconds)
+Sutton Johnson
+Ok lol it’s saying one submission will count for everyone
+
+Sep 09, 2025 12:17:11 PM (Read by you after 1 day, 5 hours, 45 minutes, 8 seconds)
+Kylie Horan
+Perfect!
+
+Sep 09, 2025 12:17:35 PM (Read by you after 1 day, 5 hours, 44 minutes, 44 seconds)
+Kylie Horan
+Thanks so much 
+
+Sep 09, 2025 12:18:25 PM (Read by you after 1 day, 5 hours, 43 minutes, 54 seconds)
+Sutton Johnson
+Submitted!
+Tapbacks:
+Loved by Kylie Horan
+Loved by Baylie
+Loved by Sara Osterhaus
+
+
+Sep 09, 2025  3:52:50 PM (Read by you after 1 day, 2 hours, 9 minutes, 29 seconds)
+Sara Osterhaus
+thanks!!
+
+Sep 10, 2025  6:00:36 PM (Read by you after 1 minute, 43 seconds)
+Sara Osterhaus
+https://lucid.app/users/registerOrLogin/free?showLogin=false&invitationId=inv_186053aa-4db5-419d-bd67-7484e1ba6682&productOpt=chart&invitationType=documentAcceptance&returnUrlOverride=%2Flucidchart%2Fc7cca742-0aaa-420d-bf70-a99f19214c9c%2Fedit%3Fviewport_loc%3D-11%252C-11%252C1556%252C755%252C0_0%26invitationId%3Dinv_186053aa-4db5-419d-bd67-7484e1ba6682
+Blank diagram
+
+Sep 10, 2025  6:02:55 PM (Read by you after 2 minutes, 11 seconds)
+Sara Osterhaus
+Jsut sent link in email too
+
+Sep 10, 2025  6:05:11 PM
+Me
+Thx
+
+Sep 10, 2025  7:00:40 PM (Read by you after 4 minutes, 46 seconds)
+Sara Osterhaus
+do we wanna do same thing just try and get it done by monday so we can ask questions after class?
+Tapbacks:
+Liked by Kylie Horan
+
+
+Sep 10, 2025  7:05:59 PM
+Me
+I shared that data dictionary spreadsheet with y’all. I’ll work on it tmrw
+
+Sep 14, 2025  8:15:06 PM (Read by you after 9 seconds)
+Sara Osterhaus
+Do we have a plan for the group assignment?
+
+Sep 14, 2025  8:15:24 PM (Read by you after 4 seconds)
+Sara Osterhaus
+I have time tmrw after class if ppl wanted to go over it together
+
+Sep 14, 2025  8:15:48 PM
+Me
+Sure. Where?
+
+Sep 14, 2025  8:15:56 PM (Read by you after 5 seconds)
+Kylie Horan
+Yeah I can do after class 
+
+Sep 14, 2025  8:15:59 PM (Read by you after 2 seconds)
+Sara Osterhaus
+ we could do it in the room after class
+Tapbacks:
+Liked by Kylie Horan
+
+
+Sep 14, 2025  8:16:25 PM (Read by you after 1 minute, 21 seconds)
+Kylie Horan
+I think there’s a class in there right after but I’m sure there will be a study room open
+
+Sep 15, 2025 10:33:35 AM (Read by you after 5 hours, 38 minutes, 46 seconds)
+Sara Osterhaus
+Im sorry I just realized I have something at 7 now but I could also meet before
+
+Sep 15, 2025 10:33:50 AM (Read by you after 5 hours, 38 minutes, 31 seconds)
+Sara Osterhaus
+And if ppl can only meet after leave stuff for me to do
+
+Sep 15, 2025 10:34:01 AM (Read by you after 5 hours, 38 minutes, 20 seconds)
+Kylie Horan
+I have another one of his classes before that ends at 5:15
+    Sep 15, 2025 10:34:48 AM (Read by you after 5 hours, 37 minutes, 33 seconds)
+    Sutton Johnson
+    Works for me because I have the same class as well
+    Tapbacks:
+        Loved by Sara Osterhaus
+
+
+
+Sep 15, 2025 10:34:23 AM (Read by you after 5 hours, 37 minutes, 58 seconds)
+Sara Osterhaus
+I could do 5:15
+
+Sep 15, 2025 10:34:48 AM (Read by you after 5 hours, 37 minutes, 33 seconds)
+Sutton Johnson
+Works for me because I have the same class as well
+Tapbacks:
+Loved by Sara Osterhaus
+
+This message responded to an earlier message.
+
+Sep 15, 2025  4:14:12 PM
+Me
+I can’t do before. My class ends at 5:30 and I’m in Daniel rn
+
+Sep 15, 2025  4:16:17 PM (Read by you after 1 hour, 20 minutes, 24 seconds)
+Matt Anastacio
+Are we meeting at 5:15 or after class
+
+Sep 15, 2025  4:27:13 PM (Read by you after 1 hour, 9 minutes, 28 seconds)
+Sara Osterhaus
+ at 5;15 i thought
+
+Sep 15, 2025  4:27:31 PM (Read by you after 1 hour, 9 minutes, 10 seconds)
+Sara Osterhaus
+5:15?
+Tapbacks:
+Liked by Baylie
+
+
+Sep 15, 2025  4:27:33 PM (Read by you after 1 hour, 9 minutes, 8 seconds)
+Sara Osterhaus
+after?
+Tapbacks:
+Liked by Matt Anastacio
+
+
+Sep 15, 2025  4:27:37 PM (Read by you after 1 hour, 9 minutes, 4 seconds)
+Sara Osterhaus
+thumbs up what u can do
+
+Sep 15, 2025  4:27:41 PM (Read by you after 1 hour, 9 minutes)
+Sara Osterhaus
+and we can see who can go to more
+
+Sep 15, 2025  4:28:19 PM (Read by you after 1 hour, 8 minutes, 22 seconds)
+Kylie Horan
+I can do either
+
+Sep 15, 2025  5:08:37 PM (Read by you after 2 hours, 18 minutes, 40 seconds)
+Sara Osterhaus
+ok i’m walking to cob now for those who can meet
+
+Sep 15, 2025  5:20:58 PM (Read by you after 2 hours, 6 minutes, 19 seconds)
+Sutton Johnson
+Coming to La Mad 
+Tapbacks:
+Emphasized by Sara Osterhaus
+
+
+Sep 15, 2025  5:21:29 PM (Read by you after 2 hours, 5 minutes, 48 seconds)
+Sutton Johnson
+Kylie H and I were in class so I couldn’t answer earlier
+
+Sep 15, 2025  5:21:46 PM (Read by you after 2 hours, 5 minutes, 31 seconds)
+Baylie
+Coming
+
+Sep 15, 2025  5:38:11 PM
+Me
+I just got to the classroom and picked up my iPad. My phone is dead so I didn’t see those 😭
+
+Sep 15, 2025  7:09:21 PM (Read by you after 17 minutes, 56 seconds)
+Kylie Horan
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/3e/3e94363e10bae5ffd3f9dd86f8086b8eeb26dffc
+
+Sep 16, 2025 11:01:38 AM (Read by you after 1 day, 1 hour, 58 minutes, 34 seconds)
+Sara Osterhaus
+So what do those changes look like the notes are kinda confusing me
+
+Sep 16, 2025 11:01:46 AM (Read by you after 1 day, 1 hour, 58 minutes, 26 seconds)
+Sara Osterhaus
+Bc he siad he doesnt want us to work on it in class tmrw
+
+Sep 17, 2025 12:43:33 PM (Read by you after 16 minutes, 39 seconds)
+Sutton Johnson
+Do we think we made all the changes we needed
+
+Sep 17, 2025 12:43:47 PM (Read by you after 16 minutes, 25 seconds)
+Sutton Johnson
+Those of us who were with the prof?
+
+Sep 17, 2025  1:13:40 PM (Read by you after 1 second)
+Kylie Horan
+Looking at Sara?
+    Sep 17, 2025  1:14:39 PM
+    Me
+    That’s the page it’s on, yeah
+    Tapbacks:
+        Liked by Kylie Horan
+
+
+
+Sep 17, 2025  1:13:58 PM
+Sutton Johnson
+?
+
+Sep 17, 2025  1:14:39 PM
+Me
+That’s the page it’s on, yeah
+Tapbacks:
+Liked by Kylie Horan
+
+This message responded to an earlier message.
+
+Sep 17, 2025  1:15:01 PM (Read by you after 1 second)
+Sutton Johnson
+Yes! lol I thought u meant actual Sara 
+Tapbacks:
+Laughed by Sara Osterhaus
+Laughed by Baylie
+Laughed by Kylie Horan
+
+
+Sep 17, 2025  1:39:19 PM (Read by you after 3 hours, 38 minutes, 6 seconds)
+Kylie Horan
+We still need assumptions right?
+
+Sep 17, 2025  2:45:42 PM (Read by you after 2 hours, 31 minutes, 43 seconds)
+Sara Osterhaus
+I would think so
+
+Sep 17, 2025  2:45:47 PM (Read by you after 2 hours, 31 minutes, 38 seconds)
+Sara Osterhaus
+What other assumptiosn are we making
+
+Sep 17, 2025  2:46:05 PM (Read by you after 2 hours, 31 minutes, 20 seconds)
+Sara Osterhaus
+We just should get it done before class bc thats what he was saying to do
+
+Sep 17, 2025  2:47:06 PM (Read by you after 2 hours, 30 minutes, 19 seconds)
+Sara Osterhaus
+I just added some assumptions
+
+Sep 17, 2025  2:52:32 PM (Read by you after 2 hours, 24 minutes, 53 seconds)
+Kylie Horan
+Perfect thanks I’ll go take a look at them
+
+Sep 17, 2025  5:13:06 PM (Read by you after 4 minutes, 19 seconds)
+Sara Osterhaus
+Can we turn it in?
+
+Sep 17, 2025  5:17:38 PM
+Me
+Just looked at it. I think it’s good to go
+
+Sep 17, 2025  5:18:11 PM (Read by you after 11 seconds)
+Baylie
+Same I feel like it looks good 👍🏼
+
+Sep 17, 2025  5:18:34 PM (Read by you after 4 days, 14 hours, 49 minutes, 2 seconds)
+Kylie Horan
+good with me 
+
+Sep 17, 2025  5:47:12 PM (Read by you after 4 days, 14 hours, 20 minutes, 24 seconds)
+Sara Osterhaus
+Submitted!
+
+Sep 17, 2025  5:47:51 PM (Read by you after 4 days, 14 hours, 19 minutes, 45 seconds)
+Kylie Horan
+perfect
+
+Sep 18, 2025  5:34:18 PM (Read by you after 3 days, 14 hours, 33 minutes, 18 seconds)
+Sara Osterhaus
+I just went thru and finished the other diagrams, they def aren’t perfect so feel free to change anything, I  wasnt sure on some lol
+
+Sep 21, 2025  1:50:05 PM (Read by you after 18 hours, 17 minutes, 31 seconds)
+Sara Osterhaus
+Did anyone look at it?
+
+Sep 21, 2025  1:51:34 PM (Read by you after 18 hours, 16 minutes, 2 seconds)
+Sutton Johnson
+I’ll look at it rn, sry
+
+Sep 22, 2025 10:27:49 AM (Read by you after 8 hours, 19 minutes, 28 seconds)
+Baylie
+I apologize I’m gonna take a look at it today/tonight.
+Tapbacks:
+Emphasized by Kylie Horan
+
+
+Sep 22, 2025  5:10:45 PM (Read by you after 1 hour, 36 minutes, 32 seconds)
+Sutton Johnson
+So not ready for this exam 
+
+Sep 23, 2025  7:34:17 AM (Read by you after 10 seconds)
+Sara Osterhaus
+lmk when everyone looks at it and we can turn it in
+
+Sep 23, 2025  7:35:08 AM (Read by you after 5 seconds)
+Kylie Horan
+I’m on a plane rn but can check on it during my layover 😊 sorry I won’t  be able to make it to class tmr
+
+Sep 23, 2025  9:11:13 AM (Read by you after 55 minutes, 49 seconds)
+Kylie Horan
+Looks great 👍🏻 
+
+Sep 23, 2025  9:56:01 AM (Read by you after 11 minutes, 1 second)
+Baylie
+Omg i forgot to send my message. 🤦🏽‍♀️ But for Level 11.0, do we have to label the arrow for when the insurance application is returned going from customer and registration process, like we did in level 12.0? Other than that, I think it looks great 👍🏼 
+    Sep 23, 2025 10:08:26 AM
+    Me
+    I think it’s good other than this, but I’m on my iPad and it’s not letting me type for some odd reason
+
+
+Sep 23, 2025 10:08:26 AM
+Me
+I think it’s good other than this, but I’m on my iPad and it’s not letting me type for some odd reason
+This message responded to an earlier message.
+
+Sep 23, 2025 10:11:25 AM (Read by you after 10 hours, 47 minutes, 29 seconds)
+Sara Osterhaus
+Okay I added that
+
+Sep 23, 2025  3:39:07 PM (Read by you after 5 hours, 19 minutes, 47 seconds)
+Sara Osterhaus
+do we wanna turn it in?
+Tapbacks:
+Liked by Baylie
+Liked by Kylie Horan
+
+
+Sep 24, 2025  5:39:52 PM (Read by you after 1 hour, 36 minutes, 20 seconds)
+Sutton Johnson
+Hi yall I’m going to turn it in after class, told Sara I want to check with our prof on numbers
+Tapbacks:
+Liked by Baylie
+
+
+Sep 24, 2025  6:47:41 PM (Read by you after 28 minutes, 31 seconds)
+Kylie Horan
+Perfect thanks guys!!!
+
+Sep 24, 2025  6:50:35 PM (Read by you after 25 minutes, 37 seconds)
+Sara Osterhaus
+thank you!
+
+Sep 29, 2025  6:31:15 PM (Read by you after 16 hours, 10 minutes, 49 seconds)
+Sara Osterhaus
+https://app3.mockplus.com/team/invitation/IegJCZ7A_
+Mockplus
+All-in-one product design platform for prototyping, collaboration, and creating design systems.
+
+Oct 01, 2025 10:50:54 AM (Read by you after 2 hours, 51 minutes)
+Sara Osterhaus
+Are we getting class time to work on it today?
+
+Oct 01, 2025 11:10:12 AM (Read by you after 2 hours, 31 minutes, 42 seconds)
+Matt Anastacio
+I think so 
+Tapbacks:
+Emphasized by Kylie Horan
+
+
+Oct 01, 2025 11:29:09 AM (Read by you after 2 hours, 12 minutes, 45 seconds)
+Kylie Horan
+Yeah I think he said Monday too
+Tapbacks:
+Liked by Baylie
+
+
+Oct 01, 2025  5:23:22 PM (Read by you after 3 days, 21 hours, 12 minutes)
+Sutton Johnson
+Yeah
+
+Oct 01, 2025  5:37:40 PM (Read by you after 3 days, 20 hours, 57 minutes, 42 seconds)
+Sutton Johnson
+Lowk I won’t be there, not feeling great so I’ll be missing 
+
+Oct 01, 2025  5:37:55 PM (Read by you after 3 days, 20 hours, 57 minutes, 27 seconds)
+Sutton Johnson
+But I promise to work on the project!
+
+Oct 05, 2025  2:33:44 PM (Read by you after 1 minute, 38 seconds)
+Sara Osterhaus
+If anyone has time today maybe we could all work on the assignment for like one hour
+Tapbacks:
+Loved by Sutton Johnson
+Loved by Kylie Horan
+
+
+Oct 05, 2025  2:34:04 PM (Read by you after 1 minute, 18 seconds)
+Sutton Johnson
+I can work on it for sure 
+
+Oct 05, 2025  2:35:26 PM
+Me
+^^
+
+Oct 05, 2025  2:36:09 PM (Read by you after 20 hours, 48 minutes, 25 seconds)
+Baylie
+Yes I will be as well 👍🏼 
+
+Oct 05, 2025  4:47:44 PM (Read by you after 18 hours, 36 minutes, 50 seconds)
+Sara Osterhaus
+I just finished the wireframe
+
+Oct 05, 2025  5:19:24 PM (Read by you after 18 hours, 5 minutes, 10 seconds)
+Sara Osterhaus
+Half of the mockup is done too
+
+Oct 05, 2025  7:11:30 PM (Read by you after 16 hours, 13 minutes, 4 seconds)
+Sutton Johnson
+Would the first status be like what’s expected before ordering 
+
+Oct 05, 2025  7:11:56 PM (Read by you after 16 hours, 12 minutes, 38 seconds)
+Sutton Johnson
+So not in transit, then would the acknowledgment would be after verifying order
+
+Oct 05, 2025  8:21:21 PM (Read by you after 15 hours, 3 minutes, 13 seconds)
+Sara Osterhaus
+for which part
+    Oct 05, 2025  8:57:18 PM (Read by you after 14 hours, 27 minutes, 16 seconds)
+    Sutton Johnson
+    In the mockup but also like the wireframe ig
+
+
+Oct 05, 2025  8:56:42 PM (Read by you after 14 hours, 27 minutes, 52 seconds)
+Sara Osterhaus
+We need to go thru and make sure everything listed on the wireframe is on the mockup
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Oct 05, 2025  8:57:18 PM (Read by you after 14 hours, 27 minutes, 16 seconds)
+Sutton Johnson
+In the mockup but also like the wireframe ig
+This message responded to an earlier message.
+
+Oct 05, 2025  8:57:40 PM (Read by you after 14 hours, 26 minutes, 54 seconds)
+Sara Osterhaus
+i’m confused on the question lol
+
+Oct 05, 2025  8:57:45 PM (Read by you after 14 hours, 26 minutes, 49 seconds)
+Sara Osterhaus
+that’s the order he gave us i thought
+
+Oct 05, 2025  9:15:55 PM (Read by you after 14 hours, 8 minutes, 39 seconds)
+Baylie
+Currently going back though things now
+
+Oct 05, 2025  9:33:12 PM (Read by you after 13 hours, 51 minutes, 22 seconds)
+Baylie
+For the Mockup in Drug Shipment Status, the ID is listed, but since both the Drug and the Shipment ID can be searched, should we put that under shipment status too? I understand that Drug ID is not a direct attribute/foreign key, but I am not sure what information it would be tied to once the person searches it
+
+Oct 05, 2025  9:33:36 PM (Read by you after 13 hours, 50 minutes, 58 seconds)
+Sara Osterhaus
+oh yes ur right remove it from the shipment status then
+
+Oct 05, 2025  9:35:11 PM (Read by you after 13 hours, 49 minutes, 23 seconds)
+Baylie
+Oct 05, 2025  9:35:11 PM No I think you’re right for adding it since it’s listed but we might need to reference it somewhere in the shipment status section 
+Edited 10 seconds later: No I think you’re right for adding it since it’s listed but we might need to reference it again somewhere in the shipment status section 
+Edited 16 seconds later: No I think you’re right for adding it since it’s listed but we might need to reference it again somewhere in the shipment status section
+
+
+Oct 05, 2025  9:36:06 PM (Read by you after 13 hours, 48 minutes, 28 seconds)
+Baylie
+Or in our wireframe we could ake sure it’s known that they are interchangeable visually 
+
+Oct 06, 2025  8:56:00 AM (Read by you after 2 hours, 28 minutes, 34 seconds)
+Baylie
+For UI Model #2: I added the drug name to the description part of the shipment status for all sections and then I changed the dates and the quantity. For the dates, I felt like we needed to be more specific on the exact month day and year, we were just missing the year. For the quantity, I feel like since it’s urgent “inventory” there needs to be an amount that can be like individualized. So instead of making the whole inventory in milligrams I put it in bottles and then just added the number of milligrams to the drug name (ex. CVS has an inventory of 50 bottles of 200 mg Tylenol). 
+
+For UI Model #3: I added a check box showing that the pharmacist that’s using the site acknowledges the changes rather than just submitting the form.
+
+
+For UI Model #4: made similar changes like I did for #2 & 3
+
+For UI Model #5: made similar changes like I did for #2
+
+* Any other changes I made were just grammatical changes and for format consistency
+
+What do yall think?
+Tapbacks:
+Loved by Kylie Horan
+
+
+Oct 06, 2025  8:57:00 AM (Read by you after 2 hours, 27 minutes, 34 seconds)
+Baylie
+Hey guys I will not be attending class today as I am not feeling the best. I was looking over everything last night and I did make some changes and listed them above since I won’t be able to explain it in person. Feel free to change anything back.^^^^
+
+Oct 06, 2025 10:14:08 AM (Read by you after 1 hour, 10 minutes, 26 seconds)
+Sara Osterhaus
+ok thank u feel better i’ll look at that!
+Tapbacks:
+Loved by Baylie
+
+
+Oct 06, 2025 10:23:32 AM (Read by you after 1 hour, 1 minute, 2 seconds)
+Kylie Horan
+I will take a look at it b 
+
+Oct 06, 2025 11:22:45 AM (Read by you after 1 minute, 49 seconds)
+Matt Anastacio
+Do we wanna meet before class and work on it a bit 
+
+Oct 06, 2025 11:24:26 AM (Read by you after 8 seconds)
+Sutton Johnson
+I can work on more of it whenever except I’m also not able to be there for class 🥲
+
+Oct 06, 2025 11:24:59 AM
+Sara Osterhaus
+I think its done?
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Oct 06, 2025 11:25:17 AM
+Me
+I just put my NOAs in for classes today. I’m feeling really out of it and am about to take some emergency meds
+
+Oct 06, 2025 11:25:29 AM
+Me
+I won’t be in class
+
+Oct 06, 2025 11:26:03 AM (Read by you after 3 minutes, 31 seconds)
+Sara Osterhaus
+am I good to invite him too it to submit it
+
+Oct 06, 2025 11:26:11 AM (Read by you after 3 minutes, 23 seconds)
+Sutton Johnson
+I think it’s good
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Oct 06, 2025 11:26:24 AM (Read by you after 3 minutes, 10 seconds)
+Sutton Johnson
+Baylie and Kylie I hope you get better!
+Tapbacks:
+Loved by Baylie
+Loved by Me
+
+
+Oct 06, 2025 11:29:52 AM (Read by you after 43 minutes, 1 second)
+Sara Osterhaus
+Im confused are we just supposed to email the invite link
+
+Oct 06, 2025 11:31:39 AM (Read by you after 41 minutes, 14 seconds)
+Sara Osterhaus
+Kylie I think u have to publish it bc u own it
+    Oct 06, 2025 11:55:43 AM (Read by you after 17 minutes, 10 seconds)
+    Kylie Horan
+    sorry just missed this happy you figured it out - thanks for submitting 
+
+
+Oct 06, 2025 11:32:09 AM (Read by you after 40 minutes, 44 seconds)
+Sara Osterhaus
+ oh wait nvm i got it
+
+Oct 06, 2025 11:34:27 AM (Read by you after 38 minutes, 26 seconds)
+Sara Osterhaus
+I submitted
+Tapbacks:
+Loved by Kylie Horan
+
+
+Oct 06, 2025 11:55:43 AM (Read by you after 17 minutes, 10 seconds)
+Kylie Horan
+sorry just missed this happy you figured it out - thanks for submitting 
+This message responded to an earlier message.
+
+Oct 07, 2025 11:06:54 AM (Read by you after 13 days, 2 hours, 5 minutes, 49 seconds)
+Sara Osterhaus
+If you guys have time to review the excel I sent you, specifically the bottom two paragraphs and then I can turn it in
+Tapbacks:
+Liked by Baylie
+
+    Oct 07, 2025 12:24:53 PM (Read by you after 13 days, 47 minutes, 50 seconds)
+    Baylie
+    Will look at it today
+    Tapbacks:
+        Loved by Sara Osterhaus
+
+
+
+Oct 07, 2025 11:07:11 AM (Read by you after 13 days, 2 hours, 5 minutes, 32 seconds)
+Sara Osterhaus
+It was a super easy assignment
+Tapbacks:
+Emphasized by Kylie Horan
+
+
+Oct 07, 2025 12:24:53 PM (Read by you after 13 days, 47 minutes, 50 seconds)
+Baylie
+Will look at it today
+Tapbacks:
+Loved by Sara Osterhaus
+
+This message responded to an earlier message.
+
+Oct 08, 2025 10:58:02 AM (Read by you after 12 days, 2 hours, 14 minutes, 41 seconds)
+Sara Osterhaus
+Just text me when u guys look at it and ill turn it in
+
+Oct 08, 2025 11:08:23 AM (Read by you after 12 days, 2 hours, 4 minutes, 20 seconds)
+Sutton Johnson
+What u guys wrote looks good to me
+Tapbacks:
+Loved by Sara Osterhaus
+Loved by Baylie
+
+
+Oct 08, 2025 11:26:06 AM (Read by you after 12 days, 1 hour, 46 minutes, 37 seconds)
+Sara Osterhaus
+Im gonna turn it in!
+
+Oct 08, 2025 11:26:27 AM (Read by you after 12 days, 1 hour, 46 minutes, 16 seconds)
+Sara Osterhaus
+that way we have nothing over fall break
+
+Oct 08, 2025 11:26:30 AM (Read by you after 12 days, 1 hour, 46 minutes, 13 seconds)
+Kylie Horan
+Perfect!!! Hopefully that means w won’t have to do much today
+
+Oct 08, 2025 11:27:29 AM (Read by you after 12 days, 1 hour, 45 minutes, 14 seconds)
+Sara Osterhaus
+Turned it in!
+Tapbacks:
+Loved by Kylie Horan
+
+
+Oct 08, 2025 11:34:13 AM (Read by you after 12 days, 1 hour, 38 minutes, 30 seconds)
+Baylie
+Thank you!
+
+Oct 15, 2025  5:17:46 PM (Read by you after 4 days, 19 hours, 54 minutes, 57 seconds)
+Kylie Horan
+Hey guys I don’t feel great so heading home!! Lmk if u need anything from group exercise today
+Tapbacks:
+Liked by Baylie
+
+
+Oct 15, 2025  5:21:20 PM (Read by you after 4 days, 19 hours, 51 minutes, 23 seconds)
+Baylie
+Hope you feel better!
+Tapbacks:
+Loved by Kylie Horan
+
+
+Oct 19, 2025  4:41:57 PM (Read by you after 20 hours, 30 minutes, 46 seconds)
+Sara Osterhaus
+Do u guys just wanna work on the group assignment in class tmrw and finish it?
+Tapbacks:
+Liked by Baylie
+Liked by Kylie Horan
+
+
+Oct 19, 2025  4:42:08 PM (Read by you after 20 hours, 30 minutes, 35 seconds)
+Sutton Johnson
+Sounds good to me
+
+Oct 20, 2025  1:13:44 PM
+Me
+…so, AWS and therefore Canvas is down
+
+Oct 20, 2025  1:13:55 PM (Read by you after 1 second)
+Sutton Johnson
+Yep…
+
+Oct 20, 2025  1:14:14 PM
+Me
+Think he’ll extend the assignment?
+
+Oct 20, 2025  1:14:26 PM
+Sara Osterhaus
+Its due next Monday not today
+
+Oct 20, 2025  1:14:27 PM
+Kylie Horan
+at least he prints things sometimes 
+
+Oct 20, 2025  1:14:37 PM
+Sara Osterhaus
+Hopefully it will be back up tonight
+
+Oct 20, 2025  1:14:50 PM
+Kylie Horan
+But also if we can’t access the slides to study 😭
+
+Oct 20, 2025  1:15:11 PM (Read by you after 4 seconds)
+Sutton Johnson
+Ok wait when is the exam?
+
+Oct 20, 2025  1:15:19 PM (Read by you after 1 second)
+Kylie Horan
+I thought it’s Wednesday
+
+Oct 20, 2025  1:15:20 PM
+Me
+Wednesday
+
+Oct 20, 2025  1:15:27 PM
+Me
+It should be back up by then
+Tapbacks:
+Liked by Kylie Horan
+
+
+Oct 20, 2025  3:33:27 PM (Read by you after 9 seconds)
+Baylie
+I also have a pdf of Chapers 4-6 so I will email that to you guys just in case if that helps! (Some of them are annotated so don’t pay attention to that lol)
+
+Oct 20, 2025  3:33:52 PM
+Me
+Thank you 🙏 
+Tapbacks:
+Loved by Baylie
+
+
+Oct 20, 2025  3:35:19 PM (Read by you after 1 hour, 28 minutes, 9 seconds)
+Kylie Horan
+Thank uuuu
+Tapbacks:
+Loved by Baylie
+
+
+Oct 20, 2025  3:38:28 PM (Read by you after 1 hour, 25 minutes)
+Baylie
+Np. Just sent them 👍🏼
+
+Oct 20, 2025  3:38:37 PM (Read by you after 1 hour, 24 minutes, 51 seconds)
+Sutton Johnson
+Thank u!!!
+Tapbacks:
+Loved by Baylie
+
+
+Oct 20, 2025  4:16:42 PM (Read by you after 46 minutes, 46 seconds)
+Matt Anastacio
+I won’t be in class today so let me know what you’d all like me to work on
+Tapbacks:
+Liked by Kylie Horan
+
+
+Oct 20, 2025  5:03:22 PM (Read by you after 6 seconds)
+Sara Osterhaus
+I just worked on it a little more so all we really have to do today is add descriptions and check it
+Tapbacks:
+Loved by Baylie
+
+
+Oct 20, 2025  5:29:39 PM (Read by you after 20 days, 23 hours, 14 minutes, 12 seconds)
+Baylie
+Thank you. Really appreciate the work you’ve done. 
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Oct 20, 2025  6:02:28 PM (Read by you after 20 days, 22 hours, 41 minutes, 23 seconds)
+Sutton Johnson
+Exam is Monday
+
+Oct 20, 2025  6:17:00 PM (Read by you after 20 days, 22 hours, 26 minutes, 51 seconds)
+Sara Osterhaus
+for the assignment he said to go off the descriptions page and write little descriptions on the flight plan if someone could do that
+
+Oct 20, 2025  6:17:00 PM (Read by you after 20 days, 22 hours, 26 minutes, 51 seconds)
+Sara Osterhaus
+and then it’s done
+Tapbacks:
+Liked by Kylie Horan
+
+
+Oct 22, 2025 12:39:48 PM (Read by you after 19 days, 4 hours, 4 minutes, 3 seconds)
+Sara Osterhaus
+Ok I did that,, can someone please just check the sprint sums and make sure I did the counting right, I want to turn it in
+Tapbacks:
+Loved by Baylie
+
+    Oct 22, 2025  5:32:38 PM (Read by you after 18 days, 23 hours, 11 minutes, 13 seconds)
+    Baylie
+    I just realized that it put a laughing emoji instead of a like. Idk why it did that lol
+
+
+Oct 22, 2025  2:39:17 PM (Read by you after 19 days, 2 hours, 4 minutes, 34 seconds)
+Kylie Horan
+Just checked it out, I think that’s it looks good
+
+Oct 22, 2025  2:39:38 PM (Read by you after 19 days, 2 hours, 4 minutes, 13 seconds)
+Kylie Horan
+But also I was not in class when we worked on this so I’m probably not best source
+
+Oct 22, 2025  2:42:38 PM
+Baylie
+Reacted 😂 to “Ok I did that,, can someone please just check the sprint sums and make sure I did the counting right, I want to turn it in”
+
+Oct 22, 2025  5:32:38 PM (Read by you after 18 days, 23 hours, 11 minutes, 13 seconds)
+Baylie
+I just realized that it put a laughing emoji instead of a like. Idk why it did that lol
+This message responded to an earlier message.
+
+Oct 22, 2025  5:47:18 PM (Read by you after 18 days, 22 hours, 56 minutes, 33 seconds)
+Baylie
+Also I only counted 8 for sprint 2 for the revised. Portion
+
+Oct 22, 2025  5:48:40 PM (Read by you after 18 days, 22 hours, 55 minutes, 11 seconds)
+Sara Osterhaus
+I did that because the new task was 3 days and it can only fit 2
+
+Oct 22, 2025  5:48:47 PM (Read by you after 18 days, 22 hours, 55 minutes, 4 seconds)
+Sara Osterhaus
+But maybe we could rearrange im not sure
+
+Oct 22, 2025  5:49:30 PM (Read by you after 18 days, 22 hours, 54 minutes, 21 seconds)
+Baylie
+No, that’s fair. I was just saying since it said 22 on there. Just wanted to make sure 👍🏼 
+
+Oct 22, 2025  5:50:31 PM (Read by you after 18 days, 22 hours, 53 minutes, 20 seconds)
+Sara Osterhaus
+We can go over it quick when class is over nad then submit
+
+Oct 22, 2025  6:38:15 PM (Read by you after 18 days, 22 hours, 5 minutes, 36 seconds)
+Sutton Johnson
+Submitted
+Tapbacks:
+Loved by Sara Osterhaus
+Loved by Kylie Horan
+Loved by Baylie
+
+
+Nov 10, 2025  1:24:24 PM (Read by you after 2 hours, 19 minutes, 27 seconds)
+Sara Osterhaus
+Do u guys just wanna stay like 20 min after class today and finish it
+Tapbacks:
+Liked by Matt Anastacio
+
+
+Nov 10, 2025  1:25:36 PM (Read by you after 2 hours, 18 minutes, 15 seconds)
+Kylie Horan
+Hey guys I’m actually not going to be in class today, but I can meet you at 7 to finish up the project!
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Nov 10, 2025  4:50:48 PM (Read by you after 15 minutes, 40 seconds)
+Baylie
+Hey guys, I’m still driving from being out of town this weekend and traffic is building up so my arrival time keeps pushing back. I may or may not be there as well but I definitely will at least get there in enough time to meet up and finish the project.👍🏼
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Nov 10, 2025  5:50:15 PM (Read by you after 20 minutes, 55 seconds)
+Sara Osterhaus
+Lowkey I finished it so if everyone just wants to read over it at the end of class or at home thats good too
+
+Nov 10, 2025  6:23:07 PM (Read by you after 11 minutes, 58 seconds)
+Baylie
+Oh okay thank you, will do 👍🏼👍🏼 
+
+Nov 10, 2025  7:13:14 PM (Read by you after 2 hours, 52 minutes, 59 seconds)
+Kylie Horan
+Omg thank you!!!!
+
+Nov 10, 2025 10:06:01 PM (Read by you after 12 seconds)
+Sara Osterhaus
+if everyone looks it over wanna turn it in?
+    Nov 10, 2025 10:07:11 PM
+    Me
+    I looked at it again once I got home. It’s 👍
+    Tapbacks:
+        Loved by Sara Osterhaus
+    Liked by Baylie
+
+
+
+Nov 10, 2025 10:06:09 PM (Read by you after 4 seconds)
+Sara Osterhaus
+also legit when is he gonna grade all of our work lol
+
+Nov 10, 2025 10:06:49 PM
+Me
+I was literally talking abt that with my roommate earlier. None of the review quizzes have been graded!
+
+Nov 10, 2025 10:07:11 PM
+Me
+I looked at it again once I got home. It’s 👍
+Tapbacks:
+Loved by Sara Osterhaus
+Liked by Baylie
+
+This message responded to an earlier message.
+
+Nov 10, 2025 10:07:14 PM (Read by you after 1 second)
+Sara Osterhaus
+i might ask him on wednesday bc like idk how im doing in the class
+
+Nov 11, 2025 11:00:33 AM (Read by you after 35 minutes, 36 seconds)
+Sara Osterhaus
+Sutton could submit it bc u own the excel?
+
+Nov 11, 2025 11:00:43 AM (Read by you after 35 minutes, 26 seconds)
+Sutton Johnson
+Yes!
+
+Nov 11, 2025 11:00:56 AM (Read by you after 35 minutes, 13 seconds)
+Sara Osterhaus
+Also I think u have to submit the lucid chart separate
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Nov 11, 2025 11:08:42 AM (Read by you after 27 minutes, 27 seconds)
+Kylie Horan
+Oh yes sorry I meant to text! But perfect thank yall so much 
+
+Nov 12, 2025  9:31:21 AM (Read by you after 14 minutes, 41 seconds)
+Sara Osterhaus
+did u turn it in?
+
+Nov 12, 2025  9:35:52 AM (Read by you after 10 minutes, 10 seconds)
+Sutton Johnson
+Submitted!
+
+Nov 12, 2025  9:45:31 AM (Read by you after 31 seconds)
+Sara Osterhaus
+Thank uuuu
+
+Nov 12, 2025  9:46:17 AM
+Me
+Who’s going to be there for planning poker today?
+
+Nov 12, 2025  9:53:50 AM (Read by you after 2 hours, 1 minute, 30 seconds)
+Kylie Horan
+I’ll be in class! 
+Tapbacks:
+Emphasized by Sara Osterhaus
+Emphasized by Sutton Johnson
+
+
+Nov 12, 2025  9:53:54 AM (Read by you after 2 hours, 1 minute, 26 seconds)
+Kylie Horan
+And thank you 😊 
+
+Nov 12, 2025  4:08:03 PM (Read by you after 18 days, 4 hours, 14 minutes, 56 seconds)
+Baylie
+Thank you Sutton
+
+Nov 12, 2025  5:45:04 PM (Read by you after 18 days, 2 hours, 37 minutes, 55 seconds)
+Kylie Horan
+I’ll be there in 2
+Tapbacks:
+Emphasized by Sara Osterhaus
+Loved by Sutton Johnson
+
+
+Nov 17, 2025 11:49:49 AM (Read by you after 13 days, 8 hours, 33 minutes, 10 seconds)
+Baylie
+I will answer the questions on the assignment today and text when done so y’all can look over it and we can turn it in 👍🏼 Also I don’t know if you saw his email, but we have no class today
+
+Nov 17, 2025  2:36:40 PM (Read by you after 13 days, 5 hours, 46 minutes, 19 seconds)
+Baylie
+Just finished the questions. Let me know if anything needs to be added or changed! 
+
+Nov 17, 2025  2:39:40 PM (Read by you after 13 days, 5 hours, 43 minutes, 19 seconds)
+Kylie Horan
+Looks great!!! And yes saw that we don’t have class:)
+Tapbacks:
+Loved by Baylie
+
+
+Nov 17, 2025  2:39:45 PM (Read by you after 13 days, 5 hours, 43 minutes, 14 seconds)
+Kylie Horan
+Thanks Baylie!
+
+Nov 17, 2025  3:16:33 PM (Read by you after 13 days, 5 hours, 6 minutes, 26 seconds)
+Sara Osterhaus
+thank u!!
+Tapbacks:
+Loved by Baylie
+
+
+Nov 17, 2025  3:16:41 PM (Read by you after 13 days, 5 hours, 6 minutes, 18 seconds)
+Sara Osterhaus
+ill look
+
+Nov 17, 2025  3:17:29 PM (Read by you after 13 days, 5 hours, 5 minutes, 30 seconds)
+Sara Osterhaus
+looks good to me! want to turn it in?
+
+Nov 17, 2025  3:19:11 PM (Read by you after 13 days, 5 hours, 3 minutes, 48 seconds)
+Baylie
+Yes I will 👍🏼
+Tapbacks:
+Loved by Sara Osterhaus
+Loved by Kylie Horan
+
+
+Nov 17, 2025  3:52:18 PM (Read by you after 13 days, 4 hours, 30 minutes, 41 seconds)
+Baylie
+Submitted 
+
+Nov 17, 2025  3:52:25 PM (Read by you after 13 days, 4 hours, 30 minutes, 34 seconds)
+Sara Osterhaus
+Thank u!!
+
+Nov 17, 2025  3:53:13 PM (Read by you after 13 days, 4 hours, 29 minutes, 46 seconds)
+Kylie Horan
+Thanks sm
+
+Nov 19, 2025  2:21:40 PM (Read by you after 11 days, 6 hours, 1 minute, 19 seconds)
+Sara Osterhaus
+Im sick so im not coming to class today. But lmk if u guys need anything from me for the assignment we start today
+Tapbacks:
+Loved by Sutton Johnson
+Loved by Baylie
+
+
+Nov 19, 2025  2:21:52 PM (Read by you after 11 days, 6 hours, 1 minute, 7 seconds)
+Sutton Johnson
+Oh no feel better!!!
+Tapbacks:
+Emphasized by Kylie Horan
+Loved by Sara Osterhaus
+
+
+Nov 19, 2025  6:17:21 PM (Read by you after 11 days, 2 hours, 5 minutes, 38 seconds)
+Baylie
+Shared the file. Lmk if it gives you guys access 
+
+Nov 30, 2025  2:50:17 PM (Read by you after 5 hours, 32 minutes, 42 seconds)
+Sara Osterhaus
+What needs done for hte group assignment 
+
+Nov 30, 2025  2:55:41 PM (Read by you after 5 hours, 27 minutes, 18 seconds)
+Kylie Horan
+I think we just need to finish the match for the next two portions and then do the like part two for each 
+
+Nov 30, 2025  3:07:20 PM (Read by you after 5 hours, 15 minutes, 39 seconds)
+Sara Osterhaus
+Do we wanna work on it after class tmrw and finish it? Or before?
+
+Nov 30, 2025  3:07:42 PM (Read by you after 5 hours, 15 minutes, 17 seconds)
+Sutton Johnson
+Before or after class works for me! 
+
+Nov 30, 2025  3:08:56 PM (Read by you after 5 hours, 14 minutes, 3 seconds)
+Sara Osterhaus
+Lets do after maybe and then we could go through what we each are going to do for the group project?
+Tapbacks:
+Loved by Sutton Johnson
+Loved by Baylie
+
+
+Nov 30, 2025  3:10:30 PM (Read by you after 5 hours, 12 minutes, 29 seconds)
+Kylie Horan
+Sounds good with me! 
+
+Nov 30, 2025 10:18:05 PM (Read by you after 19 hours, 15 minutes, 43 seconds)
+Baylie
+Is our final at our regular class time? I can’t remember 
+
+Dec 01, 2025  8:11:24 AM (Read by you after 9 hours, 22 minutes, 24 seconds)
+Kylie Horan
+I was thinking about that too I’m not sure! I’m sure he’ll say it today
+Tapbacks:
+Liked by Baylie
+
+
+Dec 01, 2025  5:35:51 PM
+Me
+Hey, I’m not feeling great (I was around a bunch of little kids over break and I’m fairly certain they’re the ones that got me sick) so just let me know what you want me to do for the project when y’all meet up after class please
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Dec 01, 2025  5:46:19 PM (Read by you after 3 days, 16 hours, 37 minutes, 42 seconds)
+Sutton Johnson
+Running a few late but I will be there
+
+Dec 01, 2025  7:42:31 PM (Read by you after 3 days, 14 hours, 41 minutes, 30 seconds)
+Sara Osterhaus
+Go on teh final term project and write ur. Name on tab one at the highlighted bottom part which section u are going to do, it is highlighted purple
+    Dec 05, 2025 10:24:38 AM
+    Me
+    Perfect. Thank you (also, love the purple)
+
+
+Dec 01, 2025  7:52:16 PM (Read by you after 3 days, 14 hours, 31 minutes, 45 seconds)
+Kylie Horan
+15 minute zoom call 
+Sunday at 8:00pm
+
+to go over everyone’s part of final project!!!!!🫶🫶🫶🫶🫶
+Tapbacks:
+Loved by Sara Osterhaus
+Loved by Baylie
+Loved by Sutton Johnson
+Loved by Me
+
+
+Dec 05, 2025 10:24:38 AM
+Me
+Perfect. Thank you (also, love the purple)
+This message responded to an earlier message.
+
+Dec 05, 2025 10:25:05 AM
+Me
+Also, anybody know what Group Exercise peer review 2 specifically covered?
+
+Dec 06, 2025 10:12:02 AM (Read by you after 45 seconds)
+Sutton Johnson
+No 😶
+
+Dec 06, 2025 10:12:41 AM (Read by you after 6 seconds)
+Sutton Johnson
+Also guys, sorry that I didn’t get my part done already, I’m kind of confused on some parts of them so I’m meeting with the professor today to go over my problems
+Tapbacks:
+Liked by Kylie Horan
+
+
+Dec 06, 2025 10:13:09 AM (Read by you after 5 seconds)
+Sutton Johnson
+But if you need anything from mine to do your parts, I could probably answer to my best ability if you wanna give me a text
+
+Dec 06, 2025  7:30:15 PM (Read by you after 16 hours, 24 minutes, 52 seconds)
+Sara Osterhaus
+No worries! I am going to do mine tmrw morning, as long as everyone does their part by tmrw night we should be good!
+Tapbacks:
+Loved by Sutton Johnson
+Emphasized by Kylie Horan
+
+
+Dec 06, 2025  7:36:22 PM (Read by you after 16 hours, 18 minutes, 45 seconds)
+Baylie
+I re-typed up my own “spark notes” for the case bc it’s hard for me to gather everything in big paragraphs, and that helped me interpret all the information better. I emailed it to you guys too just in case it might help! If not, it’s okay, I just thought it was a lot to read lol😂👍🏼
+Tapbacks:
+Loved by Sara Osterhaus
+Loved by Sutton Johnson
+
+
+Dec 06, 2025  7:36:35 PM (Read by you after 16 hours, 18 minutes, 32 seconds)
+Sara Osterhaus
+thank u!!
+
+Dec 06, 2025  7:44:50 PM (Read by you after 16 hours, 10 minutes, 17 seconds)
+Baylie
+No problem. As for specific relationships between each of the entities, I didn’t write much details about that, so you may have to look back to the pdf if you’re making the ERD or something else detail-specific.
+Tapbacks:
+Liked by Kylie Horan
+
+
+Dec 06, 2025  8:31:48 PM (Read by you after 15 hours, 23 minutes, 19 seconds)
+Matt Anastacio
+Ive been working on a project for a different class all day. What should I work on for this project now? 
+
+Dec 07, 2025 11:52:45 AM (Read by you after 2 minutes, 22 seconds)
+Kylie Horan
+Kylie and Matt we need one of you to do context diagram and one to do release plan:) sutton sent an email for our final project doc
+
+Dec 07, 2025 11:55:13 AM
+Me
+Got it
+
+Dec 07, 2025 11:55:23 AM
+Me
+I’m finishing up a programming project rn
+    Dec 07, 2025 11:57:04 AM
+    Me
+    (I have been stuck in programming hell since yesterday morning. I have been debugging since like 10 pm last night. I’m finally down to 7 failed tests. And it’s just price calculations. So I’m just adding debugging blocks everywhere in this function to see where the fuck the problem is happening to fuck up the calculation)
+
+
+Dec 07, 2025 11:55:34 AM
+Me
+I can do the release plan
+Tapbacks:
+Liked by Kylie Horan
+
+
+Dec 07, 2025 11:57:04 AM
+Me
+(I have been stuck in programming hell since yesterday morning. I have been debugging since like 10 pm last night. I’m finally down to 7 failed tests. And it’s just price calculations. So I’m just adding debugging blocks everywhere in this function to see where the fuck the problem is happening to fuck up the calculation)
+This message responded to an earlier message.
+
+Dec 07, 2025 11:57:33 AM (Read by you after 1 second)
+Kylie Horan
+oh jeez 😳
+
+Dec 07, 2025 12:00:40 PM (Read by you after 4 minutes, 15 seconds)
+Matt Anastacio
+I can do the context diagram 
+
+Dec 07, 2025 12:04:42 PM (Read by you after 13 seconds)
+Baylie
+We are still virtually meeting today right?
+
+Dec 07, 2025 12:04:50 PM (Read by you after 5 seconds)
+Sutton Johnson
+Yes 
+
+Dec 07, 2025 12:05:08 PM
+Me
+Yup
+
+Dec 07, 2025  4:15:55 PM
+Me
+Where do you guys want me to put the use case narrative for my part?
+
+Dec 07, 2025  4:16:22 PM (Read by you after 1 minute, 4 seconds)
+Kylie Horan
+I think I’m doing the use case narrative? 
+
+Dec 07, 2025  4:17:32 PM
+Me
+Hold on, my mistake
+
+Dec 07, 2025  4:17:43 PM
+Me
+I was looking at the wrong thing bc of the name mix up
+
+Dec 07, 2025  4:17:54 PM
+Kylie Horan
+Oh ahhah sorry!
+
+Dec 07, 2025  4:48:06 PM
+Me
+Did you guys as a group at any point decide on updated priorities for the user stories? Otherwise I’m going based on my judgement of the case summary
+
+Dec 07, 2025  5:00:00 PM
+Me
+Also, question: does anybody know if I’m allowed to update the dependency column? I updated some priorities and as a result I think the dependencies should be updated for a few stories
+
+Dec 07, 2025  5:00:23 PM
+Me
+Nowhere in the project instructions does it say I can’t/shouldn’t
+
+Dec 07, 2025  6:03:35 PM
+Me
+Just sent the release plan and product backlog
+
+Dec 07, 2025  6:04:02 PM
+Me
+Somebody pls glance over it before our Zoom call
+
+Dec 07, 2025  7:14:56 PM (Read by you after 37 minutes, 35 seconds)
+Matt Anastacio
+I just got home from work should I work on my part now or after the zoom call 
+
+Dec 07, 2025  7:15:49 PM (Read by you after 36 minutes, 42 seconds)
+Sutton Johnson
+Before! 
+
+Dec 07, 2025  7:51:52 PM (Read by you after 39 seconds)
+Baylie
+Sorry if this is a dumb question are we actually doing Zoom or are we just doing a group FaceTime?
+
+Dec 07, 2025  7:52:05 PM (Read by you after 26 seconds)
+Baylie
+Cause I don’t see like a link or anything unless we just need to make one
+
+Dec 07, 2025  7:52:28 PM (Read by you after 3 seconds)
+Kylie Horan
+Let’s do a Google meet I’ll create one and link it on that email chain
+Tapbacks:
+Liked by Baylie
+
+
+Dec 07, 2025  7:55:46 PM (Read by you after 6 minutes, 1 second)
+Sutton Johnson
+Yall I struggled with the ERR so I’m hoping yall can shed some light on which entities and attributes we should have, I spoke to our prof yesterday but I’m still struggling
+
+Dec 07, 2025  8:01:23 PM (Read by you after 24 seconds)
+Sara Osterhaus
+did u guys send the link?
+Tapbacks:
+Emphasized by Sutton Johnson
+
+
+Dec 07, 2025  8:02:12 PM (Read by you after 1 second)
+Baylie
+I sent one
+
+Dec 07, 2025  8:02:23 PM
+Me
+Did you make it specific to our emails or just anything?
+
+Dec 07, 2025  8:02:43 PM (Read by you after 1 second)
+Baylie
+Yes email specific 
+
+Dec 08, 2025  1:04:06 PM (Read by you after 36 minutes, 30 seconds)
+Kylie Horan
+R u guys trying to remember any certain equations for calculations?
+
+Dec 08, 2025  1:31:45 PM (Read by you after 8 minutes, 51 seconds)
+Sara Osterhaus
+What calculations are there even?
+
+Dec 08, 2025  1:31:59 PM (Read by you after 8 minutes, 37 seconds)
+Sara Osterhaus
+Also are we good to submit it?
+
+Dec 08, 2025  1:32:17 PM (Read by you after 8 minutes, 19 seconds)
+Matt Anastacio
+I’m finishing my part up right now and then I think we’re good 
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Dec 08, 2025  1:32:29 PM (Read by you after 8 minutes, 7 seconds)
+Sutton Johnson
+I’m meeting with him at 3:00 so not yet
+
+Dec 08, 2025  1:32:41 PM (Read by you after 7 minutes, 55 seconds)
+Sara Osterhaus
+Kk no rush I just wanted to see where we were at
+
+Dec 08, 2025  1:33:10 PM (Read by you after 7 minutes, 26 seconds)
+Sara Osterhaus
+What calculations are there?
+    Dec 08, 2025  1:33:46 PM (Read by you after 6 minutes, 50 seconds)
+    Sutton Johnson
+    Tbh, I haven’t seen those yet if there are, but also I haven’t made it through all the content that’s gonna be on the exam yet
+
+
+Dec 08, 2025  1:33:46 PM (Read by you after 6 minutes, 50 seconds)
+Sutton Johnson
+Tbh, I haven’t seen those yet if there are, but also I haven’t made it through all the content that’s gonna be on the exam yet
+This message responded to an earlier message.
+
+Dec 08, 2025  1:40:27 PM (Read by you after 9 seconds)
+Kylie Horan
+Possibly ROI but I feel like we have also done different cases having to calculate - like that one from last week
+
+Dec 08, 2025  1:40:32 PM (Read by you after 4 seconds)
+Kylie Horan
+So wasn’t sure ?
+
+Dec 08, 2025  1:42:04 PM
+Me
+Dec 08, 2025  1:42:04 PM I guess technically you could call determining what sprints get which user story since it maxes out at 25
+Edited 32 seconds later: I guess technically you could call determining what sprints get which user stories since it maxes out at 25
+
+Tapbacks:
+Liked by Kylie Horan
+
+
+Dec 08, 2025  1:42:24 PM
+Me
+But that’s like basic addition
+
+Dec 08, 2025  1:50:49 PM (Read by you after 2 minutes, 9 seconds)
+Matt Anastacio
+For the DFD chart is it only level 1 or do I need multiple levels 
+
+Dec 08, 2025  3:52:25 PM (Read by you after 5 seconds)
+Sutton Johnson
+Hey guys, don’t worry about it getting submitted. I’ll definitely submit it in time. He gave some great feedback for us to work on the DFD’s, but just due to everybody’s schedule it’s probably gonna be best to submit this after the exam today. Because I know people have exams right now too. So do not fret I will turn it in, but it will probably be after the exam for this class.
+Tapbacks:
+Loved by Kylie Horan
+Loved by Sara Osterhaus
+
+
+Dec 08, 2025  3:55:07 PM (Read by you after 3 hours, 19 minutes, 9 seconds)
+Kylie Horan
+No worries thanks for meeting with him! 
+
+Dec 08, 2025  9:35:55 PM (Read by you after 4 hours, 39 minutes, 57 seconds)
+Sara Osterhaus
+okay thank u! can u just text when u turn it in?
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Dec 08, 2025  9:36:31 PM (Read by you after 4 hours, 39 minutes, 21 seconds)
+Kylie Horan
+We only need one person right?
+Tapbacks:
+Liked by Sutton Johnson
+
+
+Dec 08, 2025  9:37:51 PM (Read by you after 4 hours, 38 minutes, 1 second)
+Sutton Johnson
+Yep!
+Tapbacks:
+Loved by Kylie Horan
+
+
+Dec 08, 2025 10:35:05 PM (Read by you after 3 hours, 40 minutes, 47 seconds)
+Sutton Johnson
+Hey guys Matt and I are working through Hongki’s notes on the DFDs 
+
+Dec 08, 2025 10:35:11 PM (Read by you after 3 hours, 40 minutes, 41 seconds)
+Sutton Johnson
+And we are struggling 
+
+Dec 08, 2025 10:35:22 PM (Read by you after 3 hours, 40 minutes, 30 seconds)
+Sutton Johnson
+Anyone around who could jump on call and help?
+
+Dec 08, 2025 10:43:27 PM (Read by you after 3 hours, 32 minutes, 25 seconds)
+Baylie
+I could try
+Tapbacks:
+Loved by Sutton Johnson
+
+
+Dec 08, 2025 10:50:56 PM (Read by you after 3 hours, 24 minutes, 56 seconds)
+Matt Anastacio
+Sarah what can we do to help
+
+Dec 08, 2025 10:52:38 PM (Read by you after 3 hours, 23 minutes, 14 seconds)
+Sara Osterhaus
+make it look prettier lol
+
+Dec 08, 2025 11:02:49 PM (Read by you after 3 hours, 13 minutes, 3 seconds)
+Sara Osterhaus
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/df/df34688f9affa8fba327e90a29e0073cdcca5885
+
+Dec 08, 2025 11:02:49 PM (Read by you after 3 hours, 13 minutes, 3 seconds)
+Sara Osterhaus
+ok we need all hands on deck
+
+Dec 08, 2025 11:02:51 PM (Read by you after 3 hours, 13 minutes, 1 second)
+Sara Osterhaus
+this is what chat said we need to fix everyone pls look at it and start helping
+
+Dec 08, 2025 11:06:08 PM (Read by you after 3 hours, 9 minutes, 44 seconds)
+Kylie Horan
+Sorry my phone was charging across the room - looking now
+
+Dec 08, 2025 11:08:05 PM (Read by you after 3 hours, 7 minutes, 47 seconds)
+Sara Osterhaus
+idk if this is right 
+
+Dec 08, 2025 11:08:56 PM (Read by you after 3 hours, 6 minutes, 56 seconds)
+Sara Osterhaus
+i think the fa committee and chair need to be two separate DFDs
+
+Dec 08, 2025 11:11:58 PM (Read by you after 3 hours, 3 minutes, 54 seconds)
+Sara Osterhaus
+can someone make the bolding the same throughout alk the text
+
+Dec 08, 2025 11:12:28 PM (Read by you after 3 hours, 3 minutes, 24 seconds)
+Kylie Horan
+Like just bold the text? 
+
+Dec 08, 2025 11:12:47 PM (Read by you after 3 hours, 3 minutes, 5 seconds)
+Kylie Horan
+Hopefully what I’m doing rn🤷‍♀️
+
+Dec 08, 2025 11:13:14 PM (Read by you after 3 hours, 2 minutes, 38 seconds)
+Sutton Johnson
+Looking now was making sure everything is ready to go once we finish this
+
+Dec 08, 2025 11:13:24 PM (Read by you after 3 hours, 2 minutes, 28 seconds)
+Sara Osterhaus
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/6d/6d056a23e0042383989be92b5ccb3cadf976eb46
+
+Dec 08, 2025 11:13:27 PM (Read by you after 3 hours, 2 minutes, 25 seconds)
+Sara Osterhaus
+this looks different i mean the text on the arrows
+
+Dec 08, 2025 11:14:00 PM (Read by you after 3 hours, 1 minute, 52 seconds)
+Kylie Horan
+Gotcha 
+
+Dec 08, 2025 11:15:25 PM (Read by you after 3 hours, 27 seconds)
+Kylie Horan
+Kk hopefully that looks better those two colors were different 
+
+Dec 08, 2025 11:18:44 PM (Read by you after 2 hours, 57 minutes, 8 seconds)
+Sutton Johnson
+Should I make all applicant data stores applicant records?
+
+Dec 08, 2025 11:20:09 PM (Read by you after 2 hours, 55 minutes, 43 seconds)
+Sara Osterhaus
+yes
+
+Dec 08, 2025 11:27:35 PM (Read by you after 2 hours, 48 minutes, 17 seconds)
+Sutton Johnson
+Wait on 4
+
+Dec 08, 2025 11:27:54 PM (Read by you after 2 hours, 47 minutes, 58 seconds)
+Sutton Johnson
+We can’t go from external entity to data store 
+
+Dec 08, 2025 11:28:02 PM (Read by you after 2 hours, 47 minutes, 50 seconds)
+Sutton Johnson
+It has to go thru a process
+
+Dec 08, 2025 11:28:40 PM (Read by you after 2 hours, 47 minutes, 12 seconds)
+Sara Osterhaus
+
+there is a process 
+
+Dec 08, 2025 11:28:49 PM (Read by you after 2 hours, 47 minutes, 3 seconds)
+Sara Osterhaus
+u can change it i dont know if everything is right lol
+
+Dec 08, 2025 11:31:18 PM (Read by you after 2 hours, 44 minutes, 34 seconds)
+Sutton Johnson
+Haha sorry ok I think I fixed it
+
+Dec 08, 2025 11:31:38 PM (Read by you after 2 hours, 44 minutes, 14 seconds)
+Sutton Johnson
+Was just one of his “illegal data flow things”
+
+Dec 08, 2025 11:31:38 PM (Read by you after 2 hours, 44 minutes, 14 seconds)
+Sara Osterhaus
+honestly idk what’s right im uploading screenshots into chat and asking for help
+
+Dec 08, 2025 11:32:10 PM (Read by you after 2 hours, 43 minutes, 42 seconds)
+Sutton Johnson
+LOL YOURE DOING AMAZING
+
+Dec 08, 2025 11:32:34 PM (Read by you after 2 hours, 43 minutes, 18 seconds)
+Sutton Johnson
+🫶🏻
+
+Dec 08, 2025 11:32:54 PM (Read by you after 2 hours, 42 minutes, 58 seconds)
+Sutton Johnson
+Tbh I’m thinking it looks pretty good
+
+Dec 08, 2025 11:34:54 PM (Read by you after 2 hours, 40 minutes, 58 seconds)
+Sara Osterhaus
+wait lowkey
+
+Dec 08, 2025 11:35:37 PM (Read by you after 2 hours, 40 minutes, 15 seconds)
+Sutton Johnson
+Sara 👀 wait no
+
+Dec 08, 2025 11:35:44 PM (Read by you after 2 hours, 40 minutes, 8 seconds)
+Sutton Johnson
+U can’t do that I’m pretty sure
+
+Dec 08, 2025 11:35:59 PM (Read by you after 2 hours, 39 minutes, 53 seconds)
+Sara Osterhaus
+why
+
+Dec 08, 2025 11:36:14 PM (Read by you after 2 hours, 39 minutes, 38 seconds)
+Sara Osterhaus
+oh it has to go thru the process?
+
+Dec 08, 2025 11:36:15 PM (Read by you after 2 hours, 39 minutes, 37 seconds)
+Sara Osterhaus
+but why
+
+Dec 08, 2025 11:36:28 PM (Read by you after 2 hours, 39 minutes, 24 seconds)
+Sutton Johnson
+It’s considered an illegal data flow to go from external entity to data store
+
+Dec 08, 2025 11:36:38 PM (Read by you after 2 hours, 39 minutes, 14 seconds)
+Sara Osterhaus
+ok oops let’s fix that then
+
+Dec 08, 2025 11:36:43 PM (Read by you after 2 hours, 39 minutes, 9 seconds)
+Sutton Johnson
+And I have no idea why but 😅 it’s on the slides
+Tapbacks:
+Laughed by Sara Osterhaus
+Laughed by Kylie Horan
+
+
+Dec 08, 2025 11:37:50 PM (Read by you after 2 hours, 38 minutes, 2 seconds)
+Sara Osterhaus
+sorry chat told me that
+Tapbacks:
+Loved by Sutton Johnson
+
+
+Dec 08, 2025 11:38:32 PM (Read by you after 2 hours, 37 minutes, 20 seconds)
+Sutton Johnson
+All good 
+
+Dec 08, 2025 11:38:50 PM (Read by you after 2 hours, 37 minutes, 2 seconds)
+Sara Osterhaus
+ok i feel like it’s fine im over it lol
+Tapbacks:
+Loved by Sutton Johnson
+
+
+Dec 08, 2025 11:38:58 PM (Read by you after 2 hours, 36 minutes, 54 seconds)
+Kylie Horan
+It looks great 
+
+Dec 08, 2025 11:39:06 PM (Read by you after 2 hours, 36 minutes, 46 seconds)
+Sara Osterhaus
+make sure we turn in both context and level 1
+
+Dec 08, 2025 11:39:17 PM (Read by you after 2 hours, 36 minutes, 35 seconds)
+Kylie Horan
+I think he will literally be like woah 🤯 
+
+Dec 08, 2025 11:39:21 PM (Read by you after 2 hours, 36 minutes, 31 seconds)
+Sutton Johnson
+Alright downloading both and then clicking submit 
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Dec 08, 2025 11:39:46 PM (Read by you after 2 hours, 36 minutes, 6 seconds)
+Sara Osterhaus
+yayy ok! do u need anything else form me or im going to bed lol
+Tapbacks:
+🛌 by Sutton Johnson
+
+
+Dec 08, 2025 11:40:01 PM (Read by you after 2 hours, 35 minutes, 51 seconds)
+Sutton Johnson
+May both sides of your pillow be cold
+Tapbacks:
+Loved by Sara Osterhaus
+
+
+Dec 08, 2025 11:40:38 PM (Read by you after 2 hours, 35 minutes, 14 seconds)
+Sara Osterhaus
+u too! close call lol
+
+Dec 08, 2025 11:44:15 PM (Read by you after 2 hours, 31 minutes, 37 seconds)
+Kylie Horan
+Yay!!!! Thank you 👏 
+
+Dec 08, 2025 11:44:34 PM (Read by you after 2 hours, 31 minutes, 18 seconds)
+Sutton Johnson
+C:\Users\missk\Apple\MobileSync\Backup\00008101-000219842204001E/03/03b7e75ccaca748bc796808640c0d9a16abcfded
+Tapbacks:
+Loved by Kylie Horan
+Loved by Me
+
+
+Dec 09, 2025  2:16:00 AM
+Me
+Thank you!!!!
+
+Dec 09, 2025  2:16:56 AM
+Me
+(Sorry. My phone was on silent and I was programming and didn’t see this 😬)
+
+Dec 09, 2025 11:17:21 AM (Read by you after 25 days, 4 hours, 38 minutes, 17 seconds)
+Kylie Horan
+Wow he graded that fast
+
+Dec 09, 2025 11:17:32 AM (Read by you after 25 days, 4 hours, 38 minutes, 6 seconds)
+Kylie Horan
+96! Nice job guys🥳🥳
+Tapbacks:
+Loved by Baylie
+
+
